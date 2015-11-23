@@ -1,3 +1,6 @@
-/target
-/*.log
-/build
+target
+build
+.idea
+*.log
+*.ser
+*.iml
