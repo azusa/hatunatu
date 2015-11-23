@@ -12,7 +12,7 @@
   <artifactId>hatunatu-project</artifactId>
   <packaging>pom</packaging>
   <name>Hatunatu Project</name>
-  <description>Object Relation Mapping Framework</description>
+  <description>Object Relation Mapping Framework, folked from S2Dao</description>
   <version>1.0.0-SNAPSHOT</version>
   <url>https://github.com/azusa/hatunatu</url>
   <inceptionYear>2015</inceptionYear>
