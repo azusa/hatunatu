@@ -35,6 +35,7 @@ import org.seasar.dao.RelationPropertyTypeFactoryBuilder;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.TableNaming;
 import org.seasar.dao.ValueTypeFactory;
+import org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.BeanEnhancerImpl;
 import org.seasar.dao.impl.BeanMetaDataFactoryImpl;
@@ -44,7 +45,6 @@ import org.seasar.dao.impl.DefaultColumnNaming;
 import org.seasar.dao.impl.DefaultTableNaming;
 import org.seasar.dao.impl.DtoMetaDataFactoryImpl;
 import org.seasar.dao.impl.DtoMetaDataImpl;
-import org.seasar.dao.impl.FieldAnnotationReaderFactory;
 import org.seasar.dao.impl.ProcedureMetaDataFactoryImpl;
 import org.seasar.dao.impl.PropertyTypeFactoryBuilderImpl;
 import org.seasar.dao.impl.RelationPropertyTypeFactoryBuilderImpl;
@@ -208,7 +208,7 @@ public abstract class S2DaoTestCase extends S2TestCase {
 
     protected AnnotationReaderFactory getAnnotationReaderFactory() {
         if (annotationReaderFactory == null) {
-            annotationReaderFactory = new FieldAnnotationReaderFactory();
+            annotationReaderFactory = new AnnotationReaderFactoryImpl();
         }
         return annotationReaderFactory;
     }

@@ -3,7 +3,8 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="dao">
 	<component class="org.seasar.dao.impl.DtoMetaDataFactoryImpl"/>
-	<component class="org.seasar.dao.impl.FieldAnnotationReaderFactory"/>
+	<component
+		class="org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl"/>
 	<component class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
 	<component class="org.seasar.dao.impl.PropertyTypeFactoryBuilderImpl"/>
 	<component class="org.seasar.dao.impl.DefaultColumnNaming"/>

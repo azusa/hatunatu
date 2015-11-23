@@ -36,7 +36,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         ProcedureMetaData metaData = factory.createProcedureMetaData(name,
                 Dao.class.getMethod("execute", new Class[] { Hoge.class }));
@@ -61,7 +61,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         ProcedureMetaData metaData = factory.createProcedureMetaData(name,
                 Dao.class.getMethod("executeWithNoParameter", new Class[] {}));
@@ -73,7 +73,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         try {
             factory.createProcedureMetaData(name, Dao.class.getMethod(
@@ -88,7 +88,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         try {
             factory.createProcedureMetaData(name, Dao.class.getMethod(

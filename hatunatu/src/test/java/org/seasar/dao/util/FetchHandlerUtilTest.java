@@ -38,7 +38,7 @@ public class FetchHandlerUtilTest extends S2TestCase {
      * {@link org.seasar.dao.util.FetchHandlerUtil#isFetchHandlingEnable()}.
      */
     public void testIsFetchHandlingEnable() {
-        assertFalse(FetchHandlerUtil.isFetchHandlingEnable());
+        assertTrue(FetchHandlerUtil.isFetchHandlingEnable());
     }
 
     /**

@@ -35,16 +35,8 @@ public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
     private AnnotationReaderFactory annotationReaderFactory;
 
     public AnnotationReaderFactoryImpl() {
-        Class clazz = FieldAnnotationReaderFactory.class;
-        try {
-            clazz = ClassUtil.forName(TIGER_ANNOTATION_READER_FACTORY);
-        } catch (ClassNotFoundRuntimeException ignore1) {
-            try {
-                clazz = ClassUtil
-                        .forName(BACKPORT175_ANNOTATION_READER_FACTORY);
-            } catch (ClassNotFoundRuntimeException ignore2) {
-            }
-        }
+        Class clazz =ClassUtil.forName(TIGER_ANNOTATION_READER_FACTORY);
+
         annotationReaderFactory = (AnnotationReaderFactory) ClassUtil
                 .newInstance(clazz);
     }

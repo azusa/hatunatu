@@ -13,28 +13,31 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao.impl;
+package org.seasar.dao.annotation.tiger.impl;
 
 import junit.framework.TestCase;
-
+import org.seasar.dao.AnnotationReaderFactory;
+import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DaoAnnotationReader;
+import org.seasar.dao.impl.Employee;
+import org.seasar.dao.impl.EmployeeDao;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
 /**
  * @author manhole
  */
-public class AnnotationReaderFactoryImplTest extends TestCase {
+public class AnnotationReaderFactoryImplTigerTest extends TestCase {
 
-    private AnnotationReaderFactoryImpl fieldAnnotationReaderFactory;
+    private AnnotationReaderFactory tigerAnnotationReaderFactory;
 
-    private AnnotationReaderFactoryImpl annotationReaderFactory;
+    private AnnotationReaderFactory annotationReaderFactory;
 
     protected void setUp() throws Exception {
         super.setUp();
-        fieldAnnotationReaderFactory = new AnnotationReaderFactoryImpl();
-        annotationReaderFactory = new AnnotationReaderFactoryImpl();
+        tigerAnnotationReaderFactory = new AnnotationReaderFactoryImpl();
+        annotationReaderFactory = new org.seasar.dao.impl.AnnotationReaderFactoryImpl();
     }
 
     public void testBeanAnnotationReader() throws Exception {
@@ -46,7 +49,7 @@ public class AnnotationReaderFactoryImplTest extends TestCase {
                 .createBeanAnnotationReader(beanClass);
 
         // ## Assert ##
-        assertEquals(fieldAnnotationReaderFactory.createBeanAnnotationReader(
+        assertEquals(tigerAnnotationReaderFactory.createBeanAnnotationReader(
                 beanClass).getClass(), beanAnnotationReader.getClass());
     }
 
@@ -60,8 +63,18 @@ public class AnnotationReaderFactoryImplTest extends TestCase {
                 .createDaoAnnotationReader(daoBeanDesc);
 
         // ## Assert ##
-        assertEquals(fieldAnnotationReaderFactory.createDaoAnnotationReader(
+        assertEquals(tigerAnnotationReaderFactory.createDaoAnnotationReader(
                 daoBeanDesc).getClass(), daoAnnotationReader.getClass());
     }
 
+    public void testArgumentDtoAnnotationReader() throws Exception {
+        // ## Act ##
+        final ArgumentDtoAnnotationReader dtoAnnotationReader = annotationReaderFactory
+                .createArgumentDtoAnnotationReader();
+
+        // ## Assert ##
+        assertEquals(tigerAnnotationReaderFactory
+                .createArgumentDtoAnnotationReader().getClass(),
+                dtoAnnotationReader.getClass());
+    }
 }
