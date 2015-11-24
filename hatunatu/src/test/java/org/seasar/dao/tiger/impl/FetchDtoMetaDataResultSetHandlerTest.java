@@ -16,9 +16,9 @@
 package org.seasar.dao.tiger.impl;
 
 import org.seasar.dao.RowCreator;
-import org.seasar.dao.impl.EmployeeDto;
-import org.seasar.dao.impl.EmployeeDto3;
 import org.seasar.dao.impl.RowCreatorImpl;
+import org.seasar.dao.impl.dto.EmployeeDto;
+import org.seasar.dao.impl.dto.EmployeeDto3;
 import org.seasar.dao.tiger.FetchHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;

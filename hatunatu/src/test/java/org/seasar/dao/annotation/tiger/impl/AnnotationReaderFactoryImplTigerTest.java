@@ -20,8 +20,8 @@ import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.impl.Employee;
-import org.seasar.dao.impl.EmployeeDao;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 

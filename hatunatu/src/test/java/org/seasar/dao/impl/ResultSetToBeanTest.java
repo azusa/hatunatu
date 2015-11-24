@@ -17,6 +17,9 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -56,27 +59,23 @@ public class ResultSetToBeanTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean= Employee.class)
     public static interface EmployeeDao {
 
-        Class BEAN = Employee.class;
-
-        String find1_SQL = "SELECT employee_name FROM EMP3";
-
+        @Sql(value = "SELECT employee_name FROM EMP3")
         Employee find1();
 
-        String find2_SQL = "SELECT employee_name AS employeeName FROM EMP3";
-
+        @Sql(value = "SELECT employee_name AS employeeName FROM EMP3")
         Employee find2();
 
         int insert(Employee bean);
 
     }
 
+    @Bean(table = "EMP3")
     public static class Employee {
 
         private static final long serialVersionUID = 1L;
-
-        public static final String TABLE = "EMP3";
 
         private Integer employeeId;
 

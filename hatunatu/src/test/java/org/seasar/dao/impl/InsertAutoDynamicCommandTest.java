@@ -17,6 +17,14 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Id;
+import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.bean.IdentityTable;
+import org.seasar.dao.impl.dao.EmployeeAutoDao;
+import org.seasar.dao.impl.dao.IdentityTableAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.framework.exception.SRuntimeException;
 import org.seasar.framework.util.StringUtil;
@@ -159,7 +167,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(1), count);
     }
 
-    public void testInsertCompositePk() throws Exception {
+    public void testInsertCompositePkTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(CompositePkDao.class);
         SqlCommand cmd = dmd.getSqlCommand("insert");
         CompositePk compositePk = new CompositePk();
@@ -174,23 +182,22 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         include("j2ee.dicon");
     }
 
+    @S2Dao(bean=SeqTable1.class)
     public static interface SeqTable1Dao {
-
-        public Class BEAN = SeqTable1.class;
 
         public void insert(SeqTable1 seqTable);
     }
 
+    @Bean(table = "SEQTABLE")
     public static class SeqTable1 {
 
         public static final String TABLE = "SEQTABLE";
-
-        public static final String id_ID = "sequence, sequenceName=myseq";
 
         private int id;
 
         private String name;
 
+        @Id(value = IdType.SEQUENCE, sequenceName = "myseq")
         public int getId() {
             return id;
         }
@@ -208,6 +215,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=SeqTable2.class)
     public static interface SeqTable2Dao {
 
         public Class BEAN = SeqTable2.class;
@@ -216,12 +224,11 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table = "SEQTABLE")
     public static class SeqTable2 {
 
-        public static final String TABLE = "SEQTABLE";
 
-        public static final String id_ID = "sequence, sequenceName=myseq";
-
+        @Id( value = IdType.SEQUENCE, sequenceName = "myseq")
         private Integer id;
 
         private String name;
@@ -243,23 +250,20 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=CompositePk.class)
     public static interface CompositePkDao {
-
-        public Class BEAN = CompositePk.class;
 
         public void insert(CompositePk compositePk);
     }
 
+    @Bean(table = "COMPOSITE_PK_TABLE")
     public static class CompositePk {
 
-        public static final String TABLE = "COMPOSITE_PK_TABLE";
 
-        public static final String pk1_ID = "sequence, sequenceName=myseq";
-
-        public static final String pk2_ID = "assigned";
-
+        @Id(value = IdType.SEQUENCE, sequenceName = "myseq")
         private Integer pk1;
 
+        @Id(value = IdType.ASSIGNED)
         private int pk2;
 
         private String aaa;
@@ -289,17 +293,15 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=Emp.class)
     public static interface EmpDao {
-
-        public Class BEAN = Emp.class;
 
         public void insert(Emp employee);
 
     }
 
+    @Bean(table = "EMP")
     public static class Emp {
-
-        public static final String TABLE = "EMP";
 
         private Integer empno;
 
@@ -323,17 +325,15 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     }
 
+    @S2Dao(bean=FooDto.class)
     public static interface FooDtoDao {
-
-        public Class BEAN = FooDto.class;
 
         public void insert(FooDto employee);
 
     }
 
+    @Bean(table = "DUMMY_TABLE")
     public static class FooDto {
-
-        public static final String TABLE = "DUMMY_TABLE";
 
         private Integer empno;
 

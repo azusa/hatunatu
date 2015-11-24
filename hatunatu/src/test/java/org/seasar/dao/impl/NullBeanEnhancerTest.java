@@ -18,6 +18,8 @@ package org.seasar.dao.impl;
 import java.util.Set;
 
 import junit.framework.TestCase;
+import org.seasar.dao.impl.bean.Employee20;
+import org.seasar.dao.impl.bean.Employee22;
 
 /**
  * @author jundu

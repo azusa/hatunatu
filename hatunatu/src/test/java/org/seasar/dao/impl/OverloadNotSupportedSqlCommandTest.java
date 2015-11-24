@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.seasar.dao.OverloadNotSupportedRuntimeException;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**

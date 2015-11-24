@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.dao.impl.EmployeeDto;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

@@ -15,11 +15,13 @@
  */
 package org.seasar.dao.pager;
 
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
+
+@S2Dao(bean=Customer.class)
 public interface CustomerDao {
-    public static final Class BEAN = Customer.class;
 
-    public static final String getPagedRow_QUERY = "ORDER BY PRIORITY";
-
+    @Query("ORDER BY PRIORITY")
     public Customer[] getPagedRow(DefaultPagerCondition condition);
 
     public Customer[] getPagedRow2(PagerTestCondition condition);

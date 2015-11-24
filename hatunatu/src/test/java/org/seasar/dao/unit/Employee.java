@@ -15,16 +15,17 @@
  */
 package org.seasar.dao.unit;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
+import org.seasar.dao.annotation.tiger.Relation;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+@Bean(table="EMP")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -9080991841369597025L;
-
-    public static final String TABLE = "EMP";
-
-    public static final int department_RELNO = 0;
 
     public static String timestamp_COLUMN = "LAST_UPDATE";
 
@@ -153,6 +154,7 @@ public class Employee implements Serializable {
         this.dummy = dummy;
     }
 
+    @Relation(relationNo = 0)
     public Department getDepartment() {
         return this.department;
     }
@@ -189,6 +191,7 @@ public class Employee implements Serializable {
     /**
      * @return Returns the timestamp.
      */
+    @Column("LAST_UPDATE")
     public Timestamp getTimestamp() {
         return timestamp;
     }

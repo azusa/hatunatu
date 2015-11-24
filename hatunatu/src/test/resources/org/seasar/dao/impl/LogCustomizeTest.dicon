@@ -3,7 +3,7 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="dao">
 	<include path="j2ee.dicon"/>
-	<component class="org.seasar.dao.impl.EmployeeDao" >
+	<component class="org.seasar.dao.impl.dao.EmployeeDao" >
 		<aspect>interceptor</aspect>
 	</component>
 	<component class="org.seasar.dao.impl.AnnotationReaderFactoryImpl"/>

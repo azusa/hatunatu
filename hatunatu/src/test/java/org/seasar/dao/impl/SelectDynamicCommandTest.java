@@ -22,6 +22,9 @@ import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.pager.NullPagingSqlRewriter;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.impl.BasicResultSetFactory;
@@ -73,8 +76,8 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         assertTrue(obj instanceof Employee);
     }
 
+    @S2Dao(bean=Employee.class)
     public interface DynamicDao {
-        public Class BEAN = Employee.class;
 
         List getEmployeesBySearchCondition(Serializable dto);
 
@@ -138,6 +141,7 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @Bean(table="EMP3")
     public static class Emp3 {
         public static String TABLE = "EMP3";
 
@@ -172,8 +176,8 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao( bean = Emp3.class)
     public interface Emp3Dao {
-        Class BEAN = Emp3.class;
 
         List selectByDto(Emp3Dto dto);
 

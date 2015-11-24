@@ -16,18 +16,15 @@
 package examples.dao;
 
 import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Relation;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Bean(timeStampProperty = "tstamp")
+@Bean(table="EMP",timeStampProperty = "tstamp")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -5960260125251941419L;
-
-    public static final String TABLE = "EMP";
-
-    public static final int department_RELNO = 0;
 
     private long empno;
 
@@ -128,6 +125,7 @@ public class Employee implements Serializable {
         this.timestamp = timestamp;
     }
 
+    @Relation(relationNo = 0)
     public Department getDepartment() {
         return this.department;
     }

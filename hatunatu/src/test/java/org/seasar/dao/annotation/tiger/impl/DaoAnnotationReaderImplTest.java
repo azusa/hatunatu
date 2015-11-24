@@ -21,6 +21,7 @@ import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.impl.AbstractDao;
 import org.seasar.dao.impl.AbstractDaoAnnotationReaderImplTest;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 

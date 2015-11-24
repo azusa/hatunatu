@@ -15,6 +15,12 @@
  */
 package org.seasar.dao.impl;
 
+import org.seasar.dao.annotation.tiger.*;
+import org.seasar.dao.impl.bean.Department;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.bean.Employee4;
+import org.seasar.dao.impl.bean.IdentityTable;
+
 import java.sql.Timestamp;
 
 /**
@@ -50,17 +56,8 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
         return null;
     }
 
+    @Bean(table = "MyBean")
     public static class MyBean {
-        public static final String TABLE = "MyBean";
-
-        public static final String aaa_ID = "assigned";
-
-        public static final String bbb_COLUMN = "myBbb";
-
-        public static final int ccc_RELNO = 0;
-
-        public static final String ccc_RELKEYS = "ddd:id";
-
         private Integer aaa;
 
         private String bbb;
@@ -69,6 +66,7 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
 
         private Integer ddd;
 
+        @Id(IdType.ASSIGNED)
         public Integer getAaa() {
             return aaa;
         }
@@ -77,6 +75,7 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
             this.aaa = aaa;
         }
 
+        @Column(value = "myBbb")
         public String getBbb() {
             return bbb;
         }
@@ -85,6 +84,7 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
             this.bbb = bbb;
         }
 
+        @Relation(relationNo = 0, relationKey = "ddd:id")
         public Ccc getCcc() {
             return ccc;
         }
@@ -103,10 +103,9 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
     }
 
     public static class Ccc {
-        public static final String id_ID = "assigned";
-
         private Integer id;
 
+        @Id(value = IdType.ASSIGNED)
         public Integer getId() {
             return id;
         }
@@ -116,9 +115,8 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
         }
     }
 
+    @Bean(noPersistentProperty = {""})
     public static class Ddd extends Ccc {
-        public static final String NO_PERSISTENT_PROPS = "";
-
         private String name;
 
         public String getName() {
@@ -130,8 +128,8 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
         }
     }
 
+    @Bean(noPersistentProperty = {"name"})
     public static class Eee extends Ccc {
-        public static final String NO_PERSISTENT_PROPS = "name";
 
         private String name;
 
@@ -144,10 +142,8 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
         }
     }
 
+    @Bean(versionNoProperty = "version", timeStampProperty = "updated")
     public static class Fff {
-        public static final String VERSION_NO_PROPERTY = "version";
-
-        public static final String TIMESTAMP_PROPERTY = "updated";
 
         private int version;
 
@@ -181,14 +177,12 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
     }
 
     public static class Ggg {
-        public static final String id_ID = "assigned";
-
-        public static final String id2_ID = "sequence";
 
         private Integer id;
 
         private Integer id2;
 
+        @Id(value = IdType.ASSIGNED)
         public Integer getId() {
             return id;
         }
@@ -197,6 +191,7 @@ public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
             this.id = id;
         }
 
+        @Id(value = IdType.SEQUENCE, sequenceName = "id2")
         public Integer getId2() {
             return id2;
         }

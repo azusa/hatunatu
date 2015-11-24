@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import org.seasar.dao.NotSingleResultRuntimeException;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
 

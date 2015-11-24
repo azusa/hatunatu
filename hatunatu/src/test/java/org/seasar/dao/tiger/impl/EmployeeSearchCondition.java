@@ -15,12 +15,13 @@
  */
 package org.seasar.dao.tiger.impl;
 
-public class EmployeeSearchCondition {
+import org.seasar.dao.annotation.tiger.Column;
 
-    public static final String dname_COLUMN = "dname_0";
+public class EmployeeSearchCondition {
 
     private String job;
 
+    @Column("dname_0")
     private String dname;
 
     public String getDname() {

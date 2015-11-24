@@ -19,7 +19,7 @@ import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.annotation.tiger.SqlFile;
-import org.seasar.dao.impl.EmployeeDto;
+import org.seasar.dao.impl.dto.EmployeeDto;
 
 import java.util.List;
 import java.util.Map;

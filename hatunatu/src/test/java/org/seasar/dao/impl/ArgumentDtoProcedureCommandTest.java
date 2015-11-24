@@ -21,6 +21,9 @@ import java.util.HashMap;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.ParameterType;
+import org.seasar.dao.annotation.tiger.ProcedureCall;
+import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.framework.exception.SIllegalArgumentException;
 
@@ -147,49 +150,39 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static interface Dao {
 
-        public static String executeAaa1_PROCEDURE_CALL = "PROCEDURE_TEST_AAA1";
-
-        public static String executeAaa2_PROCEDURE_CALL = "PROCEDURE_TEST_AAA2";
-
-        public static String executeAaa3_PROCEDURE_CALL = "PROCEDURE_TEST_AAA3";
-
-        public static String executeBbb1_PROCEDURE_CALL = "PROCEDURE_TEST_BBB1";
-
-        public static String executeBbb2_PROCEDURE_CALL = "PROCEDURE_TEST_BBB2";
-
-        public static String executeCcc1_PROCEDURE_CALL = "PROCEDURE_TEST_CCC1";
-
-        public static String executeCcc2_PROCEDURE_CALL = "PROCEDURE_TEST_CCC2";
-
-        public static String executeDdd1_PROCEDURE_CALL = "PROCEDURE_TEST_DDD1";
-
-        public static String max_PROCEDURE_CALL = "FUNCTION_TEST_MAX";
-
+        @ProcedureCall(value = "PROCEDURE_TEST_AAA1")
         void executeAaa1(Aaa1 aaa1);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_AAA2")
         void executeAaa2(Aaa2 aaa2);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_AAA3")
         void executeAaa3();
 
+        @ProcedureCall(value = "PROCEDURE_TEST_BBB1")
         void executeBbb1(Bbb1 bbb1);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_BBB2")
         void executeBbb2(Bbb2 bbb2);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_CCC1")
         void executeCcc1(Ccc1 ccc1);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_CCC2")
         void executeCcc2(Ccc2 ccc2);
 
+        @ProcedureCall(value = "PROCEDURE_TEST_DDD1")
         void executeDdd1(Ddd1 ddd1);
 
+        @ProcedureCall(value = "FUNCTION_TEST_MAX")
         double max(MaxDto maxDto);
     }
 
     public static class Aaa1 {
 
-        public static String foo_PROCEDURE_PARAMETER = "out";
-
         private String foo;
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public String getFoo() {
             return foo;
         }
@@ -201,14 +194,11 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class Aaa2 {
 
-        public static String bbb_PROCEDURE_PARAMETER = "out";
-
-        public static String ccc_PROCEDURE_PARAMETER = "out";
-
         private String bbb;
 
         private Timestamp ccc;
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public String getBbb() {
             return bbb;
         }
@@ -217,6 +207,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.bbb = bbb;
         }
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public Timestamp getCcc() {
             return ccc;
         }
@@ -228,10 +219,9 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class Bbb1 {
 
-        public static String ccc_PROCEDURE_PARAMETER = "in";
-
         private String ccc;
 
+        @ProcedureParameter(value = ParameterType.IN)
         public String getCcc() {
             return ccc;
         }
@@ -243,18 +233,13 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class Bbb2 {
 
-        public static String ccc_PROCEDURE_PARAMETER = "in";
-
-        public static String ddd_PROCEDURE_PARAMETER = "in";
-
-        public static String xxx_PROCEDURE_PARAMETER = "in";
-
         private String ccc;
 
         private BigDecimal ddd;
 
         private Timestamp xxx;
 
+        @ProcedureParameter(value = ParameterType.IN)
         public String getCcc() {
             return ccc;
         }
@@ -263,6 +248,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ccc = ccc;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public BigDecimal getDdd() {
             return ddd;
         }
@@ -271,6 +257,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ddd = ddd;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public Timestamp getXxx() {
             return xxx;
         }
@@ -282,18 +269,13 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class Ccc1 {
 
-        public static String ccc_PROCEDURE_PARAMETER = "in";
-
-        public static String ddd_PROCEDURE_PARAMETER = "in";
-
-        public static String eee_PROCEDURE_PARAMETER = "out";
-
         private String ccc;
 
         private BigDecimal ddd;
 
         private String eee;
 
+        @ProcedureParameter(value = ParameterType.IN)
         public String getCcc() {
             return ccc;
         }
@@ -302,6 +284,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ccc = ccc;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public BigDecimal getDdd() {
             return ddd;
         }
@@ -310,6 +293,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ddd = ddd;
         }
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public String getEee() {
             return eee;
         }
@@ -333,6 +317,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
         private String eee;
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public String getCcc() {
             return ccc;
         }
@@ -341,6 +326,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ccc = ccc;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public BigDecimal getDdd() {
             return ddd;
         }
@@ -349,6 +335,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.ddd = ddd;
         }
 
+        @ProcedureParameter(value = ParameterType.OUT)
         public String getEee() {
             return eee;
         }
@@ -360,10 +347,9 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class Ddd1 {
 
-        public static String ccc_PROCEDURE_PARAMETER = "inout";
-
         private String ccc;
 
+        @ProcedureParameter(value = ParameterType.INOUT)
         public String getCcc() {
             return ccc;
         }
@@ -375,18 +361,13 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
 
     public static class MaxDto {
 
-        public static String aaa_PROCEDURE_PARAMETER = "return";
-
-        public static String bbb_PROCEDURE_PARAMETER = "in";
-
-        public static String ccc_PROCEDURE_PARAMETER = "in";
-
         private double aaa;
 
         private double bbb;
 
         private double ccc;
 
+        @ProcedureParameter(value = ParameterType.RETURN)
         public double getAaa() {
             return aaa;
         }
@@ -395,6 +376,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.aaa = aaa;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public double getBbb() {
             return bbb;
         }
@@ -403,6 +385,7 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
             this.bbb = bbb;
         }
 
+        @ProcedureParameter(value = ParameterType.IN)
         public double getCcc() {
             return ccc;
         }

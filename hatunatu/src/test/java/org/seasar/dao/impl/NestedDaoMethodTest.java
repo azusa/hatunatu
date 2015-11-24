@@ -17,6 +17,8 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.EntityManager;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -42,9 +44,8 @@ public class NestedDaoMethodTest extends S2DaoTestCase {
         assertEquals("ACCOUNTING", dept.getDname());
     }
 
+    @Bean(table = "EMP")
     public static class Emp {
-
-        public static final String TABLE = "EMP";
 
         private int empno;
 
@@ -97,9 +98,8 @@ public class NestedDaoMethodTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table = "DEPT")
     public static class Dept {
-
-        public static final String TABLE = "DEPT";
 
         private int deptno;
 
@@ -130,14 +130,14 @@ public class NestedDaoMethodTest extends S2DaoTestCase {
 
     }
 
+    @S2Dao(bean=Emp.class)
     public static interface EmpDao {
-
-        public Class BEAN = Emp.class;
 
         Emp findById(int empno);
 
     }
 
+    @S2Dao(bean=Dept.class)
     public static interface DeptDao {
 
         public Class BEAN = Dept.class;

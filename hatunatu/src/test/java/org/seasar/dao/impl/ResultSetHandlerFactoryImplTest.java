@@ -19,6 +19,7 @@ import org.seasar.dao.impl.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResu
 import org.seasar.dao.impl.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
 import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
 import org.seasar.dao.impl.ObjectResultSetHandler.RestrictObjectResultSetHandler;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
 

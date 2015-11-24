@@ -21,6 +21,9 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Random;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -169,12 +172,10 @@ public class BlobTest extends S2TestCase {
         }
     }
 
+    @S2Dao(bean=LargeBinary.class)
     public static interface LargeBinaryDao {
 
-        public Class BEAN = LargeBinary.class;
-
-        public String getLargeBinary_ARGS = "id";
-
+        @Arguments({"id"})
         public LargeBinary getLargeBinary(int id);
 
         public void insert(LargeBinary largeBinary);
@@ -185,12 +186,10 @@ public class BlobTest extends S2TestCase {
 
     }
 
+    @S2Dao(bean=LargeBinaryStream.class)
     public static interface LargeBinaryStreamDao {
 
-        public Class BEAN = LargeBinaryStream.class;
-
-        public String getLargeBinary_ARGS = "id";
-
+        @Arguments({"id"})
         public LargeBinaryStream getLargeBinary(int id);
 
         public void insert(LargeBinaryStream largeBinary);
@@ -199,11 +198,10 @@ public class BlobTest extends S2TestCase {
 
     }
 
+    @Bean(table = "LARGE_BINARY")
     public static class LargeBinary implements Serializable {
 
         private static final long serialVersionUID = 1L;
-
-        public static final String TABLE = "LARGE_BINARY";
 
         private int id;
 
@@ -236,11 +234,10 @@ public class BlobTest extends S2TestCase {
         }
     }
 
+    @Bean(table = "LARGE_BINARY")
     public static class LargeBinaryStream implements Serializable {
 
         private static final long serialVersionUID = 1L;
-
-        public static final String TABLE = "LARGE_BINARY";
 
         private int id;
 

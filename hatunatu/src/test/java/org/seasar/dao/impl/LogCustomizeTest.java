@@ -16,6 +16,7 @@
 package org.seasar.dao.impl;
 
 import org.apache.log4j.PropertyConfigurator;
+import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResourceUtil;

@@ -17,6 +17,8 @@ package org.seasar.dao.impl;
 
 import java.util.List;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -40,8 +42,8 @@ public class ReturnsArrayDaoTest extends S2TestCase {
         assertEquals(true, 0 < array.length);
     }
 
+    @S2Dao(bean= EmployeeImpl.class)
     public static interface EmployeeDao {
-        Class BEAN = EmployeeImpl.class;
 
         Employee[] getAllEmployeesAsArray();
 
@@ -51,9 +53,8 @@ public class ReturnsArrayDaoTest extends S2TestCase {
     public static interface Employee {
     }
 
+    @Bean(table="EMP")
     public static class EmployeeImpl implements Employee {
-
-        public static final String TABLE = "EMP";
 
         private String ename;
 

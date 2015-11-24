@@ -16,8 +16,8 @@
 package org.seasar.dao.tiger.impl;
 
 import org.seasar.dao.DtoMetaDataFactory;
-import org.seasar.dao.impl.Employee;
-import org.seasar.dao.impl.EmployeeDto;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.pager.PagerContext;
 import org.seasar.dao.tiger.FetchHandler;
 import org.seasar.dao.unit.S2DaoTestCase;

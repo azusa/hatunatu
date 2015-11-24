@@ -26,6 +26,8 @@ import java.util.Map;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Procedure;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
 import org.seasar.framework.exception.SIllegalArgumentException;
@@ -177,40 +179,31 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public static interface ProcedureDao {
 
-        public String aaa1_PROCEDURE = "PROCEDURE_TEST_AAA1";
-
-        public String aaa2_PROCEDURE = "PROCEDURE_TEST_AAA2";
-
-        public String aaa3_PROCEDURE = "PROCEDURE_TEST_AAA3";
-
-        public String bbb1_PROCEDURE = "PROCEDURE_TEST_BBB1";
-
-        public String bbb2_PROCEDURE = "PROCEDURE_TEST_BBB2";
-
-        public String illegalArgSizeBbb2_PROCEDURE = "PROCEDURE_TEST_BBB2";
-
-        public String ccc1_PROCEDURE = "PROCEDURE_TEST_CCC1";
-
-        public String ccc2_PROCEDURE = "PROCEDURE_TEST_CCC2";
-
-        public String ddd1_PROCEDURE = "PROCEDURE_TEST_DDD1";
-
+        @Procedure("PROCEDURE_TEST_AAA1")
         public String aaa1();
 
+        @Procedure("PROCEDURE_TEST_AAA2")
         public Map aaa2();
 
+        @Procedure("PROCEDURE_TEST_AAA3")
         public Map aaa3();
 
+        @Procedure("PROCEDURE_TEST_BBB1")
         public void bbb1(String ccc);
 
+        @Procedure("PROCEDURE_TEST_BBB2")
         public void bbb2(String ccc, Integer ddd, Timestamp eee);
 
+        @Procedure("PROCEDURE_TEST_BBB2")
         public void illegalArgSizeBbb2(String ccc, Integer ddd);
 
+        @Procedure("PROCEDURE_TEST_CCC1")
         public String ccc1(String ccc, Integer ddd);
 
+        @Procedure("PROCEDURE_TEST_CCC2")
         public Map ccc2(Integer ddd);
 
+        @Procedure("PROCEDURE_TEST_DDD1")
         public String ddd1(String ccc);
 
     }

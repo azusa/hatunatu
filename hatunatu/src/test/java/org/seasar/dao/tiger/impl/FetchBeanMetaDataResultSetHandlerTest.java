@@ -20,7 +20,7 @@ import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl;
-import org.seasar.dao.impl.Employee;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
 import org.seasar.dao.impl.SelectDynamicCommand;

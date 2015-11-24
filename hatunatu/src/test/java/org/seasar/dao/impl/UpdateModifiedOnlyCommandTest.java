@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.seasar.dao.NotFoundModifiedPropertiesRuntimeException;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.framework.util.ClassUtil;
@@ -333,7 +334,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
                 .findById(targetEmpno);
         final EmpByReflection emp = new EmpByReflection();
         emp.setEmpno(targetEmpno);
-        emp.setEname("ModifiedPropertiesByReflection");
+        emp.setEname("Modified");
 
         // ## Act ##
         final int updatedCount = empByReflectionDao.updateModifiedOnly(emp);
@@ -344,7 +345,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
         final EmpByReflection actualEmp = empByReflectionDao
                 .findById(targetEmpno);
         assertEquals(expectedEmp.getEmpno(), actualEmp.getEmpno());
-        assertEquals("ModifiedPropertiesByReflection", actualEmp.getEname());
+        assertEquals("Modified", actualEmp.getEname());
         assertEquals(expectedEmp.getJob(), actualEmp.getJob());
         assertEquals(expectedEmp.getComm(), actualEmp.getComm());
         assertEquals(expectedEmp.getSal(), actualEmp.getSal());
@@ -352,50 +353,43 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
                 actualEmp.getClass()));
     }
 
+    @S2Dao( bean=Emp.class)
     public static interface EmpDao {
 
-        Class BEAN = Emp.class;
-
-        public String findById_ARGS = "empno";
-
+        @Arguments({"empno"})
         Emp findById(long empno);
 
         int updateModifiedOnly(Emp emp);
 
     }
 
+    @S2Dao(bean=Emp2.class)
     public static interface Emp2Dao {
 
-        Class BEAN = Emp2.class;
-
-        public String findById_ARGS = "empno";
-
+        @Arguments({"empno"})
         Emp2 findById(long empno);
 
-        public String findByJob_ARGS = "job";
-
+        @Arguments({"job"})
         List findByJob(String job);
 
         int updateModifiedOnly(Emp2 emp);
 
     }
 
+    @S2Dao(bean=Emp3.class)
     public static interface Emp3Dao {
 
-        Class BEAN = Emp3.class;
-
-        public String findById_ARGS = "empno";
-
+        @Arguments({"empno"})
         Emp3 findById(long empno);
 
-        public String findByJob_ARGS = "job";
-
+        @Arguments("job")
         List findByJob(String job);
 
         int updateModifiedOnly(Emp3 emp);
 
     }
 
+    @S2Dao(bean=Dept.class)
     public static interface DeptDao {
 
         Class BEAN = Dept.class;
@@ -408,11 +402,8 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table = "EMP")
     public static class Emp {
-
-        public static final String TABLE = "EMP";
-
-        public static final String timestamp_COLUMN = "tstamp";
 
         private long empno;
 
@@ -424,6 +415,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
         private Float comm;
 
+        @Column(value = "tstamp")
         private Timestamp timestamp;
 
         public long getEmpno() {
@@ -487,13 +479,8 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     }
 
+    @Bean( table = "EMP")
     public static class Emp2 {
-
-        public static final String TABLE = "EMP";
-
-        public static final int dept_RELNO = 0;
-
-        public static final String timestamp_COLUMN = "tstamp";
 
         private long empno;
 
@@ -549,6 +536,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
             this.comm = comm;
         }
 
+        @Column(value = "tstamp")
         public Timestamp getTimestamp() {
             return timestamp;
         }
@@ -557,6 +545,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
             this.timestamp = timestamp;
         }
 
+        @Relation(relationNo = 0)
         public Dept getDept() {
             return dept;
         }
@@ -577,9 +566,8 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
         }
     }
 
+    @Bean(table = "EMP")
     public static class Emp3 {
-
-        public static final String TABLE = "EMP";
 
         private long empno;
 
@@ -643,9 +631,8 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table = "DEPT")
     public static class Dept {
-
-        public static final String TABLE = "DEPT";
 
         private long deptno;
 
@@ -687,12 +674,10 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     }
 
+    @S2Dao( bean= EmpByReflection.class)
     public static interface EmpByReflectionDao {
 
-        Class BEAN = EmpByReflection.class;
-
-        public String findById_ARGS = "empno";
-
+        @Arguments({"empno"})
         EmpByReflection findById(long empno);
 
         int updateModifiedOnly(EmpByReflection emp);
@@ -707,9 +692,8 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
      * 
      * @author jflute
      */
+    @Bean(table = "EMP")
     public static class EmpByReflection {
-
-        public static final String TABLE = "EMP";
 
         private long empno;
 

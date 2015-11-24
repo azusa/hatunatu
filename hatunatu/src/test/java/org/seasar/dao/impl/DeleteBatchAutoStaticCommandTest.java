@@ -19,6 +19,8 @@ import java.sql.Timestamp;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {

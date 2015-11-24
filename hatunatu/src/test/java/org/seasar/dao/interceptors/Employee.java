@@ -15,15 +15,16 @@
  */
 package org.seasar.dao.interceptors;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Relation;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@Bean(table="EMP")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -110044497095536515L;
-
-    public static final String TABLE = "EMP";
-
-    public static final int department_RELNO = 0;
 
     private long empno;
 
@@ -134,6 +135,7 @@ public class Employee implements Serializable {
         this.dummy = dummy;
     }
 
+    @Relation(relationNo = 0)
     public Department getDepartment() {
         return this.department;
     }

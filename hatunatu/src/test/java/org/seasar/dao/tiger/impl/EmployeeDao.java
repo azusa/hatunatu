@@ -17,7 +17,7 @@ package org.seasar.dao.tiger.impl;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.impl.Employee;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.tiger.FetchHandler;
 
 import java.util.List;

@@ -15,6 +15,7 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+
 import org.seasar.dao.impl.DaoMetaDataImplTest;
 
 /**

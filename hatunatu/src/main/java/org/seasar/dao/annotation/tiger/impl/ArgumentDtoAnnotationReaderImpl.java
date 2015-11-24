@@ -22,7 +22,6 @@ import java.lang.reflect.Method;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.annotation.tiger.ValueType;
-import org.seasar.dao.impl.FieldArgumentDtoAnnotationReader;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 
@@ -31,8 +30,8 @@ import org.seasar.framework.beans.PropertyDesc;
  * 
  * @author taedium
  */
-public class ArgumentDtoAnnotationReaderImpl extends
-        FieldArgumentDtoAnnotationReader {
+public class ArgumentDtoAnnotationReaderImpl  implements
+        ArgumentDtoAnnotationReader {
 
     @Override
     public String getProcedureParameter(final BeanDesc dtoDesc,
@@ -42,7 +41,7 @@ public class ArgumentDtoAnnotationReaderImpl extends
         if (parameter != null) {
             return parameter.value().name().toLowerCase();
         }
-        return super.getProcedureParameter(dtoDesc, field);
+        return null;
     }
 
     @Override
@@ -52,7 +51,7 @@ public class ArgumentDtoAnnotationReaderImpl extends
         if (valueType != null) {
             return valueType.value();
         }
-        return super.getValueType(dtoDesc, field);
+        return null;
     }
 
     protected <T extends Annotation> T getAnnotation(final BeanDesc beanDesc,

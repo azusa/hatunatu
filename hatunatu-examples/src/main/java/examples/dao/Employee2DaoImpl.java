@@ -26,8 +26,6 @@ import org.seasar.dao.impl.AbstractDao;
 public abstract class Employee2DaoImpl extends AbstractDao implements
         Employee2Dao {
 
-    public static Class BEAN = Employee.class;
-
     public Employee2DaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
         super(daoMetaDataFactory);
     }

@@ -15,6 +15,9 @@
  */
 package org.seasar.dao.impl;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -74,9 +77,8 @@ public class NoPkTableTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean= NoPkTable.class)
     public static interface NoPkTableDao {
-
-        Class BEAN = NoPkTable.class;
 
         NoPkTable[] findAll();
 
@@ -89,15 +91,13 @@ public class NoPkTableTest extends S2DaoTestCase {
 
         int update(NoPkTable noPkTable);
 
-        String delete_QUERY = "AAA = ?";
-
+        @Query("AAA = ?")
         int delete(String aaa);
 
     }
 
+    @Bean(table = "NO_PK_TABLE")
     public static class NoPkTable {
-
-        public static final String TABLE = "NO_PK_TABLE";
 
         private String aaa;
 

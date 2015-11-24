@@ -15,11 +15,14 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import org.seasar.dao.DaoAnnotationReader;
+import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
@@ -31,11 +34,12 @@ import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.annotation.tiger.Sqls;
-import org.seasar.dao.impl.FieldDaoAnnotationReader;
 import org.seasar.dao.tiger.util.AnnotationUtil;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
+import org.seasar.dao.util.TypeUtil;
 import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.util.FieldUtil;
 
 /**
  * 
@@ -43,45 +47,43 @@ import org.seasar.framework.beans.BeanDesc;
  * @author manhole
  * @author azusa
  */
-public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
+public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
 
     private Class<?> daoClass_;
 
     public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
-        super(daoBeanDesc);
         daoClass_ = daoBeanDesc.getBeanClass();
     }
 
     @Override
     public String getQuery(Method method) {
         Query query = method.getAnnotation(Query.class);
-        return (query != null) ? query.value() : super.getQuery(method);
+        return (query != null) ? query.value() : null;
     }
 
     @Override
     public String getStoredProcedureName(Method method) {
         Procedure procedure = method.getAnnotation(Procedure.class);
-        return (procedure != null) ? procedure.value() : super
-                .getStoredProcedureName(method);
+        return (procedure != null) ? procedure.value() :null;
     }
 
     @Override
     public String getProcedureCallName(Method method) {
-        ProcedureCall procedureCall = method.getAnnotation(ProcedureCall.class);
-        return (procedureCall != null) ? procedureCall.value() : super
-                .getProcedureCallName(method);
+        ProcedureCall value =  method.getAnnotation(ProcedureCall.class);
+        return value != null ? value.value() : null;
     }
 
     @Override
     public String[] getArgNames(Method method) {
         Arguments arg = method.getAnnotation(Arguments.class);
-        return (arg != null) ? arg.value() : super.getArgNames(method);
+        return (arg != null) ? arg.value() : new String[0];
     }
 
     @Override
     public Class<?> getBeanClass() {
+
         Class<?> ret = getBeanClass0(daoClass_);
-        return ret != null ? ret : super.getBeanClass();
+        return ret == null ? NullBean.class : ret;
     }
 
     @Override
@@ -93,7 +95,16 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
                 return getRawClass(ret);
             }
         }
-        return super.getBeanClass(method);
+        if (List.class.isAssignableFrom(method.getReturnType())) {
+            return null;
+        }
+        if (TypeUtil.isSimpleType(method.getReturnType())) {
+            return method.getReturnType();
+        }
+        if (method.getReturnType().isArray()) {
+            return method.getReturnType().getComponentType();
+        }
+        return method.getReturnType();
     }
 
     protected static Type getElementTypeOfList(final Type type) {
@@ -201,14 +212,14 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     public String[] getNoPersistentProps(Method method) {
         NoPersistentProperty npp = method
                 .getAnnotation(NoPersistentProperty.class);
-        return (npp != null) ? npp.value() : super.getNoPersistentProps(method);
+        return (npp != null) ? npp.value() : null;
     }
 
     @Override
     public String[] getPersistentProps(Method method) {
         PersistentProperty pp = (PersistentProperty) method
                 .getAnnotation(PersistentProperty.class);
-        return (pp != null) ? pp.value() : super.getPersistentProps(method);
+        return (pp != null) ? pp.value() : null;
     }
 
     @Override
@@ -217,7 +228,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         if (sql == null) {
             sql = method.getAnnotation(Sql.class);
             if (sql == null) {
-                return super.getSQL(method, suffix);
+                return null;
             } else if (("_" + sql.dbms()).equals(suffix)
                     || sql.dbms().equals("")) {
                 return (sql != null) ? sql.value() : null;
@@ -228,7 +239,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         return (sql != null) ? sql.value() : null;
     }
 
-    protected Sql getSqls(Method method, String dbmsSuffix) {
+    private Sql getSqls(Method method, String dbmsSuffix) {
         Sqls sqls = method.getAnnotation(Sqls.class);
         if (sqls == null || sqls.value().length == 0) {
             return null;
@@ -253,7 +264,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         if (sqlFile != null) {
             return true;
         }
-        return super.isSqlFile(method);
+        return false;
     }
 
     @Override
@@ -266,7 +277,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
             }
             return path;
         }
-        return super.getSqlFilePath(method);
+        return "";
     }
 
     @Override
@@ -276,7 +287,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         if (checkSingleRowUpdate != null) {
             return checkSingleRowUpdate.value();
         }
-        return super.isCheckSingleRowUpdate();
+        return true;
     }
 
     @Override
@@ -286,7 +297,9 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         if (checkSingleRowUpdate != null) {
             return checkSingleRowUpdate.value();
         }
-        return super.isCheckSingleRowUpdate(method);
+        return true;
     }
+
+
 
 }

@@ -20,6 +20,9 @@ import java.util.List;
 
 import org.seasar.dao.MethodSetupFailureRuntimeException;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -64,22 +67,21 @@ public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=FooDto.class)
     public static interface Foo1Dao {
-        Class BEAN = FooDto.class;
 
         List findAll();
     }
 
+    @S2Dao(bean=FooDto.class)
     public static interface Foo2Dao {
-        Class BEAN = FooDto.class;
 
-        String findAll_SQL = "SELECT * FROM EMP";
-
+        @Sql("SELECT * FROM EMP")
         List findAll();
     }
 
+    @Bean(table = "WRONG_TABLE_NAME")
     public static class FooDto {
-        public static final String TABLE = "WRONG_TABLE_NAME";
 
         private String ename;
 

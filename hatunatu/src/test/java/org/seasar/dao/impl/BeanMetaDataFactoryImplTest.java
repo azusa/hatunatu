@@ -18,6 +18,7 @@ package org.seasar.dao.impl;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.NullBean;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -55,7 +56,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass);
         assertNotNull(bmd);
         assertNotNull(bmd.getBeanClass());
-        assertEquals(Employee.TABLE, bmd.getTableName());
+        assertEquals("EMP", bmd.getTableName());
         final int relationPropertyTypeSize = bmd.getRelationPropertyTypeSize();
         assertNotSame(new Integer(0), new Integer(relationPropertyTypeSize));
         for (int i = 0; i < relationPropertyTypeSize; i++) {
@@ -69,7 +70,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass, 1);
         assertNotNull(bmd);
         assertNotNull(bmd.getBeanClass());
-        assertEquals(Employee.TABLE, bmd.getTableName());
+        assertEquals("EMP", bmd.getTableName());
         final int relationPropertyTypeSize = bmd.getRelationPropertyTypeSize();
         assertEquals(new Integer(0), new Integer(relationPropertyTypeSize));
     }

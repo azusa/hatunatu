@@ -16,6 +16,8 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.MethodSetupFailureRuntimeException;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SRuntimeException;
 
@@ -47,9 +49,8 @@ public class NoPropertyForUpdateTest extends S2TestCase {
         }
     }
 
+    @S2Dao(bean=NoPropertyForUpdate.class)
     public static interface NoPropertyForUpdateDao {
-
-        Class BEAN = NoPropertyForUpdate.class;
 
         void update(NoPropertyForUpdate noPropertyForUpdate);
 
@@ -57,9 +58,8 @@ public class NoPropertyForUpdateTest extends S2TestCase {
 
     }
 
+    @Bean(table = "EMP")
     private static class NoPropertyForUpdate {
-
-        public static final String TABLE = "EMP";
 
         private String aaa;
 
