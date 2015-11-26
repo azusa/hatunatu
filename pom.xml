@@ -104,12 +104,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>hsqldb</groupId>
+      <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>1.8.0.7</version>
-      <type>jar</type>
+      <version>2.3.3</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
@@ -118,12 +118,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.h2</groupId>
+      <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.0.20061103</version>
-      <type>jar</type>
+      <version>1.4.190</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
 </project>
