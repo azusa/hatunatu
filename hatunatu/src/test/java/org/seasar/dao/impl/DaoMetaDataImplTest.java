@@ -28,6 +28,9 @@ import org.seasar.dao.MethodSetupFailureRuntimeException;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.SqlFileNotFoundRuntimeException;
 import org.seasar.dao.dbms.Oracle;
+import org.seasar.dao.impl.dao.EmployeeDao;
+import org.seasar.dao.impl.dao.EmployeeDaoImpl;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.framework.beans.BeanDesc;
@@ -340,8 +343,8 @@ public abstract class DaoMetaDataImplTest extends S2DaoTestCase {
 
         SqlCommand cmd = dmd
                 .createFindObjectCommand("select count(*) from emp");
-        Integer count = (Integer) cmd.execute(null);
-        assertEquals("1", 14, count.intValue());
+        Long count = (Long) cmd.execute(null);
+        assertEquals("1", 14L, count.intValue());
     }
 
     public void testCreateFindBeanCommandByDto() throws Exception {

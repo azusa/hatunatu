@@ -15,6 +15,7 @@
  */
 package org.seasar.dao.impl;
 
+import org.seasar.dao.impl.dao.Employee12Dao;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.unit.S2TestCase;
 

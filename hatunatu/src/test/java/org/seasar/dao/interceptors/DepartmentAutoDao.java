@@ -15,9 +15,10 @@
  */
 package org.seasar.dao.interceptors;
 
-public interface DepartmentAutoDao {
+import org.seasar.dao.annotation.tiger.S2Dao;
 
-    public Class BEAN = Department.class;
+@S2Dao(bean= Department.class)
+public interface DepartmentAutoDao {
 
     public int update(Department department);
 

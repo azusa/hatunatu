@@ -21,6 +21,9 @@ import java.util.Map;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.EntityManager;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeDao;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.pager.PagerContext;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -93,9 +96,9 @@ public class EntityManagerImplTest extends S2TestCase {
     }
 
     public void testFindObject() throws Exception {
-        Integer count = (Integer) entityManager
+        Long count = (Long) entityManager
                 .findObject("select count(*) from emp");
-        assertEquals("1", new Integer(14), count);
+        assertEquals("1", new Long(14), count);
     }
 
     public void setUp() throws Exception {

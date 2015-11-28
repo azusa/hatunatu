@@ -18,6 +18,9 @@ package org.seasar.dao.unit;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.seasar.dao.annotation.tiger.Id;
+import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
@@ -73,10 +76,6 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
 
     public static class Hoge {
 
-        public static final int foo_RELNO = 0;
-
-        public static final String aaa_ID = "assigned";
-
         private String aaa;
 
         private Foo foo;
@@ -84,6 +83,7 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
         /**
          * @return Returns the aaa.
          */
+        @Id(IdType.ASSIGNED)
         public String getAaa() {
             return aaa;
         }
@@ -107,6 +107,7 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
          * @param foo
          *            The foo to set.
          */
+        @Relation(relationNo = 0)
         public void setFoo(Foo foo) {
             this.foo = foo;
         }
@@ -114,13 +115,12 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
 
     public static class Foo {
 
-        public static final String bbb_ID = "assigned";
-
         private String bbb;
 
         /**
          * @return Returns the bbb.
          */
+        @Id(IdType.ASSIGNED)
         public String getBbb() {
             return bbb;
         }

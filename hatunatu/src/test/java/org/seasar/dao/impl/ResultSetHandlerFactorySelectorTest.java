@@ -22,6 +22,8 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.ResultSetHandlerFactory;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.framework.beans.BeanDesc;

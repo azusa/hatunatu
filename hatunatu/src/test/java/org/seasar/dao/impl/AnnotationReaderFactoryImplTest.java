@@ -19,6 +19,8 @@ import junit.framework.TestCase;
 
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DaoAnnotationReader;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -27,13 +29,13 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  */
 public class AnnotationReaderFactoryImplTest extends TestCase {
 
-    private FieldAnnotationReaderFactory fieldAnnotationReaderFactory;
+    private AnnotationReaderFactoryImpl fieldAnnotationReaderFactory;
 
     private AnnotationReaderFactoryImpl annotationReaderFactory;
 
     protected void setUp() throws Exception {
         super.setUp();
-        fieldAnnotationReaderFactory = new FieldAnnotationReaderFactory();
+        fieldAnnotationReaderFactory = new AnnotationReaderFactoryImpl();
         annotationReaderFactory = new AnnotationReaderFactoryImpl();
     }
 

@@ -15,17 +15,20 @@
  */
 package org.seasar.dao.pager;
 
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
+
 import java.util.List;
 
 /**
  * @author manhole
  */
+@S2Dao(bean=Employee.class)
 public interface EmployeeDao {
 
     public Class BEAN = Employee.class;
 
-    public String getEmployees_QUERY = "ORDER BY EMPNO";
-
+    @Query("ORDER BY EMPNO")
     public List getEmployees(PagerCondition condition);
 
 }

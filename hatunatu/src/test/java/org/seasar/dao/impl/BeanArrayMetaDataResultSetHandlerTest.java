@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
 

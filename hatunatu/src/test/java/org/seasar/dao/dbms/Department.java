@@ -15,13 +15,14 @@
  */
 package org.seasar.dao.dbms;
 
+import org.seasar.dao.annotation.tiger.Bean;
+
 import java.io.Serializable;
 
+@Bean(table="DEPT")
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 8604695413100457813L;
-
-    public static final String TABLE = "DEPT";
 
     private int deptno;
 

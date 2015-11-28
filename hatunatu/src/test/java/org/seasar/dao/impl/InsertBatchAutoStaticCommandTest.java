@@ -17,6 +17,8 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 public class InsertBatchAutoStaticCommandTest extends S2DaoTestCase {

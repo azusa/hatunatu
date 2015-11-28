@@ -17,6 +17,10 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Id;
+import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.dao.impl.bean.NoPkTable;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.PropertyType;
 
@@ -173,11 +177,10 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
         assertEquals("employee_id", bmd.getPrimaryKey(0));
     }
 
+    @Bean(table="EMP3")
     public static class Employee3A {
 
         private static final long serialVersionUID = 1L;
-
-        public static final String TABLE = "EMP3";
 
         private Integer employeeId;
 
@@ -212,8 +215,12 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
     }
 
     public static class Employee3B extends Employee3A {
+        @Id(value= IdType.ASSIGNED)
+        @Override
+        public Integer getEmployeeId() {
+            return super.getEmployeeId();
+        }
 
-        public static final String employeeId_ID = "assigned";
 
     }
 

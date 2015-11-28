@@ -16,6 +16,9 @@
 package org.seasar.dao.interceptors;
 
 import org.seasar.dao.NoRowsUpdatedRuntimeException;
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -44,14 +47,11 @@ public class AssertAtLeastOneRowInterceptorTest extends S2TestCase {
         }
     }
 
+    @S2Dao(bean=Employee.class)
     public static interface EmployeeDao {
 
-        public Class BEAN = Employee.class;
-
-        public String updateSal_ARGS = "ename";
-
-        public String updateSal_SQL = "update EMP set SAL = SAL * 2 where ENAME LIKE /*ename*/'ABC'";
-
+        @Sql("update EMP set SAL = SAL * 2 where ENAME LIKE /*ename*/'ABC'")
+        @Arguments({"ename"})
         public int updateSal(String name);
 
     }

@@ -16,6 +16,9 @@
 package org.seasar.dao.impl;
 
 import junit.framework.TestCase;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
+import org.seasar.dao.annotation.tiger.Relation;
 
 /**
  * @author higa
@@ -41,14 +44,10 @@ public class RelationKeyTest extends TestCase {
         assertEquals("1", "1".hashCode() + "2".hashCode(), pk.hashCode());
     }
 
+    @Bean(table="MyBean")
     public static class MyBean {
-        public static final String TABLE = "MyBean";
 
-        public static final String bbb_COLUMN = "myBbb";
 
-        public static final int ccc_RELNO = 0;
-
-        public static final String ccc_RELKEYS = "ddd:id";
 
         private Integer aaa;
 
@@ -66,6 +65,7 @@ public class RelationKeyTest extends TestCase {
             this.aaa = aaa;
         }
 
+        @Column(value = "myBbb")
         public String getBbb() {
             return bbb;
         }
@@ -74,6 +74,7 @@ public class RelationKeyTest extends TestCase {
             this.bbb = bbb;
         }
 
+        @Relation(relationNo = 0, relationKey = "ddd:id")
         public Ccc getCcc() {
             return ccc;
         }

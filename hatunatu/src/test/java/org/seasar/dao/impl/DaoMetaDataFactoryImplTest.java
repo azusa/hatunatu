@@ -18,6 +18,8 @@ package org.seasar.dao.impl;
 import java.util.List;
 
 import org.seasar.dao.DaoMetaData;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.DisposableUtil;
 
@@ -75,15 +77,14 @@ public class DaoMetaDataFactoryImplTest extends S2TestCase {
         assertEquals(0, daoMetaDataFactory.daoMetaDataCache.size());
     }
 
+    @S2Dao(bean=Foo.class)
     public static interface FooDao {
-        Class BEAN = Foo.class;
 
         List findAll();
     }
 
+    @Bean(table="EMP")
     public static class Foo {
-
-        public static final String TABLE = "EMP";
 
         private String ename;
 

@@ -15,17 +15,16 @@
  */
 package org.seasar.dao.dbms;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Relation;
+
 import java.io.Serializable;
 
+@Bean(table="EMP")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 3099497274013211707L;
 
-    public static final String TABLE = "EMP";
-
-    public static final int department_RELNO = 0;
-
-    public static final int department2_RELNO = 1;
 
     private long empno;
 
@@ -47,8 +46,10 @@ public class Employee implements Serializable {
 
     private String dummy;
 
+    @Relation(relationNo = 0)
     private Department department;
 
+    @Relation(relationNo = 1)
     private Department department2;
 
     public Employee() {

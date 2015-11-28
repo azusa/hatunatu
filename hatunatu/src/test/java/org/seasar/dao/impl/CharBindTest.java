@@ -15,6 +15,8 @@
  */
 package org.seasar.dao.impl;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -45,6 +47,7 @@ public class CharBindTest extends S2DaoTestCase {
         assertEquals('Z', bean.getAaa());
     }
 
+    @S2Dao(bean=CharTable.class)
     public static interface CharTableDao {
 
         public Class BEAN = CharTable.class;
@@ -57,9 +60,8 @@ public class CharBindTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table="CHAR_TABLE")
     public static class CharTable {
-
-        public static final String TABLE = "CHAR_TABLE";
 
         private int id;
 

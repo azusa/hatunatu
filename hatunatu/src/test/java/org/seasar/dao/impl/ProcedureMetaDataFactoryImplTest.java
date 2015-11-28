@@ -18,6 +18,8 @@ package org.seasar.dao.impl;
 import org.seasar.dao.IllegalSignatureRuntimeException;
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
+import org.seasar.dao.annotation.tiger.ParameterType;
+import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -36,7 +38,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         ProcedureMetaData metaData = factory.createProcedureMetaData(name,
                 Dao.class.getMethod("execute", new Class[] { Hoge.class }));
@@ -61,7 +63,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         ProcedureMetaData metaData = factory.createProcedureMetaData(name,
                 Dao.class.getMethod("executeWithNoParameter", new Class[] {}));
@@ -73,7 +75,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         try {
             factory.createProcedureMetaData(name, Dao.class.getMethod(
@@ -88,7 +90,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
         factory.setValueTypeFactory(new ValueTypeFactoryImpl());
-        factory.setAnnotationReaderFactory(new FieldAnnotationReaderFactory());
+        factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
         factory.initialize();
         try {
             factory.createProcedureMetaData(name, Dao.class.getMethod(
@@ -112,18 +114,13 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
 
     public static class Hoge {
 
-        public static String PROCEDURE_PARAMETERS = null;
-
-        public static String ccc_PROCEDURE_PARAMETER = "out";
-
-        public static String ddd_PROCEDURE_PARAMETER = "in";
-
-        public static String eee_PROCEDURE_PARAMETER = "out";
-
+        @ProcedureParameter(ParameterType.OUT)
         private String ccc;
 
+        @ProcedureParameter(ParameterType.IN)
         private int ddd;
 
+        @ProcedureParameter(ParameterType.OUT)
         private String eee;
 
         public String getCcc() {

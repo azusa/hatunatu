@@ -17,6 +17,10 @@ package org.seasar.dao.impl;
 
 import java.io.Serializable;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -59,12 +63,10 @@ public class ClobTest extends S2TestCase {
         }
     }
 
+    @S2Dao(bean=LargeText.class)
     public static interface LargeTextDao {
 
-        public Class BEAN = LargeText.class;
-
-        public String getLargeText_ARGS = "id";
-
+        @Arguments({"id"})
         public LargeText getLargeText(int id);
 
         public void insert(LargeText largeText);
@@ -73,16 +75,14 @@ public class ClobTest extends S2TestCase {
 
     }
 
+    @Bean(table="LARGE_TEXT")
     public static class LargeText implements Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        public static final String TABLE = "LARGE_TEXT";
-
         private int id;
 
-        public static String largeString_VALUE_TYPE = "stringClobType";
-
+        @ValueType(value =  "stringClobType")
         private String largeString;
 
         private int versionNo;

@@ -18,6 +18,8 @@ package org.seasar.dao.impl;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.MethodSetupFailureRuntimeException;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.framework.exception.SRuntimeException;
 
@@ -87,8 +89,8 @@ public class PkOnlyTableTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table="PKONLYTABLE")
     public class PkOnlyTable {
-        public static final String TABLE = "PKONLYTABLE";
 
         private String aaa;
 
@@ -101,15 +103,15 @@ public class PkOnlyTableTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=PkOnlyTable.class)
     public interface PkOnlyTableDao {
-        Class BEAN = PkOnlyTable.class;
 
         int insert(PkOnlyTable data);
 
     }
 
+    @S2Dao(bean=PkOnlyTable.class)
     public interface PkOnlyTableDao2 {
-        Class BEAN = PkOnlyTable.class;
 
         int update(PkOnlyTable data);
 

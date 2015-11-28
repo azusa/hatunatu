@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.seasar.dao.annotation.tiger.*;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
 import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
 import org.seasar.extension.unit.S2TestCase;
@@ -290,16 +291,13 @@ public class DefaultTest extends S2TestCase {
         assertEquals(1, list.size());
     }
 
+    @S2Dao( bean = DefaultTable.class)
     public static interface DefaultTableDao {
 
-        public Class BEAN = DefaultTable.class;
-
-        public String getDefaultTable_ARGS = "id";
-
+        @Arguments({"id"})
         public DefaultTable getDefaultTable(Integer id);
 
-        public String getDefaultTables_QUERY = "ORDER BY ID";
-
+        @Query(value = "ORDER BY ID")
         public List getDefaultTables();
 
         public void insert(DefaultTable largeBinary);
@@ -314,14 +312,12 @@ public class DefaultTest extends S2TestCase {
 
     }
 
+    @Bean(table = "DEFAULT_TABLE")
     public static class DefaultTable implements Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        public static final String TABLE = "DEFAULT_TABLE";
-
-        public static final String id_ID = "identity";
-
+        @Id(IdType.IDENTITY)
         private Integer id;
 
         private String aaa;
@@ -363,9 +359,8 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @S2Dao(bean= PkOnlyTable.class)
     public static interface PkOnlyTableDao {
-
-        Class BEAN = PkOnlyTable.class;
 
         void insert(PkOnlyTable table);
 
@@ -373,11 +368,10 @@ public class DefaultTest extends S2TestCase {
 
     }
 
+    @Bean(table = "PK_ONLY_TABLE")
     public static class PkOnlyTable implements Serializable {
 
         private static final long serialVersionUID = 1L;
-
-        public static final String TABLE = "PK_ONLY_TABLE";
 
         private Integer aaa;
 

@@ -18,6 +18,10 @@ package org.seasar.dao.impl;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.UpdateFailureRuntimeException;
+import org.seasar.dao.impl.bean.Department;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.DepartmentAutoDao;
+import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 public class DeleteAutoStaticCommandTest extends S2DaoTestCase {

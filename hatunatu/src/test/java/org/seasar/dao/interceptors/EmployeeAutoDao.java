@@ -15,18 +15,19 @@
  */
 package org.seasar.dao.interceptors;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
+
 import java.util.List;
 
+@S2Dao(bean=Employee.class)
 public interface EmployeeAutoDao {
 
-    public Class BEAN = Employee.class;
-
-    public String getEmployee_ARGS = "empno";
-
+    @Arguments("empno")
     public Employee getEmployee(int empno);
 
-    public String getEmployeesBySal_QUERY = "sal BETWEEN ? AND ?";
-
+    @Query("sal BETWEEN ? AND ?")
     public List getEmployeesBySal(float minSal, float maxSal);
 
     public int insert(Employee employee);

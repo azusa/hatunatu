@@ -17,6 +17,8 @@ package org.seasar.dao.impl;
 
 import java.util.List;
 
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -35,7 +37,7 @@ public class QuestionInCommentTest extends S2TestCase {
     public void testInsertByManualSql2Tx() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(2222);
-        emp.setEname("aaaaaaaaaaaa");
+        emp.setEname("aaaaaaaaaa");
         dao.insertBySql(emp);
         assertTrue(true);
     }
@@ -45,9 +47,8 @@ public class QuestionInCommentTest extends S2TestCase {
         assertTrue(true);
     }
 
+    @S2Dao(bean=Employee.class)
     public static interface QuestionInCommentDao {
-
-        public Class BEAN = Employee.class;
 
         public void insertBySql(Employee emp);
 

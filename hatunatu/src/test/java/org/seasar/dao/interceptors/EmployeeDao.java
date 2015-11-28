@@ -15,35 +15,35 @@
  */
 package org.seasar.dao.interceptors;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
+
 import java.util.List;
 import java.util.Map;
 
+@S2Dao(bean= Employee.class)
 public interface EmployeeDao {
-
-    public Class BEAN = Employee.class;
 
     public List getAllEmployees();
 
     public String findEmployeeDto_SQL = "select empno, ename, dname from emp, dept where empno = ? and emp.deptno = dept.deptno";
 
-    public String findEmployeeDto_ARGS = "empno";
-
+    @Sql("select empno, ename, dname from emp, dept where empno = ? and emp.deptno = dept.deptno")
+    @Arguments("empno")
     public EmployeeDto findEmployeeDto(int empno);
 
-    public String getLabelValue_SQL = "select empno as value, ename as label from emp";
-
+    @Sql("select empno as value, ename as label from emp")
     public Map[] getLabelValue();
 
-    public String getEmployee_ARGS = "empno";
-
+    @Arguments("empno")
     public Employee getEmployee(int empno);
 
     public Employee[] getEmployeesByDeptno(int deptno);
 
     public int getCount();
 
-    public String insert_ARGS = "empno, ename";
-
+    @Arguments({"empno","ename"})
     public int insert(int empno, String ename);
 
     public int update(Employee employee);

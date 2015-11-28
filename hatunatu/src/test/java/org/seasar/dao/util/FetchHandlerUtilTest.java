@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.dao.impl.EmployeeDto;
+import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -38,7 +38,7 @@ public class FetchHandlerUtilTest extends S2TestCase {
      * {@link org.seasar.dao.util.FetchHandlerUtil#isFetchHandlingEnable()}.
      */
     public void testIsFetchHandlingEnable() {
-        assertFalse(FetchHandlerUtil.isFetchHandlingEnable());
+        assertTrue(FetchHandlerUtil.isFetchHandlingEnable());
     }
 
     /**

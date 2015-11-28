@@ -18,6 +18,12 @@ package org.seasar.dao.impl;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.NoUpdatePropertyTypeRuntimeException;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.impl.bean.Department;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.dao.DepartmentAutoDao;
+import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -125,8 +131,8 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals(before.getDummy(), after.getDummy());
     }
 
+    @Bean(table = "CHAR_TABLE")
     public class CharTable {
-        public static final String TABLE = "CHAR_TABLE";
 
         int id = 0;
 
@@ -149,8 +155,8 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=CharTable.class)
     public interface CharTableDao {
-        Class BEAN = CharTable.class;
 
         void insert(CharTable data);
 

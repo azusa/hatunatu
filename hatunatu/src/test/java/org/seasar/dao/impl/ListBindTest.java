@@ -19,6 +19,10 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 
 /**
@@ -73,12 +77,11 @@ public class ListBindTest extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=Employee.class)
     public static interface EmployeeDao {
 
-        public Class BEAN = Employee.class;
 
-        public String findById_ARGS = "empno";
-
+        @Arguments({"empno"})
         public Employee findById(int empno);
 
         public String findByIdList_ARGS = "empno";
@@ -87,6 +90,10 @@ public class ListBindTest extends S2DaoTestCase {
                 + "/*IF empno != null*/ empno IN /*empno*/('aaa', 'bbb')/*END*/"
                 + " /*END*/";
 
+        @Arguments({"empno"})
+        @Query( "/*BEGIN*/ WHERE "
+                + "/*IF empno != null*/ empno IN /*empno*/('aaa', 'bbb')/*END*/"
+                + " /*END*/")
         public List findByIdList(List empnos);
 
         public String findByIdArray_ARGS = "empno";
@@ -95,6 +102,10 @@ public class ListBindTest extends S2DaoTestCase {
                 + "/*IF empno != null*/ empno IN /*empno*/('aaa')/*END*/"
                 + " /*END*/";
 
+        @Arguments("empno")
+        @Query("/*BEGIN*/ WHERE "
+                + "/*IF empno != null*/ empno IN /*empno*/('aaa')/*END*/"
+                + " /*END*/")
         public List findByIdArray(Integer[] empnos);
 
         public void insert(Employee employee);
@@ -103,9 +114,8 @@ public class ListBindTest extends S2DaoTestCase {
 
     }
 
+    @Bean(table = "EMP")
     public static class Employee {
-
-        public static final String TABLE = "EMP";
 
         private Integer empno;
 

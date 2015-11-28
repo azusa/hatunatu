@@ -15,42 +15,37 @@
  */
 package org.seasar.dao.pager;
 
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
+@Bean(table="CUSTOMER")
 public class Customer {
-    public static final String TABLE = "CUSTOMER";
 
-    public static final String id_COLUMN = "ID";
-
+    @Column("ID")
     private int id;
 
-    public static final String name_COLUMN = "NAME";
-
+    @Column("NAME")
     private String name;
 
-    public static final String city_COLUMN = "CITY";
-
+    @Column("CITY")
     private String city;
 
-    public static final String birthday_COLUMN = "DATE_OF_BIRTH";
-
+    @Column("DATE_OF_BIRTH")
     private Date birthday;
 
-    public static final String bloodType_COLUMN = "BLOOD_TYPE";
-
+    @Column("BLOOD_TYPE")
     private String bloodType;
 
-    public static final String joinDate_COLUMN = "DATE_OF_JOIN";
-
+    @Column("DATE_OF_JOIN")
     private Timestamp joinDate;
 
-    public static final String priority_COLUMN = "PRIORITY";
-
+    @Column("PRIORITY")
     private int priority;
 
-    public static final String rank_COLUMN = "RANK";
-
+    @Column("RANK")
     private Integer rank;
 
     public int getId() {

@@ -21,6 +21,8 @@ import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.NullBean;
+import org.seasar.dao.annotation.tiger.*;
+import org.seasar.dao.impl.bean.Employee;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -170,30 +172,27 @@ public class DaoAnnotationReaderImplTest extends S2TestCase {
         assertEquals("1", "SELECT * FROM emp", sql);
     }
 
+    @S2Dao(bean=Employee.class)
     public static interface AnnotationTestDao {
 
-        public Class BEAN = Employee.class;
-
-        public String withArgumentAnnotaion_ARGS = "arg1 , arg2 ";
-
+        @Arguments({"arg1", "arg2"})
         public Employee withArgumentAnnotaion(int arg1, String arg2);
 
-        public String withQueryAnnotaion_QUERY = "arg1 = /*arg1*/'dummy'";
-
+        @Query("arg1 = /*arg1*/'dummy'")
         public Employee withQueryAnnotaion(int arg1);
 
-        public String withPersistentProps_PERSISTENT_PROPS = "prop1 , prop2";
-
+        @PersistentProperty({"prop1", "prop2"})
         public Employee withPersistentProps(int arg1);
 
-        public String withNoPersistentProps_NO_PERSISTENT_PROPS = "prop1 , prop2";
-
+        @NoPersistentProperty({"prop1","prop2"})
         public Employee withNoPersistentProps(int arg1);
 
         public String withSQLAnnotaion_mysql_SQL = "SELECT * FROM emp1";
 
         public String withSQLAnnotaion_SQL = "SELECT * FROM emp2";
 
+        @Sqls( {@Sql(value = "SELECT * FROM emp1", dbms = "mysql"),
+                @Sql(value = "SELECT * FROM emp2")})
         public Employee withSQLAnnotaion();
 
         public Employee withNoAnnotaion(int arg1);
@@ -215,18 +214,15 @@ public class DaoAnnotationReaderImplTest extends S2TestCase {
                     new Integer(deptno));
         }
 
-        public static String subclassMethod_ARGS = "arg1";
 
-        public static String subclassMethod_QUERY = "arg1 = /*arg1*/'dummy'";
-
-        public static String subclassMethod_PERSISTENT_PROPS = "prop1 , prop2";
-
+        @Arguments({"arg1"})
+        @Query( "arg1 = /*arg1*/'dummy'")
+        @PersistentProperty({"prop1", "prop2"})
         public abstract Employee subclassMethod(String arg1);
 
-        public static String subclassMethod2_NO_PERSISTENT_PROPS = "prop1 , prop2";
 
-        public static String subclassMethod2_SQL = "SELECT * FROM emp";
-
+        @NoPersistentProperty({"prop1", "prop2"})
+        @Sql("SELECT * FROM emp")
         public abstract Employee subclassMethod2(String arg1);
 
     }

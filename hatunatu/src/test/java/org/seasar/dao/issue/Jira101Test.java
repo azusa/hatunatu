@@ -15,6 +15,9 @@
  */
 package org.seasar.dao.issue;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.framework.util.ClassUtil;
 
@@ -45,11 +48,9 @@ public class Jira101Test extends S2DaoTestCase {
         }
     }
 
+    @S2Dao(bean=Jira101Entity.class)
     public static interface Jira101Dao {
-        Class BEAN = Jira101Entity.class;
-
-        String findById_ARGS = "FOO_ID";
-
+        @Arguments("FOO_ID")
         Jira101Entity findById(int id);
 
         int insert(Jira101Entity entity);
@@ -57,9 +58,8 @@ public class Jira101Test extends S2DaoTestCase {
         int updateModifiedOnly(Jira101Entity entity);
     }
 
+    @Bean(table="JIRA101_TABLE")
     public static class Jira101Entity {
-
-        public static final String TABLE = "JIRA101_TABLE";
 
         private int fooId;
 
