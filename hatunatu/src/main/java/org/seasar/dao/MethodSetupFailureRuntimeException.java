@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author azusa
  *
  */
 public class MethodSetupFailureRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 1116636886135117023L;
 
     public MethodSetupFailureRuntimeException(String className,
             String methodName, SRuntimeException cause) {

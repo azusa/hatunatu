@@ -15,9 +15,9 @@
  */
 package org.seasar.dao.interceptors;
 
-import java.util.List;
-
 import org.seasar.extension.unit.S2TestCase;
+
+import java.util.List;
 
 /**
  * @author higa

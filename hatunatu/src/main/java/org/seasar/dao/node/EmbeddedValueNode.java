@@ -16,10 +16,10 @@
 package org.seasar.dao.node;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
+import org.seasar.util.lang.StringUtil;
 
 /**
  * @author higa

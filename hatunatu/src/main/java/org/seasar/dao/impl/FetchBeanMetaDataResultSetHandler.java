@@ -16,7 +16,7 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.*;
-import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.util.beans.PropertyDesc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

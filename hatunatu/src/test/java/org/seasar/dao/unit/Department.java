@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Bean(table="DEPT")
 public class Department implements Serializable {
 
-    private static final long serialVersionUID = -4611639920727477277L;
+    private static final long serialVersionUID = 1449342637624598201L;
 
     private int deptno;
 
@@ -43,19 +43,19 @@ public class Department implements Serializable {
         this.deptno = deptno;
     }
 
-    public java.lang.String getDname() {
+    public String getDname() {
         return this.dname;
     }
 
-    public void setDname(java.lang.String dname) {
+    public void setDname(String dname) {
         this.dname = dname;
     }
 
-    public java.lang.String getLoc() {
+    public String getLoc() {
         return this.loc;
     }
 
-    public void setLoc(java.lang.String loc) {
+    public void setLoc(String loc) {
         this.loc = loc;
     }
 
@@ -74,16 +74,15 @@ public class Department implements Serializable {
         return this.getDeptno() == castOther.getDeptno();
     }
 
-    public int hashCode() {
-        return this.getDeptno();
-    }
-
     public String toString() {
         StringBuffer buf = new StringBuffer();
         buf.append(deptno).append(", ");
         buf.append(dname).append(", ");
-        buf.append(loc).append(", ");
-        buf.append(versionNo);
+        buf.append(loc);
         return buf.toString();
+    }
+
+    public int hashCode() {
+        return this.getDeptno();
     }
 }

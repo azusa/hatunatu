@@ -27,10 +27,11 @@ import java.util.regex.Pattern;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.exception.SRuntimeException;
-import org.seasar.framework.util.Disposable;
-import org.seasar.framework.util.DisposableUtil;
+import org.seasar.util.exception.SQLRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
+import org.seasar.util.misc.Disposable;
+import org.seasar.util.misc.DisposableUtil;
+
 
 /**
  * @author higa

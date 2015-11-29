@@ -18,7 +18,6 @@ package org.seasar.dao.interceptors;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Relation;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @Bean(table="EMP")
@@ -63,19 +62,19 @@ public class Employee implements Serializable {
         this.empno = empno;
     }
 
-    public java.lang.String getEname() {
+    public String getEname() {
         return this.ename;
     }
 
-    public void setEname(java.lang.String ename) {
+    public void setEname(String ename) {
         this.ename = ename;
     }
 
-    public java.lang.String getJob() {
+    public String getJob() {
         return this.job;
     }
 
-    public void setJob(java.lang.String job) {
+    public void setJob(String job) {
         this.job = job;
     }
 

@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author jflute
  */
 public class NotFoundModifiedPropertiesRuntimeException extends
         SRuntimeException {
-
-    private static final long serialVersionUID = 1L;
 
     private String beanClassName;
 

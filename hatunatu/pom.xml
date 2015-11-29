@@ -44,6 +44,7 @@
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-extension</artifactId>
       <version>2.4.48</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <groupId>jboss</groupId>
@@ -54,6 +55,22 @@
           <artifactId>ognl</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>jp.fieldnotes.hatunatu</groupId>
+      <artifactId>hatunatu-util</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>jp.fieldnotes.hatunatu</groupId>
+      <artifactId>hatunatu-seasar</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>jp.fieldnotes.hatunatu</groupId>
+      <artifactId>hatunatu-api</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.javassist</groupId>
@@ -91,6 +108,7 @@
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
+
 
   </dependencies>
 </project>

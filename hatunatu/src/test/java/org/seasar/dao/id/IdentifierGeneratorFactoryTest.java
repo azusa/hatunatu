@@ -22,9 +22,9 @@ import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.impl.PropertyTypeImpl;
 import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * @author higa

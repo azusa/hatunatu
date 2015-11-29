@@ -22,13 +22,13 @@ import java.util.Map;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.IdentifierGenerator;
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.framework.util.ConstructorUtil;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
+import org.seasar.util.lang.ClassUtil;
+import org.seasar.util.lang.ConstructorUtil;
+import org.seasar.util.lang.StringUtil;
 
 /**
  * @author higa

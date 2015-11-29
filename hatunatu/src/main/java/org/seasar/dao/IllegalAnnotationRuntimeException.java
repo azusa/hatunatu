@@ -15,7 +15,8 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author azusa
@@ -23,7 +24,6 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class IllegalAnnotationRuntimeException extends SRuntimeException {
 
-    private static final long serialVersionUID = 4796402234527704805L;
 
     public IllegalAnnotationRuntimeException(String annotationName) {
         super("EDAO0026", new String[] { annotationName });

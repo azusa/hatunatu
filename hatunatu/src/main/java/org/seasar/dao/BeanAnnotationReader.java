@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.util.beans.PropertyDesc;
 
 /**
  * @author uehara keizou

@@ -27,7 +27,7 @@ import org.seasar.dao.SqlCommand;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.impl.BasicHandler;
-import org.seasar.framework.exception.SRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author manhole

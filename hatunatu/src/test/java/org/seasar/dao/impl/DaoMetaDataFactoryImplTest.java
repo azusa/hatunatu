@@ -21,7 +21,7 @@ import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.util.DisposableUtil;
+import org.seasar.util.misc.DisposableUtil;
 
 /**
  * @author manhole

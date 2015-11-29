@@ -22,9 +22,9 @@ import java.util.Date;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
-
-import org.seasar.framework.exception.NoSuchFieldRuntimeException;
 import org.seasar.framework.util.ClassPoolUtil;
+import org.seasar.util.exception.NoSuchFieldRuntimeException;
+
 
 /**
  * 型に関するユーティリティです。

@@ -19,7 +19,7 @@ import org.seasar.dao.MethodSetupFailureRuntimeException;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.exception.SRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * [DAO-150]

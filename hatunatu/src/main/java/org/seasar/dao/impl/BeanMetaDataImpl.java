@@ -31,12 +31,12 @@ import org.seasar.dao.TableNaming;
 import org.seasar.dao.id.IdentifierGeneratorFactory;
 import org.seasar.extension.jdbc.ColumnNotFoundRuntimeException;
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.util.CaseInsensitiveMap;
-import org.seasar.framework.util.ClassUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
+import org.seasar.util.collection.CaseInsensitiveMap;
+import org.seasar.util.exception.PropertyNotFoundRuntimeException;
+import org.seasar.util.lang.ClassUtil;
 
 /**
  * @author higa
@@ -274,7 +274,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
             tableName = ta;
         } else {
             tableName = tableNaming.fromEntityNameToTableName(ClassUtil
-                    .getShortClassName(beanDesc.getBeanClass()));
+                    .getShortClassName(beanDesc.getBeanClass().getName()));
         }
     }
 

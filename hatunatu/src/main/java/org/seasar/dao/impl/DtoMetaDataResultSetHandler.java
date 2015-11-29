@@ -23,7 +23,7 @@ import java.util.Set;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.NotSingleResultRuntimeException;
 import org.seasar.dao.RowCreator;
-import org.seasar.framework.log.Logger;
+import org.seasar.util.log.Logger;
 
 /**
  * @author jflute

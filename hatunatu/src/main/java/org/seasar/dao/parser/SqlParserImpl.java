@@ -32,7 +32,7 @@ import org.seasar.dao.node.IfNode;
 import org.seasar.dao.node.ParenBindVariableNode;
 import org.seasar.dao.node.PrefixSqlNode;
 import org.seasar.dao.node.SqlNode;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.lang.StringUtil;
 
 /**
  * @author higa

@@ -26,7 +26,7 @@ import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.impl.BasicSelectHandler;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.util.IntegerConversionUtil;
+import org.seasar.util.convert.IntegerConversionUtil;
 
 /**
  * S2Dao用にSELECT文を書き換えるための骨格実装を提供するクラスです。

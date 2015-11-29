@@ -22,7 +22,6 @@ package org.seasar.dao;
 public class NotSingleRowUpdatedRuntimeException extends
         UpdateFailureRuntimeException {
 
-    private static final long serialVersionUID = -5024607347361579703L;
 
     /**
      * @param bean

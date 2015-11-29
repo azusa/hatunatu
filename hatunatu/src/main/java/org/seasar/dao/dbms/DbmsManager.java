@@ -25,11 +25,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
+import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.framework.util.ResourceUtil;
+import org.seasar.util.io.ResourceUtil;
 
 /**
  * @author higa
@@ -75,8 +75,13 @@ public final class DbmsManager {
                     break;
                 }
             }
-            dbms = (Dbms) ClassUtil.newInstance(className);
-            dbmsInstances.put(productName, dbms);
+            try {
+                dbms = (Dbms) Class.forName(className).newInstance();
+                dbmsInstances.put(productName, dbms);
+            } catch (ReflectiveOperationException e) {
+                throw new ReflectiveOperationRuntimeException(e);
+            }
+
         }
         return dbms;
 

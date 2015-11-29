@@ -37,7 +37,7 @@ import org.seasar.dao.util.AnnotationUtil;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
 import org.seasar.dao.util.TypeUtil;
-import org.seasar.framework.beans.BeanDesc;
+import org.seasar.util.beans.BeanDesc;
 
 /**
  * 

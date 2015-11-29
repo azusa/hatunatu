@@ -26,10 +26,9 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationPropertyTypeFactory;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.beans.impl.PropertyDescImpl;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * {@link RelationPropertyTypeFactory}の実装クラスです。

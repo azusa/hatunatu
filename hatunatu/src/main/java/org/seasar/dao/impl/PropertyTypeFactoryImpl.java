@@ -29,11 +29,11 @@ import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.log.Logger;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.lang.StringUtil;
+import org.seasar.util.log.Logger;
 
 /**
  * {@link PropertyTypeFactory}の実装クラスです。

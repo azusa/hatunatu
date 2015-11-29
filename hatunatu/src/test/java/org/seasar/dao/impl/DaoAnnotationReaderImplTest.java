@@ -23,12 +23,11 @@ import java.util.Map;
 import junit.framework.TestCase;
 import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.impl.bean.Employee;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * @author higa
@@ -127,18 +126,18 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
         assertEquals("1", Employee.class, reader.getBeanClass());
-        Method method = beanDesc.getMethods("withArgumentAnnotaion")[0];
+        Method method = beanDesc.getMethodDesc("withArgumentAnnotaion",Integer.TYPE, String.class).getMethod();
         String[] names = reader.getArgNames(method);
         assertEquals("2", 2, names.length);
         assertEquals("2", "arg1", names[0]);
         assertEquals("2", "arg2", names[1]);
         // getArgNames return 0 length array if args annotation is not
         // specified.
-        Method method2 = beanDesc.getMethods("withNoAnnotaion")[0];
+        Method method2 = beanDesc.getMethodDesc("withNoAnnotaion", Integer.TYPE).getMethod();
         String[] names2 = reader.getArgNames(method2);
         assertEquals("3", 0, names2.length);
         // annotationReader must read subclass annotation
-        Method method3 = beanDesc.getMethods("subclassMethod")[0];
+        Method method3 = beanDesc.getMethodDesc("subclassMethod", String.class).getMethod();
         String[] names3 = reader.getArgNames(method3);
         assertEquals("3", 1, names3.length);
     }
@@ -148,15 +147,15 @@ public class DaoAnnotationReaderImplTest extends TestCase {
                 .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
-        Method method1 = beanDesc.getMethods("withQueryAnnotaion")[0];
+        Method method1 = beanDesc.getMethodDesc("withQueryAnnotaion", Integer.TYPE ).getMethod();
         String queryq = reader.getQuery(method1);
         assertEquals("1", "arg1 = /*arg1*/'dummy'", queryq);
         // return null if QUERY annotation not found
-        Method method2 = beanDesc.getMethods("withNoAnnotaion")[0];
+        Method method2 = beanDesc.getMethodDesc("withNoAnnotaion", Integer.TYPE).getMethod();
         String query2 = reader.getQuery(method2);
         assertNull("1", query2);
         // annotationReader must read subclass annotation
-        Method method3 = beanDesc.getMethods("subclassMethod")[0];
+        Method method3 = beanDesc.getMethodDesc("subclassMethod", String.class).getMethod();
         String[] names3 = reader.getArgNames(method3);
         assertEquals("3", 1, names3.length);
 
@@ -167,17 +166,17 @@ public class DaoAnnotationReaderImplTest extends TestCase {
                 .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
-        Method method1 = beanDesc.getMethods("withPersistentProps")[0];
+        Method method1 = beanDesc.getMethodDesc("withPersistentProps", Integer.TYPE).getMethod();
         String[] props1 = reader.getPersistentProps(method1);
         assertEquals("1", 2, props1.length);
         assertEquals("1", "prop1", props1[0]);
         assertEquals("1", "prop2", props1[1]);
         // return null if QUERY annotation not found
-        Method method2 = beanDesc.getMethods("withNoAnnotaion")[0];
+        Method method2 = beanDesc.getMethodDesc("withNoAnnotaion", Integer.TYPE).getMethod();
         String[] props2 = reader.getPersistentProps(method2);
         assertNull("2", props2);
         // annotationReader must read subclass annotation
-        Method method3 = beanDesc.getMethods("subclassMethod")[0];
+        Method method3 = beanDesc.getMethodDesc("subclassMethod",String.class).getMethod();
         String[] props3 = reader.getPersistentProps(method3);
         assertEquals("1", 2, props3.length);
         assertEquals("1", "prop1", props3[0]);
@@ -190,17 +189,17 @@ public class DaoAnnotationReaderImplTest extends TestCase {
                 .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
-        Method method1 = beanDesc.getMethods("withNoPersistentProps")[0];
+        Method method1 = beanDesc.getMethodDesc("withNoPersistentProps", Integer.TYPE).getMethod();
         String[] props1 = reader.getNoPersistentProps(method1);
         assertEquals("1", 2, props1.length);
         assertEquals("1", "prop1", props1[0]);
         assertEquals("1", "prop2", props1[1]);
         // return null if QUERY annotation not found
-        Method method2 = beanDesc.getMethods("withNoAnnotaion")[0];
+        Method method2 = beanDesc.getMethodDesc("withNoAnnotaion", Integer.TYPE).getMethod();
         String[] props2 = reader.getNoPersistentProps(method2);
         assertNull("2", props2);
         // annotationReader must read subclass annotation
-        Method method3 = beanDesc.getMethods("subclassMethod2")[0];
+        Method method3 = beanDesc.getMethodDesc("subclassMethod2", String.class).getMethod();
         String[] props3 = reader.getNoPersistentProps(method3);
         assertEquals("1", 2, props3.length);
         assertEquals("1", "prop1", props3[0]);
@@ -212,7 +211,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
                 .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
-        Method method1 = beanDesc.getMethods("subclassMethod2")[0];
+        Method method1 = beanDesc.getMethodDesc("subclassMethod2", String.class).getMethod();
         String sql = reader.getSQL(method1, "mysql");
         assertEquals("1", "SELECT * FROM emp", sql);
     }

@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.framework.log.Logger;
+import org.seasar.util.log.Logger;
 
 /**
  * @author manhole
@@ -66,7 +66,7 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
 
     protected String createNoUpdateLogMessage(final Object bean,
             final BeanMetaData bmd) {
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         sb.append("skip UPDATE: table=");
         sb.append(bmd.getTableName());
         final int size = bmd.getPrimaryKeySize();
@@ -80,7 +80,7 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
             sb.append(keyName);
             sb.append("=");
             sb.append(bmd.getPropertyTypeByColumnName(keyName)
-                    .getPropertyDesc().getValue(bean));
+                    .getPropertyDesc().getValue(bean).toString());
             if (i == size - 1) {
                 sb.append("}");
             }

@@ -15,14 +15,13 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author taedium
  */
 public class IllegalParameterTypeRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = -5480042533224193931L;
 
     private String parameterType;
 

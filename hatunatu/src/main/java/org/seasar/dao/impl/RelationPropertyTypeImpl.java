@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.extension.jdbc.impl.PropertyTypeImpl;
-import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.util.beans.PropertyDesc;
 
 /**
  * @author higa
@@ -49,13 +49,12 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         this.beanMetaData = beanMetaData;
     }
 
+    @Override
     public int getRelationNo() {
         return relationNo;
     }
 
-    /**
-     * @see org.seasar.dao.RelationPropertyType#getKeySize()
-     */
+    @Override
     public int getKeySize() {
         if (myKeys.length > 0) {
             return myKeys.length;
@@ -65,9 +64,7 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
 
     }
 
-    /**
-     * @see org.seasar.dao.RelationPropertyType#getMyKey(int)
-     */
+    @Override
     public String getMyKey(int index) {
         if (myKeys.length > 0) {
             return myKeys[index];
@@ -76,9 +73,7 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         }
     }
 
-    /**
-     * @see org.seasar.dao.RelationPropertyType#getYourKey(int)
-     */
+    @Override
     public String getYourKey(int index) {
         if (yourKeys.length > 0) {
             return yourKeys[index];
@@ -87,9 +82,7 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         }
     }
 
-    /**
-     * @see org.seasar.dao.RelationPropertyType#isYourKey(java.lang.String)
-     */
+    @Override
     public boolean isYourKey(String columnName) {
         for (int i = 0; i < getKeySize(); ++i) {
             if (columnName.equalsIgnoreCase(getYourKey(i))) {
@@ -99,9 +92,7 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         return false;
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.RelationPropertyType#getBeanMetaData()
-     */
+    @Override
     public BeanMetaData getBeanMetaData() {
         return beanMetaData;
     }

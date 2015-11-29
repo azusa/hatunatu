@@ -37,8 +37,8 @@ import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.exception.SRuntimeException;
-import org.seasar.framework.util.ResultSetUtil;
+import org.seasar.util.exception.SRuntimeException;
+import org.seasar.util.sql.ResultSetUtil;
 
 /**
  * @author higa

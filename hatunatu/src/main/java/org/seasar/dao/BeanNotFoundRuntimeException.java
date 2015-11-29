@@ -15,7 +15,8 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * 

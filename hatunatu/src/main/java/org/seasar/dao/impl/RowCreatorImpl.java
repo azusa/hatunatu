@@ -25,13 +25,12 @@ import java.util.Set;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.RowCreator;
+import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
 import org.seasar.dao.util.DaoNamingConventionUtil;
-import org.seasar.dao.util.PropertyDescUtil;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.lang.StringUtil;
 
 /**
  * @author jflute
@@ -65,7 +64,11 @@ public class RowCreatorImpl implements RowCreator {
     }
 
     protected Object newBean(Class beanClass) {
-        return ClassUtil.newInstance(beanClass);
+        try {
+            return beanClass.newInstance();
+        } catch (ReflectiveOperationException e) {
+            throw new ReflectiveOperationRuntimeException(e);
+        }
     }
 
     protected void registerValue(ResultSet rs, Object row, PropertyType pt,
@@ -190,6 +193,6 @@ public class RowCreatorImpl implements RowCreator {
         //  --> 該当のPropertyを処理対象とするか否か。
         // - - - - - - - - - - - - - - - - - - - - - - - -
         // If the property is not writable, the property is out of target!
-        return PropertyDescUtil.isWritable(pt.getPropertyDesc());
+        return pt.getPropertyDesc().isWritable();
     }
 }

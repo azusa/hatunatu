@@ -24,7 +24,7 @@ import org.seasar.dao.NullBean;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.extension.jdbc.ColumnNotFoundRuntimeException;
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
+import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author taedium
@@ -179,6 +179,7 @@ public class NullBeanMetaData implements BeanMetaData {
     }
 
     protected void throwException() {
+
         throw new BeanNotFoundRuntimeException(daoInterface);
     }
 

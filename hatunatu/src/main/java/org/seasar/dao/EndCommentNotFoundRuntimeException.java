@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
  * 
  */
 public class EndCommentNotFoundRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = -5756867141190556673L;
 
     public EndCommentNotFoundRuntimeException() {
         super("EDAO0007");

@@ -47,7 +47,11 @@
       <version>${project.version}</version>
       <type>jar</type>
     </dependency>
-
+    <dependency>
+      <groupId>jp.fieldnotes.hatunatu</groupId>
+      <artifactId>hatunatu-seasar</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-j2ee_1.4_spec</artifactId>

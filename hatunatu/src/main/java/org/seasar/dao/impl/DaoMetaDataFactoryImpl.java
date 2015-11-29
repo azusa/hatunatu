@@ -33,10 +33,10 @@ import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.pager.PagingSqlRewriter;
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.util.Disposable;
-import org.seasar.framework.util.DisposableUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
+import org.seasar.util.misc.Disposable;
+import org.seasar.util.misc.DisposableUtil;
 
 /**
  * @author higa

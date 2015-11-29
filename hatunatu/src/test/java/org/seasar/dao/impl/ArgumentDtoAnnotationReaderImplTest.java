@@ -20,8 +20,8 @@ import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.annotation.tiger.ValueType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Field;
 
@@ -38,62 +38,62 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
     private BeanDesc fooDesc = BeanDescFactory.getBeanDesc(Foo.class);
 
     public void testGetProcedureParameter_fieldAnnotation() throws Exception {
-        Field field = hogeDesc.getField("aaa");
+        Field field = hogeDesc.getFieldDesc("aaa").getField();
         String value = reader.getProcedureParameter(hogeDesc, field);
         assertEquals("in", value);
     }
 
     public void testGetProcedureParameter_methodAnnoation() throws Exception {
-        Field field = hogeDesc.getField("ddd");
+        Field field = hogeDesc.getFieldDesc("ddd").getField();
         String value = reader.getProcedureParameter(hogeDesc, field);
         assertEquals("out", value);
     }
 
     public void testGetProcedureParameter_constantAnnotation() throws Exception {
-        Field field = hogeDesc.getField("aaa");
+        Field field = hogeDesc.getFieldDesc("aaa").getField();
         String value = reader.getProcedureParameter(fooDesc, field);
         assertEquals("in", value);
     }
 
     public void testGetProcedureParameter_none() throws Exception {
-        Field field = hogeDesc.getField("bbb");
+        Field field = hogeDesc.getFieldDesc("bbb").getField();
         String value = reader.getProcedureParameter(hogeDesc, field);
         assertNull(value);
     }
 
     public void testGetProcedureParameter_none_constantAnnotation()
             throws Exception {
-        Field field = hogeDesc.getField("bbb");
+        Field field = hogeDesc.getFieldDesc("bbb").getField();
         String value = reader.getProcedureParameter(fooDesc, field);
         assertNull(value);
     }
 
     public void testGetProcedureParameter_public_fieldAnnotation()
             throws Exception {
-        Field field = hogeDesc.getField("ccc");
+        Field field = hogeDesc.getFieldDesc("ccc").getField();
         String value = reader.getProcedureParameter(hogeDesc, field);
         assertEquals("out", value);
     }
 
     public void testGetProcedureParameter_public_constantAnnotation()
             throws Exception {
-        Field field = hogeDesc.getField("ccc");
+        Field field = hogeDesc.getFieldDesc("ccc").getField();
         String value = reader.getProcedureParameter(fooDesc, field);
         assertEquals("out", value);
     }
 
     public void testGetValueType_fieldAnnotation() throws Exception {
-        Field field = hogeDesc.getField("aaa");
+        Field field = hogeDesc.getFieldDesc("aaa").getField();
         assertEquals("hogeValueType", reader.getValueType(hogeDesc, field));
     }
 
     public void testGetValueType_methodAnnotation() throws Exception {
-        Field field = hogeDesc.getField("ddd");
+        Field field = hogeDesc.getFieldDesc("ddd").getField();
         assertEquals("barValueType", reader.getValueType(hogeDesc, field));
     }
 
     public void testGetValueType_constantAnnotation() throws Exception {
-        Field field = hogeDesc.getField("aaa");
+        Field field = hogeDesc.getFieldDesc("aaa").getField();
         assertEquals("hogeValueType", reader.getValueType(fooDesc, field));
     }
 

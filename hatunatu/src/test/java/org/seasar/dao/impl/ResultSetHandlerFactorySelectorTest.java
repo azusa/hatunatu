@@ -20,8 +20,8 @@ import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Method;
 

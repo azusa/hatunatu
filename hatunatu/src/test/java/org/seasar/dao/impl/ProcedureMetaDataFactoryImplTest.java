@@ -37,8 +37,8 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
     public void testCreateProcedureMetaData() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
-        factory.setValueTypeFactory(new ValueTypeFactoryImpl());
         factory.setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
+        factory.setValueTypeFactory(new ValueTypeFactoryImpl());
         factory.initialize();
         ProcedureMetaData metaData = factory.createProcedureMetaData(name,
                 Dao.class.getMethod("execute", new Class[] { Hoge.class }));

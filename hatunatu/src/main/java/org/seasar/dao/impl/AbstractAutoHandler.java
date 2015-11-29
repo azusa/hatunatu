@@ -33,12 +33,12 @@ import org.seasar.extension.jdbc.UpdateHandler;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.impl.BasicHandler;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.log.Logger;
-import org.seasar.framework.util.IntegerConversionUtil;
-import org.seasar.framework.util.PreparedStatementUtil;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.convert.IntegerConversionUtil;
+import org.seasar.util.exception.SQLRuntimeException;
+import org.seasar.util.log.Logger;
+import org.seasar.util.sql.PreparedStatementUtil;
+import org.seasar.util.sql.StatementUtil;
 
 /**
  * @author higa
@@ -62,8 +62,8 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
     private boolean checkSingleRowUpdate;
 
     public AbstractAutoHandler(DataSource dataSource,
-            StatementFactory statementFactory, BeanMetaData beanMetaData,
-            PropertyType[] propertyTypes, boolean checkSingleRowUpdate) {
+                               StatementFactory statementFactory, BeanMetaData beanMetaData,
+                               PropertyType[] propertyTypes, boolean checkSingleRowUpdate) {
 
         setDataSource(dataSource);
         setStatementFactory(statementFactory);

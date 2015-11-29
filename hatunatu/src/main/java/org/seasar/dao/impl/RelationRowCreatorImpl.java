@@ -25,11 +25,11 @@ import java.util.Set;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
-import org.seasar.dao.util.PropertyDescUtil;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.util.ClassUtil;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.exception.IllegalAccessRuntimeException;
+import org.seasar.util.exception.InstantiationRuntimeException;
 
 /**
  * @author jflute
@@ -378,7 +378,13 @@ public class RelationRowCreatorImpl implements RelationRowCreator {
     }
 
     protected Object newRelationRow(RelationPropertyType rpt) {
-        return ClassUtil.newInstance(rpt.getPropertyDesc().getPropertyType());
+        try {
+            return rpt.getPropertyDesc().getPropertyType().newInstance();
+        } catch (InstantiationException e) {
+            throw new InstantiationRuntimeException(rpt.getPropertyDesc().getPropertyType(), e);
+        } catch (IllegalAccessException e) {
+            throw new IllegalAccessRuntimeException(rpt.getPropertyDesc().getPropertyType() , e);
+        }
     }
 
     // ===================================================================================
@@ -400,7 +406,7 @@ public class RelationRowCreatorImpl implements RelationRowCreator {
         //  --> 該当のPropertyを処理対象とするか否か。
         // - - - - - - - - - - - - - - - - - - - - - - - -
         final PropertyType pt = res.getCurrentPropertyType();
-        return PropertyDescUtil.isWritable(pt.getPropertyDesc());
+        return pt.getPropertyDesc().isWritable();
     }
 
     protected boolean isCreateDeadLink() {

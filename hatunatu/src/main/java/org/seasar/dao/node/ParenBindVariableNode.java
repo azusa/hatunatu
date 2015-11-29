@@ -19,7 +19,7 @@ import java.lang.reflect.Array;
 import java.util.List;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.framework.util.OgnlUtil;
+import org.seasar.dao.util.OgnlUtil;
 
 /**
  * @author higa
