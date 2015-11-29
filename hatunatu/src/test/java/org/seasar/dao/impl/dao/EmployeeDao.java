@@ -15,11 +15,13 @@
  */
 package org.seasar.dao.impl.dao;
 
+import org.seasar.dao.FetchHandler;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.condition.EmployeeSearchCondition;
 import org.seasar.dao.impl.dto.EmployeeDto;
 
 import java.util.List;
@@ -28,9 +30,12 @@ import java.util.Map;
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {
 
-    public List getAllEmployees();
+    public List<Employee> getAllEmployees();
 
     public Employee[] getAllEmployeeArray();
+
+    @Arguments("empno")
+    public Employee selectByEmpno(long empno);
 
     @Sql(value = "SELECT empno, ename, dname FROM emp, dept where emp.deptno = dept.deptno")
     public EmployeeDto[] findAll();
@@ -53,4 +58,17 @@ public interface EmployeeDao {
     public void update(Employee employee);
 
     public Employee[] getEmployeesByDeptno(int deptno);
+
+    public int fetchAll(FetchHandler<Employee> handler);
+
+    @Arguments("deptno")
+    public int fetchByDeptno(int deptno);
+
+    public int fetchEmployeesBySearchCondition(EmployeeSearchCondition dto,
+                                               FetchHandler<Employee> handler);
+
+    public int fetchAllToMap(FetchHandler<Map> handler);
+
+    public int fetchAllEmpno(FetchHandler<Integer> handler);
+
 }

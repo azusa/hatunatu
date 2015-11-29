@@ -15,13 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import java.lang.reflect.Method;
-
-import org.seasar.dao.AnnotationReaderFactory;
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.BeanMetaDataFactory;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.ResultSetHandlerFactory;
+import org.seasar.dao.*;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.unit.S2DaoTestCase;
@@ -29,8 +23,10 @@ import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
+import java.lang.reflect.Method;
+
 /**
- * @author jundo
+ * @author jundu
  * 
  */
 public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
@@ -51,6 +47,10 @@ public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
         include("dao.dicon");
     }
 
+    /**
+     * Test method for
+     * {@link ResultSetHandlerFactorySelector#getResultSetHandler(DaoAnnotationReader, BeanMetaData, Method)}.
+     */
     public void testGetResultSetHandler() {
         BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(EmployeeDao.class);
         DaoAnnotationReader daoAnnotationReader = annotationReaderFactory
@@ -58,16 +58,14 @@ public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
         BeanMetaData beanMetaData = beanMetaDataFactory
                 .createBeanMetaData(Employee.class);
         Method[] methods = EmployeeDao.class.getMethods();
-        Method method = findMethod(methods, "findAll");
+        Method method = findMethod(methods, "fetchAll");
         ResultSetHandler resultSetHandler = resultSetHandlerFactory
                 .getResultSetHandler(daoAnnotationReader, beanMetaData, method);
-        assertEquals(DtoArrayMetaDataResultSetHandler.class, resultSetHandler
-                .getClass());
+        assertTrue(resultSetHandler instanceof FetchResultSetHandler);
     }
 
     protected Method findMethod(Method[] methods, String name) {
-        for (int i = 0; i < methods.length; ++i) {
-            Method method = methods[i];
+        for (Method method : methods) {
             if (method.getName().equals(name)) {
                 return method;
             }
