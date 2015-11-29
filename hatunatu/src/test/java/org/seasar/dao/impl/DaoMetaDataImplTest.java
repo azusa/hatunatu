@@ -110,8 +110,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
             return Employee8Manager.class;
         } else if (className.equals("DepartmentTotalSalaryDao")) {
             return DepartmentTotalSalaryDao.class;
-        } else if (className.equals("EmployeeDaoImpl")) {
-            return EmployeeDaoImpl.class;
         } else if (className.equals("EmployeeExDao")) {
             return EmployeeExDao.class;
         }
@@ -557,8 +555,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         DaoMetaDataImpl dmd = createDaoMetaData(getDaoClass("Employee8Manager"));
         assertEquals("1", EmployeeDao.class, dmd
                 .getDaoInterface(EmployeeDao.class));
-        assertEquals("2", EmployeeDao.class, dmd
-                .getDaoInterface(EmployeeDaoImpl.class));
     }
 
     public void testAutoSelectSqlByDto() throws Exception {
@@ -737,15 +733,7 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         assertEquals(new Integer(13), cmd1.execute(null));
     }
 
-    public void testDaoExtend1() throws Exception {
-        DaoMetaDataImpl dmd = createDaoMetaData(getDaoClass("EmployeeDaoImpl"));
-        SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                .getSqlCommand("getEmployee");
-        final String expected = TextUtil.readText(EmployeeDao.class
-                .getPackage().getName().replace('.', '/')
-                + "/" + "EmployeeDao_getEmployee.sql");
-        assertEquals(expected, cmd.getSql());
-    }
+
 
     public void testDaoExtend2() throws Exception {
         DaoMetaDataImpl dmd = createDaoMetaData(getDaoClass("EmployeeExDao"));

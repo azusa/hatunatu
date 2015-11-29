@@ -48,7 +48,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     public void setUp() {
         readerFactory = new AnnotationReaderFactoryImpl();
-        clazz = AbstractAaaDaoImpl2.class;
+        clazz = AaaDao.class;
         BeanDesc daoDesc = BeanDescFactory.getBeanDesc(clazz);
         annotationReader = new DaoAnnotationReaderImpl(daoDesc);
         aaaClazz = Aaa.class;
@@ -247,18 +247,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     }
 
-    public static abstract class AnnotationTestDaoImpl extends AbstractDao
-            implements AnnotationTestDao {
-
-        public AnnotationTestDaoImpl(DaoMetaDataFactory factory) {
-            super(factory);
-        }
-
-        public Employee[] getEmployeesByDeptno(int deptno) {
-            return (Employee[]) getEntityManager().findArray("deptno = ?",
-                    new Integer(deptno));
-        }
-
+    public static interface AnnotationTestDaoImpl extends AnnotationTestDao {
 
         @Arguments({"arg1"})
         @Query( "arg1 = /*arg1*/'dummy'")
@@ -330,21 +319,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     public static class Aaa {
     }
-    public static abstract class AbstractAaaDaoImpl extends AbstractDao
-            implements Aaa2Dao {
 
-        public AbstractAaaDaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
-            super(daoMetaDataFactory);
-        }
 
-    }
 
-    // [DAO-135] AOPによるエンハンスされたクラスの代わり
-    public static abstract class AbstractAaaDaoImpl2 extends AbstractAaaDaoImpl {
-
-        public AbstractAaaDaoImpl2(DaoMetaDataFactory daoMetaDataFactory) {
-            super(daoMetaDataFactory);
-        }
-
-    }
 }
