@@ -15,21 +15,14 @@
  */
 package org.seasar.dao.impl;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.IllegalAnnotationRuntimeException;
-import org.seasar.dao.IllegalSignatureRuntimeException;
-import org.seasar.dao.MethodSetupFailureRuntimeException;
-import org.seasar.dao.SqlCommand;
-import org.seasar.dao.SqlFileNotFoundRuntimeException;
+import org.seasar.dao.*;
 import org.seasar.dao.dbms.Oracle;
-import org.seasar.dao.impl.dao.EmployeeDao;
-import org.seasar.dao.impl.dao.EmployeeDaoImpl;
+import org.seasar.dao.impl.bean.Department;
+import org.seasar.dao.impl.bean.Employee;
+import org.seasar.dao.impl.bean.Employee3;
+import org.seasar.dao.impl.bean.Employee9;
+import org.seasar.dao.impl.condition.EmployeeSearchCondition;
+import org.seasar.dao.impl.dao.*;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.PropertyType;
@@ -38,17 +31,93 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.util.TextUtil;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author higa
  * @author manhole
  */
-public abstract class DaoMetaDataImplTest extends S2DaoTestCase {
+public class DaoMetaDataImplTest extends S2DaoTestCase {
 
-    protected abstract Class getDaoClass(String className);
+    @Override
+    public void setUp(){
+        include("j2ee.dicon");
+    }
 
-    protected abstract Class getBeanClass(String className);
 
-    protected abstract Object getBean(String className);
+    protected Class getBeanClass(String className) {
+        if (className.equals("Employee")) {
+            return Employee.class;
+        }
+        fail(className);
+        return null;
+    }
+
+    protected Object getBean(String className) {
+        if (className.equals("Employee")) {
+            return new Employee();
+        } else if (className.equals("Employee3")) {
+            return new Employee3();
+        } else if (className.equals("Employee9")) {
+            return new Employee9();
+        } else if (className.equals("EmployeeSearchCondition")) {
+            return new EmployeeSearchCondition();
+        } else if (className.equals("Department")) {
+            return new Department();
+        }
+        fail(className);
+        return null;
+    }
+
+    protected Class getDaoClass(String className) {
+        if (className.equals("EmployeeDao")) {
+            return EmployeeDao.class;
+        } else if (className.equals("EmployeeAutoDao")) {
+            return EmployeeAutoDao.class;
+        } else if (className.equals("IllegalEmployeeAutoDao")) {
+            return IllegalEmployeeAutoDao.class;
+        } else if (className.equals("Employee2Dao")) {
+            return Employee2Dao.class;
+        } else if (className.equals("Employee3Dao")) {
+            return Employee3Dao.class;
+        } else if (className.equals("Employee4Dao")) {
+            return Employee4Dao.class;
+        } else if (className.equals("Employee5Dao")) {
+            return Employee5Dao.class;
+        } else if (className.equals("Employee6Dao")) {
+            return Employee6Dao.class;
+        } else if (className.equals("Employee7Dao")) {
+            return Employee7Dao.class;
+        } else if (className.equals("Employee8Dao")) {
+            return Employee8Dao.class;
+        } else if (className.equals("Employee9Dao")) {
+            return Employee9Dao.class;
+        } else if (className.equals("Employee10Dao")) {
+            return Employee10Dao.class;
+        } else if (className.equals("Employee11Dao")) {
+            return Employee11Dao.class;
+        } else if (className.equals("Employee12Dao")) {
+            return Employee12Dao.class;
+        } else if (className.equals("Employee13Dao")) {
+            return Employee13Dao.class;
+        } else if (className.equals("Employee14Dao")) {
+            return Employee14Dao.class;
+        } else if (className.equals("Employee8Manager")) {
+            return Employee8Manager.class;
+        } else if (className.equals("DepartmentTotalSalaryDao")) {
+            return DepartmentTotalSalaryDao.class;
+        } else if (className.equals("EmployeeDaoImpl")) {
+            return EmployeeDaoImpl.class;
+        } else if (className.equals("EmployeeExDao")) {
+            return EmployeeExDao.class;
+        }
+        fail();
+        return null;
+    }
 
     public void testSelectBeanList() throws Exception {
         DaoMetaData dmd = createDaoMetaData(getDaoClass("EmployeeDao"));

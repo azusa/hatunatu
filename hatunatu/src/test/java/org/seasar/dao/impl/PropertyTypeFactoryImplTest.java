@@ -21,7 +21,6 @@ import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyTypeFactoryBuilder;
-import org.seasar.dao.annotation.tiger.impl.BeanAnnotationReaderImpl;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.bean.Employee20;
 import org.seasar.extension.jdbc.PropertyType;

@@ -30,7 +30,7 @@ import java.sql.Timestamp;
 public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
 
     public void setUp() {
-        include("DefaultBeanMetaDataTest.dicon");
+        include("j2ee.dicon");
     }
 
     protected Class getBeanClass(String className) {

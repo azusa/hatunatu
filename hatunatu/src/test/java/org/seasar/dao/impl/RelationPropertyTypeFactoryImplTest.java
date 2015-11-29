@@ -20,7 +20,6 @@ import java.sql.DatabaseMetaData;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.dao.annotation.tiger.impl.BeanAnnotationReaderImpl;
 import org.seasar.dao.impl.bean.Employee20;
 import org.seasar.dao.unit.S2DaoTestCase;
 

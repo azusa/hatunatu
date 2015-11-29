@@ -35,8 +35,6 @@ public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory 
 
     public static final String INIT_METHOD = "init";
 
-    private static final String TIGER_RESULT_SET_HANDLER_FACTORY = "org.seasar.dao.tiger.impl.TigerResultSetHandlerFactoryImpl";
-
     protected ResultSetHandlerFactory resultSetHandlerFactory;
 
     protected DtoMetaDataFactory dtoMetaDataFactory;
@@ -52,13 +50,7 @@ public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory 
     protected boolean restrictNotSingleResult = false;
 
     public void init() {
-        Class clazz = ResultSetHandlerFactoryImpl.class;
-        try {
-            clazz = ClassUtil.forName(TIGER_RESULT_SET_HANDLER_FACTORY);
-        } catch (ClassNotFoundRuntimeException ignore) {
-        }
-        ResultSetHandlerFactoryImpl factory = (ResultSetHandlerFactoryImpl) ClassUtil
-                .newInstance(clazz);
+        ResultSetHandlerFactoryImpl factory = new TigerResultSetHandlerFactoryImpl();
         factory.setDtoMetaDataFactory(dtoMetaDataFactory);
         factory.setRestrictNotSingleResult(restrictNotSingleResult);
         resultSetHandlerFactory = factory;

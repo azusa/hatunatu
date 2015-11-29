@@ -16,14 +16,17 @@
 package org.seasar.dao.impl;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
 
+import junit.framework.TestCase;
 import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.impl.bean.Employee;
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -31,24 +34,25 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  * @author higa
  * 
  */
-public class DaoAnnotationReaderImplTest extends S2TestCase {
+public class DaoAnnotationReaderImplTest extends TestCase {
     protected AnnotationReaderFactory readerFactory;
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public DaoAnnotationReaderImplTest(String arg0) {
-        super(arg0);
-    }
+    protected Class aaaClazz;
 
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(DaoAnnotationReaderImplTest.class);
-    }
+    protected DaoAnnotationReader annotationReader;
+
+
+    protected Class clazz;
+
+    protected Class daoClazz;
 
     public void setUp() {
-        include("FieldDaoMetaDataImplTest.dicon");
+        readerFactory = new AnnotationReaderFactoryImpl();
+        clazz = AbstractAaaDaoImpl2.class;
+        BeanDesc daoDesc = BeanDescFactory.getBeanDesc(clazz);
+        annotationReader = new DaoAnnotationReaderImpl(daoDesc);
+        aaaClazz = Aaa.class;
+        daoClazz = AaaDao.class;
     }
 
     protected Class getDaoClass(String className) {
@@ -60,12 +64,53 @@ public class DaoAnnotationReaderImplTest extends S2TestCase {
         throw new RuntimeException("unkown dao class " + className);
     }
 
+    public void testGetElementTypeOfList() throws Exception {
+        Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
+        Type type = method.getGenericReturnType();
+        Type ret = DaoAnnotationReaderImpl.getElementTypeOfList(type);
+        assertEquals(Aaa.class, ret);
+    }
+
+    public void testBasic() throws Exception {
+        assertEquals(aaaClazz, annotationReader.getBeanClass());
+
+        String query = annotationReader.getQuery(daoClazz.getMethod(
+                "getAaaById2", new Class[] { int.class }));
+        assertEquals("A > B", query);
+    }
+
+
+
     public void testGetBean() {
         BeanDesc beanDesc1 = BeanDescFactory
                 .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
         DaoAnnotationReader reader1 = readerFactory
                 .createDaoAnnotationReader(beanDesc1);
         assertEquals(Employee.class, reader1.getBeanClass());
+    }
+
+    public void testGetBeanClass() throws Exception {
+        Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
+        assertEquals(Aaa.class, annotationReader.getBeanClass(method));
+    }
+
+    public void testGetBeanClassGenerics() throws Exception {
+        Method method = AaaDao.class.getMethod("findAll2", new Class[0]);
+        Class<?> clazz = annotationReader.getBeanClass(method);
+        assertEquals(Map.class, clazz);
+    }
+
+    public void testGetBeanClassGenerics_simpleType() throws Exception {
+        Method method = AaaDao.class.getMethod("findAll3", new Class[0]);
+        Class<?> clazz = annotationReader.getBeanClass(method);
+        assertEquals(Integer.class, clazz);
+    }
+
+    public void testGetBeanClass_noAnnotation() throws Exception {
+        BeanDesc daoDesc = BeanDescFactory.getBeanDesc(Employee.class);
+        DaoAnnotationReader reader = new DaoAnnotationReaderImpl(daoDesc);
+        Class clazz = reader.getBeanClass();
+        assertEquals(NullBean.class, clazz);
     }
 
     public void testGetNullBean() {
@@ -227,4 +272,79 @@ public class DaoAnnotationReaderImplTest extends S2TestCase {
 
     }
 
+    @S2Dao(bean = Aaa.class)
+    @CheckSingleRowUpdate(false)
+    public static interface AaaDao {
+
+        @Arguments( { "aaa1", "aaa2" })
+        public Aaa getAaaById1(int id);
+
+        @Query("A > B")
+        public Aaa getAaaById2(int id);
+
+        @Sql("SELECT * FROM AAA")
+        public Aaa getAaaById3(int id);
+
+        @Sql("SELECT * FROM AAA")
+        public List<Aaa> findAll();
+
+        public List<Map<String, String>> findAll2();
+
+        public List<Integer> findAll3();
+
+        public Aaa[] findArray();
+
+        public int[] findSimpleTypeArray();
+
+        public Aaa find(int id);
+
+        @NoPersistentProperty("abc")
+        public Aaa createAaa1(Aaa aaa);
+
+        @PersistentProperty("def")
+        public Aaa createAaa2(Aaa aaa);
+
+        @CheckSingleRowUpdate(false)
+        public int createAaa3(Aaa aaa);
+
+        @Sqls( { @Sql(value = "SELECT * FROM BBB", dbms = "oracle"),
+                @Sql("SELECT * FROM DDD") })
+        public Aaa selectB(int id);
+
+        @Sql(value = "SELECT * FROM CCC", dbms = "oracle")
+        public Aaa selectC(int id);
+
+        @SqlFile
+        public Aaa findUsingSqlFile(int id);
+
+        @SqlFile("org/seasar/dao/impl/sqlfile/testFile.sql")
+        public Aaa findUsingSqlFile2(int id);
+
+        @ProcedureCall("hoge")
+        public void execute();
+
+    }
+
+    public static interface Aaa2Dao extends AaaDao {
+    }
+
+    public static class Aaa {
+    }
+    public static abstract class AbstractAaaDaoImpl extends AbstractDao
+            implements Aaa2Dao {
+
+        public AbstractAaaDaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
+            super(daoMetaDataFactory);
+        }
+
+    }
+
+    // [DAO-135] AOPによるエンハンスされたクラスの代わり
+    public static abstract class AbstractAaaDaoImpl2 extends AbstractAaaDaoImpl {
+
+        public AbstractAaaDaoImpl2(DaoMetaDataFactory daoMetaDataFactory) {
+            super(daoMetaDataFactory);
+        }
+
+    }
 }

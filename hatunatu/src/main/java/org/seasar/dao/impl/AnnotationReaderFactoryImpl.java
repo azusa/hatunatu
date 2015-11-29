@@ -28,29 +28,19 @@ import org.seasar.framework.util.ClassUtil;
  */
 public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
 
-    private static final String TIGER_ANNOTATION_READER_FACTORY = "org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl";
-
-    private static final String BACKPORT175_ANNOTATION_READER_FACTORY = "org.seasar.dao.annotation.backport175.impl.AnnotationReaderFactoryImpl";
-
-    private AnnotationReaderFactory annotationReaderFactory;
-
     public AnnotationReaderFactoryImpl() {
-        Class clazz =ClassUtil.forName(TIGER_ANNOTATION_READER_FACTORY);
-
-        annotationReaderFactory = (AnnotationReaderFactory) ClassUtil
-                .newInstance(clazz);
     }
 
     public BeanAnnotationReader createBeanAnnotationReader(Class beanClass) {
-        return annotationReaderFactory.createBeanAnnotationReader(beanClass);
+        return new BeanAnnotationReaderImpl(beanClass);
     }
 
     public DaoAnnotationReader createDaoAnnotationReader(BeanDesc daoBeanDesc) {
-        return annotationReaderFactory.createDaoAnnotationReader(daoBeanDesc);
+        return new DaoAnnotationReaderImpl(daoBeanDesc);
     }
 
     public ArgumentDtoAnnotationReader createArgumentDtoAnnotationReader() {
-        return annotationReaderFactory.createArgumentDtoAnnotationReader();
+        return new ArgumentDtoAnnotationReaderImpl();
     }
 
 }

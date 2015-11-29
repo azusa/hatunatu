@@ -15,6 +15,7 @@
  */
 package org.seasar.dao.util;
 
+import org.seasar.dao.FetchHandler;
 import org.seasar.framework.exception.ClassNotFoundRuntimeException;
 import org.seasar.framework.util.ClassUtil;
 
@@ -24,16 +25,8 @@ import org.seasar.framework.util.ClassUtil;
  */
 public class FetchHandlerUtil {
 
-    private static final Class fetchHandlerClass;
+    private static final Class fetchHandlerClass = FetchHandler.class;
 
-    static {
-        Class clazz = null;
-        try {
-            clazz = ClassUtil.forName("org.seasar.dao.tiger.FetchHandler");
-        } catch (ClassNotFoundRuntimeException ignore) {
-        }
-        fetchHandlerClass = clazz;
-    }
 
     public static boolean isFetchHandlingEnable() {
         return fetchHandlerClass != null;

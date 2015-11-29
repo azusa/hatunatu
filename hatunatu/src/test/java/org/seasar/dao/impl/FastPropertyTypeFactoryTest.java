@@ -21,13 +21,11 @@ import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyTypeFactoryBuilder;
-import org.seasar.dao.annotation.tiger.impl.BeanAnnotationReaderImpl;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.bean.Employee21;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.beans.PropertyDesc;
 
 /**
  * @author taedium
