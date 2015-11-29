@@ -7,10 +7,7 @@
 	<component class="org.seasar.dao.impl.DaoMetaDataFactoryImpl"/>
 	<component
 		name="interceptor"
-		class="org.seasar.dao.pager.PagerS2DaoInterceptorWrapper">
-		<arg>
-			<component class="org.seasar.dao.interceptors.S2DaoInterceptor"/>
-		</arg>
+		class="org.seasar.dao.interceptors.S2DaoInterceptor">
 	</component>
 	<component class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
 	<component name="stringClobType"> 

@@ -18,10 +18,7 @@
 
 	<component
 		name="interceptor"
-		class="org.seasar.dao.pager.PagerS2DaoInterceptorWrapper">
-		<arg>
-			<component class="org.seasar.dao.interceptors.S2DaoInterceptor"/>
-		</arg>
+		class="org.seasar.dao.interceptors.S2DaoInterceptor">
 		<aspect>
 			<component class="org.seasar.dao.interceptors.AssertAtLeastOneRowInterceptor" />
 		</aspect>
