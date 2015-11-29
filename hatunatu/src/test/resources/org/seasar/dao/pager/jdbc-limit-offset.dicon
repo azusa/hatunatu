@@ -4,7 +4,6 @@
 <components namespace="jdbc">
 	<include path="j2ee.dicon"/>
 
-	<!-- LIMIT OFFSET句を使ったSQL書き換えによるページング処理用設定 -->
 	<component name="pagingSQLRewriter" class="org.seasar.dao.pager.LimitOffsetPagingSqlRewriter"/>
 
 	<component name="resultSetFactory" class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>

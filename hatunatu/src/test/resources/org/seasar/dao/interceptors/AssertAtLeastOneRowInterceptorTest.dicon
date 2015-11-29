@@ -18,16 +18,13 @@
 
 	<component
 		name="interceptor"
-		class="org.seasar.dao.pager.PagerS2DaoInterceptorWrapper">
-		<arg>
-			<component class="org.seasar.dao.interceptors.S2DaoInterceptor"/>
-		</arg>
+		class="org.seasar.dao.interceptors.S2DaoInterceptor">
 		<aspect>
 			<component class="org.seasar.dao.interceptors.AssertAtLeastOneRowInterceptor" />
 		</aspect>
 	</component>
 	<component class="org.seasar.dao.impl.DaoNamingConventionImpl"/>
-	<component class="org.seasar.dao.impl.BeanEnhancerImpl"/>
+	<component class="org.seasar.dao.impl.NullBeanEnhancer"/>
 	<component class="org.seasar.dao.impl.ResultSetHandlerFactoryImpl"/>
 	<component class="org.seasar.dao.impl.DtoMetaDataFactoryImpl"/>
 	<component class="org.seasar.dao.impl.PropertyTypeFactoryBuilderImpl"/>

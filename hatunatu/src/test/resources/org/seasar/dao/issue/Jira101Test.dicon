@@ -2,7 +2,7 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
 "http://www.seasar.org/dtd/components.dtd">
 <components>
-	<include path="dao-enhance.dicon"/>
+	<include path="dao.dicon"/>
 	<component class="org.seasar.dao.issue.Jira101Test$Jira101Dao">
 		<aspect>dao.interceptor</aspect>
 	</component>

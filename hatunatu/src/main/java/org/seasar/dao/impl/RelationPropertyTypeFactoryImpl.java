@@ -51,20 +51,17 @@ public class RelationPropertyTypeFactoryImpl implements
 
     protected boolean isStopRelationCreation;
 
-    protected BeanEnhancer beanEnhancer;
-
     public RelationPropertyTypeFactoryImpl(Class beanClass,
             BeanAnnotationReader beanAnnotationReader,
             BeanMetaDataFactory beanMetaDataFactory,
             DatabaseMetaData databaseMetaData, int relationNestLevel,
-            boolean isStopRelationCreation, BeanEnhancer beanEnhancer) {
+            boolean isStopRelationCreation) {
         this.beanClass = beanClass;
         this.beanAnnotationReader = beanAnnotationReader;
         this.beanMetaDataFactory = beanMetaDataFactory;
         this.databaseMetaData = databaseMetaData;
         this.relationNestLevel = relationNestLevel;
         this.isStopRelationCreation = isStopRelationCreation;
-        this.beanEnhancer = beanEnhancer;
     }
 
     public RelationPropertyType[] createRelationPropertyTypes() {
@@ -110,16 +107,8 @@ public class RelationPropertyTypeFactoryImpl implements
         }
         final BeanMetaData beanMetaData = createRelationBeanMetaData(propertyDesc
                 .getPropertyType());
-        PropertyDesc enhancedPd = null;
-        if (beanEnhancer.isEnhancedClass(beanMetaData.getBeanClass())) {
-            enhancedPd = new PropertyDescImpl(propertyDesc.getPropertyName(),
-                    beanMetaData.getBeanClass(), propertyDesc.getReadMethod(),
-                    propertyDesc.getWriteMethod(), getBeanDesc());
-        } else {
-            enhancedPd = propertyDesc;
-        }
         final RelationPropertyType rpt = new RelationPropertyTypeImpl(
-                enhancedPd, relno, myKeys, yourKeys, beanMetaData);
+                propertyDesc, relno, myKeys, yourKeys, beanMetaData);
         return rpt;
     }
 

@@ -71,11 +71,6 @@ public class S2DaoInterceptorTest extends S2TestCase {
         assertEquals("1", 1, dao.update(employee));
     }
 
-    public void testEntityManager() throws Exception {
-        Employee[] employees = dao.getEmployeesByDeptno(10);
-        assertEquals("1", 3, employees.length);
-    }
-
     public void testInsertTx() throws Exception {
         dao.insert(9999, "hoge");
     }

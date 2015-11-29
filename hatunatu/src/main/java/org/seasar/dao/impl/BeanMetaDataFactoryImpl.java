@@ -49,8 +49,6 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     public static final String daoNamingConvention_BINDING = "bindingType=must";
 
-    public static final String beanEnhancer_BINDING = "bindingType=must";
-
     public static final String tableNaming_BINDING = "bindingType=must";
 
     public static final String propertyTypeFactoryBuilder_BINDING = "bindingType=must";
@@ -102,8 +100,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         if (beanClass == null) {
             throw new NullPointerException("beanClass");
         }
-        final BeanEnhancer enhancer = getBeanEnhancer();
-        final Class originalBeanClass = enhancer.getOriginalClass(beanClass);
+        final Class originalBeanClass = this.beanEnhancer.getOriginalClass(beanClass);
         final Dbms dbms = getDbms(dbMetaData);
         final boolean stopRelationCreation = isLimitRelationNestLevel(relationNestLevel);
         final BeanAnnotationReader bar = annotationReaderFactory
@@ -127,9 +124,9 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         bmd.setRelationPropertyTypeFactory(rptf);
         bmd.initialize();
 
-        final Class enhancedBeanClass = enhancer.enhanceBeanClass(beanClass,
+        final Class enhancedBeanClass = this.beanEnhancer.enhanceBeanClass(beanClass,
                 versionNoPropertyName, timestampPropertyName);
-        bmd.setModifiedPropertySupport(enhancer.getSupporter());
+        bmd.setModifiedPropertySupport(this.beanEnhancer.getSupporter());
         bmd.setBeanClass(enhancedBeanClass);
 
         return bmd;
@@ -206,14 +203,6 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         this.daoNamingConvention = daoNamingConvention;
     }
 
-    public BeanEnhancer getBeanEnhancer() {
-        return beanEnhancer;
-    }
-
-    public void setBeanEnhancer(final BeanEnhancer beanEnhancer) {
-        this.beanEnhancer = beanEnhancer;
-    }
-
     public TableNaming getTableNaming() {
         return tableNaming;
     }
@@ -232,4 +221,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         this.relationPropertyTypeFactoryBuilder = relationPropertyTypeFactoryBuilder;
     }
 
+    public void setBeanEnhancer(BeanEnhancer enhancer){
+        this.beanEnhancer = enhancer;
+    }
 }

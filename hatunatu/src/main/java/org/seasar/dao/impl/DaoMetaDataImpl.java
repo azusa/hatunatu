@@ -1109,19 +1109,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         if (clazz.isInterface()) {
             return clazz;
         }
-        final String[] daoSuffixes = getDaoNamingConvention().getDaoSuffixes();
-        for (Class target = clazz; target != AbstractDao.class; target = target
-                .getSuperclass()) {
-            final Class[] interfaces = target.getInterfaces();
-            for (int i = 0; i < interfaces.length; ++i) {
-                final Class intf = interfaces[i];
-                for (int j = 0; j < daoSuffixes.length; j++) {
-                    if (intf.getName().endsWith(daoSuffixes[j])) {
-                        return intf;
-                    }
-                }
-            }
-        }
         throw new DaoNotFoundRuntimeException(clazz);
     }
 

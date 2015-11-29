@@ -21,6 +21,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.pager.PagerContext;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.NumberConversionUtil;
@@ -39,10 +40,31 @@ public class S2DaoInterceptor extends AbstractInterceptor {
         this.daoMetaDataFactory = daoMetaDataFactory;
     }
 
+
+
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        boolean started = false;
+        PagerContext pagerContext = PagerContext.getContext();
+        if (pagerContext == null) {
+            PagerContext.start();
+            started = true;
+            pagerContext = PagerContext.getContext();
+        }
+        pagerContext.pushArgs(invocation.getArguments());
+        try {
+            return doInvoke(invocation);
+        } finally {
+            pagerContext.popArgs();
+            if (started) {
+                PagerContext.end();
+            }
+        }
+    }
+
     /**
      * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
      */
-    public Object invoke(MethodInvocation invocation) throws Throwable {
+    private Object doInvoke(MethodInvocation invocation) throws Throwable {
         Method method = invocation.getMethod();
         if (!MethodUtil.isAbstract(method)) {
             return invocation.proceed();
@@ -59,5 +81,4 @@ public class S2DaoInterceptor extends AbstractInterceptor {
         }
         return ret;
     }
-
 }
