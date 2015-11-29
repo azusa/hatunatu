@@ -18,23 +18,7 @@ package org.seasar.dao.unit;
 import java.sql.DatabaseMetaData;
 import java.util.List;
 
-import org.seasar.dao.AnnotationReaderFactory;
-import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.BeanEnhancer;
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.BeanMetaDataFactory;
-import org.seasar.dao.ColumnNaming;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.DaoNamingConvention;
-import org.seasar.dao.Dbms;
-import org.seasar.dao.DtoMetaDataFactory;
-import org.seasar.dao.ProcedureMetaDataFactory;
-import org.seasar.dao.PropertyTypeFactory;
-import org.seasar.dao.PropertyTypeFactoryBuilder;
-import org.seasar.dao.RelationPropertyTypeFactoryBuilder;
-import org.seasar.dao.ResultSetHandlerFactory;
-import org.seasar.dao.TableNaming;
-import org.seasar.dao.ValueTypeFactory;
+import org.seasar.dao.*;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.*;
 import org.seasar.dao.pager.PagerContext;
@@ -62,8 +46,6 @@ public abstract class S2DaoTestCase extends S2TestCase {
 
     private Dbms dbms;
 
-    private BeanEnhancer beanEnhancer;
-
     private ResultSetHandlerFactory resultSetHandlerFactory;
 
     private DtoMetaDataFactory dtoMetaDataFactory;
@@ -90,7 +72,6 @@ public abstract class S2DaoTestCase extends S2TestCase {
         annotationReaderFactory = null;
         beanMetaDataFactory = null;
         dbms = null;
-        beanEnhancer = null;
         resultSetHandlerFactory = null;
         dtoMetaDataFactory = null;
         propertyTypeFactoryBuilder = null;
@@ -171,11 +152,13 @@ public abstract class S2DaoTestCase extends S2TestCase {
             impl.setAnnotationReaderFactory(getAnnotationReaderFactory());
             impl.setDataSource(getDataSource());
             impl.setDaoNamingConvention(getDaoNamingConvention());
-            impl.setBeanEnhancer(getBeanEnhancer());
             impl.setPropertyTypeFactoryBuilder(getPropertyTypeFactoryBuilder());
             impl
                     .setRelationPropertyTypeFactoryBuilder(getRelationPropertyTypeFactoryBuilder(impl));
             impl.setTableNaming(getTableNaming());
+            NullBeanEnhancer enhancer = new NullBeanEnhancer();
+            enhancer.setDaoNamingConvention(getDaoNamingConvention());
+            impl.setBeanEnhancer(enhancer);
             beanMetaDataFactory = impl;
         }
         return beanMetaDataFactory;
@@ -230,18 +213,7 @@ public abstract class S2DaoTestCase extends S2TestCase {
         this.daoNamingConvention = daoNamingConvention;
     }
 
-    protected BeanEnhancer getBeanEnhancer() {
-        if (beanEnhancer == null) {
-            final BeanEnhancerImpl impl = new BeanEnhancerImpl();
-            impl.setDaoNamingConvention(getDaoNamingConvention());
-            beanEnhancer = impl;
-        }
-        return beanEnhancer;
-    }
 
-    protected void setBeanEnhancer(final BeanEnhancer beanEnhancer) {
-        this.beanEnhancer = beanEnhancer;
-    }
 
     protected ResultSetHandlerFactory getResultSetHandlerFactory() {
         if (resultSetHandlerFactory == null) {
@@ -305,7 +277,6 @@ public abstract class S2DaoTestCase extends S2TestCase {
             final BeanMetaDataFactory beanMetaDataFactory) {
         if (relationPropertyTypeFactoryBuilder == null) {
             final RelationPropertyTypeFactoryBuilderImpl builder = new RelationPropertyTypeFactoryBuilderImpl();
-            builder.setBeanEnhancer(beanEnhancer);
             builder.setBeanMetaDataFactory(beanMetaDataFactory);
             relationPropertyTypeFactoryBuilder = builder;
         }

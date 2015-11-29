@@ -37,12 +37,6 @@ public class RelationPropertyTypeFactoryBuilderImpl implements
 
     protected BeanMetaDataFactory beanMetaDataFactory;
 
-    protected BeanEnhancer beanEnhancer;
-
-    public void setBeanEnhancer(BeanEnhancer beanEnhancer) {
-        this.beanEnhancer = beanEnhancer;
-    }
-
     public void setBeanMetaDataFactory(BeanMetaDataFactory beanMetaDataFactory) {
         this.beanMetaDataFactory = beanMetaDataFactory;
     }
@@ -54,7 +48,7 @@ public class RelationPropertyTypeFactoryBuilderImpl implements
 
         return new RelationPropertyTypeFactoryImpl(beanClass,
                 beanAnnotationReader, beanMetaDataFactory, databaseMetaData,
-                relationNestLevel, isStopRelationCreation, beanEnhancer);
+                relationNestLevel, isStopRelationCreation);
     }
 
 }
