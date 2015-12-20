@@ -2,6 +2,9 @@ box: jamesdbloom/docker-java8-maven
 build:
   steps:
     - script:
+          code: |
+
+    - script:
         code: |
           mvn -v
           echo $JAVA_HOME
@@ -9,4 +12,4 @@ build:
           javac -version
     - script:
       code: |
-        mvn clean install -Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2/repo
+        mvn clean install -Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2/repo -Pwercker
