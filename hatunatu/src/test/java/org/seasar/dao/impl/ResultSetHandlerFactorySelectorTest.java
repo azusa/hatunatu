@@ -18,6 +18,7 @@ package org.seasar.dao.impl;
 import org.seasar.dao.*;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.EmployeeDao;
+import org.seasar.dao.resultset.FetchResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.util.beans.BeanDesc;

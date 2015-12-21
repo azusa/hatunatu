@@ -17,6 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
+import org.seasar.dao.command.SelectDynamicCommand;
 import org.seasar.dao.impl.bean.Department2;
 import org.seasar.dao.impl.dao.Department2AutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;

@@ -15,10 +15,13 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.impl.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler;
-import org.seasar.dao.impl.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
+import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
+import org.seasar.dao.resultset.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler;
+import org.seasar.dao.resultset.DtoMetaDataResultSetHandler;
+import org.seasar.dao.resultset.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
 import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
-import org.seasar.dao.impl.ObjectResultSetHandler.RestrictObjectResultSetHandler;
+import org.seasar.dao.resultset.ObjectResultSetHandler;
+import org.seasar.dao.resultset.ObjectResultSetHandler.RestrictObjectResultSetHandler;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;

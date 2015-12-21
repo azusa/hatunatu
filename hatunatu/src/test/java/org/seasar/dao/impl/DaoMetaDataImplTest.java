@@ -16,7 +16,12 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.*;
+import org.seasar.dao.command.*;
 import org.seasar.dao.dbms.Oracle;
+import org.seasar.dao.resultset.BeanArrayMetaDataResultSetHandler;
+import org.seasar.dao.resultset.BeanListMetaDataResultSetHandler;
+import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
+import org.seasar.dao.resultset.DtoArrayMetaDataResultSetHandler;
 import org.seasar.dao.impl.bean.Department;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.bean.Employee3;
@@ -24,6 +29,8 @@ import org.seasar.dao.impl.bean.Employee9;
 import org.seasar.dao.impl.condition.EmployeeSearchCondition;
 import org.seasar.dao.impl.dao.*;
 import org.seasar.dao.impl.dto.EmployeeDto;
+import org.seasar.dao.resultset.MapArrayResultSetHandler;
+import org.seasar.dao.resultset.ObjectResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.framework.beans.BeanDesc;
@@ -177,7 +184,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         UpdateAutoStaticCommand cmd2 = (UpdateAutoStaticCommand) dmd
                 .getSqlCommand("change");
         assertNotNull(cmd2);
-        System.out.println(cmd2.getSql());
         DeleteAutoStaticCommand cmd3 = (DeleteAutoStaticCommand) dmd
                 .getSqlCommand("terminate");
         assertNotNull(cmd3);
@@ -673,7 +679,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         setProperty(condition, "dname", "RESEARCH");
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
                 .getSqlCommand("getEmployees");
-        System.out.println(cmd.getSql());
         cmd.execute(new Object[] { condition });
         setProperty(condition, "orderByString", "ENAME");
         cmd.execute(new Object[] { condition });
@@ -741,21 +746,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
                 .getPackage().getName().replace('.', '/')
                 + "/" + "EmployeeDao_getEmployee.sql");
         assertEquals(expected, cmd.getSql());
-    }
-
-    public void testUsingColumnAnnotationForSql_Insert() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(getDaoClass("Employee9Dao"));
-        InsertAutoDynamicCommand cmd = (InsertAutoDynamicCommand) dmd
-                .getSqlCommand("insert");
-        Object bean = getBean("Employee9");
-        setProperty(bean, "empno", new Integer(321));
-        setProperty(bean, "ename", "foo");
-        final PropertyType[] propertyTypes = cmd.createInsertPropertyTypes(cmd
-                .getBeanMetaData(), bean, cmd.getPropertyNames());
-        final String sql = cmd.createInsertSql(cmd.getBeanMetaData(),
-                propertyTypes);
-        System.out.println(sql);
-        assertEquals(sql, true, sql.indexOf("eNaMe") > -1);
     }
 
     public void testUsingColumnAnnotationForSql_Update() throws Exception {

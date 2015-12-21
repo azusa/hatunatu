@@ -27,10 +27,11 @@ import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.RowCreator;
-import org.seasar.dao.impl.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler;
-import org.seasar.dao.impl.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
+import org.seasar.dao.resultset.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler;
+import org.seasar.dao.resultset.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
 import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
-import org.seasar.dao.impl.ObjectResultSetHandler.RestrictObjectResultSetHandler;
+import org.seasar.dao.resultset.*;
+import org.seasar.dao.resultset.ObjectResultSetHandler.RestrictObjectResultSetHandler;
 import org.seasar.dao.util.TypeUtil;
 import org.seasar.extension.jdbc.ResultSetHandler;
 

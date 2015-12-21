@@ -13,37 +13,42 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao.impl;
+package org.seasar.dao.resultset;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.dao.NotSingleResultRuntimeException;
-import org.seasar.dao.resultset.AbstractMapResultSetHandler;
-import org.seasar.dao.resultset.ObjectResultSetHandler;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.util.log.Logger;
 
-public class MapResultSetHandler extends AbstractMapResultSetHandler {
+/**
+ * オブジェクトを返す{@link ResultSetHandler}です。
+ * 
+ * @author taedium
+ */
+public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
 
     private static final Logger logger = Logger
-            .getLogger(MapResultSetHandler.class);
-
-    public MapResultSetHandler() {
-    }
+            .getLogger(ObjectResultSetHandler.class);
 
     /**
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * {@link ObjectResultSetHandlear}を生成します。
+     * 
+     * @param clazz
+     *            オブジェクトの型
      */
-    public Object handle(ResultSet resultSet) throws SQLException {
-        if (resultSet.next()) {
-            PropertyType[] propertyTypes = createPropertyTypes(resultSet
-                    .getMetaData());
-            Object row = createRow(resultSet, propertyTypes);
-            if (resultSet.next()){
+    public ObjectResultSetHandler(Class clazz) {
+        super(clazz);
+    }
+
+    public Object handle(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            Object value = getValueType(rs).getValue(rs, 1);
+            if (rs.next()) {
                 handleNotSingleResult();
             }
-            return row;
+            return value;
         }
         return null;
     }
@@ -61,10 +66,15 @@ public class MapResultSetHandler extends AbstractMapResultSetHandler {
      * @author azusa
      * 
      */
-    public static class RestrictMapResultSetHandler extends MapResultSetHandler {
+    public static class RestrictObjectResultSetHandler extends
+            ObjectResultSetHandler {
 
-        public RestrictMapResultSetHandler() {
-            super();
+        /**
+         * @param clazz
+         *            返り値のクラス
+         */
+        public RestrictObjectResultSetHandler(Class clazz) {
+            super(clazz);
         }
 
         protected void handleNotSingleResult() {
