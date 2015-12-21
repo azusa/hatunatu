@@ -15,10 +15,10 @@
  */
 package org.seasar.dao.interceptors;
 
+import org.seasar.extension.unit.S2TestCase;
+
 import java.util.List;
 import java.util.Map;
-
-import org.seasar.extension.unit.S2TestCase;
 
 /**
  * @author higa

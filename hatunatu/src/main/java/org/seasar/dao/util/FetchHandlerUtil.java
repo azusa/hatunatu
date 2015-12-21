@@ -16,8 +16,6 @@
 package org.seasar.dao.util;
 
 import org.seasar.dao.FetchHandler;
-import org.seasar.framework.exception.ClassNotFoundRuntimeException;
-import org.seasar.framework.util.ClassUtil;
 
 /**
  * @author jundu

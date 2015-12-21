@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.util.FieldUtil;
+import org.seasar.util.lang.FieldUtil;
 
 /**
  * {@link ProcedureParameterType}の実装クラスです。

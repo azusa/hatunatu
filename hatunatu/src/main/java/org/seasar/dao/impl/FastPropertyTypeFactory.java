@@ -26,9 +26,9 @@ import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
 
 /**
  * クラスのメタ情報のみを使用し高速に{@link PropertyType}を生成する{@link PropertyTypeFactory}の実装クラスです。

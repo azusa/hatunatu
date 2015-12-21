@@ -27,8 +27,9 @@ import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.types.AbstractValueType;
-import org.seasar.framework.exception.SSQLException;
-import org.seasar.framework.util.InputStreamUtil;
+import org.seasar.util.exception.IORuntimeException;
+import org.seasar.util.exception.SSQLException;
+import org.seasar.util.io.InputStreamUtil;
 
 /**
  * <code>byte[]</code>用の {@link ValueType}です。
@@ -323,21 +324,19 @@ public class BytesType extends AbstractValueType {
 
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
-            final InputStream is = rs.getBinaryStream(columnIndex);
-            try {
+            try ( InputStream is = rs.getBinaryStream(columnIndex)){
                 return toBytes(is);
-            } finally {
-                InputStreamUtil.close(is);
+            } catch (IOException e) {
+                throw new IORuntimeException(e);
             }
         }
 
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
-            final InputStream is = rs.getBinaryStream(columnName);
-            try {
+            try (InputStream is = rs.getBinaryStream(columnName)){
                 return toBytes(is);
-            } finally {
-                InputStreamUtil.close(is);
+            } catch(IOException e){
+                throw new IORuntimeException(e);
             }
         }
 

@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.impl.BasicStatementFactory;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.sql.StatementUtil;
 
 /**
  * @deprecated

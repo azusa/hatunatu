@@ -28,9 +28,9 @@ import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ReturningRowsBatchHandler;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.util.PreparedStatementUtil;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.exception.SQLRuntimeException;
+import org.seasar.util.sql.PreparedStatementUtil;
+import org.seasar.util.sql.StatementUtil;
 
 /**
  * @author higa
@@ -40,8 +40,8 @@ public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
         implements ReturningRowsBatchHandler {
 
     public AbstractBatchAutoHandler(DataSource dataSource,
-            StatementFactory statementFactory, BeanMetaData beanMetaData,
-            PropertyType[] propertyTypes) {
+                                    StatementFactory statementFactory, BeanMetaData beanMetaData,
+                                    PropertyType[] propertyTypes) {
 
         super(dataSource, statementFactory, beanMetaData, propertyTypes, false);
     }

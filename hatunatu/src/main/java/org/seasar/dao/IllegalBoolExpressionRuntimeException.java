@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
  * 
  */
 public class IllegalBoolExpressionRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = -8348943728701368297L;
 
     private String expression;
 

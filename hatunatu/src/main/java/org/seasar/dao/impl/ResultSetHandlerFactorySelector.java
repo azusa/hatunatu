@@ -22,8 +22,6 @@ import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.framework.exception.ClassNotFoundRuntimeException;
-import org.seasar.framework.util.ClassUtil;
 
 /**
  * @author jundu

@@ -18,27 +18,16 @@ package org.seasar.dao.impl;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.types.ValueTypes;
-import org.seasar.framework.container.S2Container;
 
 /**
  * @author manhole
  */
 public class ValueTypeFactoryImpl implements ValueTypeFactory {
 
-    public static final String container_BINDING = "bindingType=must";
-
-    private S2Container container;
-
-    public ValueType getValueTypeByName(String name) {
-        return (ValueType) container.getComponent(name);
-    }
 
     public ValueType getValueTypeByClass(Class clazz) {
         return ValueTypes.getValueType(clazz);
     }
 
-    public void setContainer(S2Container container) {
-        this.container = container.getRoot();
-    }
 
 }

@@ -15,9 +15,10 @@
  */
 package org.seasar.dao.pager;
 
+import org.seasar.util.lang.ClassUtil;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.seasar.framework.util.ClassUtil;
 
 /**
  * ページャ管理ユーティリティクラス。

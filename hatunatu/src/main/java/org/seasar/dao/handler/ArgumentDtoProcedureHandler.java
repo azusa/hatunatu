@@ -31,10 +31,10 @@ import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.impl.BasicSelectHandler;
 import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.exception.SIllegalArgumentException;
-import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.util.ResultSetUtil;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.exception.SIllegalArgumentException;
+import org.seasar.util.exception.SQLRuntimeException;
+import org.seasar.util.sql.ResultSetUtil;
+import org.seasar.util.sql.StatementUtil;
 
 /**
  * 引数のDTOに含まれる値をプロシージャにバインディングする{@link ProcedureHandler}の実装クラスです。
@@ -237,7 +237,7 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         }
         if (args.length == 1) {
             if (args[0] == null) {
-                throw new SIllegalArgumentException("EDAO0029", new Object[] {});
+                throw new SIllegalArgumentException("", "EDAO0029", new Object[] {});
             }
             return args[0];
         }

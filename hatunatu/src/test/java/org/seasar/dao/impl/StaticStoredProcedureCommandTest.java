@@ -30,7 +30,7 @@ import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
-import org.seasar.framework.exception.SIllegalArgumentException;
+import org.seasar.util.exception.SIllegalArgumentException;
 
 /**
  * @author manhole

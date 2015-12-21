@@ -26,9 +26,9 @@ import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * @author keizou
@@ -51,8 +51,8 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
     private <T extends Annotation> T getPropertyAnnotation(Class<T> clazz,
             PropertyDesc pd) {
         BeanDesc bd = BeanDescFactory.getBeanDesc(beanClass_);
-        if (bd.hasField(pd.getPropertyName())) {
-            T fieldAnnotation = bd.getField(pd.getPropertyName())
+        if (bd.hasFieldDesc(pd.getPropertyName())) {
+            T fieldAnnotation = bd.getFieldDesc(pd.getPropertyName()).getField()
                     .getAnnotation(clazz);
             if (fieldAnnotation != null) {
                 return fieldAnnotation;

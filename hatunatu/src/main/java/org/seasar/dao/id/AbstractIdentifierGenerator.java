@@ -22,8 +22,8 @@ import org.seasar.dao.IdentifierGenerator;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.impl.BasicSelectHandler;
-import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.util.beans.PropertyDesc;
 
 /**
  * @author higa

@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * Daoインタフェースのメソッドがオーバーロードされている場合にスローされる例外です。
@@ -23,8 +23,6 @@ import org.seasar.framework.exception.SRuntimeException;
  * @author taedium
  */
 public class OverloadNotSupportedRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 1L;
 
     private String className;
 

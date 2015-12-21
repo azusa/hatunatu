@@ -19,8 +19,8 @@ import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
-import org.seasar.framework.util.CaseInsensitiveMap;
+import org.seasar.util.collection.CaseInsensitiveMap;
+import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author higa
@@ -30,7 +30,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
 
     private Class beanClass;
 
-    private CaseInsensitiveMap propertyTypes = new CaseInsensitiveMap();
+    private CaseInsensitiveMap<PropertyType> propertyTypes = new CaseInsensitiveMap<>();
 
     protected BeanAnnotationReader beanAnnotationReader;
 
@@ -65,7 +65,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
      * @see org.seasar.dao.DtoMetaData#getPropertyType(int)
      */
     public PropertyType getPropertyType(int index) {
-        return (PropertyType) propertyTypes.get(index);
+        return (PropertyType) propertyTypes.getAt(index);
     }
 
     /**
@@ -74,7 +74,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
     public PropertyType getPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
 
-        PropertyType propertyType = (PropertyType) propertyTypes
+        PropertyType propertyType =  propertyTypes
                 .get(propertyName);
         if (propertyType == null) {
             throw new PropertyNotFoundRuntimeException(beanClass, propertyName);

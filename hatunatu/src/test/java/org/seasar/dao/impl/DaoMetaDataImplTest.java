@@ -574,11 +574,9 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
                 .getSqlCommand("getEmployeesByEmployee");
         assertNotNull("1", cmd);
-        System.out.println(cmd.getSql());
         Object dto = getBean("Employee");
         setProperty(dto, "job", "MANAGER");
         List employees = (List) cmd.execute(new Object[] { dto });
-        System.out.println(employees);
         // assertTrue("2", employees.size() > 0);
     }
 

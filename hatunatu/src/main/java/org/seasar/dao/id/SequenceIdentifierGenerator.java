@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.util.SelectableDataSourceProxyUtil;
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.util.LongConversionUtil;
+import org.seasar.util.convert.LongConversionUtil;
 
 /**
  * SEQUENCEを使って値を自動生成する識別子ジェネレータです。

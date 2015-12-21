@@ -21,9 +21,9 @@ import java.util.Set;
 import org.seasar.dao.BeanEnhancer;
 import org.seasar.dao.DaoNamingConvention;
 import org.seasar.dao.impl.BeanMetaDataImpl.ModifiedPropertySupport;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * @author taichi

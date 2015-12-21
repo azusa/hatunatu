@@ -15,14 +15,14 @@
  */
 package org.seasar.dao.unit;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.Date;
-
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.dataset.states.RowStates;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author higa

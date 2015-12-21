@@ -26,8 +26,8 @@ import org.seasar.dao.NotSingleResultRuntimeException;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.log.Logger;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.log.Logger;
 
 /**
  * @author jflute

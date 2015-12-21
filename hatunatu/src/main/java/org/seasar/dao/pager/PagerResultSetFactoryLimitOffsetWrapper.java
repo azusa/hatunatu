@@ -28,9 +28,8 @@ import org.seasar.dao.Dbms;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.log.Logger;
-import org.seasar.framework.util.ResultSetUtil;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.log.Logger;
+
 
 /**
  * @author yamamoto
@@ -183,19 +182,14 @@ public class PagerResultSetFactoryLimitOffsetWrapper implements
             LOGGER.debug("S2Pager execute SQL : " + countSQL);
         }
 
-        PreparedStatement psCount = null;
-        ResultSet rs = null;
-        try {
-            psCount = ps.getConnection().prepareStatement(countSQL);
-            rs = resultSetFactory.createResultSet(psCount);
+        try (PreparedStatement psCount = ps.getConnection().prepareStatement(countSQL);ResultSet  rs = resultSetFactory.createResultSet(psCount)) {
+
+
             if (rs.next()) {
                 return rs.getInt(1);
             } else {
                 throw new SQLException("[S2Pager]Result not found.");
             }
-        } finally {
-            ResultSetUtil.close(rs);
-            StatementUtil.close(psCount);
         }
     }
 

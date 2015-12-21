@@ -43,19 +43,19 @@ public class Department implements Serializable {
         this.deptno = deptno;
     }
 
-    public java.lang.String getDname() {
+    public String getDname() {
         return this.dname;
     }
 
-    public void setDname(java.lang.String dname) {
+    public void setDname(String dname) {
         this.dname = dname;
     }
 
-    public java.lang.String getLoc() {
+    public String getLoc() {
         return this.loc;
     }
 
-    public void setLoc(java.lang.String loc) {
+    public void setLoc(String loc) {
         this.loc = loc;
     }
 

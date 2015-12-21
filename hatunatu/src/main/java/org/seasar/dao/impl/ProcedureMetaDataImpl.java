@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
-import org.seasar.framework.util.CaseInsensitiveMap;
+import org.seasar.util.collection.CaseInsensitiveMap;
 
 /**
  * {@link ProcedureMetaData}の実装クラスです。
@@ -41,7 +41,7 @@ public class ProcedureMetaDataImpl implements ProcedureMetaData {
     }
 
     public ProcedureParameterType getParameterType(final int index) {
-        return (ProcedureParameterType) parameterTypes.get(index);
+        return (ProcedureParameterType) parameterTypes.getAt(index);
     }
 
     public ProcedureParameterType getParameterType(final String parameterName) {

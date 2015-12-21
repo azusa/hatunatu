@@ -63,17 +63,18 @@ import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.MethodNotFoundRuntimeException;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.exception.NoSuchMethodRuntimeException;
-import org.seasar.framework.exception.SRuntimeException;
-import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.InputStreamReaderUtil;
-import org.seasar.framework.util.MethodUtil;
-import org.seasar.framework.util.ReaderUtil;
-import org.seasar.framework.util.ResourceUtil;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.MethodDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
+import org.seasar.util.exception.MethodNotFoundRuntimeException;
+import org.seasar.util.exception.NoSuchMethodRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
+import org.seasar.util.io.ReaderUtil;
+import org.seasar.util.io.ResourceUtil;
+import org.seasar.util.lang.ClassUtil;
+import org.seasar.util.lang.MethodUtil;
+import org.seasar.util.lang.StringUtil;
 
 /**
  * @author higa
@@ -164,20 +165,10 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected void setupSqlCommand() {
         final BeanDesc idbd = BeanDescFactory.getBeanDesc(daoInterface);
-        final String[] names = idbd.getMethodNames();
-        for (int i = 0; i < names.length; ++i) {
-            final Method[] methods = daoBeanDesc.getMethods(names[i]);
-            if (methods.length == 1 && MethodUtil.isAbstract(methods[0])) {
-                setupMethod(methods[0]);
-            } else if (methods.length > 1) {
-                for (int j = 0; j < methods.length; j++) {
-                    if (MethodUtil.isAbstract(methods[j])) {
-                        String methodName = methods[j].getName();
-                        putSqlCommand(methodName,
-                                new OverloadNotSupportedSqlCommand(daoInterface
-                                        .getName(), methodName));
-                        break;
-                    }
+        for (String methodName : daoBeanDesc.getMethodNames()){
+            for (MethodDesc methodDesc : daoBeanDesc.getMethodDescs(methodName)){
+                if (MethodUtil.isAbstract(methodDesc.getMethod())){
+                    setupMethod(methodDesc.getMethod());
                 }
             }
         }
@@ -506,7 +497,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         String[] argNames = daoAnnotationReader.getArgNames(method);
         if (argNames.length == 0 && isUpdateSignatureForBean(method)) {
             argNames = new String[] { StringUtil.decapitalize(ClassUtil
-                    .getShortClassName(beanClass)) };
+                    .getShortClassName(beanClass.getName())) };
         }
         cmd.setArgNames(argNames);
         cmd.setArgTypes(method.getParameterTypes());

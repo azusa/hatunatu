@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
  * 
  */
 public class PrimaryKeyNotFoundRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = -714079806115499952L;
 
     private Class targetClass;
 

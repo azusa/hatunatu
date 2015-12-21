@@ -15,9 +15,6 @@
  */
 package org.seasar.dao.unit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.Relation;
@@ -25,6 +22,9 @@ import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.dataset.impl.DataSetImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class S2DaoTestCaseTest extends S2DaoTestCase {
 

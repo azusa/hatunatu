@@ -25,7 +25,7 @@ import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.PrimaryKeyNotFoundRuntimeException;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.framework.exception.SRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
@@ -38,8 +38,8 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
     private boolean checkSingleRowUpdate = true;
 
     public AbstractAutoStaticCommand(DataSource dataSource,
-            StatementFactory statementFactory, BeanMetaData beanMetaData,
-            String[] propertyNames) {
+                                     StatementFactory statementFactory, BeanMetaData beanMetaData,
+                                     String[] propertyNames) {
 
         super(dataSource, statementFactory, beanMetaData);
         setupPropertyTypes(propertyNames);

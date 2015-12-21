@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
  * 
  */
 public class IllegalSignatureRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 2103105332861528055L;
 
     private String signature;
 

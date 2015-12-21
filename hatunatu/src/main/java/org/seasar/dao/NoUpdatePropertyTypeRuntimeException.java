@@ -15,14 +15,12 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author taichi
  */
 public class NoUpdatePropertyTypeRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 1L;
 
     public NoUpdatePropertyTypeRuntimeException() {
         super("EDAO0018");

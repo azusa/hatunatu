@@ -26,10 +26,10 @@ import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.impl.PropertyTypeImpl;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * {@link PropertyType}の抽象クラスです。
@@ -185,10 +185,6 @@ public abstract class AbstractPropertyTypeFactory implements
      * @return　{@link ValueType}
      */
     protected ValueType getValueType(PropertyDesc propertyDesc) {
-        final String name = beanAnnotationReader.getValueType(propertyDesc);
-        if (name != null) {
-            return valueTypeFactory.getValueTypeByName(name);
-        }
         Class type = propertyDesc.getPropertyType();
         return valueTypeFactory.getValueTypeByClass(type);
     }

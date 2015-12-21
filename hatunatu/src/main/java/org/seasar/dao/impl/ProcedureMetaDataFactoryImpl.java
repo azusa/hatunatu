@@ -31,8 +31,8 @@ import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.util.TypeUtil;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 /**
  * {@link ProcedureMetaDataFactory}の実装クラスです。
@@ -170,10 +170,6 @@ public class ProcedureMetaDataFactoryImpl implements ProcedureMetaDataFactory {
      * @return {@link ValueType}
      */
     protected ValueType getValueType(final BeanDesc dtoDesc, final Field field) {
-        final String name = annotationReader.getValueType(dtoDesc, field);
-        if (name != null) {
-            return valueTypeFactory.getValueTypeByName(name);
-        }
         final Class type = field.getType();
         return valueTypeFactory.getValueTypeByClass(type);
     }

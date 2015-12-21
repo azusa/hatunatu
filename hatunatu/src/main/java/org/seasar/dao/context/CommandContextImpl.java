@@ -21,8 +21,8 @@ import java.util.List;
 import ognl.OgnlRuntime;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.framework.log.Logger;
-import org.seasar.framework.util.CaseInsensitiveMap;
+import org.seasar.util.collection.CaseInsensitiveMap;
+import org.seasar.util.log.Logger;
 
 /**
  * @author higa
@@ -69,7 +69,7 @@ public class CommandContextImpl implements CommandContext {
             return parent.getArg(name);
         } else {
             if (args.size() == 1) {
-                return args.get(0);
+                return args.getAt(0);
             }
             logger.log("WDAO0001", new Object[] { name });
             return null;
@@ -86,7 +86,7 @@ public class CommandContextImpl implements CommandContext {
             return parent.getArgType(name);
         } else {
             if (argTypes.size() == 1) {
-                return (Class) argTypes.get(0);
+                return (Class) argTypes.getAt(0);
             }
             logger.log("WDAO0001", new Object[] { name });
             return null;

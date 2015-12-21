@@ -15,16 +15,15 @@
  */
 package org.seasar.dao;
 
+import org.seasar.util.exception.SRuntimeException;
+
 import java.lang.reflect.Method;
 
-import org.seasar.framework.exception.SRuntimeException;
 
 /**
  * @author manhole
  */
 public class SqlFileNotFoundRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 1L;
 
     public SqlFileNotFoundRuntimeException(final Class daoClass,
             final Method daoMethod, String fileName) {

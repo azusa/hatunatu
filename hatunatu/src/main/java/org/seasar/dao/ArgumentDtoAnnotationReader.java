@@ -15,9 +15,10 @@
  */
 package org.seasar.dao;
 
+import org.seasar.util.beans.BeanDesc;
+
 import java.lang.reflect.Field;
 
-import org.seasar.framework.beans.BeanDesc;
 
 /**
  * メソッドの引数に使用されるDTOのアノテーションを読み取るインタフェースです。

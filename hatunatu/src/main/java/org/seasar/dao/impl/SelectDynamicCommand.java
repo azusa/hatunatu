@@ -24,6 +24,8 @@ import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.impl.BasicSelectHandler;
 
+import java.util.Arrays;
+
 /**
  * @author higa
  * @author manhole

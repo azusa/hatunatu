@@ -25,8 +25,8 @@ import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.impl.PropertyTypeImpl;
 import org.seasar.extension.jdbc.types.ValueTypes;
-import org.seasar.framework.util.CaseInsensitiveMap;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.util.collection.CaseInsensitiveMap;
+import org.seasar.util.lang.StringUtil;
 
 public abstract class AbstractMapResultSetHandler implements ResultSetHandler {
 

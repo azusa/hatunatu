@@ -16,7 +16,7 @@
 package org.seasar.dao;
 
 import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
+import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author higa

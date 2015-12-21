@@ -15,15 +15,14 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * @author higa
  * 
  */
 public class TokenNotClosedRuntimeException extends SRuntimeException {
-
-    private static final long serialVersionUID = 1810292133352210436L;
 
     private String token;
 

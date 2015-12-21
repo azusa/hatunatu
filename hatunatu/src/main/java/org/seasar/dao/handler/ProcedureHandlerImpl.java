@@ -27,11 +27,11 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.framework.exception.SIllegalArgumentException;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.exception.SRuntimeException;
-import org.seasar.framework.util.ResultSetUtil;
-import org.seasar.framework.util.StatementUtil;
+import org.seasar.util.exception.SIllegalArgumentException;
+import org.seasar.util.exception.SRuntimeException;
+import org.seasar.util.sql.ResultSetUtil;
+import org.seasar.util.sql.StatementUtil;
 
 /**
  * @author manhole
@@ -114,12 +114,12 @@ public class ProcedureHandlerImpl extends AbstractBasicProcedureHandler {
     protected void assertSizeEqualToInParameterSize(Object[] args) {
         if (args == null) {
             if (inParameterSize > 0) {
-                throw new SIllegalArgumentException("EDAO0032", new Object[] {
+                throw new SIllegalArgumentException("", "EDAO0032", new Object[] {
                         new Integer(0), new Integer(inParameterSize) });
             }
         } else {
             if (args.length != inParameterSize) {
-                throw new SIllegalArgumentException("EDAO0032",
+                throw new SIllegalArgumentException("", "EDAO0032",
                         new Object[] { new Integer(args.length),
                                 new Integer(inParameterSize) });
             }

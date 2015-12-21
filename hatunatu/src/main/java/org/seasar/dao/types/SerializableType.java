@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.exception.SSQLException;
+import org.seasar.util.exception.SSQLException;
 
 /**
  * オブジェクトをシリアライズしたバイト配列用の {@link ValueType}です。

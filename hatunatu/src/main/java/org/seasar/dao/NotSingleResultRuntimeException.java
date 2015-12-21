@@ -15,7 +15,8 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.exception.SRuntimeException;
+
+import org.seasar.util.exception.SRuntimeException;
 
 /**
  * 戻り値がBeanの時にSQLの実行結果が2件以上な場合の例外です。
@@ -24,10 +25,6 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class NotSingleResultRuntimeException extends SRuntimeException {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
 
     public NotSingleResultRuntimeException(){
         super("EDAO0036");

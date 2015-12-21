@@ -20,11 +20,10 @@ import java.lang.reflect.Method;
 
 import javax.sql.DataSource;
 
-import org.seasar.framework.exception.ClassNotFoundRuntimeException;
-import org.seasar.framework.exception.NoSuchFieldRuntimeException;
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.MethodUtil;
+import org.seasar.util.exception.NoSuchFieldRuntimeException;
+import org.seasar.util.lang.ClassUtil;
+import org.seasar.util.lang.FieldUtil;
 
 /**
  * Seasar2.3とSeasar2.4における動的なデータソースの仕様の違いを吸収するユーティリティです。
@@ -50,11 +49,6 @@ public class SelectableDataSourceProxyUtil {
     }
 
     private static Adapter getAdapter() {
-        try {
-            ClassUtil.forName("org.seasar.framework.env.Env");
-        } catch (ClassNotFoundRuntimeException ignore) {
-            return new AdapterS23();
-        }
         return new AdapterS24();
     }
 
@@ -63,27 +57,6 @@ public class SelectableDataSourceProxyUtil {
         String getDataSourceName(DataSource dataSource);
     }
 
-    private static class AdapterS23 implements Adapter {
-
-        private Class selectableDataSourceProxyClass;
-
-        private Method getDataSourceNameMethod;
-
-        private AdapterS23() {
-            selectableDataSourceProxyClass = ClassUtil
-                    .forName("org.seasar.extension.component.impl.SelectableDataSourceProxy");
-            getDataSourceNameMethod = ClassUtil.getMethod(
-                    selectableDataSourceProxyClass, "getDataSourceName", null);
-        }
-
-        public String getDataSourceName(DataSource dataSource) {
-            if (!selectableDataSourceProxyClass.isInstance(dataSource)) {
-                return null;
-            }
-            return (String) MethodUtil.invoke(getDataSourceNameMethod,
-                    dataSource, null);
-        }
-    }
 
     private static class AdapterS24 implements Adapter {
 

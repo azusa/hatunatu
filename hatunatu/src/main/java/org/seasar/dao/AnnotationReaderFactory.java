@@ -15,7 +15,8 @@
  */
 package org.seasar.dao;
 
-import org.seasar.framework.beans.BeanDesc;
+
+import org.seasar.util.beans.BeanDesc;
 
 public interface AnnotationReaderFactory {
 

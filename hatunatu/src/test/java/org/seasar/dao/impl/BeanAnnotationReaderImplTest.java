@@ -25,9 +25,9 @@ import org.seasar.dao.dbms.MySQL;
 import org.seasar.dao.dbms.Oracle;
 import org.seasar.dao.dbms.PostgreSQL;
 import org.seasar.dao.impl.bean.Department;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.util.beans.BeanDesc;
+import org.seasar.util.beans.PropertyDesc;
+import org.seasar.util.beans.factory.BeanDescFactory;
 
 import java.util.Date;
 
