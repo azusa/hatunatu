@@ -21,11 +21,11 @@ import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicSelectHandler;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 import org.seasar.util.convert.IntegerConversionUtil;
 
 /**

@@ -30,7 +30,7 @@ import org.seasar.dao.ProcedureMetaDataFactory;
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.util.TypeUtil;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.util.beans.BeanDesc;
 import org.seasar.util.beans.factory.BeanDescFactory;
 

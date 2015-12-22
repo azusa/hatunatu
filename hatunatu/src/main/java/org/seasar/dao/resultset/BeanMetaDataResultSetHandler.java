@@ -21,11 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
+import org.seasar.dao.*;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
-import org.seasar.dao.RelationPropertyType;
-import org.seasar.dao.RelationRowCreator;
-import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationKey;
 import org.seasar.util.beans.PropertyDesc;
 import org.seasar.util.log.Logger;
@@ -53,7 +50,7 @@ public class BeanMetaDataResultSetHandler extends
     }
 
     /**
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
     public Object handle(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {

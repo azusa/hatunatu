@@ -19,7 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.resultset.BeanResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 

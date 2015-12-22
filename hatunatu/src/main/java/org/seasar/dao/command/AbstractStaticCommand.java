@@ -18,8 +18,7 @@ package org.seasar.dao.command;
 import javax.sql.DataSource;
 
 import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.command.AbstractSqlCommand;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author higa

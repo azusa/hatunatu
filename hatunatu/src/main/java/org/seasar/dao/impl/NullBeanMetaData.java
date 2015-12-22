@@ -23,7 +23,7 @@ import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 
 /**

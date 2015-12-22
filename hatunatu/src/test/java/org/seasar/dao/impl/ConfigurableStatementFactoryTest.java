@@ -28,7 +28,7 @@ import java.util.concurrent.Executor;
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
 
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author manhole

@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.types.AbstractValueType;
 import org.seasar.util.exception.IORuntimeException;
 import org.seasar.util.exception.SSQLException;

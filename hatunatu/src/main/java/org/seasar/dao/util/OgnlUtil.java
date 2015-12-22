@@ -15,13 +15,12 @@
  */
 package org.seasar.dao.util;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import ognl.ClassResolver;
 import ognl.Ognl;
 import ognl.OgnlException;
-import org.seasar.framework.exception.OgnlRuntimeException;
+import org.seasar.dao.exception.OgnlRuntimeException;
 
 /**
  * Ognl用のユーティリティクラスです。

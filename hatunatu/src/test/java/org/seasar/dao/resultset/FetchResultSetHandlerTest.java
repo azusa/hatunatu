@@ -17,16 +17,11 @@ package org.seasar.dao.resultset;
 
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.FetchHandler;
-import org.seasar.dao.resultset.FetchBeanMetaDataResultSetHandler;
-import org.seasar.dao.resultset.FetchDtoMetaDataResultSetHandler;
-import org.seasar.dao.resultset.FetchMapResultSetHandler;
-import org.seasar.dao.resultset.FetchObjectResultSetHandler;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.pager.PagerContext;
-import org.seasar.dao.resultset.FetchResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.util.Map;
 

@@ -20,9 +20,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.util.beans.BeanDesc;

@@ -18,10 +18,11 @@ package org.seasar.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.resultset.AbstractMapResultSetHandler;
 import org.seasar.dao.resultset.ObjectResultSetHandler;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.log.Logger;
 
 public class MapResultSetHandler extends AbstractMapResultSetHandler {
@@ -33,7 +34,7 @@ public class MapResultSetHandler extends AbstractMapResultSetHandler {
     }
 
     /**
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
     public Object handle(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {

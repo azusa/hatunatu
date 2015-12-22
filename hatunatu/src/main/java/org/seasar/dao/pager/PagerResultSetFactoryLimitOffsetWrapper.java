@@ -26,8 +26,8 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.dbms.DbmsManager;
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.exception.SQLRuntimeException;
 import org.seasar.util.log.Logger;
 
 

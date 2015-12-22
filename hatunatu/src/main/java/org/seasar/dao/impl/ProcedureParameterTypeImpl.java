@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import java.lang.reflect.Field;
 
 import org.seasar.dao.ProcedureParameterType;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.util.lang.FieldUtil;
 
 /**

@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import org.seasar.extension.jdbc.PropertyType;
+
 
 import java.util.Set;
 

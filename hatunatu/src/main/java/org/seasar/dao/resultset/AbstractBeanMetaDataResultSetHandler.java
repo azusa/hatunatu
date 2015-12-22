@@ -27,8 +27,8 @@ import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationKey;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.ValueType;
 
 /**
  * @author jflute

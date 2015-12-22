@@ -16,7 +16,7 @@
 package org.seasar.dao.types.bytes;
 
 import org.seasar.dao.dbms.PostgreSQL;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.types.StringClobType;
 
 /**

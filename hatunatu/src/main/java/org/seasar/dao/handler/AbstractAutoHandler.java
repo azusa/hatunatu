@@ -27,10 +27,10 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.exception.NotSingleRowUpdatedRuntimeException;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.UpdateHandler;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.StatementFactory;
+import org.seasar.dao.UpdateHandler;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.util.beans.PropertyDesc;
 import org.seasar.util.convert.IntegerConversionUtil;

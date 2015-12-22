@@ -23,7 +23,7 @@ import java.util.Stack;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 
 /**
  * @author jflute

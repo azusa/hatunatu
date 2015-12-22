@@ -19,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.dao.impl.ResultSetWrapper;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 import org.seasar.util.log.Logger;
 
 /**

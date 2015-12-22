@@ -21,8 +21,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.ReturningRowsBatchHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.ReturningRowsBatchHandler;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.util.exception.SQLRuntimeException;

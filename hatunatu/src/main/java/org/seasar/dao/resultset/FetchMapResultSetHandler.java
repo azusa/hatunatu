@@ -16,7 +16,7 @@
 package org.seasar.dao.resultset;
 
 import org.seasar.dao.FetchHandler;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class FetchMapResultSetHandler extends AbstractMapResultSetHandler {
     /*
      * (non-Javadoc)
      * 
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     @SuppressWarnings("unchecked")
     public Object handle(ResultSet rs) throws SQLException {

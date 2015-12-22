@@ -22,7 +22,7 @@ import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
 import org.seasar.dao.pager.PagerContext;
 import org.seasar.dao.util.TypeUtil;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
@@ -52,7 +52,7 @@ public class FetchResultSetHandler implements ResultSetHandler {
     /*
      * (non-Javadoc)
      * 
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     public Object handle(ResultSet resultSet) throws SQLException {
         FetchHandler<?> fetchHandler = getFetchHandler();

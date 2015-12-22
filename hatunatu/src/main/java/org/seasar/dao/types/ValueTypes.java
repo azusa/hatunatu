@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.util.MethodUtil;
 import org.seasar.util.lang.ConstructorUtil;
 import org.seasar.util.lang.ModifierUtil;

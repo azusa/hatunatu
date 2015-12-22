@@ -20,13 +20,12 @@ import org.seasar.dao.command.SelectDynamicCommand;
 import org.seasar.dao.impl.AnnotationReaderFactoryImpl;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.resultset.FetchBeanMetaDataResultSetHandler;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.condition.EmployeeSearchCondition;
 import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.pager.PagerContext;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

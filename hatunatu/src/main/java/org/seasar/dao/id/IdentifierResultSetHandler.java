@@ -18,8 +18,8 @@ package org.seasar.dao.id;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.ValueType;
 
 /**
  * @author taedium

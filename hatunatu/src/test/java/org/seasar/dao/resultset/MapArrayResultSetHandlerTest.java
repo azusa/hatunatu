@@ -20,9 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 
-import org.seasar.dao.resultset.MapArrayResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class MapArrayResultSetHandlerTest extends S2DaoTestCase {
 

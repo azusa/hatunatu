@@ -22,7 +22,7 @@ import org.seasar.dao.Node;
 import org.seasar.dao.context.CommandContextImpl;
 import org.seasar.dao.parser.SqlParserImpl;
 import org.seasar.dao.util.FetchHandlerUtil;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author higa

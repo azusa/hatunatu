@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationRowCreator;
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.RowCreator;
 
 /**
@@ -41,7 +42,7 @@ public class BeanArrayMetaDataResultSetHandler extends
     }
 
     /**
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
     public Object handle(ResultSet rs) throws SQLException {
         List list = (List) super.handle(rs);

@@ -19,7 +19,7 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.FetchHandler;
 import org.seasar.dao.resultset.FetchResultSetHandler;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.lang.reflect.Method;
 

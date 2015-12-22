@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;

@@ -21,10 +21,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BooleanToIntPreparedStatement;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 
 /**
  * @author agata

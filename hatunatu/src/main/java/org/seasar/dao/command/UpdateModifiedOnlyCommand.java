@@ -23,8 +23,8 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.handler.UpdateAutoHandler;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.StatementFactory;
 import org.seasar.util.log.Logger;
 
 /**

@@ -19,9 +19,9 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.CommandContext;
 import org.seasar.dao.pager.PagingSqlRewriter;
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicSelectHandler;
 
 /**

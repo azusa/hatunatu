@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.util.TimestampConversionUtil;
 import org.seasar.util.convert.DateConversionUtil;
 import org.seasar.util.exception.ParseRuntimeException;

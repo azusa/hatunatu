@@ -23,10 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.RelationPropertyType;
-import org.seasar.dao.RelationRowCreator;
-import org.seasar.dao.RowCreator;
+import org.seasar.dao.*;
 import org.seasar.dao.impl.RelationKey;
 import org.seasar.dao.impl.RelationRowCache;
 import org.seasar.util.beans.PropertyDesc;
@@ -51,7 +48,7 @@ public class BeanListMetaDataResultSetHandler extends
     }
 
     /**
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
     public Object handle(ResultSet rs) throws SQLException {
         // Set<String(columnName)>

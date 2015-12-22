@@ -24,9 +24,8 @@ import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class BeanMetaDataResultSetHandler2Test extends S2DaoTestCase {
 

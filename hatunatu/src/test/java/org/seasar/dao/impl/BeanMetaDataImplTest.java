@@ -22,7 +22,7 @@ import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.impl.bean.NoPkTable;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 
 /**
  * @author higa

@@ -18,7 +18,7 @@ package org.seasar.dao.pager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 
 /**
  * ResultSetユーティリティです。

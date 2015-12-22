@@ -21,7 +21,7 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.handler.AbstractAutoHandler;
 import org.seasar.dao.handler.AbstractBatchAutoHandler;
 import org.seasar.dao.handler.UpdateBatchAutoHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author higa

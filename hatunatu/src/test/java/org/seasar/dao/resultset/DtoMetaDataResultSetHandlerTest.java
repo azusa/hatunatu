@@ -25,7 +25,7 @@ import org.seasar.dao.impl.RowCreatorImpl;
 import org.seasar.dao.resultset.DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class DtoMetaDataResultSetHandlerTest extends S2DaoTestCase {
 

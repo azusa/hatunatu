@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import org.seasar.extension.jdbc.ResultSetFactory;
+import org.seasar.dao.ResultSetFactory;
 import org.seasar.util.sql.PreparedStatementUtil;
 import org.seasar.util.sql.StatementUtil;
 

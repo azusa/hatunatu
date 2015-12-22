@@ -16,9 +16,8 @@
 package org.seasar.dao.resultset;
 
 import org.seasar.dao.FetchHandler;
-import org.seasar.dao.resultset.FetchObjectResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

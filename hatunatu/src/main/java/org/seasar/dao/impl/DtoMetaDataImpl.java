@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.PropertyTypeFactory;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.collection.CaseInsensitiveMap;
 import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 

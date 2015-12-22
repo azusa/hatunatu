@@ -21,7 +21,6 @@ import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.command.InsertAutoDynamicCommand;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.bean.Employee9;
 import org.seasar.dao.impl.bean.IdentityTable;
@@ -29,7 +28,7 @@ import org.seasar.dao.impl.dao.Employee9Dao;
 import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.impl.dao.IdentityTableAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.exception.SRuntimeException;
 import org.seasar.util.lang.StringUtil;
 

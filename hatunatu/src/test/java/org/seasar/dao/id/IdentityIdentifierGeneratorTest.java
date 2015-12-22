@@ -16,7 +16,7 @@
 package org.seasar.dao.id;
 
 import org.seasar.dao.dbms.HSQL;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.dao.handler.BasicUpdateHandler;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;

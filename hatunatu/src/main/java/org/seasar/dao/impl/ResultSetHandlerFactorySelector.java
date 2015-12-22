@@ -21,7 +21,7 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.ResultSetHandlerFactory;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 /**
  * @author jundu

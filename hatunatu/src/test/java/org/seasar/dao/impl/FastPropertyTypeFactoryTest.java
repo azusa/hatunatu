@@ -23,7 +23,7 @@ import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyTypeFactoryBuilder;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.bean.Employee21;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 

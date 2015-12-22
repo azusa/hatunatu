@@ -24,9 +24,9 @@ import org.seasar.dao.InjectDaoClassSupport;
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.handler.ArgumentDtoProcedureHandler;
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.StatementFactory;
 
 /**
  * 引数のDTOのメタデータを利用してプロシージャを実行する{@link SqlCommand}の実装クラスです。

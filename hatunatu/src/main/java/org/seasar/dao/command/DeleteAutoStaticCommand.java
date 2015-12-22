@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.handler.AbstractAutoHandler;
 import org.seasar.dao.handler.DeleteAutoHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author higa

@@ -23,14 +23,14 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.SelectHandler;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.SelectHandler;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BasicResultSetFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.dao.exception.EmptyRuntimeException;
 import org.seasar.util.exception.SQLRuntimeException;
 import org.seasar.util.sql.ResultSetUtil;
 import org.seasar.util.sql.StatementUtil;

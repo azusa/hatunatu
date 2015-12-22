@@ -33,7 +33,7 @@ import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
 import org.seasar.dao.resultset.*;
 import org.seasar.dao.resultset.ObjectResultSetHandler.RestrictObjectResultSetHandler;
 import org.seasar.dao.util.TypeUtil;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 /**
  * @author manhole

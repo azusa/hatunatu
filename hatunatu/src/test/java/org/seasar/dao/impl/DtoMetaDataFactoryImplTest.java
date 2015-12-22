@@ -19,7 +19,7 @@ import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.impl.dto.EmployeeDto2;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

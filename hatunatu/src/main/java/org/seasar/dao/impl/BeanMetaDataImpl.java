@@ -30,7 +30,7 @@ import org.seasar.dao.RelationPropertyTypeFactory;
 import org.seasar.dao.TableNaming;
 import org.seasar.dao.id.IdentifierGeneratorFactory;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.beans.BeanDesc;
 import org.seasar.util.beans.PropertyDesc;
 import org.seasar.util.beans.factory.BeanDescFactory;

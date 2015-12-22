@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.handler;
 
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 
 /**
  * @author higa

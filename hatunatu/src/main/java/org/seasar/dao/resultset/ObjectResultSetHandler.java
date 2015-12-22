@@ -19,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.util.log.Logger;
 
 /**

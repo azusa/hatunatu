@@ -18,7 +18,7 @@ package org.seasar.dao.resultset;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 /**
  * Beanを返す {@link ResultSetHandler}です。

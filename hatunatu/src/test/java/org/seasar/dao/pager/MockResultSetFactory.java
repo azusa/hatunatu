@@ -21,7 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.extension.jdbc.ResultSetFactory;
+import org.seasar.dao.ResultSetFactory;
 
 public class MockResultSetFactory implements ResultSetFactory {
 

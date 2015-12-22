@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.util.SelectableDataSourceProxyUtil;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.util.convert.LongConversionUtil;
 
 /**

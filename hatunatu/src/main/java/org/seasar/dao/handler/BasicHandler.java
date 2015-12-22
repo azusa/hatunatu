@@ -24,14 +24,14 @@ import javax.sql.DataSource;
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
-import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.StatementFactory;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.impl.SqlLogImpl;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.dao.util.DataSourceUtil;
-import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.dao.exception.EmptyRuntimeException;
 import org.seasar.util.exception.SQLRuntimeException;
 import org.seasar.util.log.Logger;
 

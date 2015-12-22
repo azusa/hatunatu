@@ -46,7 +46,7 @@ public class FetchBeanMetaDataResultSetHandler extends
     /*
      * (non-Javadoc)
      * 
-     * @see org.seasar.extension.jdbc.ResultSetHandler#handle(java.sql.ResultSet)
+     * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     @SuppressWarnings("unchecked")
     public Object handle(ResultSet rs) throws SQLException {

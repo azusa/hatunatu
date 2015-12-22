@@ -25,8 +25,8 @@ import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.InjectDaoClassSupport;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.handler.InsertAutoHandler;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicHandler;
 import org.seasar.util.exception.SRuntimeException;
 

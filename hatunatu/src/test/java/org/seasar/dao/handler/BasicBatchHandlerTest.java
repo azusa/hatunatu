@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.seasar.dao.handler.BasicBatchHandler;
-import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
+import org.seasar.dao.resultset.MapListResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
 import org.seasar.util.exception.SQLRuntimeException;

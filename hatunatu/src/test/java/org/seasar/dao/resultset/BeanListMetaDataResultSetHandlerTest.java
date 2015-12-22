@@ -25,12 +25,11 @@ import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.resultset.BeanListMetaDataResultSetHandler;
 import org.seasar.dao.impl.bean.Department;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.bean.Employee23;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
 

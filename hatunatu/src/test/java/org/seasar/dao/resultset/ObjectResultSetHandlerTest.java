@@ -20,9 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
-import org.seasar.dao.resultset.ObjectResultSetHandler;
 import org.seasar.dao.resultset.ObjectResultSetHandler.RestrictObjectResultSetHandler;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

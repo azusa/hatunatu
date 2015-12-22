@@ -17,8 +17,6 @@ package org.seasar.dao;
 
 import java.lang.reflect.Method;
 
-import org.seasar.extension.jdbc.ResultSetHandler;
-
 /**
  * @author manhole
  */

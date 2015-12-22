@@ -24,9 +24,9 @@ import org.seasar.dao.DaoNamingConvention;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.ValueTypeFactory;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.ValueType;
+import org.seasar.dao.exception.EmptyRuntimeException;
 import org.seasar.util.beans.BeanDesc;
 import org.seasar.util.beans.PropertyDesc;
 

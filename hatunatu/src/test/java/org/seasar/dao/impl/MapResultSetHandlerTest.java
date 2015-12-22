@@ -23,7 +23,7 @@ import java.util.Map;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class MapResultSetHandlerTest extends S2DaoTestCase {
 

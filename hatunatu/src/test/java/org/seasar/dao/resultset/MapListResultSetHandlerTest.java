@@ -21,9 +21,8 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
-import org.seasar.dao.resultset.MapListResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class MapListResultSetHandlerTest extends S2DaoTestCase {
 

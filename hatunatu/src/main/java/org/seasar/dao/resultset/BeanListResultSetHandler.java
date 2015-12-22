@@ -20,8 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.ResultSetHandler;
 
 /**
  * Beanのリストを返す {@link ResultSetHandler}です。

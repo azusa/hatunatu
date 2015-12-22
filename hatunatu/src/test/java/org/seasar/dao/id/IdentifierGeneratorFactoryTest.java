@@ -18,7 +18,7 @@ package org.seasar.dao.id;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.dbms.HSQL;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;

@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.util.DatabaseMetaDataUtil;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 
 /**
  * @author higa

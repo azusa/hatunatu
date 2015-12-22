@@ -19,9 +19,8 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.IdentifierGenerator;
-import org.seasar.dao.handler.AbstractAutoHandler;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.StatementFactory;
+import org.seasar.dao.PropertyType;
+import org.seasar.dao.StatementFactory;
 
 /**
  * @author higa

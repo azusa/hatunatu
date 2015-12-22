@@ -20,8 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import org.seasar.dao.resultset.ObjectListResultSetHandler;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

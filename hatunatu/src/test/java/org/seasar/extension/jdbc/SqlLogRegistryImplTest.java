@@ -13,11 +13,9 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao.impl;
+package org.seasar.extension.jdbc;
 
 import org.seasar.dao.impl.SqlLogRegistryImpl;
-import org.seasar.extension.jdbc.SqlLog;
-import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.container.servlet.S2ContainerDestroyer;
 

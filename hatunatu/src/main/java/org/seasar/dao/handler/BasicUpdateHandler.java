@@ -20,8 +20,8 @@ import java.sql.PreparedStatement;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.UpdateHandler;
+import org.seasar.dao.StatementFactory;
+import org.seasar.dao.UpdateHandler;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.util.exception.SQLRuntimeException;
 import org.seasar.util.sql.PreparedStatementUtil;

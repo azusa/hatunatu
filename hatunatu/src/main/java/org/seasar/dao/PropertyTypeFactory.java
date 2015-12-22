@@ -15,8 +15,6 @@
  */
 package org.seasar.dao;
 
-import org.seasar.extension.jdbc.PropertyType;
-
 /**
  * {@link PropertyType}のファクトリのインタフェースです。
  * 

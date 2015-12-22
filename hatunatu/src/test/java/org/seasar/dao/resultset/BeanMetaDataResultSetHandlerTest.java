@@ -30,7 +30,7 @@ import org.seasar.dao.impl.bean.Department;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.bean.Employee23;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
 

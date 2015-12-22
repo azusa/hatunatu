@@ -20,7 +20,7 @@ import java.util.List;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.handler.AbstractAutoHandler;
 import org.seasar.dao.handler.InsertBatchAutoHandler;
-import org.seasar.extension.jdbc.PropertyType;
+import org.seasar.dao.PropertyType;
 
 /**
  * @author manhole

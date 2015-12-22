@@ -28,15 +28,15 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
-import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.StatementFactory;
+import org.seasar.dao.ValueType;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.DatabaseMetaDataUtil;
-import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.dao.exception.EmptyRuntimeException;
+import org.seasar.dao.exception.SQLRuntimeException;
 import org.seasar.util.exception.SRuntimeException;
 import org.seasar.util.sql.ResultSetUtil;
 

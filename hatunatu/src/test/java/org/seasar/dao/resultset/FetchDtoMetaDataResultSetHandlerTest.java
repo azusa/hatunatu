@@ -18,11 +18,10 @@ package org.seasar.dao.resultset;
 import org.seasar.dao.FetchHandler;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.resultset.FetchDtoMetaDataResultSetHandler;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.impl.dto.EmployeeDto3;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.ResultSetHandler;
+import org.seasar.dao.ResultSetHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

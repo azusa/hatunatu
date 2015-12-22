@@ -1,7 +1,5 @@
 package org.seasar.dao;
 
-import org.seasar.extension.jdbc.ValueType;
-
 /**
  * Created by azusa on 2015/12/04.
  */

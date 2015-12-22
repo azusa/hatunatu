@@ -19,7 +19,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.ValueType;
 
 /**
  * {@link ValueType}の抽象クラスです。

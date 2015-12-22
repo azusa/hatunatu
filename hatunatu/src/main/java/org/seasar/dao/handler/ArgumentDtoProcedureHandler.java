@@ -25,11 +25,11 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
-import org.seasar.extension.jdbc.ResultSetFactory;
-import org.seasar.extension.jdbc.ResultSetHandler;
-import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.dao.ResultSetFactory;
+import org.seasar.dao.ResultSetHandler;
+import org.seasar.dao.StatementFactory;
+import org.seasar.dao.ValueType;
+import org.seasar.dao.exception.EmptyRuntimeException;
 import org.seasar.util.exception.SIllegalArgumentException;
 import org.seasar.util.exception.SQLRuntimeException;
 import org.seasar.util.sql.ResultSetUtil;
