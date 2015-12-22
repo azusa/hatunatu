@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 the original author or authors.
+ * Copyright 2004-2015 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.types.AbstractValueType;
+import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.util.exception.IORuntimeException;
 import org.seasar.util.exception.SSQLException;
-import org.seasar.util.io.InputStreamUtil;
+
 
 /**
  * <code>byte[]</code>用の {@link ValueType}です。
  * 
- * @author taedium
+ * @author koichik
  */
 public class BytesType extends AbstractValueType {
 
@@ -88,14 +88,6 @@ public class BytesType extends AbstractValueType {
         }
     }
 
-    @Override
-    public String toText(Object o) {
-        if (o instanceof  byte[]) {
-            return new String((byte[])o);
-        }
-        return o.toString();
-    }
-
     public Object getValue(final ResultSet resultSet, final int index)
             throws SQLException {
         return trait.get(resultSet, index);
@@ -114,6 +106,15 @@ public class BytesType extends AbstractValueType {
     public Object getValue(final CallableStatement cs,
             final String parameterName) throws SQLException {
         return trait.get(cs, parameterName);
+    }
+
+    public String toText(Object value) {
+        if (value == null) {
+            return BindVariableUtil.nullText();
+        } else if (value instanceof byte[]) {
+            return BindVariableUtil.toText((byte[]) value);
+        }
+        return BindVariableUtil.toText(value);
     }
 
     /**
@@ -162,7 +163,7 @@ public class BytesType extends AbstractValueType {
 
     /**
      * 
-     * @author taedium
+     * @author koichik
      */
     public interface Trait {
         /**
@@ -259,7 +260,7 @@ public class BytesType extends AbstractValueType {
     /**
      * バイト配列を<code>getBytes()/setBytes()</code>で扱うトレイトです。
      * 
-     * @author taedium
+     * @author koichik
      */
     public static class BytesTrait implements Trait {
 
@@ -302,7 +303,7 @@ public class BytesType extends AbstractValueType {
     /**
      * バイト配列を<code>getBinaryStream()/setBinaryStream()</code>で扱うトレイトです。
      * 
-     * @author taedium
+     * @author koichik
      */
     public static class StreamTrait implements Trait {
 
@@ -324,7 +325,7 @@ public class BytesType extends AbstractValueType {
 
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
-            try ( InputStream is = rs.getBinaryStream(columnIndex)){
+            try (InputStream is = rs.getBinaryStream(columnIndex)){
                 return toBytes(is);
             } catch (IOException e) {
                 throw new IORuntimeException(e);
@@ -333,9 +334,9 @@ public class BytesType extends AbstractValueType {
 
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
-            try (InputStream is = rs.getBinaryStream(columnName)){
+            try (InputStream is = rs.getBinaryStream(columnName) ){
                 return toBytes(is);
-            } catch(IOException e){
+            } catch (IOException e){
                 throw new IORuntimeException(e);
             }
         }
@@ -355,7 +356,7 @@ public class BytesType extends AbstractValueType {
     /**
      * バイト配列を<code>getBlob()/setBinaryStream()</code>で扱うトレイトです。
      * 
-     * @author taedium
+     * @author koichik
      */
     public static class BlobTrait implements Trait {
 
@@ -396,4 +397,5 @@ public class BytesType extends AbstractValueType {
         }
 
     }
+
 }

@@ -24,7 +24,7 @@ import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.dao.impl.PropertyTypeImpl;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 import org.seasar.util.collection.CaseInsensitiveMap;
 import org.seasar.util.lang.StringUtil;
 

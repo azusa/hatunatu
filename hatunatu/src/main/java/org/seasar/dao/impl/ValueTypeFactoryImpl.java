@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 
 /**
  * @author manhole

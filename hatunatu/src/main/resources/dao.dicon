@@ -8,7 +8,7 @@
 	<component name="interceptor" class="org.seasar.dao.interceptors.S2DaoInterceptor"/>
 	<component class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
 	<component name="stringClobType"> 
-		@org.seasar.dao.types.ValueTypes@CLOB
+		@org.seasar.dao.types.bytes.ValueTypes@CLOB
 	</component>
 	<component class="org.seasar.dao.impl.BeanMetaDataFactoryImpl"/>
 	<component class="org.seasar.dao.impl.DaoNamingConventionImpl"/>

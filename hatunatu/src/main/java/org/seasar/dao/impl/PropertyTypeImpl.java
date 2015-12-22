@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 import org.seasar.util.beans.PropertyDesc;
 
 /**

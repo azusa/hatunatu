@@ -31,7 +31,7 @@ import org.seasar.dao.Dbms;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.dao.impl.BasicStatementFactory;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.DatabaseMetaDataUtil;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 the original author or authors.
+ * Copyright 2004-2015 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.ValueType;
+import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.util.exception.SSQLException;
 
 /**
  * オブジェクトをシリアライズしたバイト配列用の {@link ValueType}です。
  * 
- * @author taedium
+ * @author higa
  */
 public class SerializableType extends BytesType {
 
@@ -97,7 +98,7 @@ public class SerializableType extends BytesType {
                 oos.close();
             }
         } catch (final Exception e) {
-            throw new SSQLException("EDAO0034", new Object[] { e }, e);
+            throw new SSQLException("ESSR0017", new Object[] { e }, e);
         }
     }
 
@@ -124,8 +125,14 @@ public class SerializableType extends BytesType {
                 ois.close();
             }
         } catch (final Exception e) {
-            throw new SSQLException("EDAO0034", new Object[] { e }, e);
+            throw new SSQLException("ESSR0017", new Object[] { e }, e);
         }
     }
 
+    public String toText(Object value) {
+        if (value == null) {
+            return BindVariableUtil.nullText();
+        }
+        return BindVariableUtil.toText(value);
+    }
 }

@@ -20,8 +20,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.*;
 
-import org.seasar.dao.types.BytesType;
-import org.seasar.dao.types.BytesType.Trait;
+import org.seasar.dao.types.bytes.BytesType;
+import org.seasar.dao.types.bytes.BytesType.Trait;
 
 /**
  * @author higa

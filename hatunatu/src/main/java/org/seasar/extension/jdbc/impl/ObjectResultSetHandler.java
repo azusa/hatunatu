@@ -21,7 +21,7 @@ import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 
 /**
  * 単独のオブジェクトを返す {@link ResultSetHandler}です。

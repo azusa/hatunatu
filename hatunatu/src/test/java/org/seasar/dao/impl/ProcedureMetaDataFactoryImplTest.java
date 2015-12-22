@@ -20,7 +20,7 @@ import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
-import org.seasar.extension.jdbc.types.ValueTypes;
+import org.seasar.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
