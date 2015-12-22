@@ -20,12 +20,17 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author taedium
  * 
  */
-public class DateTimestampTypeTest extends TestCase {
+public class DateTimestampTypeTest {
 
     private DateTimestampType dtType = new DateTimestampType();
 
@@ -33,6 +38,8 @@ public class DateTimestampTypeTest extends TestCase {
      * 
      * @throws Exception
      */
+    @Test
+    @Ignore
     public void testToTimestamp_fromString() throws Exception {
         Timestamp timestamp = dtType.toTimestamp("01/02/03");
         assertNotNull(timestamp);
@@ -49,6 +56,8 @@ public class DateTimestampTypeTest extends TestCase {
      * 
      * @throws Exception
      */
+    @Test
+    @Ignore
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp
                 .valueOf("2007-11-29 13:14:15.123456789");
