@@ -17,7 +17,6 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.extension.jdbc.impl.PropertyTypeImpl;
 import org.seasar.util.beans.PropertyDesc;
 
 /**

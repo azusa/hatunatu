@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import junit.framework.TestCase;
 
-import org.seasar.dao.BeanNotFoundRuntimeException;
+import org.seasar.dao.exception.BeanNotFoundRuntimeException;
 import org.seasar.dao.NullBean;
 
 /**

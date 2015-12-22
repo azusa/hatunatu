@@ -17,7 +17,6 @@ package org.seasar.dao.impl;
 
 import java.util.List;
 
-import org.seasar.dao.OverloadNotSupportedRuntimeException;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.impl.bean.Employee;

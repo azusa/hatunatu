@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.NotSingleResultRuntimeException;
+import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;

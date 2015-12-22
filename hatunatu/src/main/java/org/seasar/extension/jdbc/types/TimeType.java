@@ -23,8 +23,8 @@ import java.sql.Time;
 import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.BindVariableUtil;
-import org.seasar.framework.util.TimeConversionUtil;
+import org.seasar.dao.util.BindVariableUtil;
+import org.seasar.dao.util.TimeConversionUtil;
 
 /**
  * Time用の {@link ValueType}です。

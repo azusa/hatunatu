@@ -30,8 +30,8 @@ import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.pager.NullPagingSqlRewriter;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.impl.BasicResultSetFactory;
-import org.seasar.extension.jdbc.impl.BasicStatementFactory;
+import org.seasar.dao.impl.BasicResultSetFactory;
+import org.seasar.dao.impl.BasicStatementFactory;
 
 public class SelectDynamicCommandTest extends S2DaoTestCase {
 

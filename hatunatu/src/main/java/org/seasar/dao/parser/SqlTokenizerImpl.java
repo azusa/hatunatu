@@ -16,7 +16,7 @@
 package org.seasar.dao.parser;
 
 import org.seasar.dao.SqlTokenizer;
-import org.seasar.dao.TokenNotClosedRuntimeException;
+import org.seasar.dao.exception.TokenNotClosedRuntimeException;
 
 /**
  * @author higa

@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 import junit.framework.TestCase;
 
-import org.seasar.extension.jdbc.impl.ResultSetWrapper;
+import org.seasar.dao.impl.ResultSetWrapper;
 
 /**
  * @author manhole

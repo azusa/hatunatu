@@ -16,7 +16,7 @@
 package org.seasar.dao.command;
 
 import org.seasar.dao.impl.bean.Employee;
-import org.seasar.extension.jdbc.impl.BasicStatementFactory;
+import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.extension.unit.S2TestCase;
 
 public class UpdateDynamicCommandTest extends S2TestCase {

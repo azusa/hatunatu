@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.interceptors;
 
-import org.seasar.dao.NotExactlyOneRowUpdatedRuntimeException;
+import org.seasar.dao.exception.NotExactlyOneRowUpdatedRuntimeException;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;

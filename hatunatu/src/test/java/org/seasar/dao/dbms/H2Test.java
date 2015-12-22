@@ -21,7 +21,7 @@ import java.sql.Statement;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.impl.BasicSelectHandler;
+import org.seasar.dao.handler.BasicSelectHandler;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
 /**

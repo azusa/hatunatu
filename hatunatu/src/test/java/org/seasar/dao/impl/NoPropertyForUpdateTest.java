@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.MethodSetupFailureRuntimeException;
+import org.seasar.dao.exception.MethodSetupFailureRuntimeException;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;

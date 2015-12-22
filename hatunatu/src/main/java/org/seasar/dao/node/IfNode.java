@@ -16,7 +16,7 @@
 package org.seasar.dao.node;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.dao.IllegalBoolExpressionRuntimeException;
+import org.seasar.dao.exception.IllegalBoolExpressionRuntimeException;
 import org.seasar.dao.util.OgnlUtil;
 
 /**

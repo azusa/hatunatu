@@ -18,12 +18,11 @@ package org.seasar.dao.command;
 import javax.sql.DataSource;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.dao.command.AbstractDynamicCommand;
 import org.seasar.dao.pager.PagingSqlRewriter;
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BasicSelectHandler;
+import org.seasar.dao.handler.BasicSelectHandler;
 
 /**
  * @author higa

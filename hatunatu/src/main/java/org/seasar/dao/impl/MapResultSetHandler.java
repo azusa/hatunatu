@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.seasar.dao.NotSingleResultRuntimeException;
+import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.resultset.AbstractMapResultSetHandler;
 import org.seasar.dao.resultset.ObjectResultSetHandler;
 import org.seasar.extension.jdbc.PropertyType;

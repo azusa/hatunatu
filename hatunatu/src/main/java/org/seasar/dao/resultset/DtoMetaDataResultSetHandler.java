@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.seasar.dao.DtoMetaData;
-import org.seasar.dao.NotSingleResultRuntimeException;
+import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.RowCreator;
 import org.seasar.util.log.Logger;
 

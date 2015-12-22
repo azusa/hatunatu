@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.BindVariableUtil;
+import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.util.convert.StringConversionUtil;
 import org.seasar.util.io.ReaderUtil;
 

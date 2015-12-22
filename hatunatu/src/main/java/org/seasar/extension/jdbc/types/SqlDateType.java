@@ -22,8 +22,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.BindVariableUtil;
-import org.seasar.framework.util.SqlDateConversionUtil;
+import org.seasar.dao.util.BindVariableUtil;
+import org.seasar.dao.util.SqlDateConversionUtil;
 
 /**
  * java.sql.Date用の {@link ValueType}です。

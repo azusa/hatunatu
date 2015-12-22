@@ -25,7 +25,7 @@ import java.util.Map;
 
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
-import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
+import org.seasar.dao.util.DatabaseMetaDataUtil;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SRuntimeException;
 

@@ -26,9 +26,9 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.extension.jdbc.util.DataSourceUtil;
-import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
+import org.seasar.dao.util.ConnectionUtil;
+import org.seasar.dao.util.DataSourceUtil;
+import org.seasar.dao.util.DatabaseMetaDataUtil;
 import org.seasar.util.io.ResourceUtil;
 
 /**

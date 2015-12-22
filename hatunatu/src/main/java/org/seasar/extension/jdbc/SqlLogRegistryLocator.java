@@ -15,7 +15,7 @@
  */
 package org.seasar.extension.jdbc;
 
-import org.seasar.extension.jdbc.impl.SqlLogRegistryImpl;
+import org.seasar.dao.impl.SqlLogRegistryImpl;
 
 /**
  * {@link SqlLogRegistry}を取得するためのロケータです。

@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.BindVariableUtil;
+import org.seasar.dao.util.BindVariableUtil;
 
 /**
  * オラクルの結果セット用の {@link ValueType}です。

@@ -18,11 +18,11 @@ package org.seasar.dao.impl;
 import java.util.Set;
 
 import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.BeanNotFoundRuntimeException;
+import org.seasar.dao.exception.BeanNotFoundRuntimeException;
 import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.extension.jdbc.ColumnNotFoundRuntimeException;
+import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.util.exception.PropertyNotFoundRuntimeException;
 

@@ -29,7 +29,6 @@ import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.impl.BasicSelectHandler;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.util.exception.SIllegalArgumentException;
 import org.seasar.util.exception.SQLRuntimeException;

@@ -18,6 +18,10 @@ package org.seasar.dao.impl;
 import org.seasar.dao.*;
 import org.seasar.dao.command.*;
 import org.seasar.dao.dbms.Oracle;
+import org.seasar.dao.exception.IllegalAnnotationRuntimeException;
+import org.seasar.dao.exception.IllegalSignatureRuntimeException;
+import org.seasar.dao.exception.MethodSetupFailureRuntimeException;
+import org.seasar.dao.exception.SqlFileNotFoundRuntimeException;
 import org.seasar.dao.resultset.BeanArrayMetaDataResultSetHandler;
 import org.seasar.dao.resultset.BeanListMetaDataResultSetHandler;
 import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
@@ -32,7 +36,6 @@ import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.resultset.MapArrayResultSetHandler;
 import org.seasar.dao.resultset.ObjectResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -411,14 +414,7 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         assertNotNull("1", employee);
     }
 
-    public void testCreateObjectBeanCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(getDaoClass("EmployeeAutoDao"));
 
-        SqlCommand cmd = dmd
-                .createFindObjectCommand("select count(*) from emp");
-        Long count = (Long) cmd.execute(null);
-        assertEquals("1", 14L, count.intValue());
-    }
 
     public void testCreateFindBeanCommandByDto() throws Exception {
         DaoMetaData dmd = createDaoMetaData(getDaoClass("EmployeeAutoDao"));

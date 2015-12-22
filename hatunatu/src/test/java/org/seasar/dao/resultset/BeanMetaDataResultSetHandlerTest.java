@@ -20,12 +20,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.NotSingleResultRuntimeException;
+import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.resultset.BeanMetaDataResultSetHandler;
 import org.seasar.dao.resultset.BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler;
 import org.seasar.dao.impl.bean.Department;
 import org.seasar.dao.impl.bean.Employee;

@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 import org.seasar.dao.InjectDaoClassSupport;
 import org.seasar.dao.SqlCommand;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BasicHandler;
+import org.seasar.dao.handler.BasicHandler;
 
 /**
  * @author higa

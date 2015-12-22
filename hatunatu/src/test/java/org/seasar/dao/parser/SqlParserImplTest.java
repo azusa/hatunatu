@@ -21,10 +21,10 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.dao.EndCommentNotFoundRuntimeException;
+import org.seasar.dao.exception.EndCommentNotFoundRuntimeException;
 import org.seasar.dao.Node;
 import org.seasar.dao.SqlParser;
-import org.seasar.dao.TokenNotClosedRuntimeException;
+import org.seasar.dao.exception.TokenNotClosedRuntimeException;
 import org.seasar.dao.context.CommandContextImpl;
 import org.seasar.dao.node.BindVariableNode;
 import org.seasar.dao.node.IfNode;

@@ -52,6 +52,5 @@ public interface DaoMetaData {
 
     SqlCommand createFindMapArrayCommand(String query);
 
-    SqlCommand createFindObjectCommand(String query);
 
 }

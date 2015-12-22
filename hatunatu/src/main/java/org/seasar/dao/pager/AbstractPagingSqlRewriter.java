@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BasicSelectHandler;
+import org.seasar.dao.handler.BasicSelectHandler;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.framework.exception.SQLRuntimeException;
 import org.seasar.util.convert.IntegerConversionUtil;

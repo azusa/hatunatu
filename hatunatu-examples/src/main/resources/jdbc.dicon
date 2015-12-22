@@ -9,11 +9,11 @@
 		name="resultSetFactory"
 		class="org.seasar.dao.pager.PagerResultSetFactoryWrapper">
 		<arg>
-			<component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
+			<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
 		</arg>
 		<property name="useScrollCursor">true</property>
 	</component>
-	<component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory">
+	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
 		<arg>
 			<component class="org.seasar.dao.pager.PagerStatementFactory"/>
 		</arg>
@@ -26,10 +26,10 @@
 	<!-- LIMIT OFFSET句を使ったSQL書き換えによるページング処理用設定 -->
 	<!--
 	<component name="pagingSqlRewriter" class="org.seasar.dao.pager.LimitOffsetPagingSqlRewriter"/>
-	<component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory">
+	<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
+	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/>
+			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!- -
@@ -41,10 +41,10 @@
 	<!-- ORACLE ROWNUM句を使ったSQL書き換えによるページング処理用設定 -->
 	<!--
 	<component name="pagingSqlRewriter" class="org.seasar.dao.pager.OracleRownumPagingSqlRewriter"/>
-	<component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory">
+	<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
+	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/>
+			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!- -
@@ -54,8 +54,8 @@
 	-->
 	
 	<!--
-	<component class="org.seasar.extension.jdbc.impl.OracleResultSetFactory"/>
-	<component class="org.seasar.extension.jdbc.impl.BooleanToIntStatementFactory"/>
+	<component class="org.seasar.dao.impl.OracleResultSetFactory"/>
+	<component class="org.seasar.dao.impl.BooleanToIntStatementFactory"/>
 	-->
 
 	<component name="xaDataSource"

@@ -22,8 +22,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BooleanToIntPreparedStatement;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
+import org.seasar.dao.impl.BooleanToIntPreparedStatement;
+import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.framework.exception.SQLRuntimeException;
 
 /**

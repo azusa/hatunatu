@@ -17,7 +17,7 @@ package org.seasar.dao.command;
 
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
-import org.seasar.dao.UpdateFailureRuntimeException;
+import org.seasar.dao.exception.UpdateFailureRuntimeException;
 import org.seasar.dao.impl.bean.Department;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.DepartmentAutoDao;

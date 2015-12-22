@@ -16,7 +16,7 @@
 package org.seasar.dao.interceptors;
 
 import org.aopalliance.intercept.MethodInvocation;
-import org.seasar.dao.NotExactlyOneRowUpdatedRuntimeException;
+import org.seasar.dao.exception.NotExactlyOneRowUpdatedRuntimeException;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 
 /**

@@ -21,7 +21,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.NoUpdatePropertyTypeRuntimeException;
+import org.seasar.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import org.seasar.dao.handler.UpdateAutoHandler;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.StatementFactory;

@@ -27,7 +27,7 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ReturningRowsBatchHandler;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
+import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.util.exception.SQLRuntimeException;
 import org.seasar.util.sql.PreparedStatementUtil;
 import org.seasar.util.sql.StatementUtil;

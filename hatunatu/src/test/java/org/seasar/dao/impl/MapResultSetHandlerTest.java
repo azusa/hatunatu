@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 
-import org.seasar.dao.NotSingleResultRuntimeException;
+import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;

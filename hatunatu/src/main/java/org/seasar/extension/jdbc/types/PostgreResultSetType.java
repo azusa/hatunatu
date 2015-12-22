@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.BindVariableUtil;
+import org.seasar.dao.util.BindVariableUtil;
 
 /**
  * 結果セット用の {@link ValueType}です。

@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import junit.framework.TestCase;
 
 import org.seasar.dao.mock.NullConnection;
-import org.seasar.extension.jdbc.impl.BooleanToIntPreparedStatement;
+import org.seasar.dao.impl.BooleanToIntPreparedStatement;
 
 /**
  * @author manhole

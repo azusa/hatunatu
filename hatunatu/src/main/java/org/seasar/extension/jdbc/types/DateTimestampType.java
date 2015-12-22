@@ -24,8 +24,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.framework.util.DateConversionUtil;
-import org.seasar.framework.util.TimestampConversionUtil;
+import org.seasar.dao.util.DateConversionUtil;
+import org.seasar.dao.util.TimestampConversionUtil;
 import org.seasar.util.exception.ParseRuntimeException;
 
 /**

@@ -16,6 +16,7 @@
 package org.seasar.dao;
 
 import junit.framework.TestCase;
+import org.seasar.dao.exception.OverloadNotSupportedRuntimeException;
 
 /**
  * @author taedium

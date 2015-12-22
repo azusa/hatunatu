@@ -18,8 +18,8 @@ package org.seasar.dao.parser;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-import org.seasar.dao.EndCommentNotFoundRuntimeException;
-import org.seasar.dao.IfConditionNotFoundRuntimeException;
+import org.seasar.dao.exception.EndCommentNotFoundRuntimeException;
+import org.seasar.dao.exception.IfConditionNotFoundRuntimeException;
 import org.seasar.dao.Node;
 import org.seasar.dao.SqlParser;
 import org.seasar.dao.SqlTokenizer;

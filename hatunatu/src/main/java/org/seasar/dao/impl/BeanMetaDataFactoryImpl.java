@@ -34,8 +34,8 @@ import org.seasar.dao.RelationPropertyTypeFactory;
 import org.seasar.dao.RelationPropertyTypeFactoryBuilder;
 import org.seasar.dao.TableNaming;
 import org.seasar.dao.dbms.DbmsManager;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.extension.jdbc.util.DataSourceUtil;
+import org.seasar.dao.util.ConnectionUtil;
+import org.seasar.dao.util.DataSourceUtil;
 
 /**
  * @author jflute

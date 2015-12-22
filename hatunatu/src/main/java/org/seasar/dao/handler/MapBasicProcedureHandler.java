@@ -24,7 +24,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BasicStatementFactory;
+import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.framework.exception.SQLRuntimeException;
 import org.seasar.util.sql.StatementUtil;
 

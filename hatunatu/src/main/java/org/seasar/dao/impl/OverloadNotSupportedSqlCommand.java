@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.OverloadNotSupportedRuntimeException;
+import org.seasar.dao.exception.OverloadNotSupportedRuntimeException;
 import org.seasar.dao.SqlCommand;
 
 /**

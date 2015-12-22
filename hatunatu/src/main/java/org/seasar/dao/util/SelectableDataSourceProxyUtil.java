@@ -20,7 +20,6 @@ import java.lang.reflect.Method;
 
 import javax.sql.DataSource;
 
-import org.seasar.framework.util.MethodUtil;
 import org.seasar.util.exception.NoSuchFieldRuntimeException;
 import org.seasar.util.lang.ClassUtil;
 import org.seasar.util.lang.FieldUtil;

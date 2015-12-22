@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.IllegalSignatureRuntimeException;
+import org.seasar.dao.exception.IllegalSignatureRuntimeException;
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.annotation.tiger.ParameterType;

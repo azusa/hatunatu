@@ -6,10 +6,10 @@
 
 	<component name="pagingSQLRewriter" class="org.seasar.dao.pager.LimitOffsetPagingSqlRewriter"/>
 
-	<component name="resultSetFactory" class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory">
+	<component name="resultSetFactory" class="org.seasar.dao.impl.BasicResultSetFactory"/>
+	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/>
+			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!--
@@ -17,8 +17,8 @@
 		-->
 	</component>
 	<!--
-	<component class="org.seasar.extension.jdbc.impl.OracleResultSetFactory"/>
-	<component class="org.seasar.extension.jdbc.impl.BooleanToIntStatementFactory"/>
+	<component class="org.seasar.dao.impl.OracleResultSetFactory"/>
+	<component class="org.seasar.dao.impl.BooleanToIntStatementFactory"/>
 	-->
 
 </components>

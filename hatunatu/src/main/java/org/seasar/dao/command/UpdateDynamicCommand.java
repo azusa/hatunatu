@@ -18,9 +18,8 @@ package org.seasar.dao.command;
 import javax.sql.DataSource;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.dao.command.AbstractDynamicCommand;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
+import org.seasar.dao.handler.BasicUpdateHandler;
 
 /**
  * @author higa

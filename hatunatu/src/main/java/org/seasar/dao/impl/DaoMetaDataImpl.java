@@ -35,21 +35,21 @@ import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.DaoNamingConvention;
-import org.seasar.dao.DaoNotFoundRuntimeException;
+import org.seasar.dao.exception.DaoNotFoundRuntimeException;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
-import org.seasar.dao.IllegalAnnotationRuntimeException;
-import org.seasar.dao.IllegalSignatureRuntimeException;
+import org.seasar.dao.exception.IllegalAnnotationRuntimeException;
+import org.seasar.dao.exception.IllegalSignatureRuntimeException;
 import org.seasar.dao.InjectDaoClassSupport;
-import org.seasar.dao.MethodSetupFailureRuntimeException;
+import org.seasar.dao.exception.MethodSetupFailureRuntimeException;
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureMetaDataFactory;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.SqlCommand;
-import org.seasar.dao.SqlFileNotFoundRuntimeException;
+import org.seasar.dao.exception.SqlFileNotFoundRuntimeException;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.command.*;
 import org.seasar.dao.dbms.DbmsManager;
@@ -62,10 +62,9 @@ import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.extension.jdbc.ResultSetHandler;
 import org.seasar.extension.jdbc.StatementFactory;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.extension.jdbc.util.DataSourceUtil;
-import org.seasar.framework.util.InputStreamReaderUtil;
+import org.seasar.dao.util.ConnectionUtil;
+import org.seasar.dao.util.DataSourceUtil;
+import org.seasar.dao.util.InputStreamReaderUtil;
 import org.seasar.util.beans.BeanDesc;
 import org.seasar.util.beans.MethodDesc;
 import org.seasar.util.beans.factory.BeanDescFactory;
@@ -1091,12 +1090,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         return new RelationRowCreatorImpl();
     }
 
-    /**
-     * @see org.seasar.dao.DaoMetaData#createFindObjectCommand(java.lang.String)
-     */
-    public SqlCommand createFindObjectCommand(final String query) {
-        return createSelectDynamicCommand(new ObjectResultSetHandler(), query);
-    }
+
 
     public Class getDaoInterface(final Class clazz) {
         if (clazz.isInterface()) {

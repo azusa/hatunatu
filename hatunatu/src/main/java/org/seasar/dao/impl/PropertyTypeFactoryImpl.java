@@ -28,7 +28,7 @@ import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.extension.jdbc.PropertyType;
 import org.seasar.extension.jdbc.ValueType;
-import org.seasar.extension.jdbc.util.DatabaseMetaDataUtil;
+import org.seasar.dao.util.DatabaseMetaDataUtil;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.util.beans.BeanDesc;
 import org.seasar.util.beans.PropertyDesc;

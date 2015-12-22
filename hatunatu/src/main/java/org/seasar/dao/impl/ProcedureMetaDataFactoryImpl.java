@@ -23,8 +23,8 @@ import java.util.Map;
 
 import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
-import org.seasar.dao.IllegalParameterTypeRuntimeException;
-import org.seasar.dao.IllegalSignatureRuntimeException;
+import org.seasar.dao.exception.IllegalParameterTypeRuntimeException;
+import org.seasar.dao.exception.IllegalSignatureRuntimeException;
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureMetaDataFactory;
 import org.seasar.dao.ProcedureParameterType;
