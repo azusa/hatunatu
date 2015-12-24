@@ -26,7 +26,7 @@ import org.seasar.dao.annotation.tiger.ProcedureCall;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.impl.Procedures;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.util.exception.SIllegalArgumentException;
+import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
 
 /**
  * @author taedium

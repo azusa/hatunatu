@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.convert.DateConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.DateConversionUtil;
 
 import java.sql.Date;
 

@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.util.convert.StringConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

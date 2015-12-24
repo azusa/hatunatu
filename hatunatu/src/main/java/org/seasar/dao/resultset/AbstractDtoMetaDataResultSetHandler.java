@@ -24,7 +24,7 @@ import java.util.Set;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.ResultSetHandler;
-import org.seasar.util.collection.CaseInsensitiveSet;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveSet;
 
 /**
  * @author jflute

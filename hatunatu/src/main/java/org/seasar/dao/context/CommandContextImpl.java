@@ -21,8 +21,8 @@ import java.util.List;
 import ognl.OgnlRuntime;
 
 import org.seasar.dao.CommandContext;
-import org.seasar.util.collection.CaseInsensitiveMap;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * @author higa

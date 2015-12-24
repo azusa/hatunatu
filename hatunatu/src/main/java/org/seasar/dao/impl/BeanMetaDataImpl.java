@@ -31,12 +31,12 @@ import org.seasar.dao.TableNaming;
 import org.seasar.dao.id.IdentifierGeneratorFactory;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
 import org.seasar.dao.PropertyType;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
-import org.seasar.util.collection.CaseInsensitiveMap;
-import org.seasar.util.exception.PropertyNotFoundRuntimeException;
-import org.seasar.util.lang.ClassUtil;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 
 /**
  * @author higa

@@ -29,8 +29,8 @@ import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.impl.dao.IdentityTableAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.dao.PropertyType;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 

@@ -23,8 +23,8 @@ import org.seasar.extension.dataset.DataSet;
 import org.seasar.dao.impl.BasicResultSetFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.sql.DatabaseMetaData;
 import java.util.List;

@@ -27,11 +27,10 @@ import java.util.Map;
 import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.SqlCommand;
 import org.seasar.dao.annotation.tiger.Procedure;
-import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.impl.Procedures;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
-import org.seasar.util.exception.SIllegalArgumentException;
+import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
 
 /**
  * @author manhole

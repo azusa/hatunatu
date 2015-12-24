@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 import org.seasar.dao.impl.ResultSetWrapper;
 import org.seasar.dao.exception.SQLRuntimeException;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * ページャ用のResultSetラッパー。

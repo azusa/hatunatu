@@ -26,7 +26,7 @@ import org.seasar.dao.exception.PrimaryKeyNotFoundRuntimeException;
 import org.seasar.dao.handler.AbstractAutoHandler;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.StatementFactory;
-import org.seasar.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 /**
  * @author higa

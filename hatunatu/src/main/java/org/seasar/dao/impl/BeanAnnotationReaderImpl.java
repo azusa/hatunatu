@@ -26,9 +26,9 @@ import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**
  * @author keizou

@@ -21,7 +21,7 @@ import org.seasar.dao.SqlCommand;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 /**
  * @author taichi

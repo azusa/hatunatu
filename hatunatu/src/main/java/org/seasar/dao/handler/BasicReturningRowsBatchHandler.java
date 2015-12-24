@@ -25,9 +25,9 @@ import org.seasar.dao.ReturningRowsBatchHandler;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.sql.PreparedStatementUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * 一つのSQLに複数のパラメータを適用してバッチ実行するための基本的なクラスです。

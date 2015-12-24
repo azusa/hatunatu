@@ -29,7 +29,7 @@ import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.DatabaseMetaDataUtil;
-import org.seasar.util.io.ResourceUtil;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 
 /**
  * @author higa

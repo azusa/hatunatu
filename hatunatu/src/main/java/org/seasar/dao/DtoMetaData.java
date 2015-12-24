@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import org.seasar.util.exception.PropertyNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author higa

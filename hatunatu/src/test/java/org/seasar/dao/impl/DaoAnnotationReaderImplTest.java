@@ -26,8 +26,8 @@ import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.impl.bean.Employee;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**
  * @author higa

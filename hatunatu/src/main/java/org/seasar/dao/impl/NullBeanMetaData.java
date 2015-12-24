@@ -24,7 +24,7 @@ import org.seasar.dao.NullBean;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
 import org.seasar.dao.PropertyType;
-import org.seasar.util.exception.PropertyNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author taedium

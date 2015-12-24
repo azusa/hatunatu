@@ -23,7 +23,7 @@ import org.seasar.dao.PropertyType;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.handler.BasicSelectHandler;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
 
 /**
  * @author higa

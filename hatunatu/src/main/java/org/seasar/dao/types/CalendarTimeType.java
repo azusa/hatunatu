@@ -22,7 +22,7 @@ import java.sql.Time;
 import java.util.Calendar;
 
 import org.seasar.dao.ValueType;
-import org.seasar.util.convert.CalendarConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;
 
 /**
  * {@link Time}と互換性をもつ{@link Calendar}用の{@link ValueType}です。

@@ -26,7 +26,7 @@ import java.util.Set;
 import org.seasar.dao.*;
 import org.seasar.dao.impl.RelationKey;
 import org.seasar.dao.impl.RelationRowCache;
-import org.seasar.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
 
 /**
  * @author jflute

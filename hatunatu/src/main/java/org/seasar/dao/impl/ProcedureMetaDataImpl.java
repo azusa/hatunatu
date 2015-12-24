@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.ProcedureMetaData;
 import org.seasar.dao.ProcedureParameterType;
-import org.seasar.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 
 /**
  * {@link ProcedureMetaData}の実装クラスです。

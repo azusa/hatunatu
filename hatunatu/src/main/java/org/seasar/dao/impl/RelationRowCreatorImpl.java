@@ -27,9 +27,9 @@ import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.ValueType;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.exception.IllegalAccessRuntimeException;
-import org.seasar.util.exception.InstantiationRuntimeException;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.exception.IllegalAccessRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.InstantiationRuntimeException;
 
 /**
  * @author jflute

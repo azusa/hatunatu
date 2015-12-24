@@ -24,8 +24,8 @@ import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyTypeFactoryBuilder;
-import org.seasar.util.misc.Disposable;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.misc.Disposable;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 /**
  * @author higa

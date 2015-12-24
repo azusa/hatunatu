@@ -37,8 +37,8 @@ import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.DatabaseMetaDataUtil;
 import org.seasar.dao.exception.EmptyRuntimeException;
 import org.seasar.dao.exception.SQLRuntimeException;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.sql.ResultSetUtil;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 
 /**
  * @author higa

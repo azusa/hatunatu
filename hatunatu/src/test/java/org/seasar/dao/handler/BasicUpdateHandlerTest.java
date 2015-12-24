@@ -18,8 +18,7 @@ package org.seasar.dao.handler;
 import java.util.Date;
 
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.exception.SSQLException;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 /**
  * @author higa

@@ -27,7 +27,7 @@ import org.seasar.dao.ValueType;
 import org.seasar.dao.util.DateConversionUtil;
 import org.seasar.dao.util.TimeConversionUtil;
 import org.seasar.dao.util.TimestampConversionUtil;
-import org.seasar.util.exception.ParseRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 
 /**
  * {@link Time}と互換性をもつ{@link Date}用の{@link ValueType}です。

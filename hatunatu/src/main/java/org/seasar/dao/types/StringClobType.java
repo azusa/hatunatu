@@ -26,8 +26,8 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.convert.StringConversionUtil;
-import org.seasar.util.io.ReaderUtil;
+import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
+import jp.fieldnotes.hatunatu.util.io.ReaderUtil;
 
 /**
  * ClobをStringとして扱うための {@link ValueType}です。

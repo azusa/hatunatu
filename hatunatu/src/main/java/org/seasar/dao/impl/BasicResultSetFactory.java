@@ -20,8 +20,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.seasar.dao.ResultSetFactory;
-import org.seasar.util.sql.PreparedStatementUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * {@link ResultSetFactory}の基本的な実装クラスです。

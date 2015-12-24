@@ -16,7 +16,7 @@
 package org.seasar.dao.exception;
 
 
-import org.seasar.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 /**
  * 戻り値がBeanの時にSQLの実行結果が2件以上な場合の例外です。

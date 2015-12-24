@@ -22,7 +22,7 @@ import java.util.Date;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
-import org.seasar.util.exception.NoSuchFieldRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.NoSuchFieldRuntimeException;
 
 
 /**

@@ -21,7 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import org.seasar.dao.StatementFactory;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * {@link Statement}をカスタマイズするためのファクトリです。

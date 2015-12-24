@@ -27,10 +27,10 @@ import java.util.regex.Pattern;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.misc.Disposable;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.misc.Disposable;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 
 /**

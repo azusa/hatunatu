@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.exception;
 
-import org.seasar.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 /**
  * Daoインタフェースのメソッドがオーバーロードされている場合にスローされる例外です。

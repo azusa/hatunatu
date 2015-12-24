@@ -17,7 +17,7 @@ package org.seasar.dao.impl;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.RelationPropertyType;
-import org.seasar.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
 
 /**
  * @author higa

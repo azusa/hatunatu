@@ -29,8 +29,8 @@ import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
 import org.seasar.dao.util.DaoNamingConventionUtil;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.ValueType;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * @author jflute

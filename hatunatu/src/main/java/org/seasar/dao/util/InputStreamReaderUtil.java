@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.exception.IORuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.IORuntimeException;
 
 import java.io.IOException;
 import java.io.InputStream;

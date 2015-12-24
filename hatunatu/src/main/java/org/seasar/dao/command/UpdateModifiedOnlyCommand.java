@@ -25,7 +25,7 @@ import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.handler.UpdateAutoHandler;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.StatementFactory;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * @author manhole

@@ -24,8 +24,8 @@ import javax.sql.DataSource;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.exception.SQLRuntimeException;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * @deprecated

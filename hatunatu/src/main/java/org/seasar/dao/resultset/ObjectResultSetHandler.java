@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.ResultSetHandler;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * オブジェクトを返す{@link ResultSetHandler}です。

@@ -35,10 +35,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.MethodUtil;
-import org.seasar.util.lang.ConstructorUtil;
-import org.seasar.util.lang.ModifierUtil;
-import org.seasar.util.misc.Disposable;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.lang.ConstructorUtil;
+import jp.fieldnotes.hatunatu.util.lang.ModifierUtil;
+import jp.fieldnotes.hatunatu.util.misc.Disposable;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 
 /**

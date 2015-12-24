@@ -16,7 +16,7 @@
 package org.seasar.dao;
 
 
-import org.seasar.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
 
 public interface AnnotationReaderFactory {
 

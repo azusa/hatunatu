@@ -29,7 +29,7 @@ import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.dao.util.DateConversionUtil;
 import org.seasar.dao.util.TimestampConversionUtil;
-import org.seasar.util.exception.ParseRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 
 /**
  * Timestamp用の {@link ValueType}です。

@@ -23,12 +23,12 @@ import org.seasar.dao.Dbms;
 import org.seasar.dao.IdentifierGenerator;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
-import org.seasar.util.lang.ClassUtil;
-import org.seasar.util.lang.ConstructorUtil;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
+import jp.fieldnotes.hatunatu.util.lang.ConstructorUtil;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * @author higa

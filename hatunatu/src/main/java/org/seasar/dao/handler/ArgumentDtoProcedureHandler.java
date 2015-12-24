@@ -30,10 +30,10 @@ import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.exception.SIllegalArgumentException;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.sql.ResultSetUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * 引数のDTOに含まれる値をプロシージャにバインディングする{@link ProcedureHandler}の実装クラスです。

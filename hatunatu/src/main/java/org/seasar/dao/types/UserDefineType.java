@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.seasar.dao.ValueType;
-import org.seasar.util.lang.MethodUtil;
+import jp.fieldnotes.hatunatu.util.lang.MethodUtil;
 
 /**
  * ユーザ定義型用の {@link ValueType}です。

@@ -23,7 +23,7 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.convert.FloatConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.FloatConversionUtil;
 
 /**
  * Float用の {@link ValueType}です。

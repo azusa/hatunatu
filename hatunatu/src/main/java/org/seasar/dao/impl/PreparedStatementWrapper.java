@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.util.exception.SSQLException;
+import jp.fieldnotes.hatunatu.util.exception.SSQLException;
 
 import java.io.InputStream;
 import java.io.Reader;

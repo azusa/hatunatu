@@ -32,12 +32,12 @@ import org.seasar.dao.StatementFactory;
 import org.seasar.dao.UpdateHandler;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.convert.IntegerConversionUtil;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.log.Logger;
-import org.seasar.util.sql.PreparedStatementUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * @author higa

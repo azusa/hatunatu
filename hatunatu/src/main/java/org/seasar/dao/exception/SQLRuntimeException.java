@@ -15,9 +15,9 @@
  */
 package org.seasar.dao.exception;
 
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.exception.SSQLException;
-import org.seasar.util.message.MessageFormatter;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SSQLException;
+import jp.fieldnotes.hatunatu.util.message.MessageFormatter;
 
 import java.sql.SQLException;
 

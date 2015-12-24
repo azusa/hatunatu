@@ -20,7 +20,7 @@ import java.util.Map;
 import org.seasar.dao.impl.MapResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
-import org.seasar.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 /**
  * @author higa

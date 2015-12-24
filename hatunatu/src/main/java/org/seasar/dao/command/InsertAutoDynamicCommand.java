@@ -28,7 +28,7 @@ import org.seasar.dao.handler.InsertAutoHandler;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicHandler;
-import org.seasar.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 /**
  * @author manhole

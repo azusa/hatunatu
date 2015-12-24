@@ -15,8 +15,8 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.exception.ParseRuntimeException;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 import java.sql.Time;
 import java.text.ParseException;

@@ -21,8 +21,8 @@ import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.resultset.FetchResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.dao.ResultSetHandler;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Method;
 

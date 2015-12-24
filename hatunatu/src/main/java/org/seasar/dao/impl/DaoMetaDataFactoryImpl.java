@@ -33,10 +33,10 @@ import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.pager.PagingSqlRewriter;
 import org.seasar.dao.ResultSetFactory;
 import org.seasar.dao.StatementFactory;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
-import org.seasar.util.misc.Disposable;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.misc.Disposable;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 /**
  * @author higa

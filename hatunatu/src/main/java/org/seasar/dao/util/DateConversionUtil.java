@@ -22,8 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import org.seasar.util.exception.ParseRuntimeException;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * {@link Date}用の変換ユーティリティです。

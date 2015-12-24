@@ -23,9 +23,9 @@ import javax.sql.DataSource;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.UpdateHandler;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.sql.PreparedStatementUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * {@link UpdateHandler}の基本的な実装クラスです。

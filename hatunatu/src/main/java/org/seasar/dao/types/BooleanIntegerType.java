@@ -23,7 +23,7 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.convert.BooleanConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.BooleanConversionUtil;
 
 /**
  * Boolean用の {@link ValueType}です。

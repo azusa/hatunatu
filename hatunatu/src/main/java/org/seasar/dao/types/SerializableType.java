@@ -26,7 +26,7 @@ import java.sql.SQLException;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.exception.SSQLException;
+import jp.fieldnotes.hatunatu.util.exception.SSQLException;
 
 /**
  * オブジェクトをシリアライズしたバイト配列用の {@link ValueType}です。

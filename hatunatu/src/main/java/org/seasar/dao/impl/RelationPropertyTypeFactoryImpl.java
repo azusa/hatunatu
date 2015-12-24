@@ -21,14 +21,13 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.BeanEnhancer;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.RelationPropertyType;
 import org.seasar.dao.RelationPropertyTypeFactory;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**
  * {@link RelationPropertyTypeFactory}の実装クラスです。

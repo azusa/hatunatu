@@ -21,9 +21,9 @@ import java.util.Set;
 import org.seasar.dao.BeanEnhancer;
 import org.seasar.dao.DaoNamingConvention;
 import org.seasar.dao.impl.BeanMetaDataImpl.ModifiedPropertySupport;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**
  * @author taichi

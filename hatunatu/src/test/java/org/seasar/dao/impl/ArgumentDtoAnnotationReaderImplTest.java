@@ -20,8 +20,8 @@ import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.annotation.tiger.ValueType;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Field;
 

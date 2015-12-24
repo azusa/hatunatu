@@ -15,8 +15,8 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.exception.IllegalAccessRuntimeException;
-import org.seasar.util.exception.InvocationTargetRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.IllegalAccessRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.InvocationTargetRuntimeException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

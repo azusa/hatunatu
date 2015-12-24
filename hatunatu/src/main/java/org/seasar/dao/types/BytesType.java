@@ -27,8 +27,8 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.exception.IORuntimeException;
-import org.seasar.util.exception.SSQLException;
+import jp.fieldnotes.hatunatu.util.exception.IORuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SSQLException;
 
 
 /**

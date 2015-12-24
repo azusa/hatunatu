@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.ValueType;
-import org.seasar.util.lang.FieldUtil;
+import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 
 /**
  * {@link ProcedureParameterType}の実装クラスです。

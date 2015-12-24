@@ -24,8 +24,8 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.convert.BigDecimalConversionUtil;
-import org.seasar.util.convert.BigIntegerConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.BigDecimalConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.BigIntegerConversionUtil;
 
 /**
  * BigInteger用の {@link ValueType}です。

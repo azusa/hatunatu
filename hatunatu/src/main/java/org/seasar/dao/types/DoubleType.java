@@ -23,7 +23,7 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.convert.DoubleConversionUtil;
+import jp.fieldnotes.hatunatu.util.convert.DoubleConversionUtil;
 
 /**
  * Double用の {@link ValueType}です。

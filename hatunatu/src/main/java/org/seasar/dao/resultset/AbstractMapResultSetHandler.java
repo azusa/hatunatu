@@ -25,8 +25,8 @@ import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;
-import org.seasar.util.collection.CaseInsensitiveMap;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 public abstract class AbstractMapResultSetHandler implements ResultSetHandler {
 

@@ -32,8 +32,8 @@ import org.seasar.dao.types.ValueTypes;
 import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * SQL文を実行するための基本的なクラスです。

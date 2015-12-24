@@ -15,9 +15,9 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.collection.CaseInsensitiveMap;
-import org.seasar.util.collection.CaseInsensitiveSet;
-import org.seasar.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveSet;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;

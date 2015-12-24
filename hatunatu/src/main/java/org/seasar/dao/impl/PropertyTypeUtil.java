@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.types.ValueTypes;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * {@link PropertyType}用のユーティリティクラスです。

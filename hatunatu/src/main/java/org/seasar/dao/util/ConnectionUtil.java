@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.util;
 
-import org.seasar.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

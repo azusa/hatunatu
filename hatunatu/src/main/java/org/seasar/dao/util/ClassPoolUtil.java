@@ -24,10 +24,10 @@ import javassist.CtClass;
 import javassist.LoaderClassPath;
 import javassist.NotFoundException;
 
-import org.seasar.util.lang.ClassLoaderUtil;
-import org.seasar.util.lang.ClassUtil;
-import org.seasar.util.misc.Disposable;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.lang.ClassLoaderUtil;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
+import jp.fieldnotes.hatunatu.util.misc.Disposable;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 /**
  * ClassPool用のユーティリティクラスです。

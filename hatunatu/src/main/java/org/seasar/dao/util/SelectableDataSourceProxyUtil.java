@@ -20,9 +20,9 @@ import java.lang.reflect.Method;
 
 import javax.sql.DataSource;
 
-import org.seasar.util.exception.NoSuchFieldRuntimeException;
-import org.seasar.util.lang.ClassUtil;
-import org.seasar.util.lang.FieldUtil;
+import jp.fieldnotes.hatunatu.util.exception.NoSuchFieldRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
+import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 
 /**
  * Seasar2.3とSeasar2.4における動的なデータソースの仕様の違いを吸収するユーティリティです。

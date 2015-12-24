@@ -28,9 +28,9 @@ import org.seasar.dao.PropertyType;
 import org.seasar.dao.ReturningRowsBatchHandler;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.sql.PreparedStatementUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * @author higa

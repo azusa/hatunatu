@@ -30,10 +30,10 @@ import org.seasar.dao.PropertyType;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.DatabaseMetaDataUtil;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
-import org.seasar.util.lang.StringUtil;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**
  * {@link PropertyTypeFactory}の実装クラスです。

@@ -20,11 +20,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.seasar.dao.handler.BasicBatchHandler;
 import org.seasar.dao.resultset.MapListResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
-import org.seasar.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 /**
  * @author higa

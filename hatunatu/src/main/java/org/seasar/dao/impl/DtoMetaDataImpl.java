@@ -19,8 +19,8 @@ import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DtoMetaData;
 import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyType;
-import org.seasar.util.collection.CaseInsensitiveMap;
-import org.seasar.util.exception.PropertyNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
+import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
 /**
  * @author higa

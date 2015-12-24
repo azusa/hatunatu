@@ -28,7 +28,7 @@ import org.seasar.dao.Dbms;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.ResultSetFactory;
 import org.seasar.dao.exception.SQLRuntimeException;
-import org.seasar.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.log.Logger;
 
 
 /**

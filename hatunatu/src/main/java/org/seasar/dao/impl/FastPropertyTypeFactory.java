@@ -27,8 +27,8 @@ import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.PropertyType;
 import org.seasar.dao.ValueType;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
 
 /**
  * クラスのメタ情報のみを使用し高速に{@link PropertyType}を生成する{@link PropertyTypeFactory}の実装クラスです。

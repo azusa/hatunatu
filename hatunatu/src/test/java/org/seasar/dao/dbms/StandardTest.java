@@ -18,8 +18,8 @@ package org.seasar.dao.dbms;
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.misc.DisposableUtil;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 /**
  * @author higa

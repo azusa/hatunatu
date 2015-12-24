@@ -65,17 +65,17 @@ import org.seasar.dao.StatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.InputStreamReaderUtil;
-import org.seasar.util.beans.BeanDesc;
-import org.seasar.util.beans.MethodDesc;
-import org.seasar.util.beans.factory.BeanDescFactory;
-import org.seasar.util.exception.MethodNotFoundRuntimeException;
-import org.seasar.util.exception.NoSuchMethodRuntimeException;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.io.ReaderUtil;
-import org.seasar.util.io.ResourceUtil;
-import org.seasar.util.lang.ClassUtil;
-import org.seasar.util.lang.MethodUtil;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.exception.MethodNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.NoSuchMethodRuntimeException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.io.ReaderUtil;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
+import jp.fieldnotes.hatunatu.util.lang.MethodUtil;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * @author higa

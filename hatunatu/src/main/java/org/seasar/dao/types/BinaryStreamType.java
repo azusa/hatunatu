@@ -25,7 +25,7 @@ import java.sql.Types;
 
 import org.seasar.dao.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
-import org.seasar.util.io.InputStreamUtil;
+import jp.fieldnotes.hatunatu.util.io.InputStreamUtil;
 
 /**
  * BinaryStream用の {@link ValueType}です。

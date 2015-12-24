@@ -28,10 +28,10 @@ import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.exception.SQLRuntimeException;
-import org.seasar.util.exception.SIllegalArgumentException;
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.sql.ResultSetUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * @author manhole

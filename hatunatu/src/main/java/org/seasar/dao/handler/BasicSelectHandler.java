@@ -31,9 +31,9 @@ import org.seasar.dao.impl.BasicResultSetFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import org.seasar.util.exception.SQLRuntimeException;
-import org.seasar.util.sql.ResultSetUtil;
-import org.seasar.util.sql.StatementUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
  * {@link SelectHandler}の基本的な実装クラスです。

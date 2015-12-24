@@ -16,8 +16,8 @@
 package org.seasar.dao.exception;
 
 
-import org.seasar.util.exception.SRuntimeException;
-import org.seasar.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
  * <code>OgnlException</code>をラップする例外です。
