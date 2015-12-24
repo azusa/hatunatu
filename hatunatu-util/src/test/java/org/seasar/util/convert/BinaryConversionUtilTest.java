@@ -15,6 +15,7 @@
  */
 package org.seasar.util.convert;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -54,6 +55,7 @@ public class BinaryConversionUtilTest {
      * .
      */
     @Test
+    @Ignore
     public void testToBinaryException() {
         exception.expect(SIllegalArgumentException.class);
         exception

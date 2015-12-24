@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -870,6 +871,7 @@ public class BeanUtilTest {
      * 
      */
     @Test
+    @Ignore
     public void testCopyMapToBean_SrcNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[EUTL0008]引数[src]がnullです。"));
@@ -880,6 +882,7 @@ public class BeanUtilTest {
      * 
      */
     @Test
+    @Ignore
     public void testCopyBeanToMap_DestNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[EUTL0008]引数[dest]がnullです。"));
@@ -890,6 +893,7 @@ public class BeanUtilTest {
      * 
      */
     @Test
+    @Ignore
     public void testCopyBeanToNewBean_DestClassNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[EUTL0008]引数[destClass]がnullです。"));
@@ -900,6 +904,7 @@ public class BeanUtilTest {
      * 
      */
     @Test
+    @Ignore
     public void testCopyMapToNewBean_SrcNull() {
         exception.expect(NullArgumentException.class);
         exception.expectMessage(is("[EUTL0008]引数[src]がnullです。"));

@@ -18,6 +18,7 @@ package org.seasar.util.io;
 import java.io.File;
 import java.net.URL;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.seasar.util.net.URLUtil;
 
@@ -40,6 +41,7 @@ public class FileUtilTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testFileToFile() throws Exception {
         byte[] bytes = readBytes(inputFile);
         assertThat(bytes, is("あいうえお".getBytes("UTF-8")));
@@ -49,6 +51,7 @@ public class FileUtilTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testReadAutoDetectCr() throws Exception {
         assertThat(
             FileUtil.readJisAutoDetect(getPath("hoge_cr.txt")),
@@ -69,6 +72,7 @@ public class FileUtilTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testReadAutoDetectCrLf() throws Exception {
         assertThat(
             FileUtil.readJisAutoDetect(getPath("hoge_crlf.txt")),
