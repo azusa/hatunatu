@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
-<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
-	"http://www.seasar.org/dtd/components21.dtd">
-<components namespace="dao">
-	<include path="jdbc-derby.dicon"/>
-	<component class="org.seasar.dao.impl.AnnotationReaderFactoryImpl"/>
-	<component class="org.seasar.dao.impl.DaoMetaDataFactoryImpl"/>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components.dtd">
+<components>
+	<include path="j2ee.dicon"/>
+	<component
+		class="org.seasar.dao.impl.AnnotationReaderFactoryImpl"/>
+	<component
+		class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
+	<component class="org.seasar.dao.impl.BeanMetaDataFactoryImpl"/>
+	<component
+		class="org.seasar.dao.impl.DaoMetaDataFactoryImpl"/>
+	<component
+		class="jp.fieldnotes.hatunatu.seasar.interceptors.AssertExactlyOneRowInterceptorTest$EmployeeDao"
+	>
+		<aspect>interceptor</aspect>
+	</component>
 	<component
 		name="interceptor"
 		class="jp.fieldnotes.hatunatu.seasar.interceptors.S2DaoInterceptor">
+		<aspect>
+			<component class="jp.fieldnotes.hatunatu.seasar.interceptors.AssertExactlyOneRowInterceptor" />
+		</aspect>
 	</component>
-	<component class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
-	<component name="stringClobType"> 
-		@org.seasar.dao.types.bytes.ValueTypes@CLOB
-	</component>
-	<component class="org.seasar.dao.impl.BeanMetaDataFactoryImpl"/>
+	
 	<component class="org.seasar.dao.impl.DaoNamingConventionImpl"/>
 	<component class="org.seasar.dao.impl.NullBeanEnhancer"/>
 	<component class="org.seasar.dao.impl.ResultSetHandlerFactoryImpl"/>
