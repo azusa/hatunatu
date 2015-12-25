@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.dao.ResultSetHandler;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 
 /**
  * オブジェクトのリストを返す {@link ResultSetHandler}です。

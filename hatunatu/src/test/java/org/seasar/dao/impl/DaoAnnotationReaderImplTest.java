@@ -22,11 +22,11 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 import org.seasar.dao.AnnotationReaderFactory;
-import org.seasar.dao.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.*;
 import org.seasar.dao.impl.bean.Employee;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**

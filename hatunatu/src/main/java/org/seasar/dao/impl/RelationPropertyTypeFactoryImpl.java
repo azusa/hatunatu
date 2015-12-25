@@ -21,12 +21,12 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
-import org.seasar.dao.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.RelationPropertyTypeFactory;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**

@@ -25,7 +25,7 @@ import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.dao.StatementFactory;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.impl.SqlLogImpl;
 import org.seasar.dao.types.ValueTypes;

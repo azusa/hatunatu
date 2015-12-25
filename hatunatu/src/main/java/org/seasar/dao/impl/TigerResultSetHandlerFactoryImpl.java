@@ -15,8 +15,8 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.FetchHandler;
 import org.seasar.dao.resultset.FetchResultSetHandler;
 import org.seasar.dao.ResultSetHandler;

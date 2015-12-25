@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.util.beans;
 
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Map;
@@ -27,11 +29,11 @@ import java.util.Map;
 public interface MethodDesc {
 
     /**
-     * このメソッドを所有するクラスの{@link BeanDesc}を返します。
+     * このメソッドを所有するクラスの{@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}を返します。
      * 
-     * @return {@link BeanDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}
      */
-    BeanDesc getBeanDesc();
+    jp.fieldnotes.hatunatu.api.beans.BeanDesc getBeanDesc();
 
     /**
      * メソッドを返します。
@@ -108,14 +110,14 @@ public interface MethodDesc {
     boolean isParameterized();
 
     /**
-     * メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列を返します。
+     * メソッドの引数型を表現する{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}の配列を返します。
      * 
      * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列
      */
-    ParameterizedClassDesc[] getParameterizedClassDescs();
+    jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc[] getParameterizedClassDescs();
 
     /**
-     * メソッドの戻り値型を表現する{@link ParameterizedClassDesc}を返します。
+     * メソッドの戻り値型を表現する{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}を返します。
      * 
      * @return メソッドの戻り値型を表現する{@link ParameterizedClassDesc}
      */

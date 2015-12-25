@@ -26,8 +26,8 @@ import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**

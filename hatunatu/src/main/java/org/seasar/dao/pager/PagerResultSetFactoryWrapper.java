@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.ResultSetFactory;
 
 /**

@@ -23,12 +23,12 @@ import java.lang.reflect.TypeVariable;
 import java.util.Map;
 
 import jp.fieldnotes.hatunatu.util.beans.impl.ParameterizedClassDescImpl;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.ConstructorDesc;
-import jp.fieldnotes.hatunatu.util.beans.FieldDesc;
-import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.ConstructorDesc;
+import jp.fieldnotes.hatunatu.api.beans.FieldDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.collection.Indexed;
 
 import static jp.fieldnotes.hatunatu.util.collection.ArrayIterator.*;

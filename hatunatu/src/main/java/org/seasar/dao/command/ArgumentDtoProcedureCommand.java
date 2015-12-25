@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.InjectDaoClassSupport;
 import org.seasar.dao.ProcedureMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.handler.ArgumentDtoProcedureHandler;
 import org.seasar.dao.ResultSetFactory;
 import org.seasar.dao.ResultSetHandler;

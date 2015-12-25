@@ -25,14 +25,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.exception.NotSingleRowUpdatedRuntimeException;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.UpdateHandler;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;

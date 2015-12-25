@@ -17,7 +17,7 @@ package jp.fieldnotes.hatunatu.util.beans.factory;
 
 import java.util.concurrent.ConcurrentMap;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.impl.BeanDescImpl;
 import jp.fieldnotes.hatunatu.util.collection.CollectionsUtil;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;

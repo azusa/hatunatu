@@ -19,7 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationRowCreatorImpl;

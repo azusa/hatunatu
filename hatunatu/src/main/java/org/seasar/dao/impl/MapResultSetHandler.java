@@ -22,7 +22,7 @@ import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.resultset.AbstractMapResultSetHandler;
 import org.seasar.dao.resultset.ObjectResultSetHandler;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 public class MapResultSetHandler extends AbstractMapResultSetHandler {

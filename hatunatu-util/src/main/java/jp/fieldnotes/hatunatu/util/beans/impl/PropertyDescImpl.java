@@ -25,9 +25,9 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.ParameterizedClassDescFactory;
 import jp.fieldnotes.hatunatu.util.convert.BooleanConversionUtil;
 import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;

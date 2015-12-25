@@ -20,12 +20,12 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.InjectDaoClassSupport;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.handler.InsertAutoHandler;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicHandler;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;

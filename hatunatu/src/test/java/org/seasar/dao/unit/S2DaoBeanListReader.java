@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.unit;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 
 import java.util.List;

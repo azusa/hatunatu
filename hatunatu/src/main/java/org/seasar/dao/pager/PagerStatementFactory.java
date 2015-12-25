@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.impl.BooleanToIntPreparedStatement;
 import org.seasar.dao.util.ConnectionUtil;

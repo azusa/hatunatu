@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.util.beans;
 
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.Map;
@@ -27,11 +29,11 @@ import java.util.Map;
 public interface ConstructorDesc {
 
     /**
-     * このコンストラクタを所有するクラスの{@link BeanDesc}を返します。
+     * このコンストラクタを所有するクラスの{@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}を返します。
      * 
-     * @return {@link BeanDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}
      */
-    BeanDesc getBeanDesc();
+    jp.fieldnotes.hatunatu.api.beans.BeanDesc getBeanDesc();
 
     /**
      * コンストラクタを返します。
@@ -66,7 +68,7 @@ public interface ConstructorDesc {
     boolean isParameterized(int index);
 
     /**
-     * メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列を返します。
+     * メソッドの引数型を表現する{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}の配列を返します。
      * 
      * @return メソッドの引数型を表現する{@link ParameterizedClassDesc}の配列
      */

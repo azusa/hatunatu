@@ -18,12 +18,12 @@ package org.seasar.dao.id;
 import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
-import org.seasar.dao.IdentifierGenerator;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.handler.BasicSelectHandler;
 import org.seasar.dao.exception.EmptyRuntimeException;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 /**
  * @author higa

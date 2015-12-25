@@ -15,6 +15,8 @@
  */
 package org.seasar.dao.resultset;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import org.seasar.dao.*;
 import org.seasar.dao.command.SelectDynamicCommand;
 import org.seasar.dao.impl.AnnotationReaderFactoryImpl;
@@ -23,7 +25,7 @@ import org.seasar.dao.impl.RowCreatorImpl;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.condition.EmployeeSearchCondition;
 import org.seasar.dao.impl.dao.EmployeeDao;
-import org.seasar.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.dao.ResultSetHandler;
 

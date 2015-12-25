@@ -16,11 +16,11 @@
 package org.seasar.dao;
 
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
 public interface AnnotationReaderFactory {
 
-    public DaoAnnotationReader createDaoAnnotationReader(BeanDesc daoBeanDesc);
+    public jp.fieldnotes.hatunatu.api.DaoAnnotationReader createDaoAnnotationReader(BeanDesc daoBeanDesc);
 
     public BeanAnnotationReader createBeanAnnotationReader(Class beanClass);
 

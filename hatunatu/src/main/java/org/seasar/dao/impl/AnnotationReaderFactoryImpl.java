@@ -18,8 +18,8 @@ package org.seasar.dao.impl;
 import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.DaoAnnotationReader;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
 /**
  * @author manhole

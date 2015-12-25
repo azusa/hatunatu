@@ -15,10 +15,12 @@
  */
 package org.seasar.dao.resultset;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.*;
 import org.seasar.dao.impl.RelationKey;
 import org.seasar.dao.impl.RelationRowCache;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

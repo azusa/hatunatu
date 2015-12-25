@@ -17,8 +17,8 @@ package org.seasar.dao.command;
 
 import java.sql.Timestamp;
 
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;

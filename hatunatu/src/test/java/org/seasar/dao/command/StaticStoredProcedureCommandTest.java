@@ -24,8 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.impl.Procedures;
 import org.seasar.dao.unit.S2DaoTestCase;

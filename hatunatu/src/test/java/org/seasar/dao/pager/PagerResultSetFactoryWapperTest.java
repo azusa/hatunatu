@@ -17,6 +17,8 @@ package org.seasar.dao.pager;
 
 import java.sql.ResultSet;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import junit.framework.TestCase;
 
 /**

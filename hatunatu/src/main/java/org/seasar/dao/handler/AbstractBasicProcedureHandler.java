@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.StatementFactory;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.dao.util.ConnectionUtil;

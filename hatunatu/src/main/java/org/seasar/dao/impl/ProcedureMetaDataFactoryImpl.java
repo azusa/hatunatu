@@ -30,8 +30,8 @@ import org.seasar.dao.ProcedureMetaDataFactory;
 import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.util.TypeUtil;
-import org.seasar.dao.ValueType;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**

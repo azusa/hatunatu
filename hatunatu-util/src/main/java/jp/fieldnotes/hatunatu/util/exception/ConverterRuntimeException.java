@@ -16,7 +16,7 @@
 package jp.fieldnotes.hatunatu.util.exception;
 
 import jp.fieldnotes.hatunatu.util.collection.ArrayUtil;
-import jp.fieldnotes.hatunatu.util.beans.Converter;
+import jp.fieldnotes.hatunatu.api.beans.Converter;
 
 /**
  * {@link Converter}でエラーが起きた場合にスローされる例外です。

@@ -15,7 +15,8 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.*;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.command.*;
 import org.seasar.dao.dbms.Oracle;
 import org.seasar.dao.exception.IllegalAnnotationRuntimeException;

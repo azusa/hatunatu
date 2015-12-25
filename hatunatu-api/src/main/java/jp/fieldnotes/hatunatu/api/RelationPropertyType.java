@@ -13,23 +13,23 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao;
+package jp.fieldnotes.hatunatu.api;
 
 /**
  * @author higa
- * @author manhole
+ * 
  */
-public interface DtoMetaData {
+public interface RelationPropertyType extends PropertyType {
 
-    public String COLUMN_SUFFIX = "_COLUMN";
+    public int getRelationNo();
 
-    public Class getBeanClass();
+    public int getKeySize();
 
-    public int getPropertyTypeSize();
+    public String getMyKey(int index);
 
-    public PropertyType getPropertyType(int index);
+    public String getYourKey(int index);
 
-    public PropertyType getPropertyType(String propertyName);
+    public boolean isYourKey(String columnName);
 
-    public boolean hasPropertyType(String propertyName);
+    public BeanMetaData getBeanMetaData();
 }

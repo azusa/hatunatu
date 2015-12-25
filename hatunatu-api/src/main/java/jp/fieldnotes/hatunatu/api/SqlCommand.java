@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2012 the Seasar Foundation and the Others.
+ * Copyright 2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,13 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-/**
- * JavaBeansのメタデータにアクセスするためのインターフェースを提供します。
- */
-package jp.fieldnotes.hatunatu.util.beans;
+package jp.fieldnotes.hatunatu.api;
 
+/**
+ * @author higa
+ * 
+ */
+public interface SqlCommand {
+
+    public Object execute(Object[] args);
+}

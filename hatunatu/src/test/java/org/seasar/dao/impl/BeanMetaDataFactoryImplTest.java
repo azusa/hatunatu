@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.impl.bean.Employee;

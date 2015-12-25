@@ -18,8 +18,8 @@ package jp.fieldnotes.hatunatu.util.lang;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.collection.CollectionsUtil;
 import jp.fieldnotes.hatunatu.util.misc.AssertionUtil;

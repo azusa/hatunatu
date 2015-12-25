@@ -21,10 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.*;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.impl.RelationKey;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 /**

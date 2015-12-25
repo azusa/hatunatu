@@ -15,8 +15,8 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.command.SelectDynamicCommand;
 import org.seasar.dao.impl.bean.Department2;
 import org.seasar.dao.impl.dao.Department2AutoDao;

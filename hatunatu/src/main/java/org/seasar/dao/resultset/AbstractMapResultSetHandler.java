@@ -20,9 +20,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Map;
 
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.ResultSetHandler;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;

@@ -17,13 +17,13 @@ package org.seasar.dao.impl;
 
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.exception.BeanNotFoundRuntimeException;
-import org.seasar.dao.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.NullBean;
-import org.seasar.dao.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
 /**

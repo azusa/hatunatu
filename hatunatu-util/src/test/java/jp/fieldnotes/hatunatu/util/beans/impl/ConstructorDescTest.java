@@ -17,8 +17,8 @@ package jp.fieldnotes.hatunatu.util.beans.impl;
 
 import java.lang.reflect.Constructor;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.ConstructorDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.ConstructorDesc;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;

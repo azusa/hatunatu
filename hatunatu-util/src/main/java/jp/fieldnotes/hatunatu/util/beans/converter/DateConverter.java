@@ -17,7 +17,7 @@ package jp.fieldnotes.hatunatu.util.beans.converter;
 
 import java.util.Date;
 
-import jp.fieldnotes.hatunatu.util.beans.Converter;
+import jp.fieldnotes.hatunatu.api.beans.Converter;
 import jp.fieldnotes.hatunatu.util.convert.DateConversionUtil;
 import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;

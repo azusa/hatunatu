@@ -20,9 +20,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.ResultSetHandlerFactory;

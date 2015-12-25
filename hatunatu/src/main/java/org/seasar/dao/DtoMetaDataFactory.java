@@ -20,5 +20,5 @@ package org.seasar.dao;
  */
 public interface DtoMetaDataFactory {
 
-    DtoMetaData getDtoMetaData(Class dtoClass);
+    jp.fieldnotes.hatunatu.api.DtoMetaData getDtoMetaData(Class dtoClass);
 }

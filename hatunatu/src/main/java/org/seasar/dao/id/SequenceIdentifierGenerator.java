@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 import org.seasar.dao.Dbms;
 import org.seasar.dao.util.SelectableDataSourceProxyUtil;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.convert.LongConversionUtil;
 
 /**

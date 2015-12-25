@@ -16,7 +16,7 @@
 package org.seasar.dao.types.bytes;
 
 import org.seasar.dao.dbms.PostgreSQL;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.types.StringClobType;
 
 /**

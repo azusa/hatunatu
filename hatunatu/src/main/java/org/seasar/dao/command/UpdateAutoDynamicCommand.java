@@ -20,10 +20,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import org.seasar.dao.handler.UpdateAutoHandler;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.StatementFactory;
 
 /**
@@ -46,7 +46,7 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
     /*
      * (non-Javadoc)
      * 
-     * @see org.seasar.dao.SqlCommand#execute(java.lang.Object[])
+     * @see jp.fieldnotes.hatunatu.api.SqlCommand#execute(java.lang.Object[])
      */
     public Object execute(Object[] args) {
         final Object bean = args[0];

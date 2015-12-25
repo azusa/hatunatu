@@ -17,10 +17,10 @@ package org.seasar.dao.interceptors;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.DaoMetaDataFactory;
-import org.seasar.dao.SqlCommand;
-import org.seasar.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.DaoMetaDataFactory;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.NumberConversionUtil;

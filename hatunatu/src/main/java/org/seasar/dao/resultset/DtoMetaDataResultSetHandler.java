@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.exception.NotSingleResultRuntimeException;
 import org.seasar.dao.RowCreator;
 import jp.fieldnotes.hatunatu.util.log.Logger;

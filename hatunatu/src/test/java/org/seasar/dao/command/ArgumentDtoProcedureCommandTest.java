@@ -19,8 +19,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureCall;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;

@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Types;
 
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
 import org.seasar.dao.util.TimeConversionUtil;
 

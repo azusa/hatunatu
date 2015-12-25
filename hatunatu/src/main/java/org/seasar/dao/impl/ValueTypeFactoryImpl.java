@@ -16,7 +16,7 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.ValueTypeFactory;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.types.ValueTypes;
 
 /**

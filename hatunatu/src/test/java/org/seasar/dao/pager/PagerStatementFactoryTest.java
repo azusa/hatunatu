@@ -18,6 +18,7 @@ package org.seasar.dao.pager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import junit.framework.TestCase;
 
 import org.seasar.dao.mock.NullConnection;

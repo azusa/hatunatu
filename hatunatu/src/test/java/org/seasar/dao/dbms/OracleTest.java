@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.dbms;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.unit.S2DaoTestCase;
 

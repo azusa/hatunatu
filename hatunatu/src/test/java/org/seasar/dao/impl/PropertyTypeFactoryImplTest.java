@@ -23,7 +23,7 @@ import org.seasar.dao.PropertyTypeFactory;
 import org.seasar.dao.PropertyTypeFactoryBuilder;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.bean.Employee20;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 

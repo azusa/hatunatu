@@ -15,6 +15,9 @@
  */
 package org.seasar.dao;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;

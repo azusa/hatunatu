@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.seasar.dao.exception.MethodSetupFailureRuntimeException;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;

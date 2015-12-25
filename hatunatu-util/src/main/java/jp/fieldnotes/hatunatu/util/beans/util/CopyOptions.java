@@ -19,7 +19,7 @@ import java.sql.Time;
 import java.util.List;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.util.beans.Converter;
+import jp.fieldnotes.hatunatu.api.beans.Converter;
 import jp.fieldnotes.hatunatu.util.beans.converter.*;
 import jp.fieldnotes.hatunatu.util.collection.ArrayUtil;
 import jp.fieldnotes.hatunatu.util.convert.TimeConversionUtil;

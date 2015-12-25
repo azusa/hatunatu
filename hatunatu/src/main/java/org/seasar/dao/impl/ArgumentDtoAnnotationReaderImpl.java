@@ -22,8 +22,8 @@ import java.lang.reflect.Method;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
 import org.seasar.dao.annotation.tiger.ValueType;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 /**
  * Tigerのアノテーションを読み取る{@link ArgumentDtoAnnotationReader}の実装クラスです。

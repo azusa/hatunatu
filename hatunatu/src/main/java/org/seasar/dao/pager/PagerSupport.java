@@ -15,6 +15,7 @@
  */
 package org.seasar.dao.pager;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 
 import javax.servlet.http.HttpServletRequest;

@@ -17,10 +17,10 @@ package org.seasar.dao.command;
 
 import java.util.List;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.handler.AbstractAutoHandler;
 import org.seasar.dao.handler.InsertBatchAutoHandler;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 
 /**
  * @author manhole

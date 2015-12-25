@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.seasar.dao.exception.IllegalBindArgSizeRuntimeException;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 
 /**
  * バインド変数用のユーティリティです。

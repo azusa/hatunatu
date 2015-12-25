@@ -16,14 +16,14 @@
 package org.seasar.dao.id;
 
 import org.seasar.dao.Dbms;
-import org.seasar.dao.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.dbms.HSQL;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.impl.PropertyTypeImpl;
 import org.seasar.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**

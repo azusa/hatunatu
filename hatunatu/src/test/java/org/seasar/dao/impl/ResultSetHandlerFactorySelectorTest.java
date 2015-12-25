@@ -15,13 +15,14 @@
  */
 package org.seasar.dao.impl;
 
+import jp.fieldnotes.hatunatu.api.*;
 import org.seasar.dao.*;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dao.EmployeeDao;
 import org.seasar.dao.resultset.FetchResultSetHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Method;
@@ -50,11 +51,11 @@ public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
 
     /**
      * Test method for
-     * {@link ResultSetHandlerFactorySelector#getResultSetHandler(DaoAnnotationReader, BeanMetaData, Method)}.
+     * {@link ResultSetHandlerFactorySelector#getResultSetHandler(jp.fieldnotes.hatunatu.api.DaoAnnotationReader, BeanMetaData, Method)}.
      */
     public void testGetResultSetHandler() {
         BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(EmployeeDao.class);
-        DaoAnnotationReader daoAnnotationReader = annotationReaderFactory
+        jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader = annotationReaderFactory
                 .createDaoAnnotationReader(daoBeanDesc);
         BeanMetaData beanMetaData = beanMetaDataFactory
                 .createBeanMetaData(Employee.class);

@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 import junit.framework.TestCase;
 
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.impl.ResultSetWrapper;
 
 /**

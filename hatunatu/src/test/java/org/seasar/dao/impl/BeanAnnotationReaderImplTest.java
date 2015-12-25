@@ -25,8 +25,8 @@ import org.seasar.dao.dbms.MySQL;
 import org.seasar.dao.dbms.Oracle;
 import org.seasar.dao.dbms.PostgreSQL;
 import org.seasar.dao.impl.bean.Department;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.util.Date;

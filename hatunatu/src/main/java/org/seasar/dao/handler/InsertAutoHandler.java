@@ -17,9 +17,9 @@ package org.seasar.dao.handler;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.IdentifierGenerator;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.StatementFactory;
 
 /**

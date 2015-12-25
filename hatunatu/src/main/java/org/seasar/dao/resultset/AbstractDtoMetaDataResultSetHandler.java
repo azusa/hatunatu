@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveSet;

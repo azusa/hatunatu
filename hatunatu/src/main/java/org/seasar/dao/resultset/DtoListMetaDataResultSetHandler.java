@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.RowCreator;
 
 /**

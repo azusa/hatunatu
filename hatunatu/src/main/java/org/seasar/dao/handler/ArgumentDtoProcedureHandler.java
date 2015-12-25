@@ -28,7 +28,7 @@ import org.seasar.dao.ProcedureParameterType;
 import org.seasar.dao.ResultSetFactory;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.StatementFactory;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;

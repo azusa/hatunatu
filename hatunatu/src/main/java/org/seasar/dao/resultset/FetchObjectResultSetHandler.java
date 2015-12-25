@@ -16,7 +16,7 @@
 package org.seasar.dao.resultset;
 
 import org.seasar.dao.FetchHandler;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

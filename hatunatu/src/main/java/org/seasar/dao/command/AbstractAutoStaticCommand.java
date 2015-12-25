@@ -20,11 +20,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.exception.PrimaryKeyNotFoundRuntimeException;
 import org.seasar.dao.handler.AbstractAutoHandler;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 

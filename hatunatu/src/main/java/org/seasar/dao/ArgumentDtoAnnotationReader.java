@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
 import java.lang.reflect.Field;
 

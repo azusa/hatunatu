@@ -26,11 +26,11 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.exception.MethodNotFoundRuntimeException;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.FieldDesc;
-import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.FieldDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

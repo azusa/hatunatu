@@ -55,7 +55,7 @@ public class ResourceUtilTest extends TestCase {
         assertNotNull(ResourceUtil.getResource(
             "java/lang/String.class",
             "class"));
-        assertNotNull(ResourceUtil.getResource("org/seasar"));
+        assertNotNull(ResourceUtil.getResource("jp/fieldnotes"));
         try {
             ResourceUtil.getResource("hoge", "xml");
             fail("2");

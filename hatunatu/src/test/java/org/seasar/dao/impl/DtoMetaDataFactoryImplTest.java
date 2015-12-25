@@ -15,11 +15,11 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.impl.dto.EmployeeDto;
 import org.seasar.dao.impl.dto.EmployeeDto2;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

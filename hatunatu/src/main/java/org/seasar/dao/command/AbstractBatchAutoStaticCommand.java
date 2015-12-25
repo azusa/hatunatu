@@ -17,7 +17,7 @@ package org.seasar.dao.command;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.handler.AbstractBatchAutoHandler;
 import org.seasar.dao.StatementFactory;
 

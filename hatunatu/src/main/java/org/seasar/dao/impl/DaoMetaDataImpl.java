@@ -30,14 +30,14 @@ import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.BeanMetaDataFactory;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.DaoNamingConvention;
 import org.seasar.dao.exception.DaoNotFoundRuntimeException;
 import org.seasar.dao.Dbms;
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.exception.IllegalAnnotationRuntimeException;
 import org.seasar.dao.exception.IllegalSignatureRuntimeException;
@@ -48,7 +48,7 @@ import org.seasar.dao.ProcedureMetaDataFactory;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.RowCreator;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.exception.SqlFileNotFoundRuntimeException;
 import org.seasar.dao.ValueTypeFactory;
 import org.seasar.dao.command.*;
@@ -58,15 +58,15 @@ import org.seasar.dao.pager.NullPagingSqlRewriter;
 import org.seasar.dao.pager.PagingSqlRewriter;
 import org.seasar.dao.resultset.*;
 import org.seasar.dao.util.FetchHandlerUtil;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.ResultSetFactory;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.util.ConnectionUtil;
 import org.seasar.dao.util.DataSourceUtil;
 import org.seasar.dao.util.InputStreamReaderUtil;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.exception.MethodNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.NoSuchMethodRuntimeException;
@@ -991,7 +991,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#getBeanClass()
+     * @see DaoMetaData#getBeanClass()
      */
     public Class getBeanClass() {
         return beanClass;
@@ -1002,14 +1002,14 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#getBeanMetaData()
+     * @see DaoMetaData#getBeanMetaData()
      */
     public BeanMetaData getBeanMetaData() {
         return beanMetaData;
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#getSqlCommand(java.lang.String)
+     * @see DaoMetaData#getSqlCommand(java.lang.String)
      */
     public SqlCommand getSqlCommand(final String methodName)
             throws MethodNotFoundRuntimeException {
@@ -1022,14 +1022,14 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#hasSqlCommand(java.lang.String)
+     * @see DaoMetaData#hasSqlCommand(java.lang.String)
      */
     public boolean hasSqlCommand(final String methodName) {
         return sqlCommands.containsKey(methodName);
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#createFindCommand(java.lang.String)
+     * @see DaoMetaData#createFindCommand(java.lang.String)
      */
     public SqlCommand createFindCommand(final String query) {
         return createSelectDynamicCommand(new BeanListMetaDataResultSetHandler(
@@ -1056,7 +1056,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DaoMetaData#createFindBeanCommand(java.lang.String)
+     * @see DaoMetaData#createFindBeanCommand(java.lang.String)
      */
     public SqlCommand createFindBeanCommand(final String query) {
         return createSelectDynamicCommand(new BeanMetaDataResultSetHandler(

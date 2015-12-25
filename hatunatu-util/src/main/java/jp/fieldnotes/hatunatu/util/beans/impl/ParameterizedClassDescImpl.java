@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.util.beans.impl;
 
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
 
 import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.*;
 /**

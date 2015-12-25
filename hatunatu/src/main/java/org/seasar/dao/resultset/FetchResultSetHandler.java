@@ -15,12 +15,12 @@
  */
 package org.seasar.dao.resultset;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.*;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
-import org.seasar.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.util.TypeUtil;
 import org.seasar.dao.ResultSetHandler;
 

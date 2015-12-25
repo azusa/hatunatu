@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.impl.RelationKey;
-import org.seasar.dao.PropertyType;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 
 /**
  * @author jflute

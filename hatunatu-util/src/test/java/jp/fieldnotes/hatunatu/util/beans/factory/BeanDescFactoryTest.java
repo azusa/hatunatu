@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.util.beans.factory;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;

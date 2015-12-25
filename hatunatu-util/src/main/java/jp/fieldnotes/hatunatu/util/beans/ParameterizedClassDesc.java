@@ -42,7 +42,7 @@ public interface ParameterizedClassDesc {
     <T> Class<T> getRawClass();
 
     /**
-     * 型引数を表す{@link ParameterizedClassDesc}の配列を返します。
+     * 型引数を表す{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}の配列を返します。
      * <p>
      * このインスタンスが表現するクラスがパラメタ化されたクラスでない場合は、{@literal null}を返します。
      * </p>
@@ -50,6 +50,6 @@ public interface ParameterizedClassDesc {
      * @return 型引数を表す{@link ParameterizedClassDesc}の配列
      * @see ParameterizedType#getActualTypeArguments()
      */
-    ParameterizedClassDesc[] getArguments();
+    jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc[] getArguments();
 
 }

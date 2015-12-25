@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.Dbms;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.ResultSetFactory;

@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.BigDecimalConversionUtil;
 import jp.fieldnotes.hatunatu.util.convert.BigIntegerConversionUtil;

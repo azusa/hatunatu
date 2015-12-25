@@ -16,9 +16,9 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.PropertyTypeFactory;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
@@ -44,7 +44,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DtoMetaData#getBeanClass()
+     * @see DtoMetaData#getBeanClass()
      */
     public Class getBeanClass() {
         return beanClass;
@@ -55,21 +55,21 @@ public class DtoMetaDataImpl implements DtoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DtoMetaData#getPropertyTypeSize()
+     * @see DtoMetaData#getPropertyTypeSize()
      */
     public int getPropertyTypeSize() {
         return propertyTypes.size();
     }
 
     /**
-     * @see org.seasar.dao.DtoMetaData#getPropertyType(int)
+     * @see DtoMetaData#getPropertyType(int)
      */
     public PropertyType getPropertyType(int index) {
         return (PropertyType) propertyTypes.getAt(index);
     }
 
     /**
-     * @see org.seasar.dao.DtoMetaData#getPropertyType(java.lang.String)
+     * @see DtoMetaData#getPropertyType(java.lang.String)
      */
     public PropertyType getPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
@@ -83,7 +83,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
     }
 
     /**
-     * @see org.seasar.dao.DtoMetaData#hasPropertyType(java.lang.String)
+     * @see DtoMetaData#hasPropertyType(java.lang.String)
      */
     public boolean hasPropertyType(String propertyName) {
         return propertyTypes.get(propertyName) != null;

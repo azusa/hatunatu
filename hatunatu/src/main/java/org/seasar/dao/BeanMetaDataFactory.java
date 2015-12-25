@@ -15,6 +15,8 @@
  */
 package org.seasar.dao;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+
 import java.sql.DatabaseMetaData;
 
 /**

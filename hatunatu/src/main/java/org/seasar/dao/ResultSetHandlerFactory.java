@@ -15,6 +15,8 @@
  */
 package org.seasar.dao;
 
+import jp.fieldnotes.hatunatu.api.*;
+
 import java.lang.reflect.Method;
 
 /**
@@ -23,7 +25,7 @@ import java.lang.reflect.Method;
 public interface ResultSetHandlerFactory {
 
     ResultSetHandler getResultSetHandler(
-            final DaoAnnotationReader daoAnnotationReader,
+            final jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader,
             final BeanMetaData beanMetaData, final Method method);
 
 }

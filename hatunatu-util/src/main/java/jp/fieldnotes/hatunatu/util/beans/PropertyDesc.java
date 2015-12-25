@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.util.beans;
 
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
@@ -125,11 +127,11 @@ public interface PropertyDesc {
     <T> T convertIfNeed(Object value);
 
     /**
-     * {@link BeanDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}を返します。
      * 
-     * @return {@link BeanDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}
      */
-    BeanDesc getBeanDesc();
+    jp.fieldnotes.hatunatu.api.beans.BeanDesc getBeanDesc();
 
     /**
      * このプロパティがパラメタ化された型の場合は{@literal true}を返します。

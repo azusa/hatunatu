@@ -15,8 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.util.beans.impl;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import org.junit.Test;
 import jp.fieldnotes.hatunatu.util.exception.MethodNotStaticRuntimeException;
 

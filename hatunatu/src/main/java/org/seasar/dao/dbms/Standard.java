@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.Dbms;
-import org.seasar.dao.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
@@ -54,7 +54,7 @@ public class Standard implements Dbms, Disposable {
     }
 
     /**
-     * @see org.seasar.dao.Dbms#getAutoSelectSql(org.seasar.dao.BeanMetaData)
+     * @see org.seasar.dao.Dbms#getAutoSelectSql(BeanMetaData)
      */
     public String getAutoSelectSql(BeanMetaData beanMetaData) {
         if (!initialized) {

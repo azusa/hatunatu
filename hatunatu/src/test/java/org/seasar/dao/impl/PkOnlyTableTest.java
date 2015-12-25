@@ -15,9 +15,9 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import org.seasar.dao.exception.MethodSetupFailureRuntimeException;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.unit.S2DaoTestCase;

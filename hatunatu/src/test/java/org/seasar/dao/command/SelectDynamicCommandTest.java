@@ -18,10 +18,10 @@ package org.seasar.dao.command;
 import java.io.Serializable;
 import java.util.List;
 
-import org.seasar.dao.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.impl.RelationRowCreatorImpl;

@@ -14,7 +14,7 @@
  * governing permissions and limitations under the License.
  */
 /**
- * {@link jp.fieldnotes.hatunatu.util.beans.BeanDesc}や{@link jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc}のファクトリを提供します。
+ * {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}や{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}のファクトリを提供します。
  */
 package jp.fieldnotes.hatunatu.util.beans.factory;
 

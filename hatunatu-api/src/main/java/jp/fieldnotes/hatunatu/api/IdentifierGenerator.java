@@ -13,23 +13,19 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao;
+package jp.fieldnotes.hatunatu.api;
+
+import javax.sql.DataSource;
 
 /**
  * @author higa
  * 
  */
-public interface RelationPropertyType extends PropertyType {
+public interface IdentifierGenerator {
 
-    public int getRelationNo();
+    public boolean isSelfGenerate();
 
-    public int getKeySize();
+    public void setIdentifier(Object bean, DataSource ds);
 
-    public String getMyKey(int index);
-
-    public String getYourKey(int index);
-
-    public boolean isYourKey(String columnName);
-
-    public BeanMetaData getBeanMetaData();
+    public String getPropertyName();
 }

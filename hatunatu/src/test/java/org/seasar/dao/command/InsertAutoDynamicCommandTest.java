@@ -15,8 +15,8 @@
  */
 package org.seasar.dao.command;
 
-import org.seasar.dao.DaoMetaData;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
@@ -28,7 +28,7 @@ import org.seasar.dao.impl.dao.Employee9Dao;
 import org.seasar.dao.impl.dao.EmployeeAutoDao;
 import org.seasar.dao.impl.dao.IdentityTableAutoDao;
 import org.seasar.dao.unit.S2DaoTestCase;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 

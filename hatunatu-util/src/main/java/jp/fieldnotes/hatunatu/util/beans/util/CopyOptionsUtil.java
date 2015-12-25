@@ -17,7 +17,7 @@ package jp.fieldnotes.hatunatu.util.beans.util;
 
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.util.beans.Converter;
+import jp.fieldnotes.hatunatu.api.beans.Converter;
 import jp.fieldnotes.hatunatu.util.beans.converter.DateConverter;
 import jp.fieldnotes.hatunatu.util.beans.converter.SqlDateConverter;
 import jp.fieldnotes.hatunatu.util.beans.converter.TimeConverter;

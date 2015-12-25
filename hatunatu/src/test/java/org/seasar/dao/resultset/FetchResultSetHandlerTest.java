@@ -19,7 +19,7 @@ import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.FetchHandler;
 import org.seasar.dao.impl.bean.Employee;
 import org.seasar.dao.impl.dto.EmployeeDto;
-import org.seasar.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.dao.ResultSetHandler;
 

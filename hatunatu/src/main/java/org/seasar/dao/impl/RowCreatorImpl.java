@@ -22,14 +22,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import org.seasar.dao.RowCreator;
 import org.seasar.dao.exception.ReflectiveOperationRuntimeException;
 import org.seasar.dao.util.DaoNamingConventionUtil;
-import org.seasar.dao.PropertyType;
-import org.seasar.dao.ValueType;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**

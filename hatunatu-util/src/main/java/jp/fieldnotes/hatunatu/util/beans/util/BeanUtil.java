@@ -18,14 +18,13 @@ package jp.fieldnotes.hatunatu.util.beans.util;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.*;
 import static jp.fieldnotes.hatunatu.util.collection.CollectionsUtil.*;
-import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.*;
 
 /**
  * JavaBeansとJavaBeans、あるいはJavaBeansと{@link Map}の間でプロパティをコピーするためのユーティリティです。

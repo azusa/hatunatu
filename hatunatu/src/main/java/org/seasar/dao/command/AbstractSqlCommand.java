@@ -18,7 +18,7 @@ package org.seasar.dao.command;
 import javax.sql.DataSource;
 
 import org.seasar.dao.InjectDaoClassSupport;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.handler.BasicHandler;
 

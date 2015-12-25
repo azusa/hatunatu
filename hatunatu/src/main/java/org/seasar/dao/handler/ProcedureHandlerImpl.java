@@ -23,8 +23,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.ResultSetHandler;
 import org.seasar.dao.exception.SQLRuntimeException;

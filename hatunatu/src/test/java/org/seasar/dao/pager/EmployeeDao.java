@@ -15,6 +15,7 @@
  */
 package org.seasar.dao.pager;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 

@@ -15,6 +15,7 @@
  */
 package org.seasar.dao;
 
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
 /**

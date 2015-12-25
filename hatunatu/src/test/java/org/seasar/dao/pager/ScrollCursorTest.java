@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.dao.impl.BasicResultSetFactory;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;

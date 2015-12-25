@@ -16,7 +16,7 @@
 package org.seasar.dao.impl;
 
 import org.seasar.dao.exception.OverloadNotSupportedRuntimeException;
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 
 /**
  * {@link OverloadNotSupportedRuntimeException}をスローする{@link SqlCommand}です。

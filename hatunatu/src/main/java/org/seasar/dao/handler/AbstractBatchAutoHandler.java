@@ -23,8 +23,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.dao.ReturningRowsBatchHandler;
 import org.seasar.dao.StatementFactory;
 import org.seasar.dao.util.ConnectionUtil;

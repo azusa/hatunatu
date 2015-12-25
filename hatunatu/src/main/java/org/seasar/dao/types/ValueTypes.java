@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.util.MethodUtil;
 import jp.fieldnotes.hatunatu.util.lang.ConstructorUtil;
 import jp.fieldnotes.hatunatu.util.lang.ModifierUtil;

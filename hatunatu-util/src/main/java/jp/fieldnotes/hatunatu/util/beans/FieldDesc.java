@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.util.beans;
 
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
+
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Map;
@@ -27,11 +29,11 @@ import java.util.Map;
 public interface FieldDesc {
 
     /**
-     * このフィールドを所有するクラスの{@link BeanDesc}を返します。
+     * このフィールドを所有するクラスの{@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}を返します。
      * 
-     * @return {@link BeanDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}
      */
-    BeanDesc getBeanDesc();
+    jp.fieldnotes.hatunatu.api.beans.BeanDesc getBeanDesc();
 
     /**
      * フィールドを返します。
@@ -85,7 +87,7 @@ public interface FieldDesc {
     boolean isParameterized();
 
     /**
-     * フィールドの型を表現する{@link ParameterizedClassDesc}を返します。
+     * フィールドの型を表現する{@link jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc}を返します。
      * 
      * @return フィールドの型を表現する{@link ParameterizedClassDesc}
      */

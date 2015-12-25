@@ -21,9 +21,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.RelationPropertyType;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 
 /**
  * @author jflute

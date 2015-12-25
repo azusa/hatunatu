@@ -20,7 +20,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import org.seasar.dao.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
@@ -37,7 +37,7 @@ import org.seasar.dao.util.AnnotationUtil;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
 import org.seasar.dao.util.TypeUtil;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
 /**
  * 

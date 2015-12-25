@@ -18,6 +18,7 @@ package org.seasar.dao.pager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import org.seasar.dao.impl.ResultSetWrapper;
 import org.seasar.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;

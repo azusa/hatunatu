@@ -15,6 +15,8 @@
  */
 package org.seasar.dao;
 
+import jp.fieldnotes.hatunatu.api.*;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -50,6 +52,6 @@ public interface RowCreator {
      * @return The map of property cache. Map{String(columnName), PropertyType} (NotNull)
      * @throws SQLException
      */
-    Map createPropertyCache(Set columnNames, DtoMetaData dtoMetaData)
+    Map createPropertyCache(Set columnNames, jp.fieldnotes.hatunatu.api.DtoMetaData dtoMetaData)
             throws SQLException;
 }

@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.util.TimestampConversionUtil;
 import jp.fieldnotes.hatunatu.util.convert.DateConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;

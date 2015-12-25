@@ -18,7 +18,7 @@ package org.seasar.dao.impl;
 import java.lang.reflect.Field;
 
 import org.seasar.dao.ProcedureParameterType;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 
 /**

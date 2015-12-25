@@ -13,19 +13,23 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao;
-
-import javax.sql.DataSource;
+package jp.fieldnotes.hatunatu.api;
 
 /**
  * @author higa
- * 
+ * @author manhole
  */
-public interface IdentifierGenerator {
+public interface DtoMetaData {
 
-    public boolean isSelfGenerate();
+    public String COLUMN_SUFFIX = "_COLUMN";
 
-    public void setIdentifier(Object bean, DataSource ds);
+    public Class getBeanClass();
 
-    public String getPropertyName();
+    public int getPropertyTypeSize();
+
+    public PropertyType getPropertyType(int index);
+
+    public PropertyType getPropertyType(String propertyName);
+
+    public boolean hasPropertyType(String propertyName);
 }

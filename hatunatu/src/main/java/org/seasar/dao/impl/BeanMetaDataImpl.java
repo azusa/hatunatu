@@ -21,18 +21,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.seasar.dao.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import org.seasar.dao.Dbms;
-import org.seasar.dao.IdentifierGenerator;
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.exception.NoPersistentPropertyTypeRuntimeException;
-import org.seasar.dao.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import org.seasar.dao.RelationPropertyTypeFactory;
 import org.seasar.dao.TableNaming;
 import org.seasar.dao.id.IdentifierGeneratorFactory;
 import org.seasar.dao.exception.ColumnNotFoundRuntimeException;
-import org.seasar.dao.PropertyType;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
@@ -87,14 +87,14 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getTableName()
+     * @see BeanMetaData#getTableName()
      */
     public String getTableName() {
         return tableName;
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getVersionNoPropertyType()
+     * @see BeanMetaData#getVersionNoPropertyType()
      */
     public PropertyType getVersionNoPropertyType()
             throws PropertyNotFoundRuntimeException {
@@ -103,7 +103,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getTimestampPropertyType()
+     * @see BeanMetaData#getTimestampPropertyType()
      */
     public PropertyType getTimestampPropertyType()
             throws PropertyNotFoundRuntimeException {
@@ -128,7 +128,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getPropertyTypeByColumnName(java.lang.String)
+     * @see BeanMetaData#getPropertyTypeByColumnName(java.lang.String)
      */
     public PropertyType getPropertyTypeByColumnName(String columnName)
             throws ColumnNotFoundRuntimeException {
@@ -165,14 +165,14 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#hasPropertyTypeByColumnName(java.lang.String)
+     * @see BeanMetaData#hasPropertyTypeByColumnName(java.lang.String)
      */
     public boolean hasPropertyTypeByColumnName(String columnName) {
         return propertyTypesByColumnName.get(columnName) != null;
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#hasPropertyTypeByAliasName(java.lang.String)
+     * @see BeanMetaData#hasPropertyTypeByAliasName(java.lang.String)
      */
     public boolean hasPropertyTypeByAliasName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
@@ -198,21 +198,21 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#hasVersionNoPropertyType()
+     * @see BeanMetaData#hasVersionNoPropertyType()
      */
     public boolean hasVersionNoPropertyType() {
         return hasPropertyType(getVersionNoPropertyName());
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#hasTimestampPropertyType()
+     * @see BeanMetaData#hasTimestampPropertyType()
      */
     public boolean hasTimestampPropertyType() {
         return hasPropertyType(getTimestampPropertyName());
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#convertFullColumnName(java.lang.String)
+     * @see BeanMetaData#convertFullColumnName(java.lang.String)
      */
     public String convertFullColumnName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
@@ -238,21 +238,21 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getRelationPropertyTypeSize()
+     * @see BeanMetaData#getRelationPropertyTypeSize()
      */
     public int getRelationPropertyTypeSize() {
         return relationPropertyTypes.size();
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getRelationPropertyType(int)
+     * @see BeanMetaData#getRelationPropertyType(int)
      */
     public RelationPropertyType getRelationPropertyType(int index) {
         return (RelationPropertyType) relationPropertyTypes.get(index);
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getRelationPropertyType(java.lang.String)
+     * @see BeanMetaData#getRelationPropertyType(java.lang.String)
      */
     public RelationPropertyType getRelationPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
@@ -326,14 +326,14 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getPrimaryKeySize()
+     * @see BeanMetaData#getPrimaryKeySize()
      */
     public int getPrimaryKeySize() {
         return primaryKeys.length;
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getPrimaryKey(int)
+     * @see BeanMetaData#getPrimaryKey(int)
      */
     public String getPrimaryKey(int index) {
         return primaryKeys[index].getColumnName();
@@ -353,7 +353,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     /**
-     * @see org.seasar.dao.BeanMetaData#getAutoSelectList()
+     * @see BeanMetaData#getAutoSelectList()
      */
     public synchronized String getAutoSelectList() {
         if (autoSelectList != null) {

@@ -17,8 +17,9 @@ package org.seasar.dao.id;
 
 import javax.sql.DataSource;
 
+import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import org.seasar.dao.Dbms;
-import org.seasar.dao.PropertyType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 
 /**
  * @author higa
@@ -31,14 +32,14 @@ public class AssignedIdentifierGenerator extends AbstractIdentifierGenerator {
     }
 
     /**
-     * @see org.seasar.dao.IdentifierGenerator#setIdentifier(java.lang.Object,
+     * @see IdentifierGenerator#setIdentifier(java.lang.Object,
      *      javax.sql.DataSource)
      */
     public void setIdentifier(Object bean, DataSource ds) {
     }
 
     /**
-     * @see org.seasar.dao.IdentifierGenerator#isSelfGenerate()
+     * @see IdentifierGenerator#isSelfGenerate()
      */
     public boolean isSelfGenerate() {
         return true;

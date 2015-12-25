@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;

@@ -17,8 +17,8 @@ package org.seasar.dao.impl;
 
 import java.lang.reflect.Method;
 
-import org.seasar.dao.BeanMetaData;
-import org.seasar.dao.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import org.seasar.dao.DtoMetaDataFactory;
 import org.seasar.dao.ResultSetHandlerFactory;
 import org.seasar.dao.ResultSetHandler;
@@ -59,7 +59,7 @@ public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory 
      * 
      * @see
      * org.seasar.dao.ResultSetHandlerFactory#getResultSetHandler(org.seasar
-     * .dao.DaoAnnotationReader, org.seasar.dao.BeanMetaData,
+     * .dao.DaoAnnotationReader, jp.fieldnotes.hatunatu.api.BeanMetaData,
      * java.lang.reflect.Method)
      */
     public ResultSetHandler getResultSetHandler(

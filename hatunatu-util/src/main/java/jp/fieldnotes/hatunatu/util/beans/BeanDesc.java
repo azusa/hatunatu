@@ -19,19 +19,22 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Map;
 
+import jp.fieldnotes.hatunatu.api.beans.FieldDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 /**
  * JavaBeansのメタデータを扱うためのインターフェースです。
  * <p>
- * {@link BeanDesc}のインスタンスは{@link BeanDescFactory}から取得します。
+ * {@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}のインスタンスは{@link BeanDescFactory}から取得します。
  * <p>
  * 
  * <pre>
  * BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Foo.class);
  * </pre>
  * <p>
- * 取得した{@link BeanDesc}から，対象となるJavaBeansのプロパティやフィールド、コンストラクタ、メソッドのメタデータを取得できます。
+ * 取得した{@link jp.fieldnotes.hatunatu.api.beans.BeanDesc}から，対象となるJavaBeansのプロパティやフィールド、コンストラクタ、メソッドのメタデータを取得できます。
  * </p>
  * 
  * <pre>
@@ -76,84 +79,84 @@ public interface BeanDesc {
     Map<TypeVariable<?>, Type> getTypeVariables();
 
     /**
-     * {@link PropertyDesc}を持っているかどうかを返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}を持っているかどうかを返します。
      * 
      * @param propertyName
      *            プロパティ名。{@literal null}や空文字列であってはいけません
-     * @return {@link PropertyDesc}を持っているかどうか
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}を持っているかどうか
      */
     boolean hasPropertyDesc(String propertyName);
 
     /**
-     * {@link PropertyDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}を返します。
      * 
      * @param propertyName
      *            プロパティ名。{@literal null}や空文字列であってはいけません
-     * @return {@link PropertyDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}
      */
-    PropertyDesc getPropertyDesc(String propertyName);
+    jp.fieldnotes.hatunatu.api.beans.PropertyDesc getPropertyDesc(String propertyName);
 
     /**
-     * {@link PropertyDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}を返します。
      * 
      * @param index
-     *            {@link PropertyDesc}のインデックス
-     * @return {@link PropertyDesc}
+     *            {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}のインデックス
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}
      */
-    PropertyDesc getPropertyDesc(int index);
+    jp.fieldnotes.hatunatu.api.beans.PropertyDesc getPropertyDesc(int index);
 
     /**
-     * {@link PropertyDesc}の数を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}の数を返します。
      * 
-     * @return {@link PropertyDesc}の数
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}の数
      */
     int getPropertyDescSize();
 
     /**
-     * {@link PropertyDesc}の{@link Iterable}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}の{@link Iterable}を返します。
      * 
-     * @return {@link PropertyDesc}の{@link Iterable}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.PropertyDesc}の{@link Iterable}
      */
     Iterable<PropertyDesc> getPropertyDescs();
 
     /**
-     * {@link FieldDesc}を持っているかどうかを返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}を持っているかどうかを返します。
      * 
      * @param fieldName
      *            フィールド名。{@literal null}や空文字列であってはいけません
-     * @return {@link FieldDesc}を持っているかどうか
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}を持っているかどうか
      */
     boolean hasFieldDesc(String fieldName);
 
     /**
-     * {@link FieldDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}を返します。
      * 
      * @param fieldName
      *            フィールド名。{@literal null}や空文字列であってはいけません
-     * @return {@link FieldDesc}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}
      */
-    FieldDesc getFieldDesc(String fieldName);
+    jp.fieldnotes.hatunatu.api.beans.FieldDesc getFieldDesc(String fieldName);
 
     /**
-     * {@link FieldDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}を返します。
      * 
      * @param index
-     *            {@link FieldDesc}のインデックス
-     * @return {@link FieldDesc}
+     *            {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}のインデックス
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}
      */
-    FieldDesc getFieldDesc(int index);
+    jp.fieldnotes.hatunatu.api.beans.FieldDesc getFieldDesc(int index);
 
     /**
-     * {@link FieldDesc}の数を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}の数を返します。
      * 
-     * @return {@link FieldDesc}の数
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}の数
      */
     int getFieldDescSize();
 
     /**
-     * {@link FieldDesc}の{@link Iterable}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}の{@link Iterable}を返します。
      * 
-     * @return {@link FieldDesc}の{@link Iterable}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.FieldDesc}の{@link Iterable}
      */
     Iterable<FieldDesc> getFieldDescs();
 
@@ -169,48 +172,48 @@ public interface BeanDesc {
     <T> T newInstance(Object... args);
 
     /**
-     * 引数の型に応じた{@link ConstructorDesc}を返します。
+     * 引数の型に応じた{@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}を返します。
      * 
      * @param paramTypes
      *            コンストラクタに渡す引数型の並び
      * @return 引数の型に応じた{@link ConstructorDesc}
      */
-    ConstructorDesc getConstructorDesc(Class<?>... paramTypes);
+    jp.fieldnotes.hatunatu.api.beans.ConstructorDesc getConstructorDesc(Class<?>... paramTypes);
 
     /**
-     * 引数に適合する{@link ConstructorDesc}を返します。
+     * 引数に適合する{@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}を返します。
      * 
      * @param args
      *            コンストラクタに渡す引数の並び
      * @return 引数に適合する{@link Constructor}
      */
-    ConstructorDesc getSuitableConstructorDesc(Object... args);
+    jp.fieldnotes.hatunatu.api.beans.ConstructorDesc getSuitableConstructorDesc(Object... args);
 
     /**
-     * {@link ConstructorDesc}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}を返します。
      * 
      * @param index
-     *            {@link ConstructorDesc}のインデックス
-     * @return {@link ConstructorDesc}
+     *            {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}のインデックス
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}
      */
-    ConstructorDesc getConstructorDesc(int index);
+    jp.fieldnotes.hatunatu.api.beans.ConstructorDesc getConstructorDesc(int index);
 
     /**
-     * {@link ConstructorDesc}の数を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}の数を返します。
      * 
-     * @return {@link ConstructorDesc}の数
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}の数
      */
     int getConstructorDescSize();
 
     /**
-     * {@link ConstructorDesc}の{@link Iterable}を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}の{@link Iterable}を返します。
      * 
-     * @return {@link ConstructorDesc}の{@link Iterable}
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.ConstructorDesc}の{@link Iterable}
      */
-    Iterable<ConstructorDesc> getConstructorDescs();
+    Iterable<jp.fieldnotes.hatunatu.api.beans.ConstructorDesc> getConstructorDescs();
 
     /**
-     * 引数の型に応じた{@link MethodDesc}を返します。
+     * 引数の型に応じた{@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}を返します。
      * 
      * @param methodName
      *            メソッド名。{@literal null}や空文字列であってはいけません
@@ -218,10 +221,10 @@ public interface BeanDesc {
      *            メソッドの引数型の並び
      * @return 引数の型に応じた{@link MethodDesc} メソッド
      */
-    MethodDesc getMethodDesc(String methodName, Class<?>... paramTypes);
+    jp.fieldnotes.hatunatu.api.beans.MethodDesc getMethodDesc(String methodName, Class<?>... paramTypes);
 
     /**
-     * 引数の型に応じた{@link MethodDesc}を返します。見つからない場合は、{@literal null}を返します。
+     * 引数の型に応じた{@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}を返します。見つからない場合は、{@literal null}を返します。
      * 
      * @param methodName
      *            メソッド名。{@literal null}や空文字列であってはいけません
@@ -229,11 +232,11 @@ public interface BeanDesc {
      *            メソッドの引数型の並び
      * @return 引数の型に応じた{@link MethodDesc}
      */
-    MethodDesc getMethodDescNoException(String methodName,
-            Class<?>... paramTypes);
+    jp.fieldnotes.hatunatu.api.beans.MethodDesc getMethodDescNoException(String methodName,
+                                                                         Class<?>... paramTypes);
 
     /**
-     * 引数に適合する{@link MethodDesc}を返します。
+     * 引数に適合する{@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}を返します。
      * 
      * @param methodName
      *            メソッド名。{@literal null}や空文字列であってはいけません
@@ -241,23 +244,23 @@ public interface BeanDesc {
      *            メソッドの引数の並び
      * @return 引数に適合する{@link MethodDesc} メソッド
      */
-    MethodDesc getSuitableMethodDesc(String methodName, Object... args);
+    jp.fieldnotes.hatunatu.api.beans.MethodDesc getSuitableMethodDesc(String methodName, Object... args);
 
     /**
-     * {@link MethodDesc}があるかどうか返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}があるかどうか返します。
      * 
      * @param methodName
      *            メソッド名。{@literal null}や空文字列であってはいけません
-     * @return {@link MethodDesc}があるかどうか
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}があるかどうか
      */
     boolean hasMethodDesc(String methodName);
 
     /**
-     * {@link MethodDesc}の配列を返します。
+     * {@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}の配列を返します。
      * 
      * @param methodName
      *            メソッド名。{@literal null}や空文字列であってはいけません
-     * @return {@link MethodDesc}の配列
+     * @return {@link jp.fieldnotes.hatunatu.api.beans.MethodDesc}の配列
      */
     MethodDesc[] getMethodDescs(String methodName);
 

@@ -15,15 +15,16 @@
  */
 package org.seasar.dao.unit;
 
+import jp.fieldnotes.hatunatu.api.*;
 import org.seasar.dao.*;
 import org.seasar.dao.dbms.DbmsManager;
 import org.seasar.dao.impl.*;
-import org.seasar.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.dao.impl.BasicResultSetFactory;
 import org.seasar.dao.impl.BasicStatementFactory;
 import org.seasar.extension.unit.S2TestCase;
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.sql.DatabaseMetaData;
@@ -122,7 +123,7 @@ public abstract class S2DaoTestCase extends S2TestCase {
     protected DaoMetaDataImpl createDaoMetaData(final Class daoClass) {
         final DaoMetaDataImpl dmd = new DaoMetaDataImpl();
         final BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(daoClass);
-        final DaoAnnotationReader daoAnnotationReader = getAnnotationReaderFactory()
+        final jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader = getAnnotationReaderFactory()
                 .createDaoAnnotationReader(daoBeanDesc);
         final BeanMetaDataFactory bmdf = getBeanMetaDataFactory();
         final DtoMetaDataFactory dmdf = getDtoMetaDataFactory();

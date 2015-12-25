@@ -19,9 +19,9 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.util.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.FieldDesc;
-import jp.fieldnotes.hatunatu.util.beans.ParameterizedClassDesc;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.FieldDesc;
+import jp.fieldnotes.hatunatu.api.beans.ParameterizedClassDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.ParameterizedClassDescFactory;
 import jp.fieldnotes.hatunatu.util.exception.FieldNotStaticRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;

@@ -15,7 +15,7 @@
  */
 package org.seasar.dao;
 
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 /**
  * @author uehara keizou

@@ -15,7 +15,7 @@
  */
 package org.seasar.dao.command;
 
-import org.seasar.dao.SqlCommand;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import org.seasar.dao.handler.ProcedureHandler;
 
 public class StaticStoredProcedureCommand implements SqlCommand {

@@ -15,10 +15,10 @@
  */
 package org.seasar.dao.impl;
 
-import org.seasar.dao.PropertyType;
-import org.seasar.dao.ValueType;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import org.seasar.dao.types.ValueTypes;
-import jp.fieldnotes.hatunatu.util.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 /**
  * {@link PropertyType}の実装クラスです。
