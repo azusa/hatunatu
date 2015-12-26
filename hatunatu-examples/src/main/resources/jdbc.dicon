@@ -68,7 +68,7 @@
 			"jdbc:hsqldb:hsql://localhost:9001"
 			-->
 			"jdbc:hsqldb:file:"
-				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@examples.dao.EmployeeDaoClient@class).getCanonicalPath()
+				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@jp.fieldnotes.hatunatu.examples.dao.EmployeeDaoClient@class).getCanonicalPath()
 				+ "/data-hsqldb/demo"
 		</property>
 		<property name="user">"sa"</property>
