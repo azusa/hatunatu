@@ -18,14 +18,10 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author azusa
- *
- */
 public class MethodSetupFailureRuntimeException extends SRuntimeException {
 
     public MethodSetupFailureRuntimeException(String className,
-            String methodName, SRuntimeException cause) {
+            String methodName, Exception cause) {
         super("EDAO0019", new Object[] { className, methodName, cause }, cause);
     }
 

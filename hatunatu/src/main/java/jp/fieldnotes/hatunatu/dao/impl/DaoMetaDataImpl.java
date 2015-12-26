@@ -15,67 +15,42 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.api.DaoMetaData;
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
+import jp.fieldnotes.hatunatu.api.*;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
-import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
-import jp.fieldnotes.hatunatu.dao.command.*;
-import jp.fieldnotes.hatunatu.dao.exception.DaoNotFoundRuntimeException;
-import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
-import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.exception.IllegalAnnotationRuntimeException;
-import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
-import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
-import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
-import jp.fieldnotes.hatunatu.dao.ProcedureMetaData;
-import jp.fieldnotes.hatunatu.dao.ProcedureMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandlerFactory;
-import jp.fieldnotes.hatunatu.dao.RowCreator;
-import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.dao.exception.SqlFileNotFoundRuntimeException;
-import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.command.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
+import jp.fieldnotes.hatunatu.dao.exception.*;
 import jp.fieldnotes.hatunatu.dao.handler.ProcedureHandlerImpl;
 import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.resultset.*;
-import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
-import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
-import jp.fieldnotes.hatunatu.dao.util.InputStreamReaderUtil;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
+import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.exception.MethodNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.NoSuchMethodRuntimeException;
-import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
-import jp.fieldnotes.hatunatu.util.io.ReaderUtil;
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import jp.fieldnotes.hatunatu.util.lang.MethodUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Implementation of {@link DaoMetaData}.
@@ -113,7 +88,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected ResultSetFactory resultSetFactory;
 
-    protected String sqlFileEncoding = "JISAutoDetect";
+    protected String sqlFileEncoding = "UTF-8";
 
     protected Dbms dbms;
 
@@ -205,7 +180,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
             if (!completedSetupMethod(method)) {
                 setupMethodByAuto(method);
             }
-        } catch (final SRuntimeException e) {
+        } catch (final Exception e) {
             throw new MethodSetupFailureRuntimeException(
                     daoInterface.getName(), method.getName(), e);
         }
@@ -269,15 +244,13 @@ public class DaoMetaDataImpl implements DaoMetaData {
         putSqlCommand(method, command);
     }
 
-    protected String readText(final String path) {
-        final InputStream is = ResourceUtil.getResourceAsStream(path);
-        final Reader reader = InputStreamReaderUtil.create(is,
-                getSqlFileEncoding());
-        return ReaderUtil.readText(reader);
+    protected String readText(final String path) throws URISyntaxException, IOException {
+        URL url = ResourceUtil.getResource(path, null);
+        return new String(Files.readAllBytes(Paths.get(url.toURI())), sqlFileEncoding);
     }
 
     protected void setupMethodBySqlFile(final Class daoInterface,
-            final Method method) {
+            final Method method) throws IOException, URISyntaxException {
         final String base = getSqlFilePath(daoInterface, method);
         final String dbmsPath = base + dbms.getSuffix() + ".sql";
         final String standardPath = base + ".sql";
