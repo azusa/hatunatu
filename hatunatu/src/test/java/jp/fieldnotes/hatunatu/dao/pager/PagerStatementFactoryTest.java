@@ -15,16 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
-import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
-import jp.fieldnotes.hatunatu.dao.pager.PagerStatementFactory;
+import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntPreparedStatement;
 import junit.framework.TestCase;
 
-import jp.fieldnotes.hatunatu.dao.mock.NullConnection;
-import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntPreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author manhole
@@ -50,13 +51,16 @@ public class PagerStatementFactoryTest extends TestCase {
         final PagerContext pagerContext = PagerContext.getContext();
         pagerContext.pushArgs(new Object[] { new Integer(1) });
         final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+
+        Connection con = mock(Connection.class);
+
+//        final NullConnection con = new NullConnection() {
+//            public PreparedStatement prepareStatement(String sql)
+//                    throws SQLException {
+//                calls[0] = true;
+//                return null;
+//            }
+//        };
         PreparedStatement pstmt = null;
         try {
             // ## Act ##
@@ -68,8 +72,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
-        assertNull(pstmt);
+        verify(con).prepareStatement("aaaa");
     }
 
     /**
@@ -81,15 +84,7 @@ public class PagerStatementFactoryTest extends TestCase {
         DefaultPagerCondition pagerCondition = new DefaultPagerCondition();
         pagerCondition.setLimit(10);
         pagerContext.pushArgs(new Object[] { pagerCondition });
-        final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql,
-                    int resultSetType, int resultSetConcurrency)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+        Connection con = mock(Connection.class);
         PreparedStatement pstmt = null;
         try {
             // ## Act ##
@@ -101,8 +96,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
-        assertNull(pstmt);
+        verify(con).prepareStatement(eq("aaaa"), anyInt(), anyInt());
     }
 
     /**
@@ -112,14 +106,8 @@ public class PagerStatementFactoryTest extends TestCase {
         // ## Arrange ##
         final PagerContext pagerContext = PagerContext.getContext();
         pagerContext.pushArgs(new Object[] { new DefaultPagerCondition() });
-        final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+        Connection con = mock(Connection.class);
+
         PreparedStatement pstmt = null;
         try {
             // ## Act ##
@@ -131,8 +119,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
-        assertNull(pstmt);
+        verify(con).prepareStatement("aaaa");
     }
 
     /**
@@ -145,15 +132,7 @@ public class PagerStatementFactoryTest extends TestCase {
         DefaultPagerCondition pagerCondition = new DefaultPagerCondition();
         pagerCondition.setOffset(10);
         pagerContext.pushArgs(new Object[] { pagerCondition });
-        final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql,
-                    int resultSetType, int resultSetConcurrency)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+        Connection con = mock(Connection.class);
         PreparedStatement pstmt = null;
         try {
             // ## Act ##
@@ -165,8 +144,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
-        assertNull(pstmt);
+        verify(con).prepareStatement(eq("aaaa"), anyInt(), anyInt());
     }
 
     /**
@@ -178,14 +156,7 @@ public class PagerStatementFactoryTest extends TestCase {
         // ## Arrange ##
         final PagerContext pagerContext = PagerContext.getContext();
         pagerContext.pushArgs(new Object[] { new Integer(1) });
-        final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+        Connection con = mock(Connection.class);
         PreparedStatement stmt = null;
         try {
             // ## Act ##
@@ -198,7 +169,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
+        verify(con).prepareStatement("aaaa");
         assertTrue(stmt instanceof BooleanToIntPreparedStatement);
     }
 
@@ -213,15 +184,8 @@ public class PagerStatementFactoryTest extends TestCase {
         DefaultPagerCondition pagerCondition = new DefaultPagerCondition();
         pagerCondition.setLimit(10);
         pagerContext.pushArgs(new Object[] { pagerCondition });
-        final boolean[] calls = { false };
-        final NullConnection con = new NullConnection() {
-            public PreparedStatement prepareStatement(String sql,
-                    int resultSetType, int resultSetConcurrency)
-                    throws SQLException {
-                calls[0] = true;
-                return null;
-            }
-        };
+        Connection con = mock(Connection.class);
+
         PreparedStatement stmt = null;
         try {
             // ## Act ##
@@ -233,7 +197,7 @@ public class PagerStatementFactoryTest extends TestCase {
         } finally {
             pagerContext.popArgs();
         }
-        assertEquals(true, calls[0]);
+        verify(con).prepareStatement(eq("aaaa"), anyInt(), anyInt());
         assertTrue(stmt instanceof BooleanToIntPreparedStatement);
     }
 
