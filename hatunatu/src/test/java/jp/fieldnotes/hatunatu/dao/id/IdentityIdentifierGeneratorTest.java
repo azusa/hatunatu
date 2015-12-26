@@ -26,30 +26,10 @@ import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 
-/**
- * @author higa
- * 
- */
 public class IdentityIdentifierGeneratorTest extends S2TestCase {
-
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public IdentityIdentifierGeneratorTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(IdentityIdentifierGeneratorTest.class);
-    }
 
     protected void setUp() throws Exception {
         include("j2ee.dicon");
-    }
-
-    protected void tearDown() throws Exception {
     }
 
     public void testGetGeneratedValueTx() throws Exception {

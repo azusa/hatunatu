@@ -30,19 +30,6 @@ import java.util.Date;
  */
 public class S2DaoBeanReaderTest extends S2DaoTestCase {
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public S2DaoBeanReaderTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(S2DaoBeanReaderTest.class);
-    }
-
     protected void setUp() throws Exception {
         include("j2ee.dicon");
     }

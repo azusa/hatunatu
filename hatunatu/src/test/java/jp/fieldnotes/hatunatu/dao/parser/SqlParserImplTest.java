@@ -29,26 +29,18 @@ import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
 import jp.fieldnotes.hatunatu.dao.node.BindVariableNode;
 import jp.fieldnotes.hatunatu.dao.node.IfNode;
 import jp.fieldnotes.hatunatu.dao.node.SqlNode;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author higa
  * 
  */
-public class SqlParserImplTest extends TestCase {
+public class SqlParserImplTest {
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public SqlParserImplTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(SqlParserImplTest.class);
-    }
-
+    @Test
     public void testParse() throws Exception {
         String sql = "SELECT * FROM emp";
         SqlParser parser = new SqlParserImpl(sql);
@@ -58,6 +50,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", sql, ctx.getSql());
     }
 
+    @Test
     public void testParseEndSemicolon() throws Exception {
         testParseEndSemicolon(";");
         testParseEndSemicolon(";\t");
@@ -73,6 +66,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", sql, ctx.getSql());
     }
 
+    @Test
     public void testCommentEndNotFound() throws Exception {
         String sql = "SELECT * FROM emp/*hoge";
         SqlParser parser = new SqlParserImpl(sql);
@@ -84,6 +78,7 @@ public class SqlParserImplTest extends TestCase {
         }
     }
 
+    @Test
     public void testParseBindVariable4() throws Exception {
         String sql = "SELECT * FROM emp WHERE job = #*job*#'CLERK' AND deptno = #*deptno*#20";
         SqlParser parser = new SqlParserImpl(sql);
@@ -97,6 +92,7 @@ public class SqlParserImplTest extends TestCase {
         System.out.println(ctx.getSql());
     }
 
+    @Test
     public void testParseBindVariable() throws Exception {
         String sql = "SELECT * FROM emp WHERE job = /*job*/'CLERK' AND deptno = /*deptno*/20";
         String sql2 = "SELECT * FROM emp WHERE job = ? AND deptno = ?";
@@ -127,6 +123,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("9", "deptno", varNode2.getExpression());
     }
 
+    @Test
     public void testParseBindVariable2() throws Exception {
         String sql = "SELECT * FROM emp WHERE job = /* job*/'CLERK'";
         String sql3 = "SELECT * FROM emp WHERE job = ";
@@ -144,6 +141,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", sql4, sqlNode2.getSql());
     }
 
+    @Test
     public void testParseWhiteSpace() throws Exception {
         String sql = "SELECT * FROM emp WHERE empno = /*empno*/1 AND 1 = 1";
         String sql2 = "SELECT * FROM emp WHERE empno = ? AND 1 = 1";
@@ -160,6 +158,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("2", sql3, sqlNode.getSql());
     }
 
+    @Test
     public void testParseIf() throws Exception {
         String sql = "SELECT * FROM emp/*IF job != null*/ WHERE job = /*job*/'CLERK'/*END*/";
         String sql2 = "SELECT * FROM emp WHERE job = ?";
@@ -191,6 +190,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("10", sql3, ctx2.getSql());
     }
 
+    @Test
     public void testParseIf2() throws Exception {
         String sql = "/*IF aaa != null*/aaa/*IF bbb != null*/bbb/*END*//*END*/";
         SqlParser parser = new SqlParserImpl(sql);
@@ -216,6 +216,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", "aaa", ctx2.getSql());
     }
 
+    @Test
     public void testParseElse() throws Exception {
         String sql = "SELECT * FROM emp WHERE /*IF job != null*/job = /*job*/'CLERK'-- ELSE job is null/*END*/";
         String sql2 = "SELECT * FROM emp WHERE job = ?";
@@ -237,6 +238,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", sql3, ctx2.getSql());
     }
 
+    @Test
     public void testParseElse2() throws Exception {
         String sql = "/*IF false*/aaa--ELSE bbb = /*bbb*/123/*END*/";
         SqlParser parser = new SqlParserImpl(sql);
@@ -252,6 +254,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("3", bbb, vars[0]);
     }
 
+    @Test
     public void testParseElse3() throws Exception {
         String sql = "/*IF false*/aaa--ELSE bbb/*IF false*/ccc--ELSE ddd/*END*//*END*/";
         SqlParser parser = new SqlParserImpl(sql);
@@ -262,6 +265,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", "bbbddd", ctx.getSql());
     }
 
+    @Test
     public void testElse4() throws Exception {
         String sql = "SELECT * FROM emp/*BEGIN*/ WHERE /*IF false*/aaa-- ELSE AND deptno = 10/*END*//*END*/";
         String sql2 = "SELECT * FROM emp WHERE deptno = 10";
@@ -273,6 +277,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", sql2, ctx.getSql());
     }
 
+    @Test
     public void testBegin() throws Exception {
         String sql = "SELECT * FROM emp/*BEGIN*/ WHERE /*IF job != null*/job = /*job*/'CLERK'/*END*//*IF deptno != null*/ AND deptno = /*deptno*/20/*END*//*END*/";
         String sql2 = "SELECT * FROM emp";
@@ -308,6 +313,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", sql5, ctx4.getSql());
     }
 
+    @Test
     public void testBeginAnd() throws Exception {
         String sql = "/*BEGIN*/WHERE /*IF true*/aaa BETWEEN /*bbb*/111 AND /*ccc*/123/*END*//*END*/";
         String sql2 = "WHERE aaa BETWEEN ? AND ?";
@@ -321,6 +327,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", sql2, ctx.getSql());
     }
 
+    @Test
     public void testIn() throws Exception {
         String sql = "SELECT * FROM emp WHERE deptno IN /*deptnoList*/(10, 20) ORDER BY ename";
         String sql2 = "SELECT * FROM emp WHERE deptno IN (?, ?) ORDER BY ename";
@@ -340,6 +347,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", new Integer(20), vars[1]);
     }
 
+    @Test
     public void testIn2() throws Exception {
         String sql = "SELECT * FROM emp WHERE deptno IN /*deptnoList*/(10, 20) ORDER BY ename";
         String sql2 = "SELECT * FROM emp WHERE deptno IN (?, ?) ORDER BY ename";
@@ -357,6 +365,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", new Integer(20), vars[1]);
     }
 
+    @Test
     public void testIn3() throws Exception {
         String sql = "SELECT * FROM emp WHERE ename IN /*enames*/('SCOTT','MARY') AND job IN /*jobs*/('ANALYST', 'FREE')";
         String sql2 = "SELECT * FROM emp WHERE ename IN (?, ?) AND job IN (?, ?)";
@@ -378,6 +387,8 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("6", "FREE", vars[3]);
     }
 
+
+    @Test
     public void testParseBindVariable3() throws Exception {
         String sql = "BETWEEN sal ? AND ?";
         SqlParser parser = new SqlParserImpl(sql);
@@ -394,6 +405,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("4", new Integer(1000), vars[1]);
     }
 
+    @Test
     public void testEndNotFound() throws Exception {
         String sql = "/*BEGIN*/";
         SqlParser parser = new SqlParserImpl(sql);
@@ -405,6 +417,7 @@ public class SqlParserImplTest extends TestCase {
         }
     }
 
+    @Test
     public void testEndParent() throws Exception {
         String sql = "INSERT INTO ITEM (ID, NUM) VALUES (/*id*/1, /*num*/20)";
         SqlParser parser = new SqlParserImpl(sql);
@@ -417,6 +430,7 @@ public class SqlParserImplTest extends TestCase {
         assertEquals("1", true, ctx.getSql().endsWith(")"));
     }
 
+    @Test
     public void testEmbeddedValue() throws Exception {
         String sql = "/*$aaa*/";
         SqlParser parser = new SqlParserImpl(sql);
@@ -433,6 +447,7 @@ public class SqlParserImplTest extends TestCase {
      * 
      * https://www.seasar.org/issues/browse/DAO-43
      */
+    @Test
     public void testCommentAlive() throws Exception {
         String sql = "SELECT AAA,BBB -- UGO \r\nFROM HOGE WHERE AAA=/*moge*/aaa AND FUGA=/* PIRO */ccc";
         SqlParser parser = new SqlParserImpl(sql);
@@ -450,6 +465,7 @@ public class SqlParserImplTest extends TestCase {
      * 
      * Oracleのヒント句が消されないこと。
      */
+    @Test
     public void testCommentAlive2() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT /*+ INDEX(TABLE_NAME INDEX_NAME) */ AAA FROM HOGE");
@@ -465,6 +481,7 @@ public class SqlParserImplTest extends TestCase {
      * https://www.seasar.org/issues/browse/DAO-72
      * 
      */
+    @Test
     public void testDeleteQuestion() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT AAA \r\n--comment? \r\n--comment2? \r\nFROM HOGE");
@@ -476,6 +493,7 @@ public class SqlParserImplTest extends TestCase {
                 .getSql());
     }
 
+    @Test
     public void testDeleteQuestion2() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT AAA \r--comment? \r--comment2? \rFROM HOGE");
@@ -487,6 +505,7 @@ public class SqlParserImplTest extends TestCase {
                 .getSql());
     }
 
+    @Test
     public void testDeleteQuestion3() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT AAA \n--comment? \n--comment2? \nFROM HOGE");
@@ -501,6 +520,7 @@ public class SqlParserImplTest extends TestCase {
     /*
      * ELSEコメント内に?、その後通常コメント内に?
      */
+    @Test
     public void testDeleteQuestion4() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT AAA FROM HOGE where /*IF hoge != null */ aa = /*fuga*/gaga --ELSE bb = ? /*END*/ /* comment? */");
@@ -515,6 +535,7 @@ public class SqlParserImplTest extends TestCase {
     /*
      * 埋め込み変数として?、行の途中にあるラインコメントの中に?
      */
+    @Test
     public void testDeleteQuestion5() throws Exception {
         final SqlParser parser = new SqlParserImpl(
                 "SELECT AAA FROM HOGE where aa = ?  -- comment?");

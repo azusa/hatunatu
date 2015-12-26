@@ -56,13 +56,6 @@ public abstract class S2DaoTestCase extends S2TestCase {
 
     private ProcedureMetaDataFactory procedureMetaDataFactory;
 
-    public S2DaoTestCase() {
-    }
-
-    public S2DaoTestCase(final String name) {
-        super(name);
-    }
-
     protected void tearDown() throws Exception {
         valueTypeFactory = null;
         annotationReaderFactory = null;

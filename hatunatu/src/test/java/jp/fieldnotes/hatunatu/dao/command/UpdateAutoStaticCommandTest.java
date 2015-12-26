@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
-    public UpdateAutoStaticCommandTest(String arg0) {
-        super(arg0);
-    }
-
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
         SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"update"));

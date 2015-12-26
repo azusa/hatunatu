@@ -27,19 +27,6 @@ import jp.fieldnotes.hatunatu.dao.CommandContext;
  */
 public class CommandContextPropertyAccessorTest extends TestCase {
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public CommandContextPropertyAccessorTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(CommandContextPropertyAccessorTest.class);
-    }
-
     protected void tearDown() throws Exception {
         OgnlRuntime.setPropertyAccessor(CommandContext.class, null);
     }

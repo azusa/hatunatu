@@ -29,10 +29,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
 public class BeanArrayMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
-    public BeanArrayMetaDataResultSetHandlerTest(String arg0) {
-        super(arg0);
-    }
-
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanArrayMetaDataResultSetHandler(
                 createBeanMetaData(Employee.class), createRowCreator(),
@@ -72,11 +68,6 @@ public class BeanArrayMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     protected void setUpAfterContainerInit() throws Throwable {
         super.setUpAfterContainerInit();
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner
-                .run(BeanArrayMetaDataResultSetHandlerTest.class);
     }
 
 }

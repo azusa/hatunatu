@@ -28,14 +28,6 @@ import java.util.List;
 
 public class S2DaoTestCaseTest extends S2DaoTestCase {
 
-    public S2DaoTestCaseTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(S2DaoTestCaseTest.class);
-    }
-
     protected void setUp() {
         include("j2ee.dicon");
     }

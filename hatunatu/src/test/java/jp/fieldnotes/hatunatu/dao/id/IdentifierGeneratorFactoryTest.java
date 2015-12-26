@@ -21,36 +21,17 @@ import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * @author higa
- * 
- */
-public class IdentifierGeneratorFactoryTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public IdentifierGeneratorFactoryTest(String arg0) {
-        super(arg0);
-    }
+public class IdentifierGeneratorFactoryTest {
 
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(IdentifierGeneratorFactoryTest.class);
-    }
-
-    protected void setUp() throws Exception {
-    }
-
-    protected void tearDown() throws Exception {
-    }
-
+    @Test
     public void testCreateIdentifierGenerator() throws Exception {
         Dbms dbms = new HSQL();
         Hoge hoge = new Hoge();
