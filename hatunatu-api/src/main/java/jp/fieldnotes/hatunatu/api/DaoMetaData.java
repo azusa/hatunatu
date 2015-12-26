@@ -16,11 +16,8 @@
 package jp.fieldnotes.hatunatu.api;
 
 
-
 /**
- * @author higa
- * @author manhole
- * 
+ * Meta data of dao, initialize when first method call.
  */
 public interface DaoMetaData {
 
@@ -37,10 +34,6 @@ public interface DaoMetaData {
     SqlCommand createFindCommand(String query);
 
     SqlCommand createFindCommand(Class dtoClass, String query);
-
-    SqlCommand createFindArrayCommand(String query);
-
-    SqlCommand createFindArrayCommand(Class dtoClass, String query);
 
     SqlCommand createFindBeanCommand(String query);
 

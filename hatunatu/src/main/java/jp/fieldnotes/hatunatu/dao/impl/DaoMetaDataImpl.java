@@ -78,9 +78,7 @@ import jp.fieldnotes.hatunatu.util.lang.MethodUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 /**
- * @author higa
- * @author azusa
- * 
+ * Implementation of {@link DaoMetaData}.
  */
 public class DaoMetaDataImpl implements DaoMetaData {
 
@@ -990,9 +988,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
                 & daoAnnotationReader.isCheckSingleRowUpdate(method);
     }
 
-    /**
-     * @see DaoMetaData#getBeanClass()
-     */
+    @Override
     public Class getBeanClass() {
         return beanClass;
     }
@@ -1001,16 +997,12 @@ public class DaoMetaDataImpl implements DaoMetaData {
         this.beanClass = beanClass;
     }
 
-    /**
-     * @see DaoMetaData#getBeanMetaData()
-     */
+    @Override
     public BeanMetaData getBeanMetaData() {
         return beanMetaData;
     }
 
-    /**
-     * @see DaoMetaData#getSqlCommand(java.lang.String)
-     */
+    @Override
     public SqlCommand getSqlCommand(final String methodName)
             throws MethodNotFoundRuntimeException {
 
@@ -1021,63 +1013,50 @@ public class DaoMetaDataImpl implements DaoMetaData {
         return cmd;
     }
 
-    /**
-     * @see DaoMetaData#hasSqlCommand(java.lang.String)
-     */
+    @Override
     public boolean hasSqlCommand(final String methodName) {
         return sqlCommands.containsKey(methodName);
     }
 
-    /**
-     * @see DaoMetaData#createFindCommand(java.lang.String)
-     */
+    @Override
     public SqlCommand createFindCommand(final String query) {
         return createSelectDynamicCommand(new BeanListMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator()),
                 query);
     }
 
+    @Override
     public SqlCommand createFindCommand(Class dtoClass, String query) {
         return createSelectDynamicCommand(
                 new DtoListMetaDataResultSetHandler(dtoMetaDataFactory
                         .getDtoMetaData(dtoClass), createRowCreator()), query);
     }
 
-    public SqlCommand createFindArrayCommand(final String query) {
-        return createSelectDynamicCommand(
-                new BeanArrayMetaDataResultSetHandler(beanMetaData,
-                        createRowCreator(), createRelationRowCreator()), query);
-    }
-
-    public SqlCommand createFindArrayCommand(Class dtoClass, String query) {
-        return createSelectDynamicCommand(
-                new DtoArrayMetaDataResultSetHandler(dtoMetaDataFactory
-                        .getDtoMetaData(dtoClass), createRowCreator()), query);
-    }
-
-    /**
-     * @see DaoMetaData#createFindBeanCommand(java.lang.String)
-     */
+    @Override
     public SqlCommand createFindBeanCommand(final String query) {
         return createSelectDynamicCommand(new BeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator()),
                 query);
     }
 
+    @Override
     public SqlCommand createFindBeanCommand(Class dtoClass, String query) {
         return createSelectDynamicCommand(
                 new DtoMetaDataResultSetHandler(dtoMetaDataFactory
                         .getDtoMetaData(dtoClass), createRowCreator()), query);
     }
 
+    @Override
     public SqlCommand createFindMapCommand(String query) {
         return createSelectDynamicCommand(new MapResultSetHandler(), query);
     }
 
+    @Override
     public SqlCommand createFindMapListCommand(String query) {
         return createSelectDynamicCommand(new MapListResultSetHandler(), query);
     }
 
+    @Override
     public SqlCommand createFindMapArrayCommand(String query) {
         return createSelectDynamicCommand(new MapArrayResultSetHandler(), query);
     }
@@ -1089,7 +1068,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
     protected RelationRowCreator createRelationRowCreator() {
         return new RelationRowCreatorImpl();
     }
-
 
 
     public Class getDaoInterface(final Class clazz) {
@@ -1144,17 +1122,10 @@ public class DaoMetaDataImpl implements DaoMetaData {
         this.beanMetaDataFactory = beanMetaDataFactory;
     }
 
-    /**
-     * @return Returns the dtoMetaDataFactory.
-     */
     public DtoMetaDataFactory getDtoMetaDataFactory() {
         return dtoMetaDataFactory;
     }
 
-    /**
-     * @param dtoMetaDataFactory
-     *            The dtoMetaDataFactory to set.
-     */
     public void setDtoMetaDataFactory(
             final DtoMetaDataFactory dtoMetaDataFactory) {
         this.dtoMetaDataFactory = dtoMetaDataFactory;
@@ -1182,6 +1153,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         this.resultSetHandlerFactory = resultSetHandlerFactory;
     }
 
+    @Override
     public DaoAnnotationReader getDaoAnnotationReader() {
         return daoAnnotationReader;
     }
