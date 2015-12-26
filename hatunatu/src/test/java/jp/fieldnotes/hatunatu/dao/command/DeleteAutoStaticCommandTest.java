@@ -26,15 +26,11 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
 
-    public DeleteAutoStaticCommandTest(String arg0) {
-        super(arg0);
-    }
-
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("delete");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"delete"));
 
-        SqlCommand cmd2 = dmd.getSqlCommand("getEmployee");
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee emp = (Employee) cmd2
                 .execute(new Object[] { new Integer(7788) });
         Integer count = (Integer) cmd.execute(new Object[] { emp });
@@ -43,7 +39,7 @@ public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecute2Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("delete");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
         Department dept = new Department();
         dept.setDeptno(10);
         Integer count = (Integer) cmd.execute(new Object[] { dept });
@@ -53,7 +49,7 @@ public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
     public void testExecute3Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
         DeleteAutoStaticCommand cmd = (DeleteAutoStaticCommand) dmd
-                .getSqlCommand("delete");
+                .getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
         Department dept = new Department();
         dept.setDeptno(10);
         dept.setVersionNo(-1);
@@ -67,10 +63,6 @@ public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
 
     public void setUp() {
         include("j2ee.dicon");
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(DeleteAutoStaticCommandTest.class);
     }
 
 }

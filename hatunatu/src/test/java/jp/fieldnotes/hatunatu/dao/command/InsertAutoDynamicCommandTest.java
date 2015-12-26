@@ -36,7 +36,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert"));
         assertTrue(cmd instanceof InsertAutoDynamicCommand);
         Employee emp = new Employee();
         emp.setEmpno(99);
@@ -51,7 +51,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     public void testInsertPkOnlyTx() throws Exception {
         // ## Arrange ##
         DaoMetaData dmd = createDaoMetaData(EmpDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmpDao.class,"insert"));
 
         // ## Act ##
         Emp emp = new Emp();
@@ -67,7 +67,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     public void testInsertAllNullTx() throws Exception {
         // ## Arrange ##
         final DaoMetaData dmd = createDaoMetaData(IdentityTableAutoDao.class);
-        final SqlCommand cmd = dmd.getSqlCommand("insert");
+        final SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
         final IdentityTable table = new IdentityTable();
 
         // ## Act ##
@@ -88,7 +88,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     public void testInsertNoTableTx() throws Exception {
         // ## Arrange ##
         final DaoMetaData dmd = createDaoMetaData(FooDtoDao.class);
-        final SqlCommand cmd = dmd.getSqlCommand("insert");
+        final SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(FooDtoDao.class,"insert"));
         final FooDto dto = new FooDto();
 
         // ## Act ##
@@ -105,7 +105,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecute2Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(IdentityTableAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
         IdentityTable table = new IdentityTable();
         table.setIdName("hoge");
         Integer count1 = (Integer) cmd.execute(new Object[] { table });
@@ -122,7 +122,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecute3_1Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(SeqTable1Dao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(SeqTable1Dao.class,"insert"));
         SeqTable1 table1 = new SeqTable1();
         table1.setName("hoge");
         Integer count = (Integer) cmd.execute(new Object[] { table1 });
@@ -133,7 +133,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecute3_2Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(SeqTable2Dao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(SeqTable2Dao.class,"insert"));
         SeqTable2 table1 = new SeqTable2();
         table1.setName("hoge");
         Integer count = (Integer) cmd.execute(new Object[] { table1 });
@@ -151,7 +151,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecute4Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert2");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert2"));
         Employee emp = new Employee();
         emp.setEmpno(99);
         emp.setEname("hoge");
@@ -161,7 +161,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecute5Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert3");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert3"));
         Employee emp = new Employee();
         emp.setEmpno(99);
         emp.setEname("hoge");
@@ -172,7 +172,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testInsertCompositePkTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(CompositePkDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(CompositePkDao.class, "insert"));
         CompositePk compositePk = new CompositePk();
         compositePk.setPk2(10);
         compositePk.setAaa("hoge");
@@ -189,7 +189,7 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     public void testUsingColumnAnnotationForSql_Insert() throws Exception {
         DaoMetaData dmd = createDaoMetaData(Employee9Dao.class);
         InsertAutoDynamicCommand cmd = (InsertAutoDynamicCommand) dmd
-                .getSqlCommand("insert");
+                .getSqlCommand(getSingleDaoMethod(Employee9Dao.class, "insert"));
         Employee9 bean = new Employee9();
         bean.setEmpno(new Integer(321));
         bean.setEname("foo");

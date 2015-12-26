@@ -16,6 +16,8 @@
 package jp.fieldnotes.hatunatu.api;
 
 
+import java.lang.reflect.Method;
+
 /**
  * Meta data of dao, initialize when first method call.
  */
@@ -27,9 +29,9 @@ public interface DaoMetaData {
 
     DaoAnnotationReader getDaoAnnotationReader();
 
-    boolean hasSqlCommand(String methodName);
+    boolean hasSqlCommand(Method method);
 
-    SqlCommand getSqlCommand(String methodName);
+    SqlCommand getSqlCommand(Method methodName);
 
     SqlCommand createFindCommand(String query);
 

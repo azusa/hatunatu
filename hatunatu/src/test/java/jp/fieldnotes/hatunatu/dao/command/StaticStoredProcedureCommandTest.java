@@ -32,9 +32,6 @@ import org.seasar.dao.impl.Procedures;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
 
-/**
- * @author manhole
- */
 public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {
@@ -50,14 +47,14 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testOutParameterTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("aaa1");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"aaa1"));
         String aaa = (String) command.execute(new Object[] {});
         assertEquals("aaaaa", aaa);
     }
 
     public void testMultiOutParametersTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("aaa2");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"aaa2"));
         final long t1 = System.currentTimeMillis();
         Map aaa = (Map) command.execute(new Object[] {});
         final long t2 = System.currentTimeMillis();
@@ -71,21 +68,21 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testNoParameterTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("aaa3");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"aaa3"));
         command.execute(new Object[] {});
         assertTrue(Procedures.isAaa3Invoked);
     }
 
     public void testInParameterTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("bbb1");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"bbb1"));
         command.execute(new Object[] { "abcde" });
         assertEquals("abcde", Procedures.params.get("ccc"));
     }
 
     public void testMultiInParametersTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("bbb2");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"bbb2"));
         final long current = System.currentTimeMillis();
         command.execute(new Object[] { "abcde", new Integer(111),
                 new Timestamp(current) });
@@ -98,7 +95,7 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testInOutMixedParameters1Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("ccc1");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"ccc1"));
         final String ret = (String) command.execute(new Object[] { "foo",
                 new Integer(112) });
         assertEquals("foo112", ret);
@@ -111,7 +108,7 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testInOutMixedParameters2Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("ccc2");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"ccc2"));
         final Map ret = (Map) command.execute(new Object[] { new Integer(25) });
         System.out.println(ret);
         assertEquals("25", ret.get("CCC"));
@@ -126,7 +123,7 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testInOutParameterTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("ddd1");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"ddd1"));
         final String ret = (String) command.execute(new Object[] { "ab" });
 
         assertEquals("abcd", ret);
@@ -136,7 +133,7 @@ public class StaticStoredProcedureCommandTest extends S2DaoTestCase {
 
     public void testIllegalArgSize() throws Exception {
         DaoMetaData dmd = createDaoMetaData(ProcedureDao.class);
-        SqlCommand command = dmd.getSqlCommand("illegalArgSizeBbb2");
+        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(ProcedureDao.class,"illegalArgSizeBbb2"));
         try {
             command.execute(new Object[] { "abcde", new Integer(111) });
         } catch (SIllegalArgumentException e) {

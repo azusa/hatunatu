@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Department2;
 import jp.fieldnotes.hatunatu.dao.impl.dao.Department2AutoDao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author higa
- * 
- */
 public class BooleanPropertyTest extends S2DaoTestCase {
 
     public void setUp() {
@@ -34,14 +30,14 @@ public class BooleanPropertyTest extends S2DaoTestCase {
 
     public void testInsertAndSelectTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(Department2AutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(Department2AutoDao.class,"insert"));
         Department2 dept = new Department2();
         dept.setDeptno(99);
         dept.setDname("hoge");
         dept.setActive(true);
         cmd.execute(new Object[] { dept });
         SelectDynamicCommand cmd2 = (SelectDynamicCommand) dmd
-                .getSqlCommand("getDepartment");
+                .getSqlCommand(getSingleDaoMethod(Department2AutoDao.class,"getDepartment"));
         Department2 dept2 = (Department2) cmd2
                 .execute(new Object[] { new Integer(99) });
         assertEquals("1", true, dept2.isActive());

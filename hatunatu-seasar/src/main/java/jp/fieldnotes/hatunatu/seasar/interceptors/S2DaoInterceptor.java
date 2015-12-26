@@ -29,8 +29,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
- * @author higa
- * 
+ * Interceptor for seasar2.
  */
 public class S2DaoInterceptor extends AbstractInterceptor implements MethodInterceptor, Serializable  {
 
@@ -61,9 +60,6 @@ public class S2DaoInterceptor extends AbstractInterceptor implements MethodInter
         }
     }
 
-    /**
-     * @see MethodInterceptor#invoke(MethodInvocation)
-     */
     private Object doInvoke(MethodInvocation invocation) throws Throwable {
         Method method = invocation.getMethod();
         if (!MethodUtil.isAbstract(method)) {
@@ -71,7 +67,7 @@ public class S2DaoInterceptor extends AbstractInterceptor implements MethodInter
         }
         Class targetClass = getTargetClass(invocation);
         DaoMetaData dmd = daoMetaDataFactory.getDaoMetaData(targetClass);
-        SqlCommand cmd = dmd.getSqlCommand(method.getName());
+        SqlCommand cmd = dmd.getSqlCommand(method);
         Object ret = cmd.execute(invocation.getArguments());
         Class retType = method.getReturnType();
         if (retType.isPrimitive()) {

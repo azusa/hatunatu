@@ -26,15 +26,8 @@ import jp.fieldnotes.hatunatu.dao.impl.dao.DepartmentAutoDao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author taichi
- * 
- */
 public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
 
-    /*
-     * @see TestCase#setUp()
-     */
     protected void setUp() throws Exception {
         super.setUp();
         include("j2ee.dicon");
@@ -42,7 +35,7 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand select = dmd.getSqlCommand("getEmployee");
+        SqlCommand select = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee before = (Employee) select.execute(new Object[] { new Integer(
                 7369) });
 
@@ -53,7 +46,7 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
         e.setHiredate(null);
         e.setMgr(null);
         e.setTimestamp(before.getTimestamp());
-        SqlCommand unlessNull = dmd.getSqlCommand("updateUnlessNull");
+        SqlCommand unlessNull = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateUnlessNull"));
         assertTrue(unlessNull instanceof UpdateAutoDynamicCommand);
         unlessNull.execute(new Object[] { e });
 
@@ -70,7 +63,7 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
      */
     public void testExecuteOnePropertyTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand select = dmd.getSqlCommand("getEmployee");
+        SqlCommand select = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class, "getEmployee"));
         Employee before = (Employee) select.execute(new Object[] { new Integer(
                 7369) });
 
@@ -78,7 +71,7 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
         e.setEmpno(7369);
         e.setDeptno(20);
         e.setTimestamp(before.getTimestamp());
-        SqlCommand unlessNull = dmd.getSqlCommand("updateUnlessNull");
+        SqlCommand unlessNull = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateUnlessNull"));
         assertTrue(unlessNull instanceof UpdateAutoDynamicCommand);
         unlessNull.execute(new Object[] { e });
 
@@ -93,13 +86,13 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
      */
     public void testExecuteAllNullTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(CharTableDao.class);
-        SqlCommand insert = dmd.getSqlCommand("insert");
+        SqlCommand insert = dmd.getSqlCommand(getSingleDaoMethod(CharTableDao.class,"insert"));
         CharTable data = new CharTable();
         data.setId(1);
         data.setAaa(new Character('c'));
         insert.execute(new Object[] { data });
 
-        SqlCommand unlessNull = dmd.getSqlCommand("updateUnlessNull");
+        SqlCommand unlessNull = dmd.getSqlCommand(getSingleDaoMethod(CharTableDao.class,"updateUnlessNull"));
         data.setAaa(null);
         try {
             unlessNull.execute(new Object[] { data });
@@ -111,11 +104,11 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
 
     public void testUpdateUnlessNullVersionNoTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
-        SqlCommand select = dmd.getSqlCommand("getDepartment");
+        SqlCommand select = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"getDepartment"));
         Department before = (Department) select
                 .execute(new Object[] { new Integer(20) });
 
-        SqlCommand update = dmd.getSqlCommand("updateUnlessNull");
+        SqlCommand update = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"updateUnlessNull"));
         Department data = new Department();
         data.setDeptno(20);
         data.setDname("HOGE");

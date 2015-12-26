@@ -32,8 +32,8 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("update");
-        SqlCommand cmd2 = dmd.getSqlCommand("getEmployee");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"update"));
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee emp = (Employee) cmd2
                 .execute(new Object[] { new Integer(7788) });
         Integer count = (Integer) cmd.execute(new Object[] { emp });
@@ -42,7 +42,7 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecute2Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("update");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"update"));
         Department dept = new Department();
         dept.setDeptno(10);
         Integer count = (Integer) cmd.execute(new Object[] { dept });
@@ -52,7 +52,7 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecute3Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("update");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"update"));
         Department dept = new Department();
         dept.setDeptno(10);
         dept.setVersionNo(-1);
@@ -66,8 +66,8 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecute4Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("update2");
-        SqlCommand cmd2 = dmd.getSqlCommand("getEmployee");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"update2"));
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee emp = (Employee) cmd2
                 .execute(new Object[] { new Integer(7788) });
         Integer count = (Integer) cmd.execute(new Object[] { emp });
@@ -76,8 +76,8 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecute5Tx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("update3");
-        SqlCommand cmd2 = dmd.getSqlCommand("getEmployee");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"update3"));
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee emp = (Employee) cmd2
                 .execute(new Object[] { new Integer(7788) });
         Integer count = (Integer) cmd.execute(new Object[] { emp });
@@ -86,10 +86,6 @@ public class UpdateAutoStaticCommandTest extends S2DaoTestCase {
 
     public void setUp() {
         include("j2ee.dicon");
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(UpdateAutoStaticCommandTest.class);
     }
 
 }

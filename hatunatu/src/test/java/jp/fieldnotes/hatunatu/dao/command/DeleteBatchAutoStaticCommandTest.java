@@ -25,13 +25,9 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
 
-    public DeleteBatchAutoStaticCommandTest(String arg0) {
-        super(arg0);
-    }
-
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("deleteBatch");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch"));
         Employee emp = new Employee();
         emp.setEmpno(7499);
         emp.setEname("hoge");
@@ -45,7 +41,7 @@ public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(2), count);
 
         // delete failure test
-        SqlCommand cmd2 = dmd.getSqlCommand("deleteBatch2");
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch2"));
         Employee emp3 = new Employee();
         emp3.setEmpno(7782);
         emp3.setEname("hoge");
@@ -63,10 +59,6 @@ public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
 
     public void setUp() {
         include("j2ee.dicon");
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(DeleteBatchAutoStaticCommandTest.class);
     }
 
 }

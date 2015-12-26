@@ -15,30 +15,36 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * @author taedium
- * 
- */
 public class OverloadSqlCommandTest extends S2DaoTestCase {
 
     public void setUp() {
         include("j2ee.dicon");
     }
 
-    public void testExecute() {
+    public void testExecute_WithStringArguments() {
+        Method method = BeanDescFactory.getBeanDesc(MyDao.class).getMethodDesc("getEmployees", String.class).getMethod();
         SqlCommand command = createDaoMetaData(MyDao.class).getSqlCommand(
-                "getEmployees");
+                method);
         command.execute(new Object[] { "hoge" });
         assertTrue(true);
     }
 
+    public void testExecute_WithIntArguments() {
+        Method method = BeanDescFactory.getBeanDesc(MyDao.class).getMethodDesc("getEmployees", Integer.TYPE).getMethod();
+        SqlCommand command = createDaoMetaData(MyDao.class).getSqlCommand(
+                method);
+        command.execute(new Object[] { 7369 });
+        assertTrue(true);
+    }
     @S2Dao(bean= Employee.class)
     public interface MyDao {
 
