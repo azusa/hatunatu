@@ -134,7 +134,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
                 daoInterface, beanClass);
         checkSingleRowUpdateForAll = daoAnnotationReader
                 .isCheckSingleRowUpdate();
-        setupSqlCommand();
     }
 
     protected void setupSqlCommand() {
@@ -946,12 +945,12 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     /**
      * メソッドおよびDao全体のいずれもSingleRowUpdateチェックが有効になっているかどうかを返します。
-     * 
+     *
      * <p>
      * メソッドまたはDao全体のいずれもチェックが有効として設定されている場合のみ、<code>true</code>を返します。
      * どちらか一方でもチェック無効に設定されていれば、 falseを返します。
      * </p>
-     * 
+     *
      * @param method
      *            チェック対象のメソッド
      * @return 指定されたメソッドの実行時チェックが有効なら<code>true</code>を返す。
@@ -976,14 +975,21 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     @Override
-    public SqlCommand getSqlCommand(final Method method)
+    public synchronized SqlCommand getSqlCommand(final Method method)
             throws MethodNotFoundRuntimeException {
 
-        final SqlCommand cmd = (SqlCommand) sqlCommands.get(method);
+        SqlCommand cmd = (SqlCommand) sqlCommands.get(method);
         if (cmd == null) {
-            throw new MethodNotFoundRuntimeException(daoClass, method.getName(), method.getParameterTypes());
+            if (MethodUtil.isAbstract(method)) {
+                setupMethod(method);
+            }
+            cmd = (SqlCommand) sqlCommands.get(method);
+            if (cmd == null) {
+                throw new MethodNotFoundRuntimeException(daoClass, method.getName(), method.getParameterTypes());
+            }
         }
         return cmd;
+
     }
 
     @Override

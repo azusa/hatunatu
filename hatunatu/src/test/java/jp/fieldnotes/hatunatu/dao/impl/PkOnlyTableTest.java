@@ -20,6 +20,7 @@ import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
@@ -50,9 +51,8 @@ public class PkOnlyTableTest extends S2DaoTestCase {
         try {
             dao.updateUnlessNull(new PkOnlyTable());
             fail();
-        } catch (MethodSetupFailureRuntimeException e) {
-            assertEquals("EDAO0020", ((SRuntimeException) e.getCause())
-                    .getMessageCode());
+        } catch (NoUpdatePropertyTypeRuntimeException e) {
+            assertEquals("EDAO0018", e.getMessageCode());
             e.printStackTrace();
         }
     }

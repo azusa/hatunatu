@@ -25,10 +25,7 @@ import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
  * [DAO-150]
  * 
  * https://www.seasar.org/issues/browse/DAO-150
- * 
- * 
- * @author azusa
- * 
+ *
  */
 public class NoPropertyForUpdateTest extends S2TestCase {
 
@@ -40,7 +37,7 @@ public class NoPropertyForUpdateTest extends S2TestCase {
 
     public void testExceptionOnUpdate() {
         try {
-            noPropertyForUpdateDao.delete(new NoPropertyForUpdate());
+            noPropertyForUpdateDao.update(new NoPropertyForUpdate());
             fail();
         } catch (MethodSetupFailureRuntimeException e) {
             SRuntimeException cause = (SRuntimeException) e.getCause();

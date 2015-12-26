@@ -199,7 +199,8 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
 
     public void testIllegalAutoUpdateMethod() throws Exception {
         try {
-            createDaoMetaData(IllegalEmployeeAutoDao.class);
+            DaoMetaData dmd = createDaoMetaData(IllegalEmployeeAutoDao.class);
+            SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(IllegalEmployeeAutoDao.class, "insertIllegal"));
             fail("1");
         } catch (MethodSetupFailureRuntimeException ex) {
             assertTrue("1",
@@ -712,7 +713,8 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         // ## Act ##
         // ## Assert ##
         try {
-            createDaoMetaData(daoClass);
+            DaoMetaData dmd = createDaoMetaData(daoClass);
+            SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Employee11Dao.class, "insert"));
             fail();
         } catch (final MethodSetupFailureRuntimeException e) {
             System.out.println(e.getMessage());
