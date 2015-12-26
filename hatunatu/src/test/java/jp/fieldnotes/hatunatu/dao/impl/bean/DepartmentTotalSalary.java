@@ -57,7 +57,7 @@ public class DepartmentTotalSalary implements Serializable {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(deptno).append(", ");
         buf.append(totalSalary);
         return buf.toString();

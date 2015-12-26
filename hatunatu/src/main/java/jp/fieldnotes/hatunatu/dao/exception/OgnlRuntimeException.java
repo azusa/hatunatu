@@ -63,7 +63,7 @@ public class OgnlRuntimeException extends SRuntimeException {
      */
     protected static String createMessage(Throwable cause, String path,
             int lineNumber) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append(cause.getMessage());
         if (!StringUtil.isEmpty(path)) {
             buf.append(" at ").append(path).append("(").append(lineNumber)

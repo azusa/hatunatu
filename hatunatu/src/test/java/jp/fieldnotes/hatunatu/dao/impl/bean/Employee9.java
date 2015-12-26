@@ -50,7 +50,7 @@ public class Employee9 implements Serializable {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(empno).append(", ");
         buf.append(ename);
         return buf.toString();

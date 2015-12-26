@@ -167,7 +167,7 @@ public class TimeConversionUtil {
      * @return 短いパターン
      */
     public static String convertShortPattern(String pattern) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for (int i = 0; i < pattern.length(); ++i) {
             char c = pattern.charAt(i);
             if (c == 'h' || c == 'H' || c == 'm' || c == 's') {

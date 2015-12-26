@@ -92,7 +92,7 @@ public class ArgumentDtoProcedureCommand implements SqlCommand,
      * @return SQL
      */
     protected String createSql(final ProcedureMetaData procedureMetaData) {
-        final StringBuffer buf = new StringBuffer();
+        final StringBuilder buf = new StringBuilder();
         buf.append("{");
         int size = procedureMetaData.getParameterTypeSize();
         if (procedureMetaData.hasReturnParameterType()) {

@@ -364,7 +364,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     }
 
     protected void setupAutoSelectList() {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("SELECT ");
         boolean first = true;
         for (int i = 0; i < getPropertyTypeSize(); ++i) {

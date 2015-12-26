@@ -29,7 +29,7 @@ public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
      * java.lang.String)
      */
     protected String makeCountSql(String baseSQL) {
-        StringBuffer sqlBuf = new StringBuffer("SELECT count(*) FROM (");
+        StringBuilder sqlBuf = new StringBuilder("SELECT count(*) FROM (");
         if (isChopOrderBy()) {
             sqlBuf.append(chopOrderBy(baseSQL));
         } else {
@@ -47,7 +47,7 @@ public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
      * (java.lang.String, int, int)
      */
     protected String makeLimitOffsetSql(String baseSQL, int limit, int offset) {
-        StringBuffer sqlBuf = new StringBuffer(baseSQL);
+        StringBuilder sqlBuf = new StringBuilder(baseSQL);
         sqlBuf.append(" LIMIT ");
         sqlBuf.append(limit);
         sqlBuf.append(" OFFSET ");

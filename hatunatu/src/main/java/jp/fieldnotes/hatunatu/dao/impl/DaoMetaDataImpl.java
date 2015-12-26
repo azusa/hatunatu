@@ -371,7 +371,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
             final ResultSetHandler resultSetHandler, final String query) {
 
         final SelectDynamicCommand cmd = createSelectDynamicCommand(resultSetHandler);
-        final StringBuffer buf = new StringBuffer(255);
+        final StringBuilder buf = new StringBuilder(255);
         if (startsWithSelect(query)) {
             buf.append(query);
         } else {
@@ -767,7 +767,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected String createAutoSelectSqlByDto(final Class dtoClass) {
         final String sql = dbms.getAutoSelectSql(getBeanMetaData());
-        final StringBuffer buf = new StringBuffer(sql);
+        final StringBuilder buf = new StringBuilder(sql);
         // TODO どうするか要検討
         if (dtoClass.isPrimitive()) {
             return sql;
@@ -826,7 +826,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected String createAutoSelectSql(final String[] argNames) {
         final String sql = dbms.getAutoSelectSql(getBeanMetaData());
-        final StringBuffer buf = new StringBuffer(sql);
+        final StringBuilder buf = new StringBuilder(sql);
         if (argNames.length != 0) {
             boolean began = false;
             if (!(sql.lastIndexOf("WHERE") > 0)) {

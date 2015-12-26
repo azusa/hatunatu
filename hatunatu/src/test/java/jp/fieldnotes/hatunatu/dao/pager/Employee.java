@@ -110,7 +110,7 @@ public class Employee {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(empno).append(", ");
         buf.append(ename).append(", ");
         buf.append(job).append(", ");

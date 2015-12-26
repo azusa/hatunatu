@@ -29,7 +29,7 @@ public class OracleRownumPagingSqlRewriter extends AbstractPagingSqlRewriter {
      * java.lang.String)
      */
     protected String makeCountSql(String baseSQL) {
-        StringBuffer sqlBuf = new StringBuffer("SELECT count(*) FROM (");
+        StringBuilder sqlBuf = new StringBuilder("SELECT count(*) FROM (");
         if (isChopOrderBy()) {
             sqlBuf.append(chopOrderBy(baseSQL));
         } else {
@@ -52,7 +52,7 @@ public class OracleRownumPagingSqlRewriter extends AbstractPagingSqlRewriter {
                     "The offset must be greater than or equal to zero.("
                             + offset + ")");
         }
-        StringBuffer sqlBuf = new StringBuffer(baseSQL);
+        StringBuilder sqlBuf = new StringBuilder(baseSQL);
         sqlBuf
                 .insert(0,
                         "SELECT * FROM (SELECT S2DAO_ORIGINAL_DATA.*, ROWNUM AS S2DAO_ROWNUMBER FROM (");

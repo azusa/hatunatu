@@ -247,7 +247,7 @@ public class DateConversionUtil {
      * @return 日付のデリミタを取り除いた後のパターン
      */
     public static String removeDelimiter(String pattern) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for (int i = 0; i < pattern.length(); ++i) {
             char c = pattern.charAt(i);
             if (c == 'y' || c == 'M' || c == 'd') {

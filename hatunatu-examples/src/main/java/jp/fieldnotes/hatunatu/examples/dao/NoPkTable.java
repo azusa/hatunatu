@@ -38,7 +38,7 @@ public class NoPkTable {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(aaa).append(", ");
         buf.append(bbb);
         return buf.toString();

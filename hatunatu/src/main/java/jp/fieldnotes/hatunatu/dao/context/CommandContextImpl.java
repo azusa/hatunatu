@@ -36,7 +36,7 @@ public class CommandContextImpl implements CommandContext {
 
     private CaseInsensitiveMap argTypes = new CaseInsensitiveMap();
 
-    private StringBuffer sqlBuf = new StringBuffer(100);
+    private StringBuilder sqlBuf = new StringBuilder(100);
 
     private List bindVariables = new ArrayList();
 

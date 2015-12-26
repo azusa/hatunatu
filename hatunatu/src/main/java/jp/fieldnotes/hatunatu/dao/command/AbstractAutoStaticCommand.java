@@ -125,7 +125,7 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
 
     protected void setupInsertSql() {
         BeanMetaData bmd = getBeanMetaData();
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("INSERT INTO ");
         buf.append(bmd.getTableName());
         buf.append(" (");
@@ -151,7 +151,7 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
 
     protected void setupUpdateSql() {
         checkPrimaryKey();
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("UPDATE ");
         buf.append(getBeanMetaData().getTableName());
         buf.append(" SET ");
@@ -167,7 +167,7 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
 
     protected void setupDeleteSql() {
         checkPrimaryKey();
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("DELETE FROM ");
         buf.append(getBeanMetaData().getTableName());
         setupUpdateWhere(buf);
@@ -181,7 +181,7 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
         }
     }
 
-    protected void setupUpdateWhere(StringBuffer buf) {
+    protected void setupUpdateWhere(StringBuilder buf) {
         BeanMetaData bmd = getBeanMetaData();
         buf.append(" WHERE ");
         for (int i = 0; i < bmd.getPrimaryKeySize(); ++i) {
