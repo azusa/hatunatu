@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.unit;
 
 import jp.fieldnotes.hatunatu.api.*;
+import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
@@ -25,14 +26,10 @@ import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
+import java.lang.reflect.Method;
 import java.sql.DatabaseMetaData;
 import java.util.List;
 
-/**
- * @author higa
- * @author manhole
- * @author jflute
- */
 public abstract class S2DaoTestCase extends S2TestCase {
 
     private ValueTypeFactory valueTypeFactory;
@@ -161,6 +158,14 @@ public abstract class S2DaoTestCase extends S2TestCase {
             beanMetaDataFactory = impl;
         }
         return beanMetaDataFactory;
+    }
+
+    protected Method getSingleDaoMethod(Class daoClass, String methodName) {
+        MethodDesc[] methodDesc = BeanDescFactory.getBeanDesc(daoClass).getMethodDescs(methodName);
+        if (methodDesc.length >= 2){
+            throw new AssertionError(methodName + "is overloaded.");
+        }
+        return methodDesc[0].getMethod();
     }
 
     protected Dbms getDbms() {

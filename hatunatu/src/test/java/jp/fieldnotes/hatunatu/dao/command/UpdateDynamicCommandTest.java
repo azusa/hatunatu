@@ -21,10 +21,6 @@ import org.seasar.extension.unit.S2TestCase;
 
 public class UpdateDynamicCommandTest extends S2TestCase {
 
-    public UpdateDynamicCommandTest(String arg0) {
-        super(arg0);
-    }
-
     public void testExecuteTx() throws Exception {
         UpdateDynamicCommand cmd = new UpdateDynamicCommand(getDataSource(),
                 BasicStatementFactory.INSTANCE);
@@ -41,10 +37,6 @@ public class UpdateDynamicCommandTest extends S2TestCase {
 
     public void setUp() {
         include("j2ee.dicon");
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(UpdateDynamicCommandTest.class);
     }
 
 }

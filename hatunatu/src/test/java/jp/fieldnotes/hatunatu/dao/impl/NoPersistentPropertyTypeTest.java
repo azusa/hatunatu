@@ -27,8 +27,6 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 /**
  * https://www.seasar.org/issues/browse/DAO-20
- * 
- * @author manhole
  */
 public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
 
@@ -40,7 +38,7 @@ public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
     public void testNoPersistentPropertyTypeException1() throws Exception {
         try {
             final DaoMetaDataImpl dmd = createDaoMetaData(Foo1Dao.class);
-            final SqlCommand command = dmd.getSqlCommand("findAll");
+            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Foo1Dao.class,"findAll"));
             command.execute(null);
             fail();
         } catch (MethodSetupFailureRuntimeException e) {
@@ -56,7 +54,7 @@ public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
         final DaoMetaDataImpl dmd = createDaoMetaData(Foo2Dao.class);
 
         // ## Act ##
-        final SqlCommand command = dmd.getSqlCommand("findAll");
+        final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Foo2Dao.class,"findAll"));
 
         // ## Assert ##
         final List result = (List) command.execute(null);

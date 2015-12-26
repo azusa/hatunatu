@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.seasar.framework.util.ClassUtil;
 
-/**
- * @author manhole
- * @author jflute
- */
 public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     /*

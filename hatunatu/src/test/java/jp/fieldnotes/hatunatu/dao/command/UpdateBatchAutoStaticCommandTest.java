@@ -29,7 +29,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
 
     public void testExecuteTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("updateBatch");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch"));
         Employee emp = new Employee();
         emp.setEmpno(7499);
         emp.setEname("hoge");
@@ -43,7 +43,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(2), count);
 
         // update failure test
-        SqlCommand cmd2 = dmd.getSqlCommand("updateBatch2");
+        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch2"));
         Employee emp3 = new Employee();
         emp3.setEmpno(7782);
         emp3.setEname("hoge");
@@ -62,7 +62,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
     public void testExecuteByListTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
         {
-            SqlCommand cmd = dmd.getSqlCommand("updateBatchByList");
+            SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatchByList"));
             final List list = new ArrayList();
             {
                 Employee emp = new Employee();
@@ -83,7 +83,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
         }
 
         {
-            SqlCommand cmd = dmd.getSqlCommand("getEmployee");
+            SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
             {
                 final Employee employee = (Employee) cmd
                         .execute(new Object[] { new Integer(7499) });

@@ -81,7 +81,7 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
             DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
             assertNotNull("1", dmd);
             SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                    .getSqlCommand("fetchEmployeesBySearchCondition");
+                    .getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"fetchEmployeesBySearchCondition"));
             assertNotNull("2", cmd);
             System.out.println(cmd.toString());
             final List<Employee> ret = new ArrayList<Employee>();

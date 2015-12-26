@@ -37,7 +37,7 @@ public class ResultSetToBeanTest extends S2DaoTestCase {
         // ## Arrange ##
         final DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
         {
-            final SqlCommand insertCommand = dmd.getSqlCommand("insert");
+            final SqlCommand insertCommand = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"insert"));
             Employee bean = new Employee();
             bean.setDepartmentId(new Integer(123));
             bean.setEmployeeId(new Integer(7650));
@@ -48,12 +48,12 @@ public class ResultSetToBeanTest extends S2DaoTestCase {
         // ## Act ##
         // ## Assert ##
         {
-            final SqlCommand command = dmd.getSqlCommand("find1");
+            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"find1"));
             Employee bean = (Employee) command.execute(null);
             assertEquals("foo", bean.getEmployeeName());
         }
         {
-            final SqlCommand command = dmd.getSqlCommand("find2");
+            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"find2"));
             Employee bean = (Employee) command.execute(null);
             assertEquals("foo", bean.getEmployeeName());
         }

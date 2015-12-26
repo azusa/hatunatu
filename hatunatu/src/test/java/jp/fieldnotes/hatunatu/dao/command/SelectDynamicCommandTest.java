@@ -36,10 +36,6 @@ import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 
 public class SelectDynamicCommandTest extends S2DaoTestCase {
 
-    public SelectDynamicCommandTest(String arg0) {
-        super(arg0);
-    }
-
     public void testExecute() throws Exception {
         SelectDynamicCommand cmd = new SelectDynamicCommand(getDataSource(),
                 BasicStatementFactory.INSTANCE,
@@ -63,7 +59,7 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
 
     public void testSelectDynamic() throws Exception {
         DaoMetaData dmd = createDaoMetaData(DynamicDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("getEmployeesBySearchCondition");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(DynamicDao.class, "getEmployeesBySearchCondition"));
         assertTrue(cmd instanceof SelectDynamicCommand);
         Employee cond = new Employee();
         cond.setJob("CLERK");
@@ -73,7 +69,7 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         assertEquals(1, result.size());
         assertTrue(result.get(0) instanceof Employee);
 
-        cmd = dmd.getSqlCommand("getEmployeeBySearchCondition");
+        cmd = dmd.getSqlCommand(getSingleDaoMethod(DynamicDao.class, "getEmployeeBySearchCondition"));
         assertTrue(cmd instanceof SelectDynamicCommand);
         Object obj = cmd.execute(new Object[] { cond });
         assertTrue(obj instanceof Employee);
@@ -93,7 +89,7 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
 
     public void testSelectByDtoTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(Emp3Dao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(Emp3Dao.class,"insert"));
         Object[] param = new Object[1];
         for (int i = 0; i < 3; i++) {
             Emp3 e = new Emp3();
@@ -104,14 +100,14 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
             cmd.execute(param);
         }
 
-        cmd = dmd.getSqlCommand("selectByDto");
+        cmd = dmd.getSqlCommand(getSingleDaoMethod(Emp3Dao.class,"selectByDto"));
         assertTrue(cmd instanceof SelectDynamicCommand);
         Emp3Dto dto = new Emp3Dto();
         dto.employeeName = "NAME1";
         List l = (List) cmd.execute(new Object[] { dto });
         assertEquals(1, l.size());
 
-        cmd = dmd.getSqlCommand("selectByDto2");
+        cmd = dmd.getSqlCommand(getSingleDaoMethod(Emp3Dao.class, "selectByDto2"));
         assertTrue(cmd instanceof SelectDynamicCommand);
         Emp3ExDto ex = new Emp3ExDto();
         ex.department_Id = new Integer(200);
@@ -195,8 +191,5 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         include("j2ee.dicon");
     }
 
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(SelectDynamicCommandTest.class);
-    }
 
 }

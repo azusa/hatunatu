@@ -23,19 +23,7 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author taichi
- * @author azusa
- */
 public class PkOnlyTableTest extends S2DaoTestCase {
-
-    public PkOnlyTableTest() {
-        super();
-    }
-
-    public PkOnlyTableTest(String name) {
-        super(name);
-    }
 
     public void setUp() {
         include("j2ee.dicon");
@@ -46,7 +34,7 @@ public class PkOnlyTableTest extends S2DaoTestCase {
      */
     public void testInsertTx() throws Exception {
         DaoMetaData dmd = createDaoMetaData(PkOnlyTableDao.class);
-        SqlCommand cmd = dmd.getSqlCommand("insert");
+        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(PkOnlyTableDao.class,"insert"));
         PkOnlyTable data = new PkOnlyTable();
         data.setAaa("value");
         Integer i = (Integer) cmd.execute(new Object[] { data });
