@@ -15,8 +15,8 @@
  */
 package examples.dao;
 
-import org.seasar.dao.annotation.tiger.Bean;
-import org.seasar.dao.annotation.tiger.S2Dao;
+
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 
 import java.io.Serializable;
 

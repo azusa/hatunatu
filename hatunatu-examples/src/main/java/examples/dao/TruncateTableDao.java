@@ -15,8 +15,8 @@
  */
 package examples.dao;
 
-import org.seasar.dao.annotation.tiger.Query;
-import org.seasar.dao.annotation.tiger.Sql;
+
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 /**
  * @author azusa

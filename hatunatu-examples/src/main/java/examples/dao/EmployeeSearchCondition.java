@@ -15,7 +15,8 @@
  */
 package examples.dao;
 
-import org.seasar.dao.annotation.tiger.Column;
+
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 
 public class EmployeeSearchCondition {
 

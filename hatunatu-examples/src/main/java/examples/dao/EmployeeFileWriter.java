@@ -15,12 +15,13 @@
  */
 package examples.dao;
 
+import jp.fieldnotes.hatunatu.dao.FetchHandler;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.seasar.dao.FetchHandler;
 
 /**
  * @author jundu

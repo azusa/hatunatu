@@ -16,9 +16,9 @@
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
 import jp.fieldnotes.hatunatu.seasar.exception.NoRowsUpdatedRuntimeException;
-import org.seasar.dao.annotation.tiger.Arguments;
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import org.seasar.extension.unit.S2TestCase;
 
 /**

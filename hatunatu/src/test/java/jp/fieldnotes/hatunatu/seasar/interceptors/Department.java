@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import org.seasar.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 
 import java.io.Serializable;
 

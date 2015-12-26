@@ -7,26 +7,26 @@
 	<include path="jdbc-extension.dicon"/>
 	<component 
 		name="resultSetFactory"
-		class="org.seasar.dao.pager.PagerResultSetFactoryWrapper">
+		class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
 		</arg>
 		<property name="useScrollCursor">true</property>
 	</component>
 	<!--
 	<component 
 		name="resultSetFactory"
-		class="org.seasar.dao.pager.PagerResultSetFactoryLimitOffsetWrapper">
+		class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryLimitOffsetWrapper">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
 		</arg>
 		<arg>dataSource</arg>
 	</component>
 	-->
 
-	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.dao.pager.PagerStatementFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.pager.PagerStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!--
@@ -35,18 +35,18 @@
 	</component>
 
 	<!--
-	<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<! - -
 		<property name="maxRows">100</property>
 		- - >
 	</component>
-	<component class="org.seasar.dao.impl.OracleResultSetFactory"/>
-	<component class="org.seasar.dao.impl.BooleanToIntStatementFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BooleanToIntStatementFactory"/>
 	-->
 
 	<component name="xaDataSource"
@@ -56,7 +56,7 @@
 		</property>
 		<property name="URL">
 			"jdbc:derby:" 
-				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@org.seasar.dao.impl.ClobTest@class).getCanonicalPath() 
+				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@jp.fieldnotes.hatunatu.dao.impl.ClobTest@class).getCanonicalPath()
 				+ "/data-derby"
 		</property>
 		<property name="user">"seasar"</property>

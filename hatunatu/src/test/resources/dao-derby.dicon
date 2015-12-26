@@ -3,24 +3,24 @@
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="dao">
 	<include path="jdbc-derby.dicon"/>
-	<component class="org.seasar.dao.impl.AnnotationReaderFactoryImpl"/>
-	<component class="org.seasar.dao.impl.DaoMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl"/>
 	<component
 		name="interceptor"
 		class="jp.fieldnotes.hatunatu.seasar.interceptors.S2DaoInterceptor">
 	</component>
-	<component class="org.seasar.dao.impl.ValueTypeFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl"/>
 	<component name="stringClobType"> 
-		@org.seasar.dao.types.bytes.ValueTypes@CLOB
+		@jp.fieldnotes.hatunatu.dao.types.bytes.ValueTypes@CLOB
 	</component>
-	<component class="org.seasar.dao.impl.BeanMetaDataFactoryImpl"/>
-	<component class="org.seasar.dao.impl.DaoNamingConventionImpl"/>
-	<component class="org.seasar.dao.impl.NullBeanEnhancer"/>
-	<component class="org.seasar.dao.impl.ResultSetHandlerFactoryImpl"/>
-	<component class="org.seasar.dao.impl.DtoMetaDataFactoryImpl"/>
-	<component class="org.seasar.dao.impl.PropertyTypeFactoryBuilderImpl"/>
-	<component class="org.seasar.dao.impl.RelationPropertyTypeFactoryBuilderImpl"/>
-	<component class="org.seasar.dao.impl.DefaultTableNaming"/>
-	<component class="org.seasar.dao.impl.DefaultColumnNaming"/>
-	<component class="org.seasar.dao.impl.ProcedureMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DaoNamingConventionImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.NullBeanEnhancer"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ResultSetHandlerFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DtoMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.PropertyTypeFactoryBuilderImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.RelationPropertyTypeFactoryBuilderImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DefaultTableNaming"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DefaultColumnNaming"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl"/>
 </components>

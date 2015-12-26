@@ -19,9 +19,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import org.seasar.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.api.ValueType;
-import org.seasar.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
 /**
  * 単独のオブジェクトを返す {@link ResultSetHandler}です。

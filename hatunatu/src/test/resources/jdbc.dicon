@@ -7,15 +7,15 @@
 	<!-- 全DBMS対応のページング処理用設定 -->
 	<component 
 		name="resultSetFactory"
-		class="org.seasar.dao.pager.PagerResultSetFactoryWrapper">
+		class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
 		</arg>
 		<property name="useScrollCursor">true</property>
 	</component>
-	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.dao.pager.PagerStatementFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.pager.PagerStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!--
@@ -25,11 +25,11 @@
 
 	<!-- LIMIT OFFSET句を使ったSQL書き換えによるページング処理用設定 -->
 	<!--
-	<component name="pagingSqlRewriter" class="org.seasar.dao.pager.LimitOffsetPagingSqlRewriter"/>
-	<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
+	<component name="pagingSqlRewriter" class="jp.fieldnotes.hatunatu.dao.pager.LimitOffsetPagingSqlRewriter"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!- -
@@ -40,11 +40,11 @@
 
 	<!-- ORACLE ROWNUM句を使ったSQL書き換えによるページング処理用設定 -->
 	<!--
-	<component name="pagingSqlRewriter" class="org.seasar.dao.pager.OracleRownumPagingSqlRewriter"/>
-	<component class="org.seasar.dao.impl.BasicResultSetFactory"/>
-	<component class="org.seasar.dao.impl.ConfigurableStatementFactory">
+	<component name="pagingSqlRewriter" class="jp.fieldnotes.hatunatu.dao.pager.OracleRownumPagingSqlRewriter"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
 		<arg>
-			<component class="org.seasar.dao.impl.BasicStatementFactory"/>
+			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory"/>
 		</arg>
 		<property name="fetchSize">100</property>
 		<!- -
@@ -54,8 +54,8 @@
 	-->
 	
 	<!--
-	<component class="org.seasar.dao.impl.OracleResultSetFactory"/>
-	<component class="org.seasar.dao.impl.BooleanToIntStatementFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BooleanToIntStatementFactory"/>
 	-->
 
 	<component name="xaDataSource"
@@ -68,7 +68,7 @@
 			"jdbc:hsqldb:hsql://localhost:9001"
 			-->
 			"jdbc:hsqldb:file:"
-				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@org.seasar.dao.impl.ClobTest@class).getCanonicalPath() 
+				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@jp.fieldnotes.hatunatu.dao.impl.ClobTest@class).getCanonicalPath()
 				+ "/data-hsqldb/demo"
 		</property>
 		<property name="user">"sa"</property>

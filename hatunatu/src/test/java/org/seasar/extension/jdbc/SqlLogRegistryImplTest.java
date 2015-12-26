@@ -15,7 +15,8 @@
  */
 package org.seasar.extension.jdbc;
 
-import org.seasar.dao.impl.SqlLogRegistryImpl;
+import jp.fieldnotes.hatunatu.dao.impl.SqlLogImpl;
+import jp.fieldnotes.hatunatu.dao.impl.SqlLogRegistryImpl;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.container.servlet.S2ContainerDestroyer;
 
@@ -33,16 +34,16 @@ public class SqlLogRegistryImplTest extends S2TestCase {
 
     private Class[] bindArgTypes = new Class[] { Integer.class };
 
-    private SqlLog sqlLog = new org.seasar.dao.impl.SqlLogImpl(rawSql, completeSql, bindArgs,
+    private SqlLog sqlLog = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
 
-    private SqlLog sqlLog2 = new org.seasar.dao.impl.SqlLogImpl(rawSql, completeSql, bindArgs,
+    private SqlLog sqlLog2 = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
 
-    private SqlLog sqlLog3 = new org.seasar.dao.impl.SqlLogImpl(rawSql, completeSql, bindArgs,
+    private SqlLog sqlLog3 = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
 
-    private SqlLog sqlLog4 = new org.seasar.dao.impl.SqlLogImpl(rawSql, completeSql, bindArgs,
+    private SqlLog sqlLog4 = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
 
     /**
@@ -50,7 +51,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
      * @throws Exception
      */
     public void testGet() throws Exception {
-        org.seasar.dao.impl.SqlLogRegistryImpl registry = new org.seasar.dao.impl.SqlLogRegistryImpl(3);
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);
         registry.add(sqlLog2);
         assertSame(sqlLog, registry.get(0));
@@ -62,7 +63,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
      * @throws Exception
      */
     public void testGetLast() throws Exception {
-        SqlLogRegistryImpl registry = new org.seasar.dao.impl.SqlLogRegistryImpl(3);
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         assertNull(registry.getLast());
         registry.add(sqlLog);
         assertSame(sqlLog, registry.getLast());
@@ -75,7 +76,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
      * @throws Exception
      */
     public void testGetSize() throws Exception {
-        org.seasar.dao.impl.SqlLogRegistryImpl registry = new org.seasar.dao.impl.SqlLogRegistryImpl(2);
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(2);
         registry.add(sqlLog);
         registry.add(sqlLog2);
         registry.add(sqlLog3);
@@ -90,7 +91,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
      * @throws Exception
      */
     public void testClear() throws Exception {
-        org.seasar.dao.impl.SqlLogRegistryImpl registry = new org.seasar.dao.impl.SqlLogRegistryImpl(3);
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);
         registry.clear();
         assertTrue(registry.isEmpty());
@@ -101,7 +102,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
      * @throws Exception
      */
     public void testClearWithLocator() throws Exception {
-        org.seasar.dao.impl.SqlLogRegistryImpl registry = new org.seasar.dao.impl.SqlLogRegistryImpl(3);
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);
         SqlLogRegistryLocator.setInstance(registry);
         S2ContainerDestroyer.destroy();

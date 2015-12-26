@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components namespace="dao">
+	<include path="j2ee.dicon"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao" >
+		<aspect>interceptor</aspect>
+	</component>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl">
+		<property name="useDaoClassForLog">true</property>
+	</component>
+	<component
+		name="interceptor"
+		class="jp.fieldnotes.hatunatu.seasar.interceptors.S2DaoInterceptor">
+	</component>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl"/>
+	<component name="stringClobType"> 
+		@jp.fieldnotes.hatunatu.dao.types.bytes.ValueTypes@CLOB
+	</component>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DaoNamingConventionImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.NullBeanEnhancer"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ResultSetHandlerFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DtoMetaDataFactoryImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.PropertyTypeFactoryBuilderImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.RelationPropertyTypeFactoryBuilderImpl"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DefaultTableNaming"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.DefaultColumnNaming"/>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl"/>
+</components>

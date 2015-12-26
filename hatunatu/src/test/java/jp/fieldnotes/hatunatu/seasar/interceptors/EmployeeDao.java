@@ -15,9 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import org.seasar.dao.annotation.tiger.Arguments;
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 import java.util.List;
 import java.util.Map;
