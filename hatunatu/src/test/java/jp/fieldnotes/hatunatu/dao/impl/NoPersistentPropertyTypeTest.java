@@ -21,7 +21,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
@@ -65,17 +64,15 @@ public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=FooDto.class)
     public static interface Foo1Dao {
 
-        List findAll();
+        List<FooDto> findAll();
     }
 
-    @S2Dao(bean=FooDto.class)
     public static interface Foo2Dao {
 
         @Sql("SELECT * FROM EMP")
-        List findAll();
+        List<FooDto> findAll();
     }
 
     @Bean(table = "WRONG_TABLE_NAME")

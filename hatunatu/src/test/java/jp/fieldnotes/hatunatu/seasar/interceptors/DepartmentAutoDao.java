@@ -15,9 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
-@S2Dao(bean= Department.class)
 public interface DepartmentAutoDao {
 
     public int update(Department department);

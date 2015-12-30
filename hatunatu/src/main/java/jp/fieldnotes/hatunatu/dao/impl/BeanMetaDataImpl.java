@@ -72,6 +72,8 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
 
     private RelationPropertyTypeFactory relationPropertyTypeFactory;
 
+    private boolean relationToTable;
+
     public BeanMetaDataImpl() {
     }
 
@@ -426,6 +428,20 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
 
     public void setTableNaming(TableNaming tableNaming) {
         this.tableNaming = tableNaming;
+    }
+
+    @Override
+    public boolean hasRelationToTable(){
+        return relationToTable;
+    }
+
+    /**
+     * Set whether {@link BeanMetaData} has relation to table.
+     *
+     * @param relationToTable {@code true} when has relation to table
+     */
+    public void setRelationToTable(boolean relationToTable){
+        this.relationToTable = relationToTable;
     }
 
     public void setRelationPropertyTypeFactory(

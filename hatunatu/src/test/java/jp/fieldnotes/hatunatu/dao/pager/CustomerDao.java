@@ -16,9 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
-@S2Dao(bean=Customer.class)
 public interface CustomerDao {
 
     @Query("ORDER BY PRIORITY")

@@ -23,7 +23,6 @@ import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
@@ -75,16 +74,15 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         assertTrue(obj instanceof Employee);
     }
 
-    @S2Dao(bean=Employee.class)
     public interface DynamicDao {
 
-        List getEmployeesBySearchCondition(Serializable dto);
+        List<Employee> getEmployeesBySearchCondition(Employee dto);
 
-        Object getEmployeeBySearchCondition(Serializable dto);
+        Employee getEmployeeBySearchCondition(Employee dto);
 
-        int update(Object dto);
+        int update(Employee dto);
 
-        List getEmployeeByDto(String s);
+        List<Employee> getEmployeeByDto(String s);
     }
 
     public void testSelectByDtoTx() throws Exception {
@@ -175,14 +173,13 @@ public class SelectDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao( bean = Emp3.class)
     public interface Emp3Dao {
 
-        List selectByDto(Emp3Dto dto);
+        List<Emp3> selectByDto(Emp3Dto dto);
 
-        List selectByDto2(Emp3ExDto dto);
+        List<Emp3> selectByDto2(Emp3ExDto dto);
 
-        List select(Emp3 dto);
+        List<Emp3> select(Emp3 dto);
 
         void insert(Emp3 emp3);
     }

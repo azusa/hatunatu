@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.seasar.framework.util.ClassUtil;
 
@@ -71,7 +70,6 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
         assertEquals(expectedEmp.getSal(), actualEmp.getSal());
     }
 
-    @S2Dao( bean= EmpByReflection.class)
     public static interface EmpByReflectionDao {
 
         @Arguments({"empno"})

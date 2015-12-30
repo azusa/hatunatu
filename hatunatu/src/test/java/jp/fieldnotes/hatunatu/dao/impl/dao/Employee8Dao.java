@@ -16,18 +16,16 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
 import java.util.List;
 
-@S2Dao(bean = Employee.class)
 public interface Employee8Dao {
 
     @Query("/*BEGIN*/ WHERE "
             + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
             + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
             + " /*END*/")
-    public List getEmployees(Employee employee);
+    public List<Employee> getEmployees(Employee employee);
 
 }

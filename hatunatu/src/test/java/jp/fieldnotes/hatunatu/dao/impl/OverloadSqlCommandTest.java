@@ -19,7 +19,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
@@ -45,12 +44,11 @@ public class OverloadSqlCommandTest extends S2DaoTestCase {
         command.execute(new Object[] { 7369 });
         assertTrue(true);
     }
-    @S2Dao(bean= Employee.class)
     public interface MyDao {
 
-        List getEmployees(String empName);
+        List<Employee> getEmployees(String empName);
 
-        List getEmployees(int empNo);
+        List<Employee> getEmployees(int empNo);
 
     }
 }

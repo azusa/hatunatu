@@ -26,6 +26,10 @@ public interface BeanAnnotationReader {
 
     String getColumnAnnotation(PropertyDesc pd);
 
+    /**
+     * Get the value of {@link jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean}
+     * @return the null value when Bean does not have {@link jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean} annotation.
+     */
     String getTableAnnotation();
 
     String getVersionNoPropertyName();

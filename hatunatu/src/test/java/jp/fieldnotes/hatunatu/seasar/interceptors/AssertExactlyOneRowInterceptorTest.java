@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.seasar.interceptors;
 
 import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -57,7 +56,6 @@ public class AssertExactlyOneRowInterceptorTest extends S2TestCase {
         }
     }
 
-    @S2Dao(bean= Employee.class)
     public static interface EmployeeDao {
 
         @Arguments({"ename"})

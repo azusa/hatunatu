@@ -20,9 +20,7 @@ package jp.fieldnotes.hatunatu.api;
 import java.util.Set;
 
 /**
- * @author higa
- * @author manhole
- * @author jflute
+ * Meta data of Bean (related to table)
  */
 public interface BeanMetaData extends DtoMetaData {
 
@@ -69,5 +67,7 @@ public interface BeanMetaData extends DtoMetaData {
     public String getAutoSelectList();
 
     public Set getModifiedPropertyNames(Object bean);
+
+    public boolean hasRelationToTable();
 
 }

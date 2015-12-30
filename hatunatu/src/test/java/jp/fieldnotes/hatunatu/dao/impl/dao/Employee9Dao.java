@@ -16,22 +16,17 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee9;
 
-/**
- * @author manhole
- */
-@S2Dao(bean = Employee9.class)
 public interface Employee9Dao {
 
     public int insert(Employee9 employee);
 
     public int update(Employee9 employee);
 
-    public int findBy(Employee9 employee);
+    public Employee9 findBy(Employee9 employee);
 
     @Arguments("eName")
-    public int findByEname(String ename);
+    public Employee9 findByEname(String ename);
 
 }

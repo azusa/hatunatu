@@ -15,10 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
-@S2Dao(bean = Employee.class)
 public interface Employee8Manager {
 
     public void terminate(Employee employee);

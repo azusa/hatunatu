@@ -17,13 +17,9 @@ package jp.fieldnotes.hatunatu.dao.issue;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.seasar.framework.util.ClassUtil;
 
-/**
- * @author manhole
- */
 public class Jira101Test extends S2DaoTestCase {
 
     private Jira101Dao dao;
@@ -48,7 +44,6 @@ public class Jira101Test extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=Jira101Entity.class)
     public static interface Jira101Dao {
         @Arguments("FOO_ID")
         Jira101Entity findById(int id);

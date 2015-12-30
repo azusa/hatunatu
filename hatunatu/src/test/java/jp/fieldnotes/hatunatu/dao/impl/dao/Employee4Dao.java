@@ -16,10 +16,8 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee4;
 
-@S2Dao(bean = Employee4.class)
 public interface Employee4Dao {
 
     @Arguments("empno")

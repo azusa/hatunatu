@@ -15,23 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee5;
 
-@S2Dao(bean = Employee5.class)
 public interface Employee7Dao {
 
-    /**
-     * @return
-     */
     @Sql("SELECT COUNT(*) FROM emp")
     public int getCount();
 
-    /**
-     * @param empno
-     * @return
-     */
     @Sql("DELETE FROM emp WHERE empno=?")
     public int deleteEmployee(int empno);
 }

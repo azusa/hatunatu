@@ -18,7 +18,7 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import org.apache.poi.hssf.record.formula.functions.Int;
 import org.seasar.extension.unit.S2TestCase;
 
 /**
@@ -35,19 +35,22 @@ public class ReturnsArrayDaoTest extends S2TestCase {
         include("ReturnsArrayDaoTest.dicon");
     }
 
-    public void test1() throws Exception {
-        final List list = employeeDao.getAllEmployeesAsList();
+    public void testReturnArray() throws Exception {
         final Employee[] array = employeeDao.getAllEmployeesAsArray();
-        assertEquals(list.size(), array.length);
-        assertEquals(true, 0 < array.length);
+        assertEquals(Integer.toString(array.length), true, array.length > 0);
     }
 
-    @S2Dao(bean= EmployeeImpl.class)
+    public void testReturnList() throws Exception {
+        final List list = employeeDao.getAllEmployeesAsList();
+        assertEquals(Integer.toString(list.size()), true, list.size() > 0);
+    }
+
+
     public static interface EmployeeDao {
 
-        Employee[] getAllEmployeesAsArray();
+        EmployeeImpl[] getAllEmployeesAsArray();
 
-        List getAllEmployeesAsList();
+        List<EmployeeImpl> getAllEmployeesAsList();
     }
 
     public static interface Employee {

@@ -19,7 +19,6 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.DepartmentAutoDao;
@@ -148,7 +147,6 @@ public class UpdateAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=CharTable.class)
     public interface CharTableDao {
 
         void insert(CharTable data);

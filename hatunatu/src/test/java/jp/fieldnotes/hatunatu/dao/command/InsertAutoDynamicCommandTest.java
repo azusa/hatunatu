@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee9;
 import jp.fieldnotes.hatunatu.dao.impl.bean.IdentityTable;
@@ -200,7 +199,6 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals(sql, true, sql.indexOf("eNaMe") > -1);
     }
 
-    @S2Dao(bean=SeqTable1.class)
     public static interface SeqTable1Dao {
 
         public void insert(SeqTable1 seqTable);
@@ -233,7 +231,6 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=SeqTable2.class)
     public static interface SeqTable2Dao {
 
         public Class BEAN = SeqTable2.class;
@@ -268,7 +265,6 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=CompositePk.class)
     public static interface CompositePkDao {
 
         public void insert(CompositePk compositePk);
@@ -311,7 +307,6 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=Emp.class)
     public static interface EmpDao {
 
         public void insert(Emp employee);
@@ -343,7 +338,6 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
 
     }
 
-    @S2Dao(bean=FooDto.class)
     public static interface FooDtoDao {
 
         public void insert(FooDto employee);

@@ -17,18 +17,16 @@ package jp.fieldnotes.hatunatu.seasar.interceptors;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
 import java.util.List;
 
-@S2Dao(bean=Employee.class)
 public interface EmployeeAutoDao {
 
     @Arguments("empno")
     public Employee getEmployee(int empno);
 
     @Query("sal BETWEEN ? AND ?")
-    public List getEmployeesBySal(float minSal, float maxSal);
+    public List<Employee> getEmployeesBySal(float minSal, float maxSal);
 
     public int insert(Employee employee);
 

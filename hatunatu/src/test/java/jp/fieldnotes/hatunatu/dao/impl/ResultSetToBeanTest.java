@@ -18,7 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
@@ -59,7 +58,6 @@ public class ResultSetToBeanTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean= Employee.class)
     public static interface EmployeeDao {
 
         @Sql(value = "SELECT employee_name FROM EMP3")

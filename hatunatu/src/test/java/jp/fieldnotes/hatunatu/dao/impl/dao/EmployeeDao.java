@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.SqlFile;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
@@ -27,7 +26,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import java.util.List;
 import java.util.Map;
 
-@S2Dao(bean = Employee.class)
 public interface EmployeeDao {
 
     public List<Employee> getAllEmployees();

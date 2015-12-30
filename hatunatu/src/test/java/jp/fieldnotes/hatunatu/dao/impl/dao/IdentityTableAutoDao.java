@@ -15,10 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.IdentityTable;
 
-@S2Dao(bean=IdentityTable.class)
 public interface IdentityTableAutoDao {
 
     public void insert(IdentityTable identityTable);

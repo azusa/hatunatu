@@ -18,7 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.command.*;
-import jp.fieldnotes.hatunatu.dao.dbms.Oracle;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalAnnotationRuntimeException;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
@@ -30,7 +29,10 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Employee4;
 import jp.fieldnotes.hatunatu.dao.impl.condition.EmployeeSearchCondition;
 import jp.fieldnotes.hatunatu.dao.impl.dao.*;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
-import jp.fieldnotes.hatunatu.dao.resultset.*;
+import jp.fieldnotes.hatunatu.dao.resultset.BeanArrayMetaDataResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.resultset.BeanListMetaDataResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
@@ -41,7 +43,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class DaoMetaDataImplTest extends S2DaoTestCase {
 
@@ -60,6 +61,7 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
                 .getResultSetHandler();
         assertEquals("3", true, Employee.class.isAssignableFrom(
                 rsh.getBeanMetaData().getBeanClass()));
+        assertNotNull("4:can get from emp.", cmd.execute(new Object[0]));
     }
 
     public void testSelectBeanArray() throws Exception {
@@ -70,7 +72,7 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         BeanArrayMetaDataResultSetHandler rsh = (BeanArrayMetaDataResultSetHandler) cmd
                 .getResultSetHandler();
         assertEquals("2", true, Employee.class.isAssignableFrom(
-                rsh.getBeanMetaData().getBeanClass()));
+                rsh.getDtoMetaData().getBeanClass()));
     }
 
     public void testSelectMapArray() throws Exception {
@@ -87,9 +89,9 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
                 .getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"findAll"));
         assertNotNull("1", cmd);
-        DtoArrayMetaDataResultSetHandler rsh = (DtoArrayMetaDataResultSetHandler) cmd
+        BeanArrayMetaDataResultSetHandler rsh = (BeanArrayMetaDataResultSetHandler) cmd
                 .getResultSetHandler();
-        assertEquals(EmployeeDto.class, rsh.getDtoMetaData().getBeanClass());
+        assertEquals(EmployeeDto.class, rsh.getBeanMetaData().getBeanClass());
     }
 
     public void testPrefixTest() {
@@ -239,143 +241,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         assertNotNull("1", cmd);
     }
 
-    public void testCreateFindCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.createFindCommand(null);
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-    }
-
-    public void testCreateFindCommand2() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.createFindCommand(null);
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-    }
-
-    public void testCreateFindCommand3() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindCommand("select * from emp");
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-    }
-
-    public void testCreateFindCommand4() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindCommand("order by empno");
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-    }
-
-    public void testCreateFindCommand5() throws Exception {
-        DaoMetaDataImpl dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        dmd.setDbms(new Oracle());
-        SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                .createFindCommand("empno = ?");
-        System.out.println(cmd.getSql());
-        assertTrue("1", cmd.getSql().endsWith(" AND empno = ?"));
-    }
-
-    public void testCreateFindCommandByDto() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.createFindCommand(EmployeeDto.class, null);
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-        assertTrue("2", employees.get(0) instanceof EmployeeDto);
-    }
-
-    public void testCreateFindCommand2ByDto() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.createFindCommand(EmployeeDto.class, null);
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-        assertTrue("2", employees.get(0) instanceof EmployeeDto);
-    }
-
-    public void testCreateFindCommand3ByDto() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindCommand(EmployeeDto.class,
-                "select * from emp");
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-        assertTrue("2", employees.get(0) instanceof EmployeeDto);
-    }
-
-    public void testCreateFindCommand4ByDto() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindCommand(EmployeeDto.class,
-                "order by empno");
-        List employees = (List) cmd.execute(null);
-        System.out.println(employees);
-        assertTrue("1", employees.size() > 0);
-        assertTrue("2", employees.get(0) instanceof EmployeeDto);
-    }
-
-    public void testCreateFindBeanCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindBeanCommand("empno = ?");
-        Object employee = cmd.execute(new Object[] { new Integer(7788) });
-        System.out.println(employee);
-        assertNotNull("1", employee);
-    }
-
-
-
-    public void testCreateFindBeanCommandByDto() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindBeanCommand(EmployeeDto.class,
-                "empno = ?");
-        Object employee = cmd.execute(new Object[] { new Integer(7788) });
-        System.out.println(employee);
-        assertNotNull("1", employee);
-        assertTrue("2", employee instanceof EmployeeDto);
-    }
-
-    public void testCreateFindMapCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindMapCommand("empno = ?");
-        Object employee = cmd.execute(new Object[] { new Integer(7788) });
-        System.out.println(employee);
-        assertNotNull("1", employee);
-        assertTrue("2", employee instanceof Map);
-    }
-
-    public void testCreateFindMapListCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData((EmployeeAutoDao.class));
-
-        SqlCommand cmd = dmd.createFindMapListCommand("empno = ?");
-        Object employee = cmd.execute(new Object[] { new Integer(7788) });
-        System.out.println(employee);
-        assertNotNull("1", employee);
-        assertTrue("2", employee instanceof List);
-        assertTrue("3", ((List) employee).get(0) instanceof Map);
-    }
-
-    public void testCreateFindMapArrayCommand() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-
-        SqlCommand cmd = dmd.createFindMapArrayCommand("empno = ?");
-        Object employee = cmd.execute(new Object[] { new Integer(7788) });
-        System.out.println(employee);
-        assertNotNull("1", employee);
-        assertTrue("2", employee instanceof Map[]);
-    }
-
     public void testSelectAutoByQuery() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
         SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployeesBySal"));
@@ -406,6 +271,7 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
                 .getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"getCount"));
         Object obj = cmd.execute(new Object[] {});
+        System.out.println(obj.getClass());
         assertTrue("1", obj instanceof Integer);
         int ret = ((Integer) obj).intValue();
         assertEquals("2", 14, ret);

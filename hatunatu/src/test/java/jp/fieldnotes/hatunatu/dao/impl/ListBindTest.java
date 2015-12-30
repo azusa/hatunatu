@@ -22,7 +22,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 /**
@@ -77,36 +76,23 @@ public class ListBindTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean=Employee.class)
     public static interface EmployeeDao {
 
 
         @Arguments({"empno"})
         public Employee findById(int empno);
 
-        public String findByIdList_ARGS = "empno";
-
-        public static String findByIdList_QUERY = "/*BEGIN*/ WHERE "
-                + "/*IF empno != null*/ empno IN /*empno*/('aaa', 'bbb')/*END*/"
-                + " /*END*/";
-
         @Arguments({"empno"})
         @Query( "/*BEGIN*/ WHERE "
                 + "/*IF empno != null*/ empno IN /*empno*/('aaa', 'bbb')/*END*/"
                 + " /*END*/")
-        public List findByIdList(List empnos);
-
-        public String findByIdArray_ARGS = "empno";
-
-        public static String findByIdArray_QUERY = "/*BEGIN*/ WHERE "
-                + "/*IF empno != null*/ empno IN /*empno*/('aaa')/*END*/"
-                + " /*END*/";
+        public List<Employee> findByIdList(List empnos);
 
         @Arguments("empno")
         @Query("/*BEGIN*/ WHERE "
                 + "/*IF empno != null*/ empno IN /*empno*/('aaa')/*END*/"
                 + " /*END*/")
-        public List findByIdArray(Integer[] empnos);
+        public List<Employee> findByIdArray(Integer[] empnos);
 
         public void insert(Employee employee);
 

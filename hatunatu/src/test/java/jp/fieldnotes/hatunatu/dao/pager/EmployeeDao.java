@@ -17,19 +17,12 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
 import java.util.List;
 
-/**
- * @author manhole
- */
-@S2Dao(bean=Employee.class)
 public interface EmployeeDao {
 
-    public Class BEAN = Employee.class;
-
     @Query("ORDER BY EMPNO")
-    public List getEmployees(PagerCondition condition);
+    public List<Employee> getEmployees(PagerCondition condition);
 
 }
