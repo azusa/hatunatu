@@ -232,7 +232,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void assertAnnotation(final Method method) {
-        if (isInsert(method.getName()) || isUpdate(method.getName())) {
+        if (isInsert(method.getName()) || isUpdate(method.getName()) || isDelete(method.getName())) {
             if (daoAnnotationReader.getQuery(method) != null) {
                 throw new IllegalAnnotationRuntimeException("Query");
             }
@@ -284,17 +284,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         } else if (ResourceUtil.isExist(standardPath)) {
             final String sql = readText(standardPath);
             setupMethodByManual(method, sql, beanMetaData);
-        } else if (isDelete(method.getName())) {
-            final String query = daoAnnotationReader.getQuery(method);
-            if (StringUtil.isNotBlank(query)) {
-                if (query.trim().toUpperCase().startsWith("WHERE")) {
-                    setupMethodByManual(method, "DELETE FROM "
-                            + beanMetaData.getTableName() + " " + query, beanMetaData);
-                } else {
-                    setupMethodByManual(method, "DELETE FROM "
-                            + beanMetaData.getTableName() + " WHERE " + query, beanMetaData);
-                }
-            }
         }
     }
 
