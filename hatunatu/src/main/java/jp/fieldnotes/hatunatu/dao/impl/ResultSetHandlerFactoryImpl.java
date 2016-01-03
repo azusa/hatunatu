@@ -68,15 +68,6 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
                     return createObjectResultSetHandler(clazz);
                 }
             }
-            if (Map.class.isAssignableFrom(clazz)) {
-                if (List.class.isAssignableFrom(method.getReturnType())) {
-                    return createMapListResultSetHandler();
-                } else if (method.getReturnType().isArray()) {
-                    return createMapArrayResultSetHandler();
-                } else {
-                    return createMapResultSetHandler();
-                }
-            }
             final DtoMetaData dtoMetaData = dtoMetaDataFactory
                     .getDtoMetaData(clazz);
             if (List.class.isAssignableFrom(method.getReturnType())) {
@@ -121,20 +112,6 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
                 createRowCreator());
     }
 
-    protected ResultSetHandler createMapListResultSetHandler() {
-        return new MapListResultSetHandler();
-    }
-
-    protected ResultSetHandler createMapResultSetHandler() {
-        if (restrictNotSingleResult) {
-            return new MapResultSetHandler.RestrictMapResultSetHandler();
-        }
-        return new MapResultSetHandler();
-    }
-
-    protected ResultSetHandler createMapArrayResultSetHandler() {
-        return new MapArrayResultSetHandler();
-    }
 
     protected ResultSetHandler createBeanListMetaDataResultSetHandler(
             final BeanMetaData beanMetaData) {

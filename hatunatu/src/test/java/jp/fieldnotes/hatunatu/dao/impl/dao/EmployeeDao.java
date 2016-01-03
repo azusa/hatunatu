@@ -38,8 +38,6 @@ public interface EmployeeDao {
     @Sql(value = "SELECT empno, ename, dname FROM emp, dept where emp.deptno = dept.deptno")
     public EmployeeDto[] findAll();
 
-    public Map[] getAllEmployeeMap();
-
     /**
      * @param empno
      * @return

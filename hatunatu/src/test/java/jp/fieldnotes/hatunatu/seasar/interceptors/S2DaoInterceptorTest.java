@@ -52,13 +52,6 @@ public class S2DaoInterceptorTest extends S2TestCase {
         assertEquals("RESEARCH", dto.getDname());
     }
 
-    public void testSelectMap() throws Exception {
-        Map[] ret = dao.getLabelValue();
-        assertTrue(ret.length > 0);
-        for (int i = 0; i < ret.length; i++) {
-            System.out.println(ret[i]);
-        }
-    }
 
     public void testSelectObject() throws Exception {
         int count = dao.getCount();

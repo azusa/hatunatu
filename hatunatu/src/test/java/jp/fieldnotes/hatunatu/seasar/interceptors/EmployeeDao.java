@@ -29,9 +29,6 @@ public interface EmployeeDao {
     @Arguments("empno")
     public EmployeeDto findEmployeeDto(int empno);
 
-    @Sql("select empno as value, ename as label from emp")
-    public Map[] getLabelValue();
-
     @Arguments("empno")
     public Employee getEmployee(int empno);
 

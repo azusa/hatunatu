@@ -75,15 +75,6 @@ public class DaoMetaDataImplTest extends S2DaoTestCase {
                 rsh.getDtoMetaData().getBeanClass()));
     }
 
-    public void testSelectMapArray() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
-        SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                .getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"getAllEmployeeMap"));
-        assertNotNull("1", cmd);
-        assertEquals(MapArrayResultSetHandler.class, cmd.getResultSetHandler()
-                .getClass());
-    }
-
     public void testSelectDtoArray() throws Exception {
         DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd

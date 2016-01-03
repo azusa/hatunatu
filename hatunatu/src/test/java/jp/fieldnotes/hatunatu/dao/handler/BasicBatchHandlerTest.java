@@ -20,8 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
-import jp.fieldnotes.hatunatu.dao.resultset.MapListResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.impl.MapListResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
