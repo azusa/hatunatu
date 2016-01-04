@@ -16,13 +16,7 @@
 package jp.fieldnotes.hatunatu.examples.dao;
 
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
-/**
- * @author azusa
- *
- */
-@S2Dao(bean=NoPkTable.class)
 public interface NoPkTableDao {
 
     public NoPkTable[] selectAll();

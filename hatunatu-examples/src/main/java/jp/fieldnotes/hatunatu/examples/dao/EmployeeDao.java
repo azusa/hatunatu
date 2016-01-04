@@ -17,31 +17,29 @@ package jp.fieldnotes.hatunatu.examples.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 import java.util.List;
 
-@S2Dao(bean=Employee.class)
 public interface EmployeeDao {
 
-    public List getAllEmployees();
+    public List<Employee> getAllEmployees();
 
-    public List getEmps(EmployeeSearchCondition dto);
+    public List<Employee> getEmps(EmployeeSearchCondition dto);
 
     @Arguments("empno")
     public Employee getEmployee(int empno);
 
+    @Sql("SELECT COUNT(*) FROM EMP")
     public int getCount();
 
     @Arguments({"job", "deptno"})
-    public List getEmployeeByJobDeptno(String job, Integer deptno);
-
-    public String getEmployeeByDeptno_ARGS = "deptno";
+    public List<Employee> getEmployeeByJobDeptno(String job, Integer deptno);
 
     @Arguments("deptno")
     @Query("/*IF deptno != null*/deptno = /*deptno*/123\n"
             + "-- ELSE 1=1\n" + "/*END*/")
-    public List getEmployeeByDeptno(Integer deptno);
+    public List<Employee> getEmployeeByDeptno(Integer deptno);
 
     public int update(Employee employee);
 

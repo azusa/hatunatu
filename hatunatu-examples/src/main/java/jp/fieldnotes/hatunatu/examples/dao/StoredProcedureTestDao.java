@@ -15,11 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
 import java.util.Map;
 
-@S2Dao(bean= Employee.class)
 public interface StoredProcedureTestDao {
 
     public String getSalesTax_PROCEDURE = "SALES_TAX";
