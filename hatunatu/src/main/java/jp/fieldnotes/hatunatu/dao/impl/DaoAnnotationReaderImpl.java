@@ -25,7 +25,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.CheckSingleRowUpdate;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.NoPersistentProperty;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.PersistentProperty;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Procedure;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
@@ -58,11 +57,6 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
         return (query != null) ? query.value() : null;
     }
 
-    @Override
-    public String getStoredProcedureName(Method method) {
-        Procedure procedure = method.getAnnotation(Procedure.class);
-        return (procedure != null) ? procedure.value() :null;
-    }
 
     @Override
     public String getProcedureCallName(Method method) {

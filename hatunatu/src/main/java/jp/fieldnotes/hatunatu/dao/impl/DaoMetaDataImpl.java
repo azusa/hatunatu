@@ -23,7 +23,6 @@ import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.command.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.exception.*;
-import jp.fieldnotes.hatunatu.dao.handler.ProcedureHandlerImpl;
 import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
@@ -223,12 +222,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
             setupProcedureCallMethod(method, procedureCallName, beanMetaData);
             return;
         }
-        final String procedureName = daoAnnotationReader
-                .getStoredProcedureName(method);
-        if (procedureName != null) {
-            setupProcedureMethod(method, procedureName, beanMetaData);
-            return;
-        }
     }
 
     protected void assertAnnotation(final Method method) {
@@ -239,22 +232,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         }
     }
 
-    protected void setupProcedureMethod(final Method method,
-            final String procedureName, final BeanMetaData beanMetaData) {
-
-        final ProcedureHandlerImpl handler = new ProcedureHandlerImpl();
-        handler.setDataSource(dataSource);
-        handler.setDbms(dbms);
-        handler.setDaoMethod(method);
-        handler.setDaoAnnotationReader(daoAnnotationReader);
-        handler.setBeanMetaData(beanMetaData);
-        handler.setProcedureName(procedureName);
-        handler.setResultSetHandlerFactory(resultSetHandlerFactory);
-        handler.setStatementFactory(statementFactory);
-        handler.initialize();
-        final SqlCommand command = new StaticStoredProcedureCommand(handler);
-        putSqlCommand(method, command);
-    }
 
     protected void setupProcedureCallMethod(final Method method,
             final String procedureName, final BeanMetaData beanMetaData) {

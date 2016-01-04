@@ -29,12 +29,6 @@ public interface DaoAnnotationReader {
      */
     String getQuery(Method method);
 
-    /**
-     * 
-     * @param method
-     * @return
-     */
-    String getStoredProcedureName(Method method);
 
     /**
      * 
