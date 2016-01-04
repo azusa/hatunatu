@@ -16,12 +16,8 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author manhole
- */
 public class CharBindTest extends S2DaoTestCase {
 
     private CharTableDao charTableDao;
@@ -47,10 +43,7 @@ public class CharBindTest extends S2DaoTestCase {
         assertEquals('Z', bean.getAaa());
     }
 
-    @S2Dao(bean=CharTable.class)
     public static interface CharTableDao {
-
-        public Class BEAN = CharTable.class;
 
         public CharTable findById(int id);
 

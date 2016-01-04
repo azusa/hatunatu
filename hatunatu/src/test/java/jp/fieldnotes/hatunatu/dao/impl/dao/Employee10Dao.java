@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
 import java.util.List;
@@ -25,11 +24,10 @@ import java.util.List;
 /**
  * @author manhole
  */
-@S2Dao(bean = Employee.class)
 public interface Employee10Dao {
 
     @Arguments("job")
     @Query("/*IF job != null*/ job = /*job*/'MANAGER' /*END*/")
-    public List getEmployeesByJob(String job);
+    public List<Employee> getEmployeesByJob(String job);
 
 }

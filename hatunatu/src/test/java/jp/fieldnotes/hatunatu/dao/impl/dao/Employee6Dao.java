@@ -16,12 +16,10 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee5;
 import jp.fieldnotes.hatunatu.dao.impl.condition.EmployeeSearchCondition;
 
-@S2Dao(bean = Employee5.class)
 public interface Employee6Dao {
 
     /**

@@ -21,34 +21,25 @@ import jp.fieldnotes.hatunatu.dao.impl.condition.EmployeeSearchCondition;
 
 import java.util.List;
 
-@S2Dao(bean = Employee.class)
 public interface EmployeeAutoDao {
 
     @Arguments("deptno")
     @Query("deptno asc, empno desc")
-    public List getEmployeeByDeptno(int deptno);
+    public List<Employee> getEmployeeByDeptno(int deptno);
 
-    /**
-     * @param minSal
-     * @param maxSal
-     */
     @Query("sal BETWEEN ? AND ? ORDER BY empno")
-    public List getEmployeesBySal(Float minSal, Float maxSal);
+    public List<Employee> getEmployeesBySal(Float minSal, Float maxSal);
 
-    /**
-     * 
-     * @return
-     */
     @Arguments( { "enames", "jobs" })
     @Query("ename IN /*enames*/('SCOTT','MARY') AND job IN /*jobs*/('ANALYST', 'FREE')")
-    public List getEmployeesByEnameJob(List enames, List jobs);
+    public List<Employee> getEmployeesByEnameJob(List enames, List jobs);
 
-    public List getEmployeesBySearchCondition(EmployeeSearchCondition dto);
+    public List<Employee> getEmployeesBySearchCondition(EmployeeSearchCondition dto);
 
     @Query("department.dname = /*dto.department.dname*/'RESEARCH'")
-    public List getEmployeesBySearchCondition2(EmployeeSearchCondition dto);
+    public List<Employee> getEmployeesBySearchCondition2(EmployeeSearchCondition dto);
 
-    public List getEmployeesByEmployee(Employee dto);
+    public List<Employee> getEmployeesByEmployee(Employee dto);
 
     @Arguments("empno")
     public Employee getEmployee(int empno);
@@ -58,9 +49,6 @@ public interface EmployeeAutoDao {
     @NoPersistentProperty( { "job", "mgr", "hiredate", "sal", "comm", "deptno" })
     public void insert2(Employee employee);
 
-    /**
-     * @param employee
-     */
     @PersistentProperty("deptno")
     public void insert3(Employee employee);
 
@@ -70,15 +58,9 @@ public interface EmployeeAutoDao {
 
     public void update(Employee employee);
 
-    /**
-     * @param employee
-     */
     @NoPersistentProperty( { "job", "mgr", "hiredate", "sal", "comm", "deptno" })
     public void update2(Employee employee);
 
-    /**
-     * @param employee
-     */
     @PersistentProperty("deptno")
     public void update3(Employee employee);
 
@@ -89,7 +71,7 @@ public interface EmployeeAutoDao {
 
     public int[] updateBatch2(Employee[] employees);
 
-    public void updateBatchByList(List employees);
+    public void updateBatchByList(List<Employee> employees);
 
     public void delete(Employee employee);
 

@@ -64,7 +64,7 @@ public class SQLRuntimeException extends SRuntimeException {
      * @return 本当のメッセージ
      */
     protected static String getRealMessage(SQLException cause) {
-        StringBuffer buf = new StringBuffer(256);
+        StringBuilder buf = new StringBuilder(256);
         buf.append(cause.getMessage()).append(" : [");
         SQLException next = cause.getNextException();
         while (next != null) {

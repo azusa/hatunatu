@@ -15,18 +15,16 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee2;
 
 import java.util.List;
 
-@S2Dao(bean = Employee2.class)
 public interface Employee2Dao {
 
-    public List getAllEmployees();
+    public List<Employee2> getAllEmployees();
 
     @Sql("SELECT ename, deptnum, empno FROM EMP2")
-    public List getAllEmployeesOnly();
+    public List<Employee2> getAllEmployeesOnly();
 
 }

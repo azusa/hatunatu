@@ -40,7 +40,7 @@ public abstract class DaoNamingConventionUtil {
         if (s.length() == 1) {
             return s.toUpperCase();
         }
-        StringBuffer buf = new StringBuffer(40);
+        StringBuilder buf = new StringBuilder(40);
         int pos = 0;
         for (int i = 1; i < s.length(); ++i) {
             if (Character.isUpperCase(s.charAt(i))) {

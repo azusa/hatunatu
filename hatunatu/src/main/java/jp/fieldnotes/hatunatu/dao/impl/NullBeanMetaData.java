@@ -53,6 +53,11 @@ public class NullBeanMetaData implements BeanMetaData {
         return null;
     }
 
+    @Override
+    public boolean hasRelationToTable() {
+        return false;
+    }
+
     public String getPrimaryKey(int index) {
         throwException();
         return null;

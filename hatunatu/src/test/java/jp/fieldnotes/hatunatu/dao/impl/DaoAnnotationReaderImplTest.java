@@ -28,12 +28,18 @@ import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class DaoAnnotationReaderImplTest extends TestCase {
+public class DaoAnnotationReaderImplTest {
     protected AnnotationReaderFactory readerFactory;
 
     protected Class aaaClazz;
@@ -45,6 +51,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     protected Class daoClazz;
 
+    @Before
     public void setUp() {
         readerFactory = new AnnotationReaderFactoryImpl();
         clazz = AaaDao.class;
@@ -54,15 +61,8 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         daoClazz = AaaDao.class;
     }
 
-    protected Class getDaoClass(String className) {
-        if (className.equals("AnnotationTestDaoImpl")) {
-            return AnnotationTestDaoImpl.class;
-        } else if (className.equals("DummyDao")) {
-            return DummyDao.class;
-        }
-        throw new RuntimeException("unkown dao class " + className);
-    }
 
+    @Test
     public void testGetElementTypeOfList() throws Exception {
         Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
         Type type = method.getGenericReturnType();
@@ -70,8 +70,8 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         assertEquals(Aaa.class, ret);
     }
 
+    @Test
     public void testBasic() throws Exception {
-        assertEquals(aaaClazz, annotationReader.getBeanClass());
 
         String query = annotationReader.getQuery(daoClazz.getMethod(
                 "getAaaById2", new Class[] { int.class }));
@@ -79,53 +79,52 @@ public class DaoAnnotationReaderImplTest extends TestCase {
     }
 
 
-
+    @Test
     public void testGetBean() {
         BeanDesc beanDesc1 = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader1 = readerFactory
                 .createDaoAnnotationReader(beanDesc1);
-        assertEquals(Employee.class, reader1.getBeanClass());
+        assertEquals(Employee.class, reader1.getBeanClass(beanDesc1.getMethodDescs("subclassMethod")[0].getMethod()));
     }
 
+    @Test
     public void testGetBeanClass() throws Exception {
         Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
         assertEquals(Aaa.class, annotationReader.getBeanClass(method));
     }
 
+    @Test
     public void testGetBeanClassGenerics() throws Exception {
         Method method = AaaDao.class.getMethod("findAll2", new Class[0]);
         Class<?> clazz = annotationReader.getBeanClass(method);
         assertEquals(Map.class, clazz);
     }
 
+    @Test
     public void testGetBeanClassGenerics_simpleType() throws Exception {
         Method method = AaaDao.class.getMethod("findAll3", new Class[0]);
         Class<?> clazz = annotationReader.getBeanClass(method);
         assertEquals(Integer.class, clazz);
     }
 
+    @Test
+    @Ignore
     public void testGetBeanClass_noAnnotation() throws Exception {
         BeanDesc daoDesc = BeanDescFactory.getBeanDesc(Employee.class);
         DaoAnnotationReader reader = new DaoAnnotationReaderImpl(daoDesc);
-        Class clazz = reader.getBeanClass();
+        Class clazz = reader.getBeanClass(null);
         assertEquals(NullBean.class, clazz);
     }
 
-    public void testGetNullBean() {
-        BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("DummyDao"));
-        DaoAnnotationReader reader = readerFactory
-                .createDaoAnnotationReader(beanDesc);
-        assertEquals(NullBean.class, reader.getBeanClass());
-    }
 
+    @Test
     public void testGetArgNames() throws Exception {
         BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
-        assertEquals("1", Employee.class, reader.getBeanClass());
+        assertEquals("1", Employee.class, reader.getBeanClass(beanDesc.getMethodDescs("subclassMethod")[0].getMethod()));
         Method method = beanDesc.getMethodDesc("withArgumentAnnotaion",Integer.TYPE, String.class).getMethod();
         String[] names = reader.getArgNames(method);
         assertEquals("2", 2, names.length);
@@ -142,9 +141,10 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         assertEquals("3", 1, names3.length);
     }
 
+    @Test
     public void testGetQuery() throws Exception {
         BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
         Method method1 = beanDesc.getMethodDesc("withQueryAnnotaion", Integer.TYPE ).getMethod();
@@ -161,9 +161,10 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     }
 
+    @Test
     public void testGetPersistentProps() throws Exception {
         BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
         Method method1 = beanDesc.getMethodDesc("withPersistentProps", Integer.TYPE).getMethod();
@@ -184,9 +185,10 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     }
 
+    @Test
     public void testGetNoPersistentProps() throws Exception {
         BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
         Method method1 = beanDesc.getMethodDesc("withNoPersistentProps", Integer.TYPE).getMethod();
@@ -206,9 +208,10 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         assertEquals("1", "prop2", props3[1]);
     }
 
+    @Test
     public void testGetSql() throws Exception {
         BeanDesc beanDesc = BeanDescFactory
-                .getBeanDesc(getDaoClass("AnnotationTestDaoImpl"));
+                .getBeanDesc(AnnotationTestDaoImpl.class);
         DaoAnnotationReader reader = readerFactory
                 .createDaoAnnotationReader(beanDesc);
         Method method1 = beanDesc.getMethodDesc("subclassMethod2", String.class).getMethod();
@@ -216,7 +219,6 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         assertEquals("1", "SELECT * FROM emp", sql);
     }
 
-    @S2Dao(bean=Employee.class)
     public static interface AnnotationTestDao {
 
         @Arguments({"arg1", "arg2"})
@@ -230,10 +232,6 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
         @NoPersistentProperty({"prop1","prop2"})
         public Employee withNoPersistentProps(int arg1);
-
-        public String withSQLAnnotaion_mysql_SQL = "SELECT * FROM emp1";
-
-        public String withSQLAnnotaion_SQL = "SELECT * FROM emp2";
 
         @Sqls( {@Sql(value = "SELECT * FROM emp1", dbms = "mysql"),
                 @Sql(value = "SELECT * FROM emp2")})
@@ -260,7 +258,6 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     }
 
-    @S2Dao(bean = Aaa.class)
     @CheckSingleRowUpdate(false)
     public static interface AaaDao {
 

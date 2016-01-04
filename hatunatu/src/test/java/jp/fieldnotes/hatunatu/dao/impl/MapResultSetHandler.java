@@ -25,6 +25,9 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
+/**
+ * for test handler
+ */
 public class MapResultSetHandler extends AbstractMapResultSetHandler {
 
     private static final Logger logger = Logger

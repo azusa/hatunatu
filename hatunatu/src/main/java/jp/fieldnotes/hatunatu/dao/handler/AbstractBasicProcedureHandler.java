@@ -114,7 +114,7 @@ public abstract class AbstractBasicProcedureHandler implements ProcedureHandler 
     }
 
     protected int initTypes() {
-        StringBuffer buff = new StringBuffer();
+        StringBuilder buff = new StringBuilder();
         buff.append("{ call ");
         buff.append(getProcedureName());
         buff.append("(");
@@ -220,7 +220,7 @@ public abstract class AbstractBasicProcedureHandler implements ProcedureHandler 
         if (args == null || args.length == 0) {
             return sql;
         }
-        StringBuffer buf = new StringBuffer(200);
+        StringBuilder buf = new StringBuilder(200);
         int pos = 0;
         int pos2 = 0;
         int index = 0;

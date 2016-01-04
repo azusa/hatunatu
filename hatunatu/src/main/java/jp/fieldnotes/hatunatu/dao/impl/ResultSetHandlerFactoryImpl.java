@@ -55,9 +55,9 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
             final DaoAnnotationReader daoAnnotationReader,
             final BeanMetaData beanMetaData, final Method method) {
 
-        final Class beanClass = daoAnnotationReader.getBeanClass();
+        final Class beanClass = daoAnnotationReader.getBeanClass(method);
         final Class clazz = daoAnnotationReader.getBeanClass(method);
-        if ((clazz != null) && !clazz.isAssignableFrom(beanClass)) {
+        if (!beanMetaData.hasRelationToTable()) {
             if (TypeUtil.isSimpleType(clazz)) {
                 if (List.class.isAssignableFrom(method.getReturnType())) {
                     return createObjectListResultSetHandler(clazz);
@@ -66,15 +66,6 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
                     return createObjectArrayResultSetHandler(clazz);
                 } else {
                     return createObjectResultSetHandler(clazz);
-                }
-            }
-            if (Map.class.isAssignableFrom(clazz)) {
-                if (List.class.isAssignableFrom(method.getReturnType())) {
-                    return createMapListResultSetHandler();
-                } else if (method.getReturnType().isArray()) {
-                    return createMapArrayResultSetHandler();
-                } else {
-                    return createMapResultSetHandler();
                 }
             }
             final DtoMetaData dtoMetaData = dtoMetaDataFactory
@@ -87,6 +78,7 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
                 return createDtoArrayMetaDataResultSetHandler(dtoMetaData);
             }
         } else {
+
             if (List.class.isAssignableFrom(method.getReturnType())) {
                 return createBeanListMetaDataResultSetHandler(beanMetaData);
             } else if (isBeanClassAssignable(beanClass, method.getReturnType())) {
@@ -120,20 +112,6 @@ public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
                 createRowCreator());
     }
 
-    protected ResultSetHandler createMapListResultSetHandler() {
-        return new MapListResultSetHandler();
-    }
-
-    protected ResultSetHandler createMapResultSetHandler() {
-        if (restrictNotSingleResult) {
-            return new MapResultSetHandler.RestrictMapResultSetHandler();
-        }
-        return new MapResultSetHandler();
-    }
-
-    protected ResultSetHandler createMapArrayResultSetHandler() {
-        return new MapArrayResultSetHandler();
-    }
 
     protected ResultSetHandler createBeanListMetaDataResultSetHandler(
             final BeanMetaData beanMetaData) {

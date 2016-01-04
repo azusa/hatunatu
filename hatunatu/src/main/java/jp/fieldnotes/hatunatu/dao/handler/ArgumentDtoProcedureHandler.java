@@ -110,7 +110,7 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         if (args == null || dto == null) {
             return sql;
         }
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         int pos = 0;
         int pos2 = 0;
         int size = procedureMetaData.getParameterTypeSize();

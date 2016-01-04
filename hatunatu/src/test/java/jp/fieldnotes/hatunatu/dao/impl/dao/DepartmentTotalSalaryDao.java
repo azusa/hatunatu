@@ -15,13 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.DepartmentTotalSalary;
 
 import java.util.List;
 
-@S2Dao(bean = DepartmentTotalSalary.class)
 public interface DepartmentTotalSalaryDao {
 
-    public List getTotalSalaries();
+    public List<DepartmentTotalSalary> getTotalSalaries();
 }

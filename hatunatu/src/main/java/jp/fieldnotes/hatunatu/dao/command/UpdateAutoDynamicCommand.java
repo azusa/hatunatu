@@ -89,7 +89,7 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
 
     protected String createUpdateSql(BeanMetaData bmd,
             PropertyType[] propertyTypes) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("UPDATE ");
         buf.append(bmd.getTableName());
         buf.append(" SET ");

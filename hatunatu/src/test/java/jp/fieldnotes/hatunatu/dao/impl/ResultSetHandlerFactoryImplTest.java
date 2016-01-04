@@ -38,16 +38,6 @@ public class ResultSetHandlerFactoryImplTest extends S2DaoTestCase {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
     }
 
-    public void testCreateMapResultSetHandler_restrict() {
-        resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
-        assertTrue(resultSetHandlerFactoryImpl.createMapResultSetHandler() instanceof RestrictMapResultSetHandler);
-    }
-
-    public void testCreateMapResultSetHandler() {
-        resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
-        assertFalse(resultSetHandlerFactoryImpl.createMapResultSetHandler() instanceof RestrictMapResultSetHandler);
-    }
-
     public void testCreateBeanMetaDataResultSetHandler_restrict() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl

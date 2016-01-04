@@ -42,11 +42,11 @@ public class Oracle extends Standard {
      * @see Standard#createAutoSelectFromClause(BeanMetaData)
      */
     protected String createAutoSelectFromClause(BeanMetaData beanMetaData) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("FROM ");
         String myTableName = beanMetaData.getTableName();
         buf.append(myTableName);
-        StringBuffer whereBuf = new StringBuffer(100);
+        StringBuilder whereBuf = new StringBuilder(100);
         for (int i = 0; i < beanMetaData.getRelationPropertyTypeSize(); ++i) {
             RelationPropertyType rpt = beanMetaData.getRelationPropertyType(i);
             BeanMetaData bmd = rpt.getBeanMetaData();

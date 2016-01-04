@@ -72,7 +72,7 @@ public class BindVariableUtil {
         if (args == null || args.length == 0) {
             return sql;
         }
-        final StringBuffer buf = new StringBuffer(sql.length() + args.length
+        final StringBuilder buf = new StringBuilder(sql.length() + args.length
                 * 15);
         int bindVar = 0;
         int current = 0;

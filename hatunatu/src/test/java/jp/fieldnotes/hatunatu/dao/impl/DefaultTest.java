@@ -291,14 +291,13 @@ public class DefaultTest extends S2TestCase {
         assertEquals(1, list.size());
     }
 
-    @S2Dao( bean = DefaultTable.class)
     public static interface DefaultTableDao {
 
         @Arguments({"id"})
         public DefaultTable getDefaultTable(Integer id);
 
         @Query(value = "ORDER BY ID")
-        public List getDefaultTables();
+        public List<DefaultTable> getDefaultTables();
 
         public void insert(DefaultTable largeBinary);
 
@@ -359,12 +358,11 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
-    @S2Dao(bean= PkOnlyTable.class)
     public static interface PkOnlyTableDao {
 
         void insert(PkOnlyTable table);
 
-        List findAll();
+        List<PkOnlyTable> findAll();
 
     }
 

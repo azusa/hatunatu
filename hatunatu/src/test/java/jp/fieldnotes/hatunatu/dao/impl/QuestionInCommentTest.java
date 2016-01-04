@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import java.util.List;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -47,12 +46,11 @@ public class QuestionInCommentTest extends S2TestCase {
         assertTrue(true);
     }
 
-    @S2Dao(bean=Employee.class)
     public static interface QuestionInCommentDao {
 
         public void insertBySql(Employee emp);
 
-        List questionInQuote(String arg);
+        List<Employee> questionInQuote(String arg);
     }
 
 }

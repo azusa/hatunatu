@@ -65,7 +65,7 @@ public class SqlParserImpl implements SqlParser {
 
     protected String deleteQuestionInLineComment(String sql) {
         String[] sqlParts = lineBreak.split(sql);
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for (int i = 0; i < sqlParts.length; i++) {
             int pos = sqlParts[i].indexOf("--");
             if (pos != -1 && (sqlParts[i].indexOf("ELSE") == -1)) {

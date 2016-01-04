@@ -61,7 +61,7 @@ public class Standard implements Dbms, Disposable {
             DisposableUtil.add(this);
             initialized = true;
         }
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append(beanMetaData.getAutoSelectList());
         buf.append(" ");
         String beanName = beanMetaData.getBeanClass().getName();
@@ -78,7 +78,7 @@ public class Standard implements Dbms, Disposable {
     }
 
     protected String createAutoSelectFromClause(BeanMetaData beanMetaData) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("FROM ");
         String myTableName = beanMetaData.getTableName();
         buf.append(myTableName);

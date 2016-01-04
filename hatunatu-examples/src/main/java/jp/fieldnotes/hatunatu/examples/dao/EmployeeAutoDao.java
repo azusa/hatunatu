@@ -17,28 +17,26 @@ package jp.fieldnotes.hatunatu.examples.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 
 import java.util.List;
 
-@S2Dao(bean = Employee.class)
 public interface EmployeeAutoDao {
 
-    public List getAllEmployees();
+    public List<Employee> getAllEmployees();
 
     @Arguments({"job", "deptno"})
-    public List getEmployeeByJobDeptno(String job, Integer deptno);
+    public List<Employee> getEmployeeByJobDeptno(String job, Integer deptno);
 
     @Arguments("empno")
     public Employee getEmployeeByEmpno(int empno);
 
     @Query("sal BETWEEN ? AND ? ORDER BY empno")
-    public List getEmployeesBySal(float minSal, float maxSal);
+    public List<Employee> getEmployeesBySal(float minSal, float maxSal);
 
     @Arguments("dname_0")
-    public List getEmployeeByDname(String dname);
+    public List<Employee> getEmployeeByDname(String dname);
 
-    public List getEmployeesBySearchCondition(EmployeeSearchCondition dto);
+    public List<Employee> getEmployeesBySearchCondition(EmployeeSearchCondition dto);
 
     public void update(Employee employee);
 }

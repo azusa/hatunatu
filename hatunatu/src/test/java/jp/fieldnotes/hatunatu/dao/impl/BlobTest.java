@@ -23,12 +23,8 @@ import java.util.Random;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author manhole
- */
 public class BlobTest extends S2TestCase {
 
     private LargeBinaryDao largeBinaryByteArrayDao;
@@ -172,7 +168,6 @@ public class BlobTest extends S2TestCase {
         }
     }
 
-    @S2Dao(bean=LargeBinary.class)
     public static interface LargeBinaryDao {
 
         @Arguments({"id"})
@@ -186,7 +181,6 @@ public class BlobTest extends S2TestCase {
 
     }
 
-    @S2Dao(bean=LargeBinaryStream.class)
     public static interface LargeBinaryStreamDao {
 
         @Arguments({"id"})

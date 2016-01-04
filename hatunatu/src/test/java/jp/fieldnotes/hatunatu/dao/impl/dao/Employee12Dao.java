@@ -16,20 +16,19 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
 /**
  * @author azusa
  * 
  */
-@S2Dao(bean = Employee.class)
 public interface Employee12Dao {
 
-    @Query("WHERE EMPNO = /*no*/1111")
+    @Sql("DELETE FROM EMP WHERE EMPNO = /*no*/1111")
     public void delete(long no);
 
-    @Query("EMPNO = ?")
+    @Sql("DELETE FROM EMP WHERE EMPNO = ?")
     public void deleteNoWhere(long no);
 
 }

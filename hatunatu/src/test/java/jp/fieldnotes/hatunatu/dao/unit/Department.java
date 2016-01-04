@@ -75,7 +75,7 @@ public class Department implements Serializable {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(deptno).append(", ");
         buf.append(dname).append(", ");
         buf.append(loc);

@@ -81,7 +81,7 @@ public class InsertAutoDynamicCommand implements SqlCommand,
 
     protected String createInsertSql(BeanMetaData bmd,
             PropertyType[] propertyTypes) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append("INSERT INTO ");
         buf.append(bmd.getTableName());
         buf.append(" (");

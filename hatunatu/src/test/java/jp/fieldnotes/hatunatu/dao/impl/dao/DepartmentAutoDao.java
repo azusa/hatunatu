@@ -16,10 +16,8 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 
-@S2Dao(bean = Department.class)
 public interface DepartmentAutoDao {
 
     public void insert(Department department);

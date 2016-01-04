@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
@@ -46,7 +45,6 @@ public class NoPropertyForUpdateTest extends S2TestCase {
         }
     }
 
-    @S2Dao(bean=NoPropertyForUpdate.class)
     public static interface NoPropertyForUpdateDao {
 
         void update(NoPropertyForUpdate noPropertyForUpdate);

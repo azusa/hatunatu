@@ -21,7 +21,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
-import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.CheckSingleRowUpdate;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.NoPersistentProperty;
@@ -29,11 +28,11 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.PersistentProperty;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Procedure;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.SqlFile;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sqls;
 import jp.fieldnotes.hatunatu.dao.util.AnnotationUtil;
+import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker;
 import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker.Status;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
@@ -77,12 +76,6 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
         return (arg != null) ? arg.value() : new String[0];
     }
 
-    @Override
-    public Class<?> getBeanClass() {
-
-        Class<?> ret = getBeanClass0(daoClass_);
-        return ret == null ? NullBean.class : ret;
-    }
 
     @Override
     public Class<?> getBeanClass(Method method) {
@@ -97,6 +90,14 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
             return null;
         }
         if (TypeUtil.isSimpleType(method.getReturnType())) {
+            if (method.getParameterTypes().length >= 2){
+                if (FetchHandlerUtil.isFetchHandler(method.getParameterTypes()[1])){
+                    Type parameterType = method.getGenericParameterTypes()[1];
+                    if (parameterType != null){
+                        return getRawClass(getGenericParameter(parameterType, 0));
+                    }
+                }
+            }
             return method.getReturnType();
         }
         if (method.getReturnType().isArray()) {
@@ -164,47 +165,7 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    private static Class getBeanClassFromDao(Class daoClass) {
-        if (daoClass.isAnnotationPresent(S2Dao.class)) {
-            S2Dao s2dao = (S2Dao) daoClass.getAnnotation(S2Dao.class);
-            return s2dao.bean();
-        }
-        return null;
-    }
 
-    private Class<?> getBeanClass0(Class<?> daoClass) {
-        Class<?> beanClass = getBeanClassFromDao(daoClass);
-        if (beanClass != null) {
-            return beanClass;
-        }
-
-        Class<?> testClass = daoClass;
-        while (beanClass == null && testClass != null
-                && testClass != Object.class) {
-            HandlerImpl handlerImpl = new HandlerImpl();
-            ImplementInterfaceWalker.walk(testClass, handlerImpl);
-            beanClass = handlerImpl.foundBeanClass;
-            testClass = testClass.getSuperclass();
-        }
-        return beanClass;
-    }
-
-    private static class HandlerImpl implements
-            ImplementInterfaceWalker.Handler {
-
-        Class<?> foundBeanClass;
-
-        @SuppressWarnings("unchecked")
-        public Status accept(Class ifs) {
-            final Class<?> beanClass = getBeanClassFromDao(ifs);
-            if (beanClass != null) {
-                foundBeanClass = beanClass;
-                return ImplementInterfaceWalker.BREAK;
-            }
-            return ImplementInterfaceWalker.CONTINUE;
-        }
-    }
 
     @Override
     public String[] getNoPersistentProps(Method method) {

@@ -17,7 +17,7 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
 /**
@@ -77,21 +77,16 @@ public class NoPkTableTest extends S2DaoTestCase {
         }
     }
 
-    @S2Dao(bean= NoPkTable.class)
     public static interface NoPkTableDao {
 
         NoPkTable[] findAll();
 
-        // String insert_SQL = "INSERT INTO NO_PK_TABLE VALUES (/*dto.aaa*/'Z',
-        // /*dto.bbb*/99)";
 
         int insert(NoPkTable noPkTable);
 
-        // String update_SQL = "UPDATE NO_PK_TABLE SET AAA = /*dto.aaa*/";
-
         int update(NoPkTable noPkTable);
 
-        @Query("AAA = ?")
+        @Sql("DELETE FROM NO_PK_TABLE WHERE AAA = ?")
         int delete(String aaa);
 
     }

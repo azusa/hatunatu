@@ -19,7 +19,6 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
@@ -78,10 +77,9 @@ public class DaoMetaDataFactoryImplTest extends S2TestCase {
         assertEquals(0, daoMetaDataFactory.daoMetaDataCache.size());
     }
 
-    @S2Dao(bean=Foo.class)
     public static interface FooDao {
 
-        List findAll();
+        List<Foo> findAll();
     }
 
     @Bean(table="EMP")

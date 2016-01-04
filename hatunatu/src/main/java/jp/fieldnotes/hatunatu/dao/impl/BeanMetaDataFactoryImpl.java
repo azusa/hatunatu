@@ -20,19 +20,8 @@ import java.sql.DatabaseMetaData;
 
 import javax.sql.DataSource;
 
-import jp.fieldnotes.hatunatu.dao.AnnotationReaderFactory;
-import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
-import jp.fieldnotes.hatunatu.dao.BeanEnhancer;
+import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
-import jp.fieldnotes.hatunatu.dao.Dbms;
-import jp.fieldnotes.hatunatu.dao.NullBean;
-import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
-import jp.fieldnotes.hatunatu.dao.PropertyTypeFactoryBuilder;
-import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactory;
-import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactoryBuilder;
-import jp.fieldnotes.hatunatu.dao.TableNaming;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
@@ -122,6 +111,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         bmd.setTableNaming(tableNaming);
         bmd.setPropertyTypeFactory(ptf);
         bmd.setRelationPropertyTypeFactory(rptf);
+        bmd.setRelationToTable(bar.getTableAnnotation() != null);
         bmd.initialize();
 
         final Class enhancedBeanClass = this.beanEnhancer.enhanceBeanClass(beanClass,

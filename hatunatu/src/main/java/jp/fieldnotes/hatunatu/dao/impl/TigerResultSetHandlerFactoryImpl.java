@@ -36,7 +36,7 @@ public class TigerResultSetHandlerFactoryImpl extends
             DaoAnnotationReader daoAnnotationReader, BeanMetaData beanMetaData,
             Method method) {
         if (hasFetchHandler(method)) {
-            final Class beanClass = daoAnnotationReader.getBeanClass();
+            final Class beanClass = daoAnnotationReader.getBeanClass(method);
             return createFetchResultSetHandler(beanClass, beanMetaData);
         }
         return super.getResultSetHandler(daoAnnotationReader, beanMetaData,

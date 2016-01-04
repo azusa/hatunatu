@@ -132,7 +132,7 @@ public class MethodUtil {
      * @return シグニチャ
      */
     public static String getSignature(String methodName, Class[] argTypes) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append(methodName);
         buf.append("(");
         if (argTypes != null) {
@@ -155,7 +155,7 @@ public class MethodUtil {
      * @return シグニチャ
      */
     public static String getSignature(String methodName, Object[] methodArgs) {
-        StringBuffer buf = new StringBuffer(100);
+        StringBuilder buf = new StringBuilder(100);
         buf.append(methodName);
         buf.append("(");
         if (methodArgs != null) {

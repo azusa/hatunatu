@@ -16,25 +16,18 @@
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 import java.util.List;
 import java.util.Map;
 
-@S2Dao(bean= Employee.class)
 public interface EmployeeDao {
 
-    public List getAllEmployees();
-
-    public String findEmployeeDto_SQL = "select empno, ename, dname from emp, dept where empno = ? and emp.deptno = dept.deptno";
+    public List<Employee> getAllEmployees();
 
     @Sql("select empno, ename, dname from emp, dept where empno = ? and emp.deptno = dept.deptno")
     @Arguments("empno")
     public EmployeeDto findEmployeeDto(int empno);
-
-    @Sql("select empno as value, ename as label from emp")
-    public Map[] getLabelValue();
 
     @Arguments("empno")
     public Employee getEmployee(int empno);

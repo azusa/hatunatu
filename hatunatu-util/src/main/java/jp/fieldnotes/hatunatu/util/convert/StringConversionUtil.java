@@ -223,7 +223,7 @@ public abstract class StringConversionUtil {
         if (source == null) {
             return null;
         }
-        StringBuffer result = new StringBuffer(source.length());
+        StringBuilder result = new StringBuilder(source.length());
         char ch;
         for (int i = 0; i < source.length(); i++) {
             ch = source.charAt(i);

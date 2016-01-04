@@ -13,24 +13,31 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.fieldnotes.hatunatu.dao.resultset;
+package jp.fieldnotes.hatunatu.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 
 /**
- * @author higa
- * 
+ * for test
  */
-public class MapArrayResultSetHandler extends MapListResultSetHandler {
+public class MapListResultSetHandler extends AbstractMapResultSetHandler {
 
-    public MapArrayResultSetHandler() {
+    public MapListResultSetHandler() {
     }
 
     public Object handle(ResultSet resultSet) throws SQLException {
-        List list = (List) super.handle(resultSet);
-        return list.toArray(new Map[list.size()]);
+        PropertyType[] propertyTypes = createPropertyTypes(resultSet
+                .getMetaData());
+        List list = new ArrayList();
+        while (resultSet.next()) {
+            list.add(createRow(resultSet, propertyTypes));
+        }
+        return list;
     }
 }

@@ -81,7 +81,7 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
             DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
             assertNotNull("1", dmd);
             SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                    .getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"fetchEmployeesBySearchCondition"));
+                    .getSqlCommand(getSingleDaoMethod(EmployeeDao.class, "fetchEmployeesBySearchCondition"));
             assertNotNull("2", cmd);
             System.out.println(cmd.toString());
             final List<Employee> ret = new ArrayList<Employee>();
@@ -101,6 +101,8 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
             Object count = cmd.execute(args);
             assertNotNull("3", count);
             assertEquals("4", Integer.valueOf(5), count);
+        } catch (Exception e){
+            e.printStackTrace();
         } finally {
             PagerContext.getContext().popArgs();
             PagerContext.end();

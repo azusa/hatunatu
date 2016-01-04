@@ -71,11 +71,13 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return null;
     }
 
+    @Override
     public String getColumnAnnotation(PropertyDesc pd) {
         Column ret = getPropertyAnnotation(Column.class, pd);
         return ret == null ? null : ret.value();
     }
 
+    @Override
     public String getTableAnnotation() {
         if (bean_ == null){
             return null;
@@ -83,6 +85,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return bean_.table();
     }
 
+    @Override
     public String getVersionNoPropertyName() {
         if (bean_ == null){
             return null;
@@ -90,6 +93,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return bean_.versionNoProperty();
     }
 
+    @Override
     public String getTimestampPropertyName() {
         if (bean_  == null){
             return null;
@@ -97,6 +101,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return bean_.timeStampProperty();
     }
 
+    @Override
     public String getId(PropertyDesc pd, Dbms dbms) {
         String dbmsSuffix = dbms.getSuffix();
         Id id = getIds(pd, dbmsSuffix);
@@ -116,6 +121,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         }
     }
 
+    @Override
     public String[] getNoPersisteneProps() {
         if (bean_ == null){
             return null;
@@ -123,10 +129,12 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return  bean_.noPersistentProperty();
     }
 
+    @Override
     public boolean hasRelationNo(PropertyDesc pd) {
         return getPropertyAnnotation(Relation.class, pd) != null;
     }
 
+    @Override
     public int getRelationNo(PropertyDesc pd) {
         Relation rel = getPropertyAnnotation(Relation.class, pd);
         if (rel != null) {
@@ -136,11 +144,13 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         }
     }
 
+    @Override
     public String getRelationKey(PropertyDesc pd) {
         Relation rel = getPropertyAnnotation(Relation.class, pd);
         return (rel != null) ? rel.relationKey() : null;
     }
 
+    @Override
     public String getValueType(PropertyDesc pd) {
         ValueType valueType = (ValueType) getPropertyAnnotation(
                 ValueType.class, pd);

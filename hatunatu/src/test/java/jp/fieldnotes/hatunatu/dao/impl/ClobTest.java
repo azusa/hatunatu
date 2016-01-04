@@ -19,7 +19,6 @@ import java.io.Serializable;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
 import org.seasar.extension.unit.S2TestCase;
 
@@ -63,7 +62,6 @@ public class ClobTest extends S2TestCase {
         }
     }
 
-    @S2Dao(bean=LargeText.class)
     public static interface LargeTextDao {
 
         @Arguments({"id"})

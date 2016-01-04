@@ -15,10 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.S2Dao;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department2;
 
-@S2Dao(bean = Department2.class)
 public interface Department2AutoDao {
 
     public Department2 getDepartment(int deptno);

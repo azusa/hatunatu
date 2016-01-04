@@ -23,29 +23,17 @@ import java.lang.reflect.Method;
  */
 public interface DaoMetaData {
 
-    Class getBeanClass();
-
-    BeanMetaData getBeanMetaData();
-
     DaoAnnotationReader getDaoAnnotationReader();
 
     boolean hasSqlCommand(Method method);
 
+    /**
+     * Initialize and get {@link SqlCommand}.
+     *
+     * @param methodName A executing Method.
+     * @return {@link SqlCommand}
+     */
     SqlCommand getSqlCommand(Method methodName);
-
-    SqlCommand createFindCommand(String query);
-
-    SqlCommand createFindCommand(Class dtoClass, String query);
-
-    SqlCommand createFindBeanCommand(String query);
-
-    SqlCommand createFindBeanCommand(Class dtoClass, String query);
-
-    SqlCommand createFindMapCommand(String query);
-
-    SqlCommand createFindMapListCommand(String query);
-
-    SqlCommand createFindMapArrayCommand(String query);
 
 
 }

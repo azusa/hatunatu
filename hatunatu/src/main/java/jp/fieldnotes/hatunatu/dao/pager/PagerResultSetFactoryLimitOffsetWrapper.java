@@ -159,7 +159,7 @@ public class PagerResultSetFactoryLimitOffsetWrapper implements
      * @return
      */
     String makeLimitOffsetSql(String baseSQL, int limit, int offset) {
-        StringBuffer sqlBuf = new StringBuffer(baseSQL);
+        StringBuilder sqlBuf = new StringBuilder(baseSQL);
         sqlBuf.append(" LIMIT ");
         sqlBuf.append(limit);
         sqlBuf.append(" OFFSET ");
@@ -203,7 +203,7 @@ public class PagerResultSetFactoryLimitOffsetWrapper implements
      * @return count(*)が付加されたSQL
      */
     String makeCountSql(String baseSQL) {
-        StringBuffer sqlBuf = new StringBuffer("SELECT count(*) FROM (");
+        StringBuilder sqlBuf = new StringBuilder("SELECT count(*) FROM (");
         if (chopOrderBy) {
             sqlBuf.append(chopOrderBy(baseSQL));
         } else {
