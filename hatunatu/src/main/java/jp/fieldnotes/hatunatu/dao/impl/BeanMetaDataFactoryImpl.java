@@ -26,23 +26,7 @@ import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 
-/**
- * @author jflute
- * @author manhole
- */
 public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
-
-    public static final String annotationReaderFactory_BINDING = "bindingType=must";
-
-    public static final String dataSource_BINDING = "bindingType=must";
-
-    public static final String daoNamingConvention_BINDING = "bindingType=must";
-
-    public static final String tableNaming_BINDING = "bindingType=must";
-
-    public static final String propertyTypeFactoryBuilder_BINDING = "bindingType=must";
-
-    public static final String relationPropertyTypeFactoryBuilder_BINDING = "bindingType=must";
 
     protected AnnotationReaderFactory annotationReaderFactory;
 
@@ -191,10 +175,6 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
     public void setDaoNamingConvention(
             final DaoNamingConvention daoNamingConvention) {
         this.daoNamingConvention = daoNamingConvention;
-    }
-
-    public TableNaming getTableNaming() {
-        return tableNaming;
     }
 
     public void setTableNaming(TableNaming tableNameConverter) {

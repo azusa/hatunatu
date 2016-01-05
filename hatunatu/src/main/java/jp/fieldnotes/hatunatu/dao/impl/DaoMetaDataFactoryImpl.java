@@ -38,34 +38,7 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-/**
- * @author higa
- * @author manhole
- * @author jflute
- */
 public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
-
-    public static final String dataSource_BINDING = "bindingType=must";
-
-    public static final String statementFactory_BINDING = "bindingType=must";
-
-    public static final String resultSetFactory_BINDING = "bindingType=must";
-
-    public static final String annotationReaderFactory_BINDING = "bindingType=must";
-
-    public static final String valueTypeFactory_BINDING = "bindingType=must";
-
-    public static final String beanMetaDataFactory_BINDING = "bindingType=must";
-
-    public static final String daoNamingConvention_BINDING = "bindingType=must";
-
-    public static final String resultSetHandlerFactory_BINDING = "bindingType=must";
-
-    public static final String dtoMetaDataFactory_BINDING = "bindingType=must";
-
-    public static final String procedureMetaDataFactory_BINDING = "bindingType=must";
-
-    public static final String pagingSQLRewriter_BINDING = "bindingType=may";
 
     protected DataSource dataSource;
 
@@ -89,7 +62,7 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
 
     protected PagingSqlRewriter pagingSqlRewriter;
 
-    protected Map daoMetaDataCache = new HashMap();
+    protected final Map<String,DaoMetaData> daoMetaDataCache = new HashMap<>();
 
     protected boolean initialized;
 
@@ -123,21 +96,21 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
         final String key = daoClass.getName();
         DaoMetaData dmd;
         synchronized (daoMetaDataCache) {
-            dmd = (DaoMetaData) daoMetaDataCache.get(key);
+            dmd = daoMetaDataCache.get(key);
         }
         if (dmd != null) {
             return dmd;
         }
-        final DaoMetaData dmdi = createDaoMetaData(daoClass);
+        final DaoMetaData instance  = createDaoMetaData(daoClass);
         synchronized (daoMetaDataCache) {
-            dmd = (DaoMetaData) daoMetaDataCache.get(daoClass);
+            dmd = daoMetaDataCache.get(daoClass);
             if (dmd != null) {
                 return dmd;
             } else {
-                daoMetaDataCache.put(key, dmdi);
+                daoMetaDataCache.put(key, instance);
             }
         }
-        return dmdi;
+        return instance;
     }
 
     protected DaoMetaData createDaoMetaData(final Class daoClass) {

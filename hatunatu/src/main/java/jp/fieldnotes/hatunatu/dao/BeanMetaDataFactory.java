@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 
 import java.sql.DatabaseMetaData;
 
-/**
- * @author jflute
- * @author manhole
- */
 public interface BeanMetaDataFactory {
 
     BeanMetaData createBeanMetaData(Class daoInterface, Class beanClass);
