@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 
-/**
- * @author azusa
- * 
- */
 public interface Employee13Dao {
 
     @Query("")

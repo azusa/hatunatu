@@ -24,9 +24,6 @@ import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;
 
-/**
- * @author taedium
- */
 public class PropertyTypeUtilTest extends S2TestCase {
 
     /**

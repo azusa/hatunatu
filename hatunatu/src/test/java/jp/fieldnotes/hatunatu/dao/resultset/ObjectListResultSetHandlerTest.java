@@ -24,10 +24,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class ObjectListResultSetHandlerTest extends S2TestCase {
 
     public void setUp() {

@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntStatementFactory;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- * 
- */
 public class BooleanToIntStatementTest extends S2TestCase {
 
     /**

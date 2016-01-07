@@ -31,10 +31,6 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.util.Date;
 
-/**
- * @author manhole
- * @author azusa
- */
 public class BeanAnnotationReaderImplTest extends TestCase {
 
     protected BeanAnnotationReader createBeanAnnotationReader(Class clazz) {

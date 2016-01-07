@@ -24,9 +24,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author manhole
- */
 public class ListBindTest extends S2DaoTestCase {
 
     private EmployeeDao employeeDao;

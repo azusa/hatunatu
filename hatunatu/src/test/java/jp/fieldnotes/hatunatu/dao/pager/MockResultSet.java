@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import java.sql.SQLException;
 
-/**
- * @author agata
- */
 public class MockResultSet extends MockResultSetBase {
 
     int total;

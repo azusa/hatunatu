@@ -20,11 +20,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * [Seasar-user:4036]
- * 
- * @author manhole
- */
 public class NoPkTableTest extends S2DaoTestCase {
 
     private NoPkTableDao noPkTableDao;

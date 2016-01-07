@@ -21,10 +21,6 @@ import java.util.Calendar;
 import jp.fieldnotes.hatunatu.dao.types.CalendarTimestampType;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class CalendarTimestampTypeTest extends TestCase {
 
     private CalendarTimestampType ctType = new CalendarTimestampType();

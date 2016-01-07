@@ -20,9 +20,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 
 import java.io.Serializable;
 
-/**
- * @author manhole
- */
 @Bean(table = "EMP")
 public class Employee9 implements Serializable {
 

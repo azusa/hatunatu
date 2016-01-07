@@ -23,9 +23,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 
-/**
- * for test
- */
 public class MapListResultSetHandler extends AbstractMapResultSetHandler {
 
     public MapListResultSetHandler() {

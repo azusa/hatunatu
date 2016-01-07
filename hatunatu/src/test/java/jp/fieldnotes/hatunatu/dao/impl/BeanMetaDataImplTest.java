@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * @author higa
- * @author manhole
- */
 public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

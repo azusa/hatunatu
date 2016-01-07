@@ -30,10 +30,6 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Method;
 
-/**
- * @author jundu
- * 
- */
 public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
 
     ResultSetHandlerFactory resultSetHandlerFactory;

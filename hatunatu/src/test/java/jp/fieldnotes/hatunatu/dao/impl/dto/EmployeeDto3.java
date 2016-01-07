@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dto;
 
 import java.io.Serializable;
 
-/**
- * @author higa
- */
 public class EmployeeDto3 implements Serializable {
 
     private static final long serialVersionUID = 1L;

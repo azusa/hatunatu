@@ -20,10 +20,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author azusa
- *
- */
 public class QuestionInCommentTest extends S2TestCase {
 
     private QuestionInCommentDao dao;

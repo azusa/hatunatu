@@ -20,10 +20,6 @@ import jp.fieldnotes.hatunatu.dao.impl.SqlLogRegistryImpl;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.container.servlet.S2ContainerDestroyer;
 
-/**
- * @author taedium
- * 
- */
 public class SqlLogRegistryImplTest extends S2TestCase {
 
     private String rawSql = "select * from emp where empno = ?";

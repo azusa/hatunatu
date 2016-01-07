@@ -25,10 +25,6 @@ import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-/**
- * @author higa
- * 
- */
 public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
 
     /**

@@ -25,10 +25,6 @@ import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 
-/**
- * @author higa
- * 
- */
 public class SequenceIdentifierGeneratorTest extends S2TestCase {
 
     protected void setUp() throws Exception {

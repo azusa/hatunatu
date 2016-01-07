@@ -20,11 +20,6 @@ import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 
 import java.util.List;
 
-/**
- * @author higa
- * @author manhole
- * @author jflute
- */
 public class S2DaoBeanListReader extends S2DaoBeanReader {
 
     public S2DaoBeanListReader(List list,

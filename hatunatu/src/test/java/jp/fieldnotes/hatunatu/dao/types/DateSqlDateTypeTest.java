@@ -27,10 +27,6 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author taedium
- * 
- */
 public class DateSqlDateTypeTest  {
 
     private DateSqlDateType ddType = new DateSqlDateType();

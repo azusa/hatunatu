@@ -24,10 +24,6 @@ import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
-/**
- * @author azusa
- * 
- */
 public class ResultSetHandlerFactoryImplTest extends S2DaoTestCase {
 
     private ResultSetHandlerFactoryImpl resultSetHandlerFactoryImpl;

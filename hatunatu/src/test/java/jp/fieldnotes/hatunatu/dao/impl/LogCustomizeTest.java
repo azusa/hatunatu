@@ -21,10 +21,6 @@ import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResourceUtil;
 
-/**
- * @author azusa
- *
- */
 public class LogCustomizeTest extends S2TestCase {
 
     private EmployeeDao dao;

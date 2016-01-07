@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author jundu
- * 
- */
 public class FetchHandlerUtilTest extends S2TestCase {
 
     /*

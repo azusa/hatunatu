@@ -21,10 +21,6 @@ import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee22;
 
-/**
- * @author jundu
- *
- */
 public class NullBeanEnhancerTest extends TestCase {
 
     private NullBeanEnhancer enhancer;

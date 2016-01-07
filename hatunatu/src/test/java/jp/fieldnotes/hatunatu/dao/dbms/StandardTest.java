@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-/**
- * @author higa
- * @author manhole
- */
 public class StandardTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

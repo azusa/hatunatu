@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import junit.framework.TestCase;
 
-/**
- * @author Toshitaka Agata
- * @author azusa
- */
 public class PagerResultSetFactoryWapperTest extends TestCase {
 
     MockResultSetFactory original;

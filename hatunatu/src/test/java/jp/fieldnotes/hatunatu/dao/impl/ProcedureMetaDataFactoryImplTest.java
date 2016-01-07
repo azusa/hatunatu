@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author taedium
- *
- */
 public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
 
     protected void setUp() throws Exception {

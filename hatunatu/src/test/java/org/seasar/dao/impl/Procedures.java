@@ -19,10 +19,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Map;
 
-/**
- * @author taedium
- *
- */
 public class Procedures {
 
     public static Map params;

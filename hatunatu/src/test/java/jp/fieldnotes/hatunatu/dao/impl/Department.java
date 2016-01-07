@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import java.io.Serializable;
 
-/**
- * @author higa
- *
- */
 public class Department implements Serializable {
 
     private static final long serialVersionUID = -1031433105487668130L;

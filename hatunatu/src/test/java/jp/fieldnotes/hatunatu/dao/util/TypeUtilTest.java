@@ -21,10 +21,6 @@ import java.util.Map;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class TypeUtilTest extends TestCase {
 
     public void testIsSimpleType() throws Exception {

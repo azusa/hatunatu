@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import java.io.Serializable;
 import java.sql.Date;
 
-/**
- * @author higa
- *
- */
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -5411969211921106291L;

@@ -23,9 +23,6 @@ import junit.framework.TestCase;
 
 import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
 
-/**
- * @author manhole
- */
 public class CharacterTypeTest extends TestCase {
 
     /**

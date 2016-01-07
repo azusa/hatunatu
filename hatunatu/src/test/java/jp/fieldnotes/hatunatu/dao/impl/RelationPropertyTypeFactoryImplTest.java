@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author taedium
- *
- */
 public class RelationPropertyTypeFactoryImplTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

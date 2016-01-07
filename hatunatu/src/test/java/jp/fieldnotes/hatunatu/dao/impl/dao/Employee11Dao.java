@@ -18,9 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dao;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.SqlFile;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
-/**
- * @author manhole
- */
 public interface Employee11Dao {
 
     Class BEAN = Employee.class;

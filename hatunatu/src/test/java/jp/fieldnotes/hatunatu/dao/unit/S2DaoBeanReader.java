@@ -24,10 +24,6 @@ import org.seasar.extension.dataset.types.ColumnTypes;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * @author higa
- * @author manhole
- */
 public class S2DaoBeanReader implements DataReader {
 
     private DataSet dataSet = new DataSetImpl();

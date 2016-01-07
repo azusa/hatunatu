@@ -23,9 +23,6 @@ import jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-/**
- * @author manhole
- */
 public class DaoMetaDataFactoryImplTest extends S2TestCase {
 
     private DaoMetaDataFactoryImpl daoMetaDataFactory;

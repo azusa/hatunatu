@@ -22,10 +22,6 @@ import org.seasar.extension.jdbc.SqlLogRegistry;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author koichik
- * 
- */
 public class BasicHandlerTest extends S2TestCase {
 
     protected void setUp() throws Exception {

@@ -15,9 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-/**
- * @author manhole
- */
 public class Employee {
 
     public static final String TABLE = "EMP";

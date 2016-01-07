@@ -24,9 +24,6 @@ import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
-/**
- * @author manhole
- */
 public class H2Test extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

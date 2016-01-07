@@ -22,9 +22,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author manhole
- */
 public class ClobTest extends S2TestCase {
 
     private LargeTextDao largeTextDao;

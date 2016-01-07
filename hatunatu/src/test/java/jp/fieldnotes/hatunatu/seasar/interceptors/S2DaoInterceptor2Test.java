@@ -19,10 +19,6 @@ import org.seasar.extension.unit.S2TestCase;
 
 import java.util.List;
 
-/**
- * @author higa
- * 
- */
 public class S2DaoInterceptor2Test extends S2TestCase {
 
     private EmployeeAutoDao dao;

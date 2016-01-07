@@ -29,9 +29,6 @@ import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SRuntimeException;
 
-/**
- * @author manhole
- */
 public class DefaultTest extends S2TestCase {
 
     private DefaultTableDao defaultTableDao;

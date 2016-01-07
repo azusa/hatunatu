@@ -20,9 +20,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author manhole
- */
 public class AssertExactlyOneRowInterceptorTest extends S2TestCase {
 
     private EmployeeDao employeeDao;

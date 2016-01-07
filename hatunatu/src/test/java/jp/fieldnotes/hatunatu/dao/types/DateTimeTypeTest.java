@@ -24,10 +24,6 @@ import java.util.Date;
 import jp.fieldnotes.hatunatu.dao.types.DateTimeType;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class DateTimeTypeTest extends TestCase {
 
     private DateTimeType dtType = new DateTimeType();

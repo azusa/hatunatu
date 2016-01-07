@@ -26,10 +26,6 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author taedium
- * 
- */
 public class DateTimestampTypeTest {
 
     private DateTimestampType dtType = new DateTimestampType();

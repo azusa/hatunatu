@@ -23,10 +23,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author higa
- * @author manhole
- */
 public class S2DaoBeanListReaderTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

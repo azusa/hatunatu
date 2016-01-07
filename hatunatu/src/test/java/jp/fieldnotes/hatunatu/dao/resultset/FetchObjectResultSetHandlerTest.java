@@ -26,10 +26,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author jundu
- * 
- */
 public class FetchObjectResultSetHandlerTest extends S2DaoTestCase {
 
     /*

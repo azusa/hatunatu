@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dao.Employee12Dao;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author azusa
- *
- */
 public class DeleteWithAnnotationTest extends S2TestCase {
 
     private Employee12Dao dao;

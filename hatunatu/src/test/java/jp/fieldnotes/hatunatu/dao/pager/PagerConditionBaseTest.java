@@ -19,9 +19,6 @@ import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
 import jp.fieldnotes.hatunatu.dao.pager.PagerViewHelper;
 import junit.framework.TestCase;
 
-/**
- * @author Toshitaka Agata
- */
 public class PagerConditionBaseTest extends TestCase {
 
     DefaultPagerCondition condition;

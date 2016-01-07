@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
 
-/**
- * @author higa
- * 
- */
 public class RelationKeyTest extends TestCase {
 
     protected void tearDown() throws Exception {

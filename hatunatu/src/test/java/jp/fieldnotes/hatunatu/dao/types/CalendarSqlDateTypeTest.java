@@ -23,10 +23,6 @@ import java.util.TimeZone;
 import jp.fieldnotes.hatunatu.dao.types.CalendarSqlDateType;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class CalendarSqlDateTypeTest extends TestCase {
 
     private CalendarSqlDateType cdType = new CalendarSqlDateType();

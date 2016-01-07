@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto2;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- *
- */
 public class DtoMetaDataFactoryImplTest extends S2TestCase {
 
     private DtoMetaDataFactory factory;

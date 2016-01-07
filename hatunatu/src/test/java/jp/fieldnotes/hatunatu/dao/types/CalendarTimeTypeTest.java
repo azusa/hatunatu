@@ -23,10 +23,6 @@ import java.util.TimeZone;
 import jp.fieldnotes.hatunatu.dao.types.CalendarTimeType;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class CalendarTimeTypeTest extends TestCase {
 
     private CalendarTimeType ctType = new CalendarTimeType();

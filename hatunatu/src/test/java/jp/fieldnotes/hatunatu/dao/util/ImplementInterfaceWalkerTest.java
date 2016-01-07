@@ -21,9 +21,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker;
 import junit.framework.TestCase;
 
-/**
- * @author manhole
- */
 public class ImplementInterfaceWalkerTest extends TestCase {
 
     public void testWalkAll() throws Exception {

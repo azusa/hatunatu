@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-/**
- * @author higa
- * 
- */
 public class Authority {
 
     private int level;

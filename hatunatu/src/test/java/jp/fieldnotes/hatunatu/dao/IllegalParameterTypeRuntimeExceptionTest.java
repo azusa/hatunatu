@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao;
 import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalParameterTypeRuntimeException;
 
-/**
- * @author taedium
- *
- */
 public class IllegalParameterTypeRuntimeExceptionTest extends TestCase {
 
     public void test() throws Exception {

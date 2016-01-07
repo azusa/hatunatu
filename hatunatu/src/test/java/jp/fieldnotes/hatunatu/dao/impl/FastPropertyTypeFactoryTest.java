@@ -27,10 +27,6 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author taedium
- *
- */
 public class FastPropertyTypeFactoryTest extends S2TestCase {
 
     private PropertyTypeFactoryBuilder builder;

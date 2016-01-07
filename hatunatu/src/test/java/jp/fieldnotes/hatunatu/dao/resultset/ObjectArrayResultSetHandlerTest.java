@@ -22,10 +22,6 @@ import java.sql.ResultSet;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class ObjectArrayResultSetHandlerTest extends S2TestCase {
 
     public void setUp() {

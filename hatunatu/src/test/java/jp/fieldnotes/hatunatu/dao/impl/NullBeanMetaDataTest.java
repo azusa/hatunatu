@@ -21,9 +21,6 @@ import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.exception.BeanNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.dao.NullBean;
 
-/**
- * @author taedium
- */
 public class NullBeanMetaDataTest extends TestCase {
 
     public void testException() throws Exception {

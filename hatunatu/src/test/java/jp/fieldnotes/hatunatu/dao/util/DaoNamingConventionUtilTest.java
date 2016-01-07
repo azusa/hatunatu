@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.util;
 import jp.fieldnotes.hatunatu.dao.util.DaoNamingConventionUtil;
 import junit.framework.TestCase;
 
-/**
- * @author higa
- *
- */
 public class DaoNamingConventionUtilTest extends TestCase {
 
     protected void setUp() throws Exception {

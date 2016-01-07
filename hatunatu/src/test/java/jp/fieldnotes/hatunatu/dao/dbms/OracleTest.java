@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author higa
- * @author manhole
- */
 public class OracleTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

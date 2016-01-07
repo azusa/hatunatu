@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- * 
- */
 public class BasicSelectHandlerForOracleTest extends S2TestCase {
     /**
      * 

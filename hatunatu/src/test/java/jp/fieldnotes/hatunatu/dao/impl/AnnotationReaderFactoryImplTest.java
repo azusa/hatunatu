@@ -24,9 +24,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * @author manhole
- */
 public class AnnotationReaderFactoryImplTest extends TestCase {
 
     private AnnotationReaderFactoryImpl fieldAnnotationReaderFactory;

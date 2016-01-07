@@ -20,12 +20,6 @@ import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
 import junit.framework.TestCase;
 
-/**
- * PagerContextTest
- * 
- * @author agata
- * @author azusa
- */
 public class PagerContextTest extends TestCase {
 
     public void testIsPagerCondition() {

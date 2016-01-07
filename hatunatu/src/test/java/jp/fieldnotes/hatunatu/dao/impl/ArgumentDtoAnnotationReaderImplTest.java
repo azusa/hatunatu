@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import java.lang.reflect.Field;
 
-/**
- * @author taedium
- * 
- */
 public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
 
     private ArgumentDtoAnnotationReader reader = new ArgumentDtoAnnotationReaderImpl();

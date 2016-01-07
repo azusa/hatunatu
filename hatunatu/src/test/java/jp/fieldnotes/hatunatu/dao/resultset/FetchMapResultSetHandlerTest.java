@@ -27,10 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author jundu
- * 
- */
 public class FetchMapResultSetHandlerTest extends S2DaoTestCase {
 
     /*

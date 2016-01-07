@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author jflute
- * @author manhole
- */
 public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

@@ -18,9 +18,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import junit.framework.TestCase;
 
-/**
- * @author Toshitaka Agata
- */
 public class PagerResultSetFactoryLimitOffsetWrapperTest extends TestCase {
 
     MockResultSetFactory original;

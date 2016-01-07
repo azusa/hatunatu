@@ -29,10 +29,6 @@ import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
 import org.seasar.extension.datasource.impl.DataSourceFactoryImpl;
 import org.seasar.extension.datasource.impl.SelectableDataSourceProxy;
 
-/**
- * @author taedium
- * 
- */
 public class SelectableDataSourceProxyUtilTest extends TestCase {
 
     public void testDataSource() throws Exception {

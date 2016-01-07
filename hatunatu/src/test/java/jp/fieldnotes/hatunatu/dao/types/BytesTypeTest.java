@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.types;
 import jp.fieldnotes.hatunatu.dao.types.BytesType;
 import junit.framework.TestCase;
 
-/**
- * @author taedium
- * 
- */
 public class BytesTypeTest extends TestCase {
 
     /**

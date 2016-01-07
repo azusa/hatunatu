@@ -21,9 +21,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 
-/**
- * @author manhole
- */
 public class ResultSetToBeanTest extends S2DaoTestCase {
 
     protected void setUp() throws Exception {

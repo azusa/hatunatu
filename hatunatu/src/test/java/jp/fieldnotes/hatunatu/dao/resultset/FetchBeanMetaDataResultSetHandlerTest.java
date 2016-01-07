@@ -38,9 +38,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author jundu
- */
 public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     private BeanMetaData beanMetaData;

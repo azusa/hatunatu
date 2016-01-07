@@ -28,9 +28,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto3;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
-/**
- * @author jflute
- */
 public class DtoListMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     public void testHandle() throws Exception {

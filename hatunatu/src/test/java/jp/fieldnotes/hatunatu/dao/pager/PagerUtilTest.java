@@ -23,9 +23,6 @@ import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
 import jp.fieldnotes.hatunatu.dao.pager.PagerUtil;
 import junit.framework.TestCase;
 
-/**
- * @author agata
- */
 public class PagerUtilTest extends TestCase {
 
     private List list;

@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.util.MethodUtil;
 import junit.framework.TestCase;
 import org.seasar.framework.util.ClassUtil;
 
-/**
- * @author higa
- * 
- */
 public class MethodUtilTest extends TestCase {
 
     /**

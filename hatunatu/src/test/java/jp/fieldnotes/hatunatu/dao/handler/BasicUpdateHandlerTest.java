@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-/**
- * @author higa
- *
- */
 public class BasicUpdateHandlerTest extends S2TestCase {
 
     /**

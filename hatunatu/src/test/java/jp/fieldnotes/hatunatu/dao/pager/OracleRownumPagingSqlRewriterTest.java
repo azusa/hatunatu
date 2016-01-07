@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 import jp.fieldnotes.hatunatu.dao.pager.OracleRownumPagingSqlRewriter;
 import junit.framework.TestCase;
 
-/**
- * @author jundu
- * 
- */
 public class OracleRownumPagingSqlRewriterTest extends TestCase {
 
     OracleRownumPagingSqlRewriter rewriter;

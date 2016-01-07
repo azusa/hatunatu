@@ -25,10 +25,6 @@ import junit.framework.TestCase;
 import org.seasar.framework.mock.sql.MockCallableStatement;
 import org.seasar.framework.mock.sql.MockResultSet;
 
-/**
- * @author higa
- * 
- */
 public class PostgreResultSetTypeTest extends TestCase {
 
     private boolean gotResultSet;

@@ -21,10 +21,6 @@ import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
 import jp.fieldnotes.hatunatu.dao.types.bytes.SerializableType;
 
-/**
- * @author taedium
- * 
- */
 public class SerializableTypeTest extends TestCase {
 
     /**
@@ -39,11 +35,6 @@ public class SerializableTypeTest extends TestCase {
         assertEquals("HOGE", aaa.text);
     }
 
-    /**
-     * 
-     * @author taedium
-     * 
-     */
     public static class Aaa implements Serializable {
 
         private static final long serialVersionUID = 1L;

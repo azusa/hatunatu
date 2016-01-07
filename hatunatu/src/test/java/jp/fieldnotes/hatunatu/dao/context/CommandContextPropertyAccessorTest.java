@@ -21,10 +21,6 @@ import ognl.OgnlRuntime;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 
-/**
- * @author higa
- * 
- */
 public class CommandContextPropertyAccessorTest extends TestCase {
 
     protected void tearDown() throws Exception {

@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl.dto;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
-/**
- * @author jundu
- *
- */
 public class EmployeeDto2 extends Employee {
 
     private static final long serialVersionUID = 1L;

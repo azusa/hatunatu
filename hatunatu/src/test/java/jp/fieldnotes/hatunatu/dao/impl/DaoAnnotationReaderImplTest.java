@@ -35,10 +35,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-/**
- * @author higa
- * 
- */
 public class DaoAnnotationReaderImplTest {
     protected AnnotationReaderFactory readerFactory;
 

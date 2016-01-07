@@ -21,9 +21,6 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
 import java.util.List;
 
-/**
- * @author manhole
- */
 public interface Employee10Dao {
 
     @Arguments("job")

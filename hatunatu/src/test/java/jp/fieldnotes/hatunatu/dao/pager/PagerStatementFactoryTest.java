@@ -27,10 +27,6 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * @author manhole
- * @author azusa
- */
 public class PagerStatementFactoryTest extends TestCase {
 
     protected void setUp() throws Exception {

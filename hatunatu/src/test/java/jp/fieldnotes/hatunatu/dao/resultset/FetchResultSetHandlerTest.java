@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
 import java.util.Map;
 
-/**
- * @author jundo
- * 
- */
 public class FetchResultSetHandlerTest extends S2DaoTestCase {
 
     DtoMetaDataFactory dtoMetaDataFactory;

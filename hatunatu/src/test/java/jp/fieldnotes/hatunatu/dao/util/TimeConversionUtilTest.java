@@ -21,10 +21,6 @@ import java.util.Locale;
 import jp.fieldnotes.hatunatu.dao.util.TimeConversionUtil;
 import junit.framework.TestCase;
 
-/**
- * @author higa
- * 
- */
 public class TimeConversionUtilTest extends TestCase {
 
     /**

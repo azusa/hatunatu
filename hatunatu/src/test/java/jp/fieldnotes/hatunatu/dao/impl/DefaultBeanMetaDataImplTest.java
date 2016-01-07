@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.IdentityTable;
 
 import java.sql.Timestamp;
 
-/**
- * @author higa
- * 
- */
 public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
 
     public void setUp() {

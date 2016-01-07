@@ -24,10 +24,6 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.Employee;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- * 
- */
 public class BeanResultSetHandlerTest extends S2TestCase {
 
     /**

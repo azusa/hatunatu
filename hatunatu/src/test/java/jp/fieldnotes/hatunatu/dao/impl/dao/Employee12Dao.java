@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 
-/**
- * @author azusa
- * 
- */
 public interface Employee12Dao {
 
     @Sql("DELETE FROM EMP WHERE EMPNO = /*no*/1111")
