@@ -19,12 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-/**
- * Booleanをintに変換する {@link PreparedStatement}です。
- * 
- * @author higa
- * @author manhole
- */
 public class BooleanToIntPreparedStatement extends PreparedStatementWrapper {
 
     /**

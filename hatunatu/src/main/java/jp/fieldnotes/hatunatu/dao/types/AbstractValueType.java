@@ -21,11 +21,6 @@ import java.sql.SQLException;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 
-/**
- * {@link ValueType}の抽象クラスです。
- * 
- * @author taedium
- */
 public abstract class AbstractValueType implements ValueType {
 
     /** JDBCのSQL型 */

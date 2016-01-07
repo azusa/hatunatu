@@ -17,12 +17,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import java.sql.SQLException;
 
-/**
- * S2Pager用にSELECT文を実行直前に書き換えるためのインターフェースです。
- * 
- * @author jundu
- * 
- */
 public interface PagingSqlRewriter {
 
     /**

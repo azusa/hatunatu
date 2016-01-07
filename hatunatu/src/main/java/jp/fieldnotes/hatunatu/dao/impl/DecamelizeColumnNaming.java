@@ -18,11 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.ColumnNaming;
 import jp.fieldnotes.hatunatu.dao.util.DaoNamingConventionUtil;
 
-/**
- * プロパティ名のキャメルケースの区切りにアンダースコアを挿入したものをカラム名とする{@link ColumnNaming}の実装クラスです。
- * 
- * @author taedium
- */
 public class DecamelizeColumnNaming implements ColumnNaming {
 
     public String fromPropertyNameToColumnName(String propertyName) {

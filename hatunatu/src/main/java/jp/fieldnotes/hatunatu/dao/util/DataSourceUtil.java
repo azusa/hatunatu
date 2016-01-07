@@ -23,12 +23,6 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 
-/**
- * {@link DataSource}用のユーティリティクラスです。
- * 
- * @author higa
- * 
- */
 public class DataSourceUtil {
 
     /**

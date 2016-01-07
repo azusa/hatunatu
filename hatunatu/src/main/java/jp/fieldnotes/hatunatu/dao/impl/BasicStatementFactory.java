@@ -22,12 +22,6 @@ import java.sql.PreparedStatement;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 
-/**
- * {@link StatementFactory}の基本的な実装クラスです。
- * 
- * @author higa
- * 
- */
 public class BasicStatementFactory implements StatementFactory {
 
     /**

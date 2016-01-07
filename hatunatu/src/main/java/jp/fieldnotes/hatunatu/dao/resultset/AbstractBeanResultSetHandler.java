@@ -31,12 +31,6 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 
-/**
- * JavaBeans用の {@link ResultSetHandler}の抽象クラスです。
- * 
- * @author higa
- * 
- */
 public abstract class AbstractBeanResultSetHandler implements ResultSetHandler {
 
     private Class beanClass;

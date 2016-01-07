@@ -22,12 +22,6 @@ import jp.fieldnotes.hatunatu.util.message.MessageFormatter;
 import java.sql.SQLException;
 
 
-/**
- * {@link SQLException}をラップする例外です。
- * 
- * @author higa
- * @author manhole
- */
 public class SQLRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 2533513110369526191L;

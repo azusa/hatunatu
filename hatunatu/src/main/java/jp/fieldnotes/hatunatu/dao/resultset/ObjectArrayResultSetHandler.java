@@ -21,11 +21,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-/**
- * オブジェクトの配列を返す{@link ResultSetHandler}です。
- * 
- * @author taedium
- */
 public class ObjectArrayResultSetHandler extends ObjectListResultSetHandler {
 
     /**

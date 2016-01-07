@@ -19,10 +19,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * @author higa
- * 
- */
 public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         RelationPropertyType {
 

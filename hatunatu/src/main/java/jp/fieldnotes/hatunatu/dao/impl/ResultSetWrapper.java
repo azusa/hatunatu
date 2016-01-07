@@ -23,10 +23,6 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Map;
 
-/**
- *  Wapper of {@link ResultSet}
- *
- */
 public class ResultSetWrapper implements ResultSet {
 
     private ResultSet original;

@@ -18,9 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author jflute
- */
 public class NotFoundModifiedPropertiesRuntimeException extends
         SRuntimeException {
 

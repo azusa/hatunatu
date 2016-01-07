@@ -22,12 +22,6 @@ import java.sql.PreparedStatement;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 
-/**
- * Booleanをintに変換する {@link StatementFactory}です。
- * 
- * @author higa
- * @author manhole
- */
 public class BooleanToIntStatementFactory implements StatementFactory {
 
     /**

@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.dao.resultset.FetchResultSetHandler;
 
 import java.lang.reflect.Method;
 
-/**
- * @author jundu
- * 
- */
 @SuppressWarnings("unchecked")
 public class TigerResultSetHandlerFactoryImpl extends
         ResultSetHandlerFactoryImpl {

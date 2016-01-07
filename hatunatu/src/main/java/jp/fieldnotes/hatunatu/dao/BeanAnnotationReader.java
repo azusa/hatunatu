@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * @author uehara keizou
- * @author manhole
- * @author azusa
- */
 public interface BeanAnnotationReader {
 
     String getColumnAnnotation(PropertyDesc pd);

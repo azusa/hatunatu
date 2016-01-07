@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class InsertAutoHandler extends AbstractAutoHandler {
 
     public InsertAutoHandler(DataSource dataSource,

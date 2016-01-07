@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.ColumnNaming;
 
-/**
- * プロパティ名をそのままカラム名とする{@link ColumnNaming}の実装クラスです。
- * 
- * @author taedium
- */
 public class DefaultColumnNaming implements ColumnNaming {
 
     public String fromPropertyNameToColumnName(String propertyName) {

@@ -34,11 +34,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * {@link ProcedureMetaDataFactory}の実装クラスです。
- * 
- * @author taedium
- */
 public class ProcedureMetaDataFactoryImpl implements ProcedureMetaDataFactory {
 
     public static final String INIT_METHOD = "initialize";

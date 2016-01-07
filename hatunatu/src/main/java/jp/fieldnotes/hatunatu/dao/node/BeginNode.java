@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.node;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
 
-/**
- * @author higa
- * 
- */
 public class BeginNode extends ContainerNode {
 
     public BeginNode() {

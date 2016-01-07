@@ -33,10 +33,6 @@ import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 
-/**
- * @author higa
- * @author manhole
- */
 public class Standard implements Dbms, Disposable {
 
     private static final Pattern baseSqlPattern = Pattern.compile(

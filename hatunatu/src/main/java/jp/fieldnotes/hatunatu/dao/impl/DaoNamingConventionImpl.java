@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
 
-/**
- * setterを呼ぶことでカスタマイズ可能な、S2Daoでの命名規約です。
- * 
- * @author manhole
- */
 public class DaoNamingConventionImpl implements DaoNamingConvention {
 
     private String versionNoPropertyName = "versionNo";

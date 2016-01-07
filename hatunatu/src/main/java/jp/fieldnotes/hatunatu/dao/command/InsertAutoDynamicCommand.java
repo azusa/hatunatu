@@ -30,9 +30,6 @@ import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicHandler;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author manhole
- */
 public class InsertAutoDynamicCommand implements SqlCommand,
         InjectDaoClassSupport {
 

@@ -24,10 +24,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 
-/**
- * @author higa
- * @author manhole
- */
 public class SelectDynamicCommand extends AbstractDynamicCommand {
 
     private ResultSetHandler resultSetHandler;

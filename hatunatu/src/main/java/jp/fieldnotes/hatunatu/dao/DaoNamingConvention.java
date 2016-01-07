@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * S2Daoでの命名規約です。
- * 
- * @author manhole
- */
 public interface DaoNamingConvention {
 
     String getTimestampPropertyName();

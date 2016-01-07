@@ -21,13 +21,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-/**
- * Oracle用の {@link ResultSet}です。 WAVE DASH(U+301C)をFULLWIDTH
- * TILDE(U+FF5E)に変換します。
- * 
- * @author higa
- * 
- */
 public class OracleResultSet extends ResultSetWrapper {
 
     /**

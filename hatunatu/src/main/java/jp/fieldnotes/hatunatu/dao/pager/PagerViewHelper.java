@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 
-/**
- * ページャのビューヘルパークラスです。
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- */
 public class PagerViewHelper implements PagerCondition {
 
     private static final int DEFAULT_DISPLAY_PAGE_MAX = 9;

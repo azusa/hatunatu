@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicHandler;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractSqlCommand implements SqlCommand,
         InjectDaoClassSupport {
 

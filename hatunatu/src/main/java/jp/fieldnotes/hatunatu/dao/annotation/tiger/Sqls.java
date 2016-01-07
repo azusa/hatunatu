@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.annotation.tiger;
 
 import java.lang.annotation.*;
 
-/**
- * @author azusa
- * 
- */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

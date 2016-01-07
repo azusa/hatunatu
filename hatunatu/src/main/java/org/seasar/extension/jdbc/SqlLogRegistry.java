@@ -15,11 +15,6 @@
  */
 package org.seasar.extension.jdbc;
 
-/**
- * {@link SqlLog}のレジストリを表すインターフェースです。
- * 
- * @author taedium
- */
 public interface SqlLogRegistry {
 
     /**

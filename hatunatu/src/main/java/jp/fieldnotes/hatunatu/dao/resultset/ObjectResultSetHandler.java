@@ -21,11 +21,6 @@ import java.sql.SQLException;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * オブジェクトを返す{@link ResultSetHandler}です。
- * 
- * @author taedium
- */
 public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
 
     private static final Logger logger = Logger

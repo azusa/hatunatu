@@ -25,12 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-/**
- * {@link Connection}用のユーティリティです。
- * 
- * @author higa
- * 
- */
 public class ConnectionUtil {
 
     /**

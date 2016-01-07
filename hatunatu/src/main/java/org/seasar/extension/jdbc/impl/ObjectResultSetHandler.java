@@ -23,12 +23,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
-/**
- * 単独のオブジェクトを返す {@link ResultSetHandler}です。
- * 
- * @author higa
- * 
- */
 public class ObjectResultSetHandler implements ResultSetHandler {
 
     /**

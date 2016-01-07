@@ -27,11 +27,6 @@ import java.sql.SQLException;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.exception.SSQLException;
 
-/**
- * オブジェクトをシリアライズしたバイト配列用の {@link ValueType}です。
- * 
- * @author taedium
- */
 public class SerializableType extends BytesType {
 
     /**

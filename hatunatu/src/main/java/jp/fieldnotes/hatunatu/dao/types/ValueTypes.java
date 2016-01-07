@@ -41,12 +41,6 @@ import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
 
-/**
- * 値タイプのファクトリです。
- * 
- * @author higa
- * 
- */
 public class ValueTypes {
 
     /**

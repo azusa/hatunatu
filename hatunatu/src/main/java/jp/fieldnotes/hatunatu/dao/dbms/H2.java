@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.dao.Dbms;
 
-/**
- * @author taichi
- */
 public class H2 extends Standard {
 
     /**

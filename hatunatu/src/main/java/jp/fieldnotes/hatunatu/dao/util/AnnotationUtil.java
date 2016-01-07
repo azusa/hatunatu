@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import java.lang.annotation.Annotation;
 
-/**
- * @author jundu
- * 
- */
 public class AnnotationUtil {
 
     private AnnotationUtil() {

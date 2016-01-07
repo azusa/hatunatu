@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class UpdateAutoStaticCommand extends AbstractAutoStaticCommand {
 
     public UpdateAutoStaticCommand(DataSource dataSource,

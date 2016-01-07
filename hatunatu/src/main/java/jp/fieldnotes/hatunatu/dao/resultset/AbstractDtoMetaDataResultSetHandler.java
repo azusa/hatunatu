@@ -26,9 +26,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveSet;
 
-/**
- * @author jflute
- */
 public abstract class AbstractDtoMetaDataResultSetHandler implements
         ResultSetHandler {
 

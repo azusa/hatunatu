@@ -20,9 +20,6 @@ import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import java.lang.reflect.Method;
 
 
-/**
- * @author manhole
- */
 public class SqlFileNotFoundRuntimeException extends SRuntimeException {
 
     public SqlFileNotFoundRuntimeException(final Class daoClass,

@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author higa
- * 
- */
 public interface SqlParser {
 
     public Node parse();

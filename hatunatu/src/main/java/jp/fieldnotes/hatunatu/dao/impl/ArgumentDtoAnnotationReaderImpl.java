@@ -25,11 +25,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * Tigerのアノテーションを読み取る{@link ArgumentDtoAnnotationReader}の実装クラスです。
- * 
- * @author taedium
- */
 public class ArgumentDtoAnnotationReaderImpl  implements
         ArgumentDtoAnnotationReader {
 

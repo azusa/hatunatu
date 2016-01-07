@@ -18,12 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * カラムが見つらない場合の例外です。
- * 
- * @author higa
- * 
- */
 public class ColumnNotFoundRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 0L;

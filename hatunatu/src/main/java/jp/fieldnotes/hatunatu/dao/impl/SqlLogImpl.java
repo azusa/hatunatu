@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import org.seasar.extension.jdbc.SqlLog;
 
-/**
- * {@link SqlLog}の実装クラスです。
- * 
- * @author taedium
- */
 public class SqlLogImpl implements SqlLog {
 
     private String rawSql;

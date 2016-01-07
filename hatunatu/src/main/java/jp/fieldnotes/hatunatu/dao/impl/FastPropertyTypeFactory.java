@@ -30,14 +30,6 @@ import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * クラスのメタ情報のみを使用し高速に{@link PropertyType}を生成する{@link PropertyTypeFactory}の実装クラスです。
- * <p>
- * データベースのメタ情報を使用しないため{@link PropertyTypeFactoryImpl}よりも高速です。
- * </p>
- * 
- * @author taedium
- */
 public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
 
     private DaoNamingConvention daoNamingConvention;

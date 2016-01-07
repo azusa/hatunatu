@@ -22,12 +22,6 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * Beanのリストを返す {@link ResultSetHandler}です。
- * 
- * @author higa
- * 
- */
 public class BeanListResultSetHandler extends AbstractBeanResultSetHandler {
 
     /**

@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author jundu
- * 
- */
 public interface FetchHandler<T> {
 
     /**

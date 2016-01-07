@@ -19,12 +19,6 @@ import jp.fieldnotes.hatunatu.util.convert.DateConversionUtil;
 
 import java.sql.Date;
 
-/**
- * {@link Date}用の変換ユーティリティです。
- * 
- * @author higa
- * 
- */
 public class SqlDateConversionUtil {
 
     /**

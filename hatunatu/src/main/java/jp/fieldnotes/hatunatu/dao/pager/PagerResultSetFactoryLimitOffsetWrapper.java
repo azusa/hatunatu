@@ -33,10 +33,6 @@ import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 
-/**
- * @author yamamoto
- * @author agata
- */
 public class PagerResultSetFactoryLimitOffsetWrapper implements
         ResultSetFactory {
 

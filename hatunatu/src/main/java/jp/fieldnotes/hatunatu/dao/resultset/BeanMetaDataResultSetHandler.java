@@ -30,9 +30,6 @@ import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * @author jflute
- */
 public class BeanMetaDataResultSetHandler extends
         AbstractBeanMetaDataResultSetHandler {
 

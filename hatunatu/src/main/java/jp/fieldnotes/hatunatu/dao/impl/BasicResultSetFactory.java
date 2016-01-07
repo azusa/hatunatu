@@ -23,12 +23,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * {@link ResultSetFactory}の基本的な実装クラスです。
- * 
- * @author higa
- * 
- */
 public class BasicResultSetFactory implements ResultSetFactory {
 
     /**

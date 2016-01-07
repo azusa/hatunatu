@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
-/**
- * @author higa
- * @author manhole
- */
 public interface DtoMetaData {
 
     public String COLUMN_SUFFIX = "_COLUMN";

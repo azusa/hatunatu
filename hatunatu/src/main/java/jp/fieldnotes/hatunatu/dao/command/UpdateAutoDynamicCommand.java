@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author taichi
- * @author jflute
- */
 public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
 
     private BeanMetaData beanMetaData;

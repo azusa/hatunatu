@@ -28,11 +28,6 @@ import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * 引数のDTOのメタデータを利用してプロシージャを実行する{@link SqlCommand}の実装クラスです。
- * 
- * @author taedium
- */
 public class ArgumentDtoProcedureCommand implements SqlCommand,
         InjectDaoClassSupport {
 

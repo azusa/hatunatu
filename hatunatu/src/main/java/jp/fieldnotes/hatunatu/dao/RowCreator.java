@@ -22,9 +22,6 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author jflute
- */
 public interface RowCreator {
 
     /**

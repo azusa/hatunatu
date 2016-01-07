@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import java.sql.DatabaseMetaData;
 
-/**
- * {@link RelationPropertyTypeFactory}のビルダのインタフェースです。
- * 
- * @author taedium
- */
 public interface RelationPropertyTypeFactoryBuilder {
 
     /**

@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.handler;
 
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 
-/**
- * @author higa
- * 
- */
 public interface ProcedureHandler {
 
     public Object execute(Object[] args) throws SQLRuntimeException;

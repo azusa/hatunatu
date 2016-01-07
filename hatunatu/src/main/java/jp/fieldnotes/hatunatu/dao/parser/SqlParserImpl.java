@@ -34,10 +34,6 @@ import jp.fieldnotes.hatunatu.dao.node.PrefixSqlNode;
 import jp.fieldnotes.hatunatu.dao.node.SqlNode;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * @author higa
- * 
- */
 public class SqlParserImpl implements SqlParser {
 
     private static final Pattern lineBreak = Pattern.compile("(\\r(\\n)?|\\n)");

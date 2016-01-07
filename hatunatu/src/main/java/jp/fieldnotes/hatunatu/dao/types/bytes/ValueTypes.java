@@ -19,11 +19,6 @@ import jp.fieldnotes.hatunatu.dao.dbms.PostgreSQL;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.StringClobType;
 
-/**
- * 値タイプの定数です。
- * 
- * @author taedium
- */
 public class ValueTypes {
 
     /**

@@ -26,12 +26,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.dao.util.TimeConversionUtil;
 
-/**
- * Time用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class TimeType extends AbstractValueType {
 
     /**

@@ -28,10 +28,6 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author higa
- * @author jflute
- */
 public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
 
     private PropertyType[] propertyTypes;

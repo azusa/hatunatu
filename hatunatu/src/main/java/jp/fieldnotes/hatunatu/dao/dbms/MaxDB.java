@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-/**
- * @author makotan
- * 
- */
 public class MaxDB extends Standard {
 
     public String getSuffix() {

@@ -20,10 +20,6 @@ import javax.sql.DataSource;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractStaticCommand extends AbstractSqlCommand {
 
     private BeanMetaData beanMetaData;

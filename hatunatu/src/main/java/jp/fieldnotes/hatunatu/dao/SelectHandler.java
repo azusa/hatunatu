@@ -18,12 +18,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-/**
- * 検索処理のためのインターフェースです。
- * 
- * @author higa
- * 
- */
 public interface SelectHandler {
 
     /**

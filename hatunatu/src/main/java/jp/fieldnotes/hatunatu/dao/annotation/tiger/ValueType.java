@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao.annotation.tiger;
 
 import java.lang.annotation.*;
 
-/**
- * @author manhole
- */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.METHOD, ElementType.FIELD })

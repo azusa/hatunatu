@@ -25,11 +25,6 @@ import javassist.CtField;
 import jp.fieldnotes.hatunatu.util.exception.NoSuchFieldRuntimeException;
 
 
-/**
- * 型に関するユーティリティです。
- * 
- * @author taedium
- */
 public class TypeUtil {
 
     private TypeUtil() {

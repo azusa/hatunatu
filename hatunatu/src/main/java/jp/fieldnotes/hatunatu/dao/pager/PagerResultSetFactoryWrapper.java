@@ -23,12 +23,6 @@ import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 
-/**
- * ResultSetFactoryをラップして、 ページャ用のResultSetを生成します。
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- * @author manhole
- */
 public class PagerResultSetFactoryWrapper implements ResultSetFactory {
 
     /** オリジナルのResultSetFactory */

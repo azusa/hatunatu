@@ -31,10 +31,6 @@ import jp.fieldnotes.hatunatu.dao.resultset.*;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
-/**
- * @author manhole
- * @author jflute
- */
 public class ResultSetHandlerFactoryImpl implements ResultSetHandlerFactory {
 
     public static final String dtoMetaDataFactory_BINDING = "bindingType=must";

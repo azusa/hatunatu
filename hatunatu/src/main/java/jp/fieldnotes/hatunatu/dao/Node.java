@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author higa
- * 
- */
 public interface Node {
 
     public int getChildSize();

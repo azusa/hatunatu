@@ -21,10 +21,6 @@ import java.sql.SQLException;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.api.ValueType;
 
-/**
- * @author taedium
- * 
- */
 public class IdentifierResultSetHandler implements ResultSetHandler {
 
     private ValueType valueType;

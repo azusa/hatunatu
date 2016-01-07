@@ -30,10 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author jundu
- * 
- */
 public class FetchBeanMetaDataResultSetHandler extends
         AbstractBeanMetaDataResultSetHandler {
 

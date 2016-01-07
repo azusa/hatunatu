@@ -24,12 +24,6 @@ import java.sql.Types;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 
-/**
- * 結果セット用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class PostgreResultSetType extends AbstractValueType {
 
     /**

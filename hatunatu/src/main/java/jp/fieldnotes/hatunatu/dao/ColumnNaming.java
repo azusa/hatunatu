@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * カラムの名前を解決するためのインタフェースです。
- * 
- * @author taedium
- */
 public interface ColumnNaming {
 
     /**

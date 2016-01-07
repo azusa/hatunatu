@@ -37,12 +37,6 @@ import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker.Status;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
-/**
- * 
- * @author keizou
- * @author manhole
- * @author azusa
- */
 public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
 
     private Class<?> daoClass_;

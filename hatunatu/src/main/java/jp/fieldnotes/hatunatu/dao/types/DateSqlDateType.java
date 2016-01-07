@@ -28,12 +28,6 @@ import jp.fieldnotes.hatunatu.util.convert.DateConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 
 
-/**
- * {@link java.sql.Date}と互換性をもつ{@link Date}用の{@link ValueType}です。
- * 
- * @author taedium
- * 
- */
 public class DateSqlDateType extends SqlDateType {
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {

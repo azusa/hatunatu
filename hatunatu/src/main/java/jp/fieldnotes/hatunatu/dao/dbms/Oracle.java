@@ -25,10 +25,6 @@ import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 
-/**
- * @author higa
- * @author manhole
- */
 public class Oracle extends Standard {
 
     /**

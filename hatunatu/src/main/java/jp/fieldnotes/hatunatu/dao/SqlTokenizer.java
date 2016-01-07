@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author higa
- * 
- */
 public interface SqlTokenizer {
 
     public int SQL = 1;

@@ -21,12 +21,6 @@ import java.sql.Statement;
 
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 
-/**
- * Oracle用の {@link ResultSetFactory}です。
- * 
- * @author higa
- * 
- */
 public class OracleResultSetFactory extends BasicResultSetFactory {
 
     public ResultSet getResultSet(Statement statement) {

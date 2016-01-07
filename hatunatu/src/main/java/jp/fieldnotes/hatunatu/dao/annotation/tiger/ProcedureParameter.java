@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao.annotation.tiger;
 
 import java.lang.annotation.*;
 
-/**
- * プロシージャのパラメータを示します。
- * 
- * @author taedium
- */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.METHOD, ElementType.FIELD })

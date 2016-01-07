@@ -30,17 +30,6 @@ import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 
-/**
- * S2Dao用にSELECT文を書き換えるための骨格実装を提供するクラスです。
- * <p>
- * 元のSELECT文を編集して、 {@link org.seasar.dao.pager.PagingCondition}
- * として渡されたパラメータの値に従ってページング処理を含むSQLを生成した後、カウントを取るSQLを実行します。
- * </p>
- * 
- * @author jundu
- * @author azusa
- * 
- */
 public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
 
     private static final Pattern patternOrderBy = Pattern

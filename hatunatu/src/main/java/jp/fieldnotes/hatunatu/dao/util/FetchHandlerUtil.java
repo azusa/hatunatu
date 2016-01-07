@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 
-/**
- * @author jundu
- * 
- */
 public class FetchHandlerUtil {
 
     private static final Class fetchHandlerClass = FetchHandler.class;

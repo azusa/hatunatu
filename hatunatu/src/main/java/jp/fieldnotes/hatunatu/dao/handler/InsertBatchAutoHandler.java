@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class InsertBatchAutoHandler extends AbstractBatchAutoHandler {
 
     public InsertBatchAutoHandler(DataSource dataSource,

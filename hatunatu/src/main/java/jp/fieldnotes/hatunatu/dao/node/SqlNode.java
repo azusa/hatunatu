@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.node;
 import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 
-/**
- * @author higa
- * 
- */
 public class SqlNode extends AbstractNode {
 
     private String sql;

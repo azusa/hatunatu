@@ -19,12 +19,6 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-/**
- * Booleanをintに変換する {@link CallableStatement}です。
- * 
- * @author higa
- * 
- */
 public class BooleanToIntCallableStatement extends CallableStatementWrapper {
 
     /**

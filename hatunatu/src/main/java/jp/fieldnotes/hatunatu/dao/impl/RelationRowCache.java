@@ -20,10 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author higa
- * 
- */
 public class RelationRowCache {
 
     private List rowMapList;

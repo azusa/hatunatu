@@ -31,9 +31,6 @@ import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCache;
 
-/**
- * @author jflute
- */
 public class BeanListMetaDataResultSetHandler extends
         AbstractBeanMetaDataResultSetHandler {
 

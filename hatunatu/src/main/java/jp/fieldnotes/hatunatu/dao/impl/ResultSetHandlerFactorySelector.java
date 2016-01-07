@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandlerFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 
-/**
- * @author jundu
- * 
- */
 public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory {
 
     public static final String dtoMetaDataFactory_BINDING = "bindingType=must";

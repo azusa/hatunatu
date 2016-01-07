@@ -20,12 +20,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-/**
- * {@link Statement}を作成するためのファクトリです。
- * 
- * @author higa
- * 
- */
 public interface StatementFactory {
 
     /**

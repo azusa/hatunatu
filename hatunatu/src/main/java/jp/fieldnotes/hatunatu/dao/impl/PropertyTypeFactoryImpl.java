@@ -35,14 +35,6 @@ import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * {@link PropertyTypeFactory}の実装クラスです。
- * <p>
- * データベースのメタデータ情報を利用して{@link PropertyType}を作成します。
- * </p>
- * 
- * @author taedium
- */
 public class PropertyTypeFactoryImpl extends AbstractPropertyTypeFactory {
 
     private static Logger logger = Logger

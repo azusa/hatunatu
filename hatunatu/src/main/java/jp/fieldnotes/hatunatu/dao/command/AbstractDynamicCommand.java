@@ -24,10 +24,6 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlParserImpl;
 import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
 
     private Node rootNode;

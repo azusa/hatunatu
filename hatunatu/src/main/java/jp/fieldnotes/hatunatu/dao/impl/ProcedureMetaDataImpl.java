@@ -19,11 +19,6 @@ import jp.fieldnotes.hatunatu.dao.ProcedureMetaData;
 import jp.fieldnotes.hatunatu.dao.ProcedureParameterType;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 
-/**
- * {@link ProcedureMetaData}の実装クラスです。
- * 
- * @author taedium
- */
 public class ProcedureMetaDataImpl implements ProcedureMetaData {
 
     private String procedureName;

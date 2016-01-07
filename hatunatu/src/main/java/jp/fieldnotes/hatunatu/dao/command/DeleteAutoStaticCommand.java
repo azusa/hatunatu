@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.DeleteAutoHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class DeleteAutoStaticCommand extends AbstractAutoStaticCommand {
 
     public DeleteAutoStaticCommand(DataSource dataSource,

@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-/**
- * Daoの命名規約用のユーティリティクラスです。
- * @author higa
- *
- */
 public abstract class DaoNamingConventionUtil {
 
     protected DaoNamingConventionUtil() {

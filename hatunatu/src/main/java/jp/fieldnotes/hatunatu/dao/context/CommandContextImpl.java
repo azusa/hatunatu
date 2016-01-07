@@ -24,10 +24,6 @@ import ognl.OgnlRuntime;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * @author higa
- * 
- */
 public class CommandContextImpl implements CommandContext {
 
     private static Logger logger = Logger.getLogger(CommandContextImpl.class);

@@ -20,10 +20,6 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.Node;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractNode implements Node {
 
     private List children = new ArrayList();

@@ -20,12 +20,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * {@link PropertyType}の実装クラスです。
- * 
- * @author higa
- * 
- */
 public class PropertyTypeImpl implements PropertyType {
 
     private PropertyDesc propertyDesc;

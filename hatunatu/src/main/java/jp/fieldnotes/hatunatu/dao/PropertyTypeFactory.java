@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * {@link PropertyType}のファクトリのインタフェースです。
- * 
- * @author taedium
- */
 public interface PropertyTypeFactory {
 
     /**

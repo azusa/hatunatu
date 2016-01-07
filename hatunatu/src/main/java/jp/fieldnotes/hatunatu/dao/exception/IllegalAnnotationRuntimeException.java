@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author azusa
- *
- */
 public class IllegalAnnotationRuntimeException extends SRuntimeException {
 
 

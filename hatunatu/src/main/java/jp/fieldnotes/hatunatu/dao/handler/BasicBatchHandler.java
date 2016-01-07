@@ -30,13 +30,7 @@ import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 /**
- * 一つのSQLに複数のパラメータを適用してバッチ実行するための基本的なクラスです。
- * <p>
- * バッチ実行された各SQLが挿入／更新／削除した行数の配列を取得する場合は{@link BasicReturningRowsBatchHandler}を使用してください。
- * </p>
- * 
- * @author higa
- * @see BasicReturningRowsBatchHandler
+ * @deprecated  use {@link BasicReturningRowsBatchHandler}
  */
 public class BasicBatchHandler extends BasicHandler implements BatchHandler {
 

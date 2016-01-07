@@ -25,10 +25,6 @@ import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * @author taichi
- *
- */
 public class NullBeanEnhancer implements BeanEnhancer, ModifiedPropertySupport {
 
     public static final String daoNamingConvention_BINDING = "bindingType=must";

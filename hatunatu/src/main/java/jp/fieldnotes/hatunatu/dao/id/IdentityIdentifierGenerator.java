@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * @author higa
- * 
- */
 public class IdentityIdentifierGenerator extends AbstractIdentifierGenerator {
 
     /**

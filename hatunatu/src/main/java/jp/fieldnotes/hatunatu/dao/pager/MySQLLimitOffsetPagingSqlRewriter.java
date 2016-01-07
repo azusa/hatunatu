@@ -18,13 +18,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * MySQL用のLimitOffsetPagingSqlRewriterです。
- * 
- * 
- * @author azusa
- * 
- */
 public class MySQLLimitOffsetPagingSqlRewriter extends
         LimitOffsetPagingSqlRewriter {
 

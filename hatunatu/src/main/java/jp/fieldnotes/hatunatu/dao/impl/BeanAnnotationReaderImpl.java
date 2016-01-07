@@ -30,12 +30,6 @@ import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * @author keizou
- * @author manhole
- * @author azusa
- * 
- */
 public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 
     private Class<?> beanClass_;

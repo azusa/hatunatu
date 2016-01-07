@@ -20,11 +20,6 @@ import java.util.LinkedList;
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
 
-/**
- * {@link SqlLogRegistry}の実装クラスです。
- * 
- * @author taedium
- */
 public class SqlLogRegistryImpl implements SqlLogRegistry {
 
     private static final int DEFAULT_LIMIT_SIZE = 3;

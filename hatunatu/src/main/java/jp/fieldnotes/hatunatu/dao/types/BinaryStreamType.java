@@ -27,12 +27,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.io.InputStreamUtil;
 
-/**
- * BinaryStream用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class BinaryStreamType extends AbstractValueType {
 
     /**

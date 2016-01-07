@@ -19,11 +19,6 @@ import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 
 import java.io.Serializable;
 
-/**
- * ページャ条件保持オブジェクトのベースクラス。
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- */
 public class DefaultPagerCondition implements PagerCondition, Serializable {
 
     private static final long serialVersionUID = 1L;

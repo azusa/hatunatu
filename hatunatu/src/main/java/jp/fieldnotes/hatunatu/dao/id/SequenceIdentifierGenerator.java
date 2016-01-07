@@ -24,12 +24,6 @@ import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.convert.LongConversionUtil;
 
-/**
- * SEQUENCEを使って値を自動生成する識別子ジェネレータです。
- * 
- * @author higa
- * @author taedium
- */
 public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
 
     private String sequenceName;

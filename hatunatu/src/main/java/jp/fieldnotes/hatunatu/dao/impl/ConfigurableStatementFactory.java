@@ -23,12 +23,6 @@ import java.sql.Statement;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * {@link Statement}をカスタマイズするためのファクトリです。
- * 
- * @author manhole
- * @author higa
- */
 public class ConfigurableStatementFactory implements StatementFactory {
 
     /**

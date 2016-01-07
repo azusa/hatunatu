@@ -32,9 +32,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * @author jflute
- */
 public class RowCreatorImpl implements RowCreator {
 
     // ===================================================================================

@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.annotation.tiger;
 
-/**
- * プロシージャのパラメータのタイプを表す列挙型です。
- * 
- * @author taedium
- */
 public enum ParameterType {
     /** <code>IN</code>パラメータ */
     IN,

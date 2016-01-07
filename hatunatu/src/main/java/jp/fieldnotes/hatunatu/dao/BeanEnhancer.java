@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataImpl.ModifiedPropertySupport;
 
-/**
- * @author manhole
- */
 public interface BeanEnhancer {
 
     Class enhanceBeanClass(Class beanClass, String versionNoPropertyName,

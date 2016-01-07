@@ -22,12 +22,6 @@ import ognl.Ognl;
 import ognl.OgnlException;
 import jp.fieldnotes.hatunatu.dao.exception.OgnlRuntimeException;
 
-/**
- * Ognl用のユーティリティクラスです。
- *
- * @author higa
- *
- */
 @SuppressWarnings("rawtypes")
 public class OgnlUtil {
 

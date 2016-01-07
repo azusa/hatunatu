@@ -24,12 +24,6 @@ import java.util.Calendar;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalBindArgSizeRuntimeException;
 import jp.fieldnotes.hatunatu.api.ValueType;
 
-/**
- * バインド変数用のユーティリティです。
- * 
- * @author higa
- * 
- */
 public class BindVariableUtil {
 
     private static final String NULL = "null";

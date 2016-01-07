@@ -40,10 +40,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- * @author higa
- * 
- */
 public class SqlTokenizerImpl implements SqlTokenizer {
 
     private String sql;

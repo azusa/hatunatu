@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 
-/**
- * プロシージャのパラメータのタイプです。
- * 
- * @author taedium
- */
 public interface ProcedureParameterType {
 
     /**

@@ -19,12 +19,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-/**
- * Beanを返す {@link ResultSetHandler}です。
- * 
- * @author higa
- * 
- */
 public class BeanResultSetHandler extends AbstractBeanResultSetHandler {
 
     /**

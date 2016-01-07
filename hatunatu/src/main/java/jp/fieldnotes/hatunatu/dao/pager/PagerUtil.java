@@ -20,11 +20,6 @@ import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * ページャユーティリティ
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- */
 public class PagerUtil {
 
     public static boolean isPrev(PagerCondition condition) {

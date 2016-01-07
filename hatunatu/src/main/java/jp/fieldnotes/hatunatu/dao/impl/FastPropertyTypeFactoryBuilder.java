@@ -25,11 +25,6 @@ import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
 import jp.fieldnotes.hatunatu.dao.PropertyTypeFactoryBuilder;
 import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
 
-/**
- * {@link FastPropertyTypeFactory}を組み立てる{@link PropertyTypeFactoryBuilder}の実装クラスです。
- * 
- * @author taedium
- */
 public class FastPropertyTypeFactoryBuilder implements
         PropertyTypeFactoryBuilder {
 

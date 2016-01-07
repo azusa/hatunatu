@@ -23,9 +23,6 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 
-/**
- * @author jflute
- */
 public class DtoArrayMetaDataResultSetHandler extends
         DtoListMetaDataResultSetHandler {
 

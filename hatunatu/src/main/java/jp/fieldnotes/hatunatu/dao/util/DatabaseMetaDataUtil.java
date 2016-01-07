@@ -27,12 +27,6 @@ import java.util.Map;
 import java.util.Set;
 
 
-/**
- * データベースメタデータ用のユーティリティです。
- * 
- * @author higa
- * @author manhole
- */
 public class DatabaseMetaDataUtil {
 
     /**

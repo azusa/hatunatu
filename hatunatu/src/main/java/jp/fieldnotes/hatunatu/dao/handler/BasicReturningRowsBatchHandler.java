@@ -29,15 +29,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * 一つのSQLに複数のパラメータを適用してバッチ実行するための基本的なクラスです。
- * <p>
- * {@link BasicBatchHandler}と異なり、このインターフェースのメソッドはバッチ実行された各コマンドが更新した行数を配列で返します。
- * </p>
- * 
- * @author higa
- * @see BasicBatchHandler
- */
 public class BasicReturningRowsBatchHandler extends BasicHandler implements
         ReturningRowsBatchHandler {
 

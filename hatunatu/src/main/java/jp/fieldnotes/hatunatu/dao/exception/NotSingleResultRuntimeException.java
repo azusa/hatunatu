@@ -18,11 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * 戻り値がBeanの時にSQLの実行結果が2件以上な場合の例外です。
- * 
- * @author azusa
- */
 public class NotSingleResultRuntimeException extends SRuntimeException {
 
 

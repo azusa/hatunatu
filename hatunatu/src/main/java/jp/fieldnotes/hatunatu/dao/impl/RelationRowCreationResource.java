@@ -25,9 +25,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * @author jflute
- */
 public class RelationRowCreationResource {
 
     // ===================================================================================

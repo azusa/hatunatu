@@ -22,11 +22,6 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 
-/**
- * オブジェクトのリストを返す {@link ResultSetHandler}です。
- * 
- * @author taedium
- */
 public class ObjectListResultSetHandler extends AbstractObjectResultSetHandler {
 
     /**

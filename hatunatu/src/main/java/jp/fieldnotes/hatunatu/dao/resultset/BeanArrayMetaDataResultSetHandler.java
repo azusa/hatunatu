@@ -24,9 +24,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 
-/**
- * @author jflute
- */
 public class BeanArrayMetaDataResultSetHandler extends
         BeanListMetaDataResultSetHandler {
 

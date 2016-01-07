@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractBatchAutoStaticCommand extends
         AbstractAutoStaticCommand {
 

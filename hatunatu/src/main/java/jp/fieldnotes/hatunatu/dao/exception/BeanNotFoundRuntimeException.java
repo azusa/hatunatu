@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * 
- * @author taedium
- */
 public class BeanNotFoundRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = -759005466237575567L;

@@ -27,12 +27,6 @@ import java.sql.Types;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 
-/**
- * Binary用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class BinaryType extends AbstractValueType {
 
     /**

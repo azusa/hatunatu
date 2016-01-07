@@ -27,12 +27,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * {@link UpdateHandler}の基本的な実装クラスです。
- * 
- * @author higa
- * 
- */
 public class BasicUpdateHandler extends BasicHandler implements UpdateHandler {
 
     /**

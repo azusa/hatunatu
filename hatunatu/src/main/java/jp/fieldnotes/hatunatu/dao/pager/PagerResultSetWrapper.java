@@ -23,15 +23,6 @@ import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * ページャ用のResultSetラッパー。
- * <p>
- * 検索条件オブジェクトのoffset位置から、limitまでの範囲の結果を nextメソッドで返します。
- * <p>
- * limitが-1の場合、全ての結果をnextメソッドで返します。
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- */
 class PagerResultSetWrapper extends ResultSetWrapper {
 
     /** ログ */

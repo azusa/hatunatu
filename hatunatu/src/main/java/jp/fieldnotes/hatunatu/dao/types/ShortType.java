@@ -25,12 +25,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.ShortConversionUtil;
 
-/**
- * Short用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class ShortType extends AbstractValueType {
 
     /**

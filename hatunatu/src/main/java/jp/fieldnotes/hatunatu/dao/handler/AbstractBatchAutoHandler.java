@@ -32,10 +32,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
         implements ReturningRowsBatchHandler {
 

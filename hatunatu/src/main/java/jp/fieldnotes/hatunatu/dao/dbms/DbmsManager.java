@@ -31,10 +31,6 @@ import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 
-/**
- * @author higa
- * 
- */
 public final class DbmsManager {
 
     private static Properties dbmsClassNames;

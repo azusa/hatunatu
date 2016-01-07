@@ -27,10 +27,6 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * @author manhole
- * @author jflute
- */
 public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
 
     private static Logger logger = Logger

@@ -25,12 +25,6 @@ import java.util.Locale;
 import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * {@link Date}用の変換ユーティリティです。
- * 
- * @author higa
- * 
- */
 public class DateConversionUtil {
 
     /**

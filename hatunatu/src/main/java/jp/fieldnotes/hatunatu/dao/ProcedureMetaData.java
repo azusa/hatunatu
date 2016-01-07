@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * プロシージャのメタデータです。
- * 
- * @author taedium
- */
 public interface ProcedureMetaData {
 
     /**

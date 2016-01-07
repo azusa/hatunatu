@@ -19,12 +19,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * <code>OgnlException</code>をラップする例外です。
- * 
- * @author higa
- * @author manhole
- */
 public class OgnlRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 2290558407298004909L;

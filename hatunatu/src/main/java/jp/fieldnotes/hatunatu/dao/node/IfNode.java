@@ -20,10 +20,6 @@ import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalBoolExpressionRuntimeException;
 import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
 
-/**
- * @author higa
- * 
- */
 public class IfNode extends ContainerNode {
 
     private String expression;

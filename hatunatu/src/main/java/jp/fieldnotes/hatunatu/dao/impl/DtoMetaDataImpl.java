@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
-/**
- * @author higa
- * 
- */
 public class DtoMetaDataImpl implements DtoMetaData {
 
     private Class beanClass;

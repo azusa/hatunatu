@@ -27,11 +27,6 @@ import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.BigDecimalConversionUtil;
 import jp.fieldnotes.hatunatu.util.convert.BigIntegerConversionUtil;
 
-/**
- * BigInteger用の {@link ValueType}です。
- * 
- * @author higa
- */
 public class BigIntegerType extends AbstractValueType {
 
     /**

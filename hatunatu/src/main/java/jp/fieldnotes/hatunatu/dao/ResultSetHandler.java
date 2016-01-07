@@ -18,12 +18,6 @@ package jp.fieldnotes.hatunatu.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * 結果セットを処理するインターフェースです。
- * 
- * @author higa
- * 
- */
 public interface ResultSetHandler {
 
     /**

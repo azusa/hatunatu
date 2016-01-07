@@ -19,12 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-/**
- * 結果セットのファクトリです。
- * 
- * @author higa
- * 
- */
 public interface ResultSetFactory {
 
     /**

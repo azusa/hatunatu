@@ -17,12 +17,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * 空の場合にスローされる例外です。
- *
- * @author higa
- *
- */
 public class EmptyRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 4625805280526951642L;

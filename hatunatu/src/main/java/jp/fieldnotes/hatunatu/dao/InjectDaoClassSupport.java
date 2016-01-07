@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author azusa
- *
- */
 public interface InjectDaoClassSupport {
 
     public void setDaoClass(Class clazz);

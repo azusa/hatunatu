@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-/**
- * @author higa
- * 
- */
 public final class RelationKey {
 
     private Object[] values;

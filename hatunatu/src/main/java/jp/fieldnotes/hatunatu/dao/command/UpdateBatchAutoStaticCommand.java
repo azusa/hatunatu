@@ -23,10 +23,6 @@ import jp.fieldnotes.hatunatu.dao.handler.AbstractBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.UpdateBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class UpdateBatchAutoStaticCommand extends
         AbstractBatchAutoStaticCommand {
 

@@ -29,11 +29,6 @@ import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-/**
- * ClassPool用のユーティリティクラスです。
- * 
- * @author koichik
- */
 public class ClassPoolUtil {
 
     /**

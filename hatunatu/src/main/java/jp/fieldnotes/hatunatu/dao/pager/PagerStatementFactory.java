@@ -27,11 +27,6 @@ import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntPreparedStatement;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 
-/**
- * @author agata
- * @author manhole
- * @author azusa
- */
 public class PagerStatementFactory implements StatementFactory {
 
     protected boolean booleanToInt = false;

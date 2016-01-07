@@ -23,11 +23,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
-/**
- * オブジェクト用の{@link ResultSetHandler}の抽象クラスです。
- * 
- * @author taedium
- */
 public abstract class AbstractObjectResultSetHandler implements
         ResultSetHandler {
 

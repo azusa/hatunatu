@@ -15,11 +15,6 @@
  */
 package org.seasar.extension.jdbc;
 
-/**
- * SQLのログを表すインターフェースです。
- * 
- * @author taedium
- */
 public interface SqlLog {
 
     /**

@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author taedium
- *
- */
 public class NullBean {
 
     public NullBean() {

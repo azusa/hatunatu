@@ -20,11 +20,6 @@ import java.sql.SQLException;
 
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 
-/**
- * ResultSetユーティリティです。
- * 
- * @author Toshitaka Agata(Nulab,inc.)
- */
 class ResultSetUtil {
 
     /**

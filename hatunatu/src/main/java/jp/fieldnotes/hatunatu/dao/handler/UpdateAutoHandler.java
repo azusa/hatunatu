@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- * 
- */
 public class UpdateAutoHandler extends AbstractAutoHandler {
 
     public UpdateAutoHandler(DataSource dataSource,

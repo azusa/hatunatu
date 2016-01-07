@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author higa
- * 
- */
 public class TokenNotClosedRuntimeException extends SRuntimeException {
 
     private String token;

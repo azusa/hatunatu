@@ -30,10 +30,6 @@ import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import jp.fieldnotes.hatunatu.util.lang.ConstructorUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * @author higa
- * 
- */
 public class IdentifierGeneratorFactory {
 
     private static Map generatorClasses = new HashMap();

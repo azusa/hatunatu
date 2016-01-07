@@ -17,11 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import java.lang.reflect.Method;
 
-/**
- * {@link ProcedureMetaData}のファクトリを表すインタフェースです。
- * 
- * @author taedium
- */
 public interface ProcedureMetaDataFactory {
 
     /**

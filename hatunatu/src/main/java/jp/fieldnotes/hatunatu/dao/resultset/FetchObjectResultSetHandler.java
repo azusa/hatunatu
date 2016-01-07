@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * @author jundu
- * 
- */
 public class FetchObjectResultSetHandler extends AbstractObjectResultSetHandler {
 
     @SuppressWarnings("unchecked")

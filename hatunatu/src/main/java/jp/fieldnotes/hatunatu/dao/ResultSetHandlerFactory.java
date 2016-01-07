@@ -19,9 +19,6 @@ import jp.fieldnotes.hatunatu.api.*;
 
 import java.lang.reflect.Method;
 
-/**
- * @author manhole
- */
 public interface ResultSetHandlerFactory {
 
     ResultSetHandler getResultSetHandler(

@@ -25,9 +25,6 @@ import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-/**
- * @author jflute
- */
 public class DtoMetaDataResultSetHandler extends
         AbstractDtoMetaDataResultSetHandler {
 

@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.node;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 
-/**
- * @author higa
- * 
- */
 public class ElseNode extends ContainerNode {
 
     public ElseNode() {

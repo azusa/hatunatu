@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.TableNaming;
 
-/**
- * @author azusa
- *
- */
 public class DefaultTableNaming implements TableNaming {
 
     public String fromEntityNameToTableName(String entityName) {

@@ -20,12 +20,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * {@link Timestamp}用の変換ユーティリティです。
- * 
- * @author higa
- * 
- */
 public class TimestampConversionUtil {
 
     /**

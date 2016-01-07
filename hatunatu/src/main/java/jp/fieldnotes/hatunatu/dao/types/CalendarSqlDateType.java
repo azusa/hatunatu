@@ -23,12 +23,6 @@ import java.util.Calendar;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;
 
-/**
- * {@link java.sql.Date}と互換性をもつ{@link Calendar}用の{@link ValueType}です。
- * 
- * @author taedium
- * 
- */
 public class CalendarSqlDateType extends SqlDateType {
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {

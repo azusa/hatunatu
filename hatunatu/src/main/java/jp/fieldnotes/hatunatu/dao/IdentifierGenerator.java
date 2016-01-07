@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import javax.sql.DataSource;
 
-/**
- * @author higa
- * 
- */
 public interface IdentifierGenerator {
 
     public boolean isSelfGenerate();

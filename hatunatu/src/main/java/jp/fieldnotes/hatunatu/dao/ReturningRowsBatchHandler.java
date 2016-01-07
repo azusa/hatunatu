@@ -20,15 +20,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import java.util.List;
 
 
-/**
- * 一つのSQLに複数のパラメータを適用してバッチ実行するためのインターフェースです。
- * <p>
- * {@link BatchHandler}と異なり、このインターフェースのメソッドはバッチ実行された各SQLが挿入／更新／削除した行数の配列を返します。
- * </p>
- * 
- * @author higa
- * @see BatchHandler
- */
 public interface ReturningRowsBatchHandler {
 
     /**

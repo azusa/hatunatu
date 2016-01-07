@@ -21,10 +21,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-/**
- * @author higa
- * 
- */
 public interface Dbms {
 
     String getAutoSelectSql(BeanMetaData beanMetaData);

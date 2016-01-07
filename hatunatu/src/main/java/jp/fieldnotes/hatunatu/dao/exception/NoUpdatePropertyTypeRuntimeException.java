@@ -17,9 +17,6 @@ package jp.fieldnotes.hatunatu.dao.exception;
 
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
-/**
- * @author taichi
- */
 public class NoUpdatePropertyTypeRuntimeException extends SRuntimeException {
 
     public NoUpdatePropertyTypeRuntimeException() {

@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-/**
- * @author jundu
- * 
- */
 public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
 
     /*

@@ -25,10 +25,6 @@ import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
-/**
- * @author higa
- * 
- */
 public abstract class AbstractIdentifierGenerator implements
         IdentifierGenerator {
 

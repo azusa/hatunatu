@@ -23,10 +23,6 @@ import java.sql.*;
 import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
 import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType.Trait;
 
-/**
- * @author higa
- * 
- */
 public class PostgreSQL extends Standard {
 
     public static Trait POSTGRE_TRAIT = new PostgreTrait();

@@ -18,10 +18,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.TableNaming;
 import jp.fieldnotes.hatunatu.dao.util.DaoNamingConventionUtil;
 
-/**
- * @author azusa
- *
- */
 public class DecamelizeTableNaming implements TableNaming {
 
     public String fromEntityNameToTableName(String entityName) {

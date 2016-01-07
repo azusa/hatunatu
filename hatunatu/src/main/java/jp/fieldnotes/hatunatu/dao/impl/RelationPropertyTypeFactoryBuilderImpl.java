@@ -22,11 +22,6 @@ import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactory;
 import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactoryBuilder;
 
-/**
- * {@link RelationPropertyTypeFactoryImpl}を組み立てる {@link RelationPropertyTypeFactoryBuilder}の実装クラスです。
- * 
- * @author taedium
- */
 public class RelationPropertyTypeFactoryBuilderImpl implements
         RelationPropertyTypeFactoryBuilder {
 

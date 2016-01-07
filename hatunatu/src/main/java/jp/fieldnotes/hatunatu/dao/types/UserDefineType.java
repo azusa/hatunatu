@@ -24,12 +24,6 @@ import java.sql.SQLException;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.lang.MethodUtil;
 
-/**
- * ユーザ定義型用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class UserDefineType implements ValueType {
 
     private ValueType baseValueType;

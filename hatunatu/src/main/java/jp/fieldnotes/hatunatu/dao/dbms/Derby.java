@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.dao.Dbms;
 
-/**
- * @author higa
- * 
- */
 public class Derby extends Standard {
 
     /**

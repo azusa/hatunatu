@@ -23,12 +23,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 
-/**
- * {@link Method}用のユーティリティクラスです。
- * 
- * @author higa
- * 
- */
 public class MethodUtil {
 
     private static final Method IS_BRIDGE_METHOD = getMethod("isBridge");

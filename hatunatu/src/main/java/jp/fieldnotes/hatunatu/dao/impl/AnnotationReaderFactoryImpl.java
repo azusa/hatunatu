@@ -21,9 +21,6 @@ import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
-/**
- * @author manhole
- */
 public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
 
     public AnnotationReaderFactoryImpl() {

@@ -25,11 +25,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
 
-/**
- * Character用の {@link ValueType}です。
- * 
- * @author manhole
- */
 public class CharacterType extends AbstractValueType {
 
     /**

@@ -31,11 +31,6 @@ import jp.fieldnotes.hatunatu.util.exception.IORuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.SSQLException;
 
 
-/**
- * <code>byte[]</code>用の {@link ValueType}です。
- * 
- * @author koichik
- */
 public class BytesType extends AbstractValueType {
 
     /** 空のバイト配列 */

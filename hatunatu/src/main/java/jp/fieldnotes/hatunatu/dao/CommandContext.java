@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author higa
- * 
- */
 public interface CommandContext {
 
     public Object getArg(String name);

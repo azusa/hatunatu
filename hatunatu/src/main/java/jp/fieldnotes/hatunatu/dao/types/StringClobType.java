@@ -29,11 +29,6 @@ import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
 import jp.fieldnotes.hatunatu.util.io.ReaderUtil;
 
-/**
- * ClobをStringとして扱うための {@link ValueType}です。
- * 
- * @author manhole
- */
 public class StringClobType extends AbstractValueType {
 
     /**

@@ -22,9 +22,6 @@ import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.InsertBatchAutoHandler;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 
-/**
- * @author manhole
- */
 public class InsertBatchAutoDynamicCommand extends InsertAutoDynamicCommand {
 
     public Object execute(Object[] args) {

@@ -31,12 +31,6 @@ import jp.fieldnotes.hatunatu.dao.util.DateConversionUtil;
 import jp.fieldnotes.hatunatu.dao.util.TimestampConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 
-/**
- * Timestamp用の {@link ValueType}です。
- * 
- * @author higa
- * 
- */
 public class TimestampType extends AbstractValueType {
 
     /**

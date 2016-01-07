@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * @author higa
- * 
- */
 public class EmbeddedValueNode extends AbstractNode {
 
     private String expression;

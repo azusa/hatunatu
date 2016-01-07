@@ -21,11 +21,6 @@ import jp.fieldnotes.hatunatu.dao.ProcedureParameterType;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 
-/**
- * {@link ProcedureParameterType}の実装クラスです。
- * 
- * @author taedium
- */
 public class ProcedureParameterTypeImpl implements ProcedureParameterType {
 
     private String parameterName;

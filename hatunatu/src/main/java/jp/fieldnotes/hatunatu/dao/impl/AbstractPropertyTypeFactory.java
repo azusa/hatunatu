@@ -30,11 +30,6 @@ import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * {@link PropertyType}の抽象クラスです。
- * 
- * @author taedium
- */
 public abstract class AbstractPropertyTypeFactory implements
         PropertyTypeFactory {
 

@@ -19,9 +19,6 @@ import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
-/**
- * @author manhole
- */
 public class ValueTypeFactoryImpl implements ValueTypeFactory {
 
 

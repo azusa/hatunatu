@@ -17,10 +17,6 @@ package jp.fieldnotes.hatunatu.dao;
 
 import java.lang.reflect.Method;
 
-/**
- * @author uehara keizou
- * @author manhole
- */
 public interface DaoAnnotationReader {
 
     /**

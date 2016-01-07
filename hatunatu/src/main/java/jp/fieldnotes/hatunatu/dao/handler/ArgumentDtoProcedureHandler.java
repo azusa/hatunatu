@@ -35,11 +35,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * 引数のDTOに含まれる値をプロシージャにバインディングする{@link ProcedureHandler}の実装クラスです。
- * 
- * @author taedium
- */
 public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         ProcedureHandler {
 

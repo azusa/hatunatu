@@ -35,12 +35,6 @@ import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * {@link SelectHandler}の基本的な実装クラスです。
- * 
- * @author higa
- * 
- */
 public class BasicSelectHandler extends BasicHandler implements SelectHandler {
 
     private ResultSetFactory resultSetFactory = BasicResultSetFactory.INSTANCE;

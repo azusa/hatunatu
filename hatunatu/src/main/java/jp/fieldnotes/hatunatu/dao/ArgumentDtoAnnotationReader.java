@@ -20,11 +20,6 @@ import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import java.lang.reflect.Field;
 
 
-/**
- * メソッドの引数に使用されるDTOのアノテーションを読み取るインタフェースです。
- * 
- * @author taedium
- */
 public interface ArgumentDtoAnnotationReader {
 
     /**

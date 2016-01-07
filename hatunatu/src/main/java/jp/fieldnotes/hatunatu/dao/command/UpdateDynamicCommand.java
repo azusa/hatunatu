@@ -21,10 +21,6 @@ import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 
-/**
- * @author higa
- * 
- */
 /*
  * INSERT, UPDATE, DELETE文用
  */

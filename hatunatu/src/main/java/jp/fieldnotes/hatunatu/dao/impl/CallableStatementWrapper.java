@@ -23,12 +23,6 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Map;
 
-/**
- * {@link CallableStatement}のラッパです。
- * 
- * @author higa
- * 
- */
 public class CallableStatementWrapper implements CallableStatement {
 
     private CallableStatement original;

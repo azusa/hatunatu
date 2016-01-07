@@ -22,10 +22,6 @@ import ognl.OgnlException;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 
-/**
- * @author higa
- * 
- */
 public class CommandContextPropertyAccessor extends ObjectPropertyAccessor {
 
     public Object getProperty(Map cx, Object target, Object name)

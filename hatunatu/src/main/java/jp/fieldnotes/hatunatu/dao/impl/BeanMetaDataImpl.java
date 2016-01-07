@@ -38,12 +38,6 @@ import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 
-/**
- * @author higa
- * @author manhole
- * @author jflute
- * @author azusa
- */
 public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
 
     private String tableName;

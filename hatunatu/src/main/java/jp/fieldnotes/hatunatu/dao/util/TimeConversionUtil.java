@@ -25,12 +25,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-/**
- * タイム用の変換ユーティリティです。
- * 
- * @author higa
- * 
- */
 public class TimeConversionUtil {
 
     /**

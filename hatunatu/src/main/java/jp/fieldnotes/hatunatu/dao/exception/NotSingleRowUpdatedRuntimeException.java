@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.exception;
 
-/**
- * @author higa
- * 
- */
 public class NotSingleRowUpdatedRuntimeException extends
         UpdateFailureRuntimeException {
 

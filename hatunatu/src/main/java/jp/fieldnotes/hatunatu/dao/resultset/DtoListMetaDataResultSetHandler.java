@@ -25,9 +25,6 @@ import java.util.Set;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 
-/**
- * @author jflute
- */
 public class DtoListMetaDataResultSetHandler extends
         AbstractDtoMetaDataResultSetHandler {
 

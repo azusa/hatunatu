@@ -39,10 +39,6 @@ import jp.fieldnotes.hatunatu.util.log.Logger;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-/**
- * @author higa
- * @author manhole
- */
 public abstract class AbstractAutoHandler extends BasicHandler implements
         UpdateHandler {
 

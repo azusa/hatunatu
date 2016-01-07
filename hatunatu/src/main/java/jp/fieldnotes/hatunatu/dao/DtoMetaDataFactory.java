@@ -15,9 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-/**
- * @author higa
- */
 public interface DtoMetaDataFactory {
 
     jp.fieldnotes.hatunatu.api.DtoMetaData getDtoMetaData(Class dtoClass);

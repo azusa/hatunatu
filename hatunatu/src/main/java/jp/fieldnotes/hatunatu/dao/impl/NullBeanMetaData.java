@@ -26,10 +26,6 @@ import jp.fieldnotes.hatunatu.dao.exception.ColumnNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
-/**
- * @author taedium
- *
- */
 public class NullBeanMetaData implements BeanMetaData {
 
     private Class daoInterface;

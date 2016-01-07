@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
 
-/**
- * @author higa
- * 
- */
 public class ParenBindVariableNode extends AbstractNode {
 
     private String expression;

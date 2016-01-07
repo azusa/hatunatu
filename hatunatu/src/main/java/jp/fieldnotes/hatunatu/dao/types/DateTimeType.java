@@ -29,12 +29,6 @@ import jp.fieldnotes.hatunatu.dao.util.TimeConversionUtil;
 import jp.fieldnotes.hatunatu.dao.util.TimestampConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.ParseRuntimeException;
 
-/**
- * {@link Time}と互換性をもつ{@link Date}用の{@link ValueType}です。
- * 
- * @author taedium
- * 
- */
 public class DateTimeType extends TimeType {
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {

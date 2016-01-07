@@ -22,12 +22,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-/**
- * {@link InputStreamReader}用のユーティリティクラスです。
- * 
- * @author higa
- * 
- */
 public class InputStreamReaderUtil {
 
     /**

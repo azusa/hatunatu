@@ -25,11 +25,6 @@ import java.sql.*;
 import java.util.Calendar;
 
 
-/**
- * Wrapper of {@link PreparedStatement}.
- *
- * @author higa
- */
 public class PreparedStatementWrapper implements PreparedStatement {
 
     private final PreparedStatement original;

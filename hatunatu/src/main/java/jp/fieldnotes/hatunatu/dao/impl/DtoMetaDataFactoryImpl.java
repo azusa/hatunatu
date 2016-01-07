@@ -27,10 +27,6 @@ import jp.fieldnotes.hatunatu.dao.PropertyTypeFactoryBuilder;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-/**
- * @author higa
- *
- */
 public class DtoMetaDataFactoryImpl implements DtoMetaDataFactory, Disposable {
 
     public static final String annotationReaderFactory_BINDING = "bindingType=must";

@@ -22,10 +22,6 @@ import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * @author higa
- * 
- */
 public class BindVariableNode extends AbstractNode {
 
     private String expression;

@@ -24,12 +24,6 @@ import java.util.Calendar;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;
 
-/**
- * {@link Time}と互換性をもつ{@link Calendar}用の{@link ValueType}です。
- * 
- * @author taedium
- * 
- */
 public class CalendarTimeType extends TimeType {
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {

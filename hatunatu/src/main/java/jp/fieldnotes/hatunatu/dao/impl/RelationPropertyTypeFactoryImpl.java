@@ -29,11 +29,6 @@ import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
-/**
- * {@link RelationPropertyTypeFactory}の実装クラスです。
- * 
- * @author taedium
- */
 public class RelationPropertyTypeFactoryImpl implements
         RelationPropertyTypeFactory {
 

@@ -23,9 +23,6 @@ import jp.fieldnotes.hatunatu.dao.handler.AbstractBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.InsertBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
-/**
- * @author higa
- */
 public class InsertBatchAutoStaticCommand extends
         AbstractBatchAutoStaticCommand {
 

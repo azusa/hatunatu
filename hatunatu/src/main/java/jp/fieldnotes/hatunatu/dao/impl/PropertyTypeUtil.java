@@ -23,12 +23,6 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
-/**
- * {@link PropertyType}用のユーティリティクラスです。
- * 
- * @author higa
- * 
- */
 public class PropertyTypeUtil {
 
     /** カラム名に含まれるアンダースコアを維持してプロパティ名とする場合は<code>true</code>です。 */

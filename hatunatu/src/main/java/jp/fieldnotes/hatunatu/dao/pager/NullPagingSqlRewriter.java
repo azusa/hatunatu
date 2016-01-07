@@ -16,10 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 
-/**
- * @author jundu
- * 
- */
 public class NullPagingSqlRewriter implements PagingSqlRewriter {
 
     private boolean countSqlCompatibility = true;

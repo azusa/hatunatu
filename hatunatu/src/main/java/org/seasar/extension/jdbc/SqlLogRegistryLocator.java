@@ -17,11 +17,6 @@ package org.seasar.extension.jdbc;
 
 import jp.fieldnotes.hatunatu.dao.impl.SqlLogRegistryImpl;
 
-/**
- * {@link SqlLogRegistry}を取得するためのロケータです。
- * 
- * @author taedium
- */
 public class SqlLogRegistryLocator {
 
     /** SQLログのレジストリ */

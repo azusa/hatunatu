@@ -17,12 +17,6 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import java.sql.Types;
 
-/**
- * データベースメタデータから取得したカラム情報を格納するクラスです。
- * 
- * @author higa
- * 
- */
 public class ColumnDesc {
 
     private String name;
