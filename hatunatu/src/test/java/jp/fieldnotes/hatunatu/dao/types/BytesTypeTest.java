@@ -17,13 +17,13 @@ package jp.fieldnotes.hatunatu.dao.types;
 
 import jp.fieldnotes.hatunatu.dao.types.BytesType;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class BytesTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * 
-     * @throws Exception
-     */
+public class BytesTypeTest  {
+
+    @Test
     public void testToText() throws Exception {
         BytesType type = new BytesType(BytesType.BYTES_TRAIT);
         byte[] value = new byte[] { 1, 2, 3, 4 };

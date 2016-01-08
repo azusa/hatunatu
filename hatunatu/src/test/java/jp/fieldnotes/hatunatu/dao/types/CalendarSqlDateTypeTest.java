@@ -22,25 +22,28 @@ import java.util.TimeZone;
 
 import jp.fieldnotes.hatunatu.dao.types.CalendarSqlDateType;
 import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class CalendarSqlDateTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class CalendarSqlDateTypeTest  {
 
     private CalendarSqlDateType cdType = new CalendarSqlDateType();
 
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() throws Exception {
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     }
 
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         TimeZone.setDefault(null);
-        super.tearDown();
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToSqlDate() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2007);
@@ -62,19 +65,13 @@ public class CalendarSqlDateTypeTest extends TestCase {
         assertEquals(0, calendar.get(Calendar.MILLISECOND));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToSqlDate_fromString() throws Exception {
         Date date = cdType.toSqlDate("2008/01/28");
         assertNotNull(date);
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToSqlDate_timeZone() throws Exception {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("JST"));
         calendar.set(Calendar.YEAR, 2007);
@@ -96,10 +93,7 @@ public class CalendarSqlDateTypeTest extends TestCase {
         assertEquals(0, calendar.get(Calendar.MILLISECOND));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp
                 .valueOf("2007-11-29 13:14:15.123456789");

@@ -24,15 +24,8 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- * 
- */
 public class UserDefineTypeDbTest extends S2TestCase {
 
-    /**
-     * @throws Exception
-     */
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanResultSetHandler(EmpDto.class);
         String sql = "select sal from emp where empno = 7788";

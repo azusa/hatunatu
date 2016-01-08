@@ -20,13 +20,16 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.util.MethodUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 import org.seasar.framework.util.ClassUtil;
 
-public class MethodUtilTest extends TestCase {
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-    /**
-     * 
-     */
+public class MethodUtilTest  {
+
+    @Test
     public void testIsEqualsMethod() {
         Method equalsMethod = ClassUtil.getMethod(getClass(), "equals",
                 new Class[] { Object.class });
@@ -36,9 +39,7 @@ public class MethodUtilTest extends TestCase {
         assertFalse("2", MethodUtil.isEqualsMethod(hashCodeMethod));
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testIsHashCodeMethod() {
         Method equalsMethod = ClassUtil.getMethod(getClass(), "equals",
                 new Class[] { Object.class });
@@ -48,9 +49,7 @@ public class MethodUtilTest extends TestCase {
         assertTrue("2", MethodUtil.isHashCodeMethod(hashCodeMethod));
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testIsToStringMethod() {
         Method toStringMethod = ClassUtil.getMethod(getClass(), "toString",
                 new Class[0]);
@@ -60,33 +59,25 @@ public class MethodUtilTest extends TestCase {
         assertFalse("2", MethodUtil.isToStringMethod(hashCodeMethod));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsBridgeMethod() throws Exception {
         Method method = Foo.class.getMethod("foo", null);
         assertFalse(MethodUtil.isBridgeMethod(method));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsSyntheticMethod() throws Exception {
         Method method = Foo.class.getMethod("foo", null);
         assertFalse(MethodUtil.isSyntheticMethod(method));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsDefaultMethod() throws Exception {
         Method method = Foo.class.getMethod("foo", null);
         assertFalse(MethodUtil.isDefaultMethod(method));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetElementTypeOfListFromParameterType() throws Exception {
         assertNull(MethodUtil.getElementTypeOfListFromParameterType(Baz.class
                 .getMethod("hoge", new Class[] { List.class }), 0));
@@ -96,39 +87,21 @@ public class MethodUtilTest extends TestCase {
                 .getMethod("hoge", new Class[] { List.class, List.class }), 1));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetElementTypeOfListFromReturnType() throws Exception {
         assertNull(MethodUtil.getElementTypeOfListFromReturnType(Baz.class
                 .getMethod("hoge", new Class[] { List.class })));
     }
 
-    /**
-     *
-     */
     public static class Foo {
-        /**
-         * 
-         */
         public void foo() {
         }
     }
 
-    /**
-     *
-     */
     public interface Baz {
-        /**
-         * @param src
-         * @return
-         */
+
         List hoge(List src);
 
-        /**
-         * @param src
-         * @param dest
-         */
         void hoge(List src, List dest);
     }
 

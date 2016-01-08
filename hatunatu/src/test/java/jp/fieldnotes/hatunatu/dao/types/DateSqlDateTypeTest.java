@@ -31,10 +31,6 @@ public class DateSqlDateTypeTest  {
 
     private DateSqlDateType ddType = new DateSqlDateType();
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     public void testToSqlDate() throws Exception {
         Calendar calendar = Calendar.getInstance();
@@ -57,10 +53,6 @@ public class DateSqlDateTypeTest  {
         assertEquals(0, calendar.get(Calendar.MILLISECOND));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     @Ignore
     public void testToSqlDate_fromString() throws Exception {
@@ -77,10 +69,6 @@ public class DateSqlDateTypeTest  {
 
 
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp

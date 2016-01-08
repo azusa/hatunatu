@@ -20,9 +20,13 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class ImplementInterfaceWalkerTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class ImplementInterfaceWalkerTest {
+
+    @Test
     public void testWalkAll() throws Exception {
         final List list = new ArrayList();
         ImplementInterfaceWalker.walk(Base.class,
@@ -41,6 +45,7 @@ public class ImplementInterfaceWalkerTest extends TestCase {
         list.contains(I22.class);
     }
 
+    @Test
     public void testWalkBreak() throws Exception {
         final List list = new ArrayList();
         ImplementInterfaceWalker.walk(Base.class,

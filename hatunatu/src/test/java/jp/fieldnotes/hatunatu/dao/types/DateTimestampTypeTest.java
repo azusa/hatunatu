@@ -30,10 +30,6 @@ public class DateTimestampTypeTest {
 
     private DateTimestampType dtType = new DateTimestampType();
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     @Ignore
     public void testToTimestamp_fromString() throws Exception {
@@ -48,10 +44,6 @@ public class DateTimestampTypeTest {
                 "yyyy/MM/dd HH:mm:ss").format(timestamp));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     @Ignore
     public void testToText() throws Exception {

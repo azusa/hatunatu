@@ -20,17 +20,19 @@ import java.sql.SQLException;
 import jp.fieldnotes.hatunatu.dao.types.OracleResultSetType;
 import junit.framework.TestCase;
 
+import org.junit.Test;
 import org.seasar.framework.mock.sql.MockCallableStatement;
 import org.seasar.framework.mock.sql.MockResultSet;
 
-public class OracleResultSetTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+public class OracleResultSetTypeTest {
 
     private boolean gotObject;
 
-    /**
-     * @throws Exception
-     * 
-     */
+    @Test
     public void testGetValueCallableStatementInt() throws Exception {
         MockCallableStatement cs = new MockCallableStatement(null, null) {
             public Object getObject(int parameterIndex) throws SQLException {
@@ -43,10 +45,7 @@ public class OracleResultSetTypeTest extends TestCase {
         assertTrue(gotObject);
     }
 
-    /**
-     * @throws Exception
-     * 
-     */
+    @Test
     public void testGetValueCallableStatementString() throws Exception {
         MockCallableStatement cs = new MockCallableStatement(null, null) {
             public Object getObject(String parameterName) throws SQLException {
@@ -59,9 +58,7 @@ public class OracleResultSetTypeTest extends TestCase {
         assertTrue(gotObject);
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testSqlType() {
         OracleResultSetType rsType = new OracleResultSetType();
         assertEquals(OracleResultSetType.CURSOR, rsType.getSqlType());

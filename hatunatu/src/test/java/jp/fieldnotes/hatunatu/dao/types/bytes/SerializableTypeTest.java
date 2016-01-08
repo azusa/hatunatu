@@ -20,12 +20,13 @@ import java.io.Serializable;
 import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
 import jp.fieldnotes.hatunatu.dao.types.bytes.SerializableType;
+import org.junit.Test;
 
-public class SerializableTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * @throws Exception
-     */
+public class SerializableTypeTest  {
+
+    @Test
     public void testSerializaAndDeserialize() throws Exception {
         SerializableType type = new SerializableType(BytesType.BYTES_TRAIT);
         Aaa aaa = new Aaa();

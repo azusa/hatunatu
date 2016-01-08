@@ -22,17 +22,19 @@ import jp.fieldnotes.hatunatu.dao.types.OracleResultSetType;
 import jp.fieldnotes.hatunatu.dao.types.PostgreResultSetType;
 import junit.framework.TestCase;
 
+import org.junit.Test;
 import org.seasar.framework.mock.sql.MockCallableStatement;
 import org.seasar.framework.mock.sql.MockResultSet;
 
-public class PostgreResultSetTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+public class PostgreResultSetTypeTest {
 
     private boolean gotResultSet;
 
-    /**
-     * @throws Exception
-     * 
-     */
+    @Test
     public void testGetValueCallableStatementInt() throws Exception {
         MockCallableStatement cs = new MockCallableStatement(null, null) {
             public Object getObject(int index) throws SQLException {
@@ -45,17 +47,13 @@ public class PostgreResultSetTypeTest extends TestCase {
         assertTrue(gotResultSet);
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testSqlType() {
         PostgreResultSetType rsType = new PostgreResultSetType();
         assertEquals(Types.OTHER, rsType.getSqlType());
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testToText() {
         OracleResultSetType rsType = new OracleResultSetType();
         assertEquals("null", rsType.toText(null));

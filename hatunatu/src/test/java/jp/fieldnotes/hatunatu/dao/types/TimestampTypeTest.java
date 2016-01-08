@@ -23,17 +23,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author koichik
- */
 public class TimestampTypeTest {
 
     private TimestampType timestampType = new TimestampType();
 
-    /**
-     * 
-     * @throws Exception
-     */
     @Test
     @Ignore
     public void testToText() throws Exception {

@@ -17,9 +17,13 @@ package jp.fieldnotes.hatunatu.dao;
 
 import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalParameterTypeRuntimeException;
+import org.junit.Test;
 
-public class IllegalParameterTypeRuntimeExceptionTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class IllegalParameterTypeRuntimeExceptionTest  {
+
+    @Test
     public void test() throws Exception {
         IllegalParameterTypeRuntimeException ex = new IllegalParameterTypeRuntimeException(
                 "hoge");

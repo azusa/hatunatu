@@ -25,31 +25,28 @@ import junit.framework.TestCase;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * 
  */
-public class ValueTypesTest extends TestCase {
+public class ValueTypesTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValueType() throws Exception {
         assertEquals(ValueTypes.TIMESTAMP, ValueTypes
                 .getValueType(GregorianCalendar.class));
 
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValueType_unknownClass() throws Exception {
         assertEquals(ValueTypes.OBJECT, ValueTypes.getValueType(getClass()));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testUserDefineType() throws Exception {
         ValueType valueType = ValueTypes.getValueType(Authority.class);
         assertNotNull(valueType);
@@ -63,9 +60,7 @@ public class ValueTypesTest extends TestCase {
         assertEquals(2, value.value());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsSimpleType() throws Exception {
         assertFalse(ValueTypes.isSimpleType(HashMap.class));
         assertTrue(ValueTypes.isSimpleType(byte[].class));

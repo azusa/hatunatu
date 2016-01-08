@@ -22,25 +22,28 @@ import java.util.TimeZone;
 
 import jp.fieldnotes.hatunatu.dao.types.CalendarTimeType;
 import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class CalendarTimeTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class CalendarTimeTypeTest  {
 
     private CalendarTimeType ctType = new CalendarTimeType();
 
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() throws Exception {
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     }
 
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         TimeZone.setDefault(null);
-        super.tearDown();
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToTime() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2007);
@@ -71,10 +74,7 @@ public class CalendarTimeTypeTest extends TestCase {
         assertNotNull(time);
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToTime_timeZone() throws Exception {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("JST"));
         calendar.set(Calendar.YEAR, 2007);
@@ -96,10 +96,7 @@ public class CalendarTimeTypeTest extends TestCase {
         assertEquals(789, calendar.get(Calendar.MILLISECOND));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp
                 .valueOf("2007-11-29 13:14:15.123456789");

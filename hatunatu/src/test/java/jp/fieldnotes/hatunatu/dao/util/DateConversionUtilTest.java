@@ -20,12 +20,17 @@ import java.util.Locale;
 
 import jp.fieldnotes.hatunatu.dao.util.DateConversionUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class DateConversionUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+public class DateConversionUtilTest  {
 
     /**
      * @throws Exception
      */
+    @Test
     public void testToDate() throws Exception {
         assertNull(DateConversionUtil.toDate("", null));
     }
@@ -33,6 +38,7 @@ public class DateConversionUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    @Test
     public void testRemoveDelimiter() throws Exception {
         assertEquals("1", "yyyyMMdd", DateConversionUtil
                 .removeDelimiter("yyyy/MM/dd"));

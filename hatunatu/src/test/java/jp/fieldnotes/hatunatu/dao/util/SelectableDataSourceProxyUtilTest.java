@@ -26,17 +26,23 @@ import javax.sql.DataSource;
 import junit.framework.TestCase;
 
 import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
+import org.junit.Test;
 import org.seasar.extension.datasource.impl.DataSourceFactoryImpl;
 import org.seasar.extension.datasource.impl.SelectableDataSourceProxy;
 
-public class SelectableDataSourceProxyUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
+public class SelectableDataSourceProxyUtilTest {
+
+    @Test
     public void testDataSource() throws Exception {
         DataSource dataSource = new MyDataSource();
         assertNull(SelectableDataSourceProxyUtil
                 .getSelectableDataSourceName(dataSource));
     }
 
+    @Test
     public void testSelectableDataSourceProxy() throws Exception {
         DataSourceFactoryImpl dataSourceFactory = new DataSourceFactoryImpl();
         SelectableDataSourceProxy proxy = new SelectableDataSourceProxy();

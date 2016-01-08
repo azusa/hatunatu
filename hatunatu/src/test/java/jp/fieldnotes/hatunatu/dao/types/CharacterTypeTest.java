@@ -22,12 +22,14 @@ import jp.fieldnotes.hatunatu.dao.types.CharacterType;
 import junit.framework.TestCase;
 
 import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
+import org.junit.Test;
 
-public class CharacterTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-    /**
-     * @throws Exception
-     */
+public class CharacterTypeTest  {
+
+    @Test
     public void testGetValue() throws Exception {
         // ## Arrange ##
         CharacterType type = new CharacterType();
@@ -44,9 +46,7 @@ public class CharacterTypeTest extends TestCase {
         assertEquals(new Character('v'), value);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValue_TooLongString() throws Exception {
         // ## Arrange ##
         CharacterType type = new CharacterType();
@@ -65,9 +65,7 @@ public class CharacterTypeTest extends TestCase {
         }
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValue_TooShortString() throws Exception {
         // ## Arrange ##
         CharacterType type = new CharacterType();
@@ -84,9 +82,7 @@ public class CharacterTypeTest extends TestCase {
         assertEquals(null, value);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValue_NullString() throws Exception {
         // ## Arrange ##
         CharacterType type = new CharacterType();

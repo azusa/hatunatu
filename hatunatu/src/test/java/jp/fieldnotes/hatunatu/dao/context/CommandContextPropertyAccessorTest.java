@@ -20,13 +20,19 @@ import ognl.Ognl;
 import ognl.OgnlRuntime;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
+import org.junit.After;
+import org.junit.Test;
 
-public class CommandContextPropertyAccessorTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    protected void tearDown() throws Exception {
+public class CommandContextPropertyAccessorTest {
+
+    @After
+    public void tearDown() throws Exception {
         OgnlRuntime.setPropertyAccessor(CommandContext.class, null);
     }
 
+    @Test
     public void testGetProperty() throws Exception {
         CommandContext ctx = new CommandContextImpl();
         ctx.addArg("aaa", "111", String.class);

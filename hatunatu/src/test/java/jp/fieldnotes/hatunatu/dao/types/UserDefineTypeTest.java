@@ -23,15 +23,20 @@ import junit.framework.TestCase;
 
 import jp.fieldnotes.hatunatu.dao.impl.PreparedStatementWrapper;
 import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author higa
  */
-public class UserDefineTypeTest extends TestCase {
+public class UserDefineTypeTest  {
 
     private UserDefineType valueType;
 
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         Method valueOfMethod = Authority.class.getMethod("valueOf",
                 new Class[] { int.class });
         Method valueMethod = Authority.class.getMethod("value", null);
@@ -39,9 +44,7 @@ public class UserDefineTypeTest extends TestCase {
                 valueMethod);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValue_index() throws Exception {
         // ## Arrange ##
         final ResultSet resultSet = new MockResultSet() {
@@ -57,9 +60,7 @@ public class UserDefineTypeTest extends TestCase {
         assertEquals(2, value.value());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetValue_name() throws Exception {
         // ## Arrange ##
         final ResultSet resultSet = new MockResultSet() {
@@ -76,9 +77,7 @@ public class UserDefineTypeTest extends TestCase {
         assertEquals(2, value.value());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testBindValue() throws Exception {
         // ## Arrange ##
         final MockStatement statement = new MockStatement();
@@ -89,10 +88,7 @@ public class UserDefineTypeTest extends TestCase {
         assertEquals(statement.value, 2);
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToText() throws Exception {
         assertEquals("2", valueType.toText(Authority.valueOf(2)));
     }

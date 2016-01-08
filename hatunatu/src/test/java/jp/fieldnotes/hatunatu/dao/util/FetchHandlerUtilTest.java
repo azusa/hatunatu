@@ -17,23 +17,20 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class FetchHandlerUtilTest extends S2TestCase {
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
+public class FetchHandlerUtilTest  {
+
 
     /**
      * Test method for
      * {@link FetchHandlerUtil#isFetchHandlingEnable()}.
      */
+    @Test
     public void testIsFetchHandlingEnable() {
         assertTrue(FetchHandlerUtil.isFetchHandlingEnable());
     }
@@ -42,6 +39,7 @@ public class FetchHandlerUtilTest extends S2TestCase {
      * Test method for
      * {@link FetchHandlerUtil#isFetchHandler(java.lang.Class)}.
      */
+    @Test
     public void testIsFetchHandler() {
         assertFalse(FetchHandlerUtil.isFetchHandler(null));
         assertFalse(FetchHandlerUtil.isFetchHandler(EmployeeDto.class));

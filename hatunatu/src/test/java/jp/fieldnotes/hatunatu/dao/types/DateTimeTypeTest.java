@@ -23,15 +23,16 @@ import java.util.Date;
 
 import jp.fieldnotes.hatunatu.dao.types.DateTimeType;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class DateTimeTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class DateTimeTypeTest {
 
     private DateTimeType dtType = new DateTimeType();
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToTime() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2007);
@@ -53,10 +54,7 @@ public class DateTimeTypeTest extends TestCase {
         assertEquals(789, calendar.get(Calendar.MILLISECOND));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToTime_fromString() throws Exception {
         Time time = dtType.toTime("01:02:03");
         assertNotNull(time);
@@ -69,10 +67,7 @@ public class DateTimeTypeTest extends TestCase {
                 "yyyy/MM/dd HH:mm:ss").format(time));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp
                 .valueOf("2007-11-29 13:14:15.123456789");

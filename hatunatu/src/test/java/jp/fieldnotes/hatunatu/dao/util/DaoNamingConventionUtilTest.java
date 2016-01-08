@@ -17,16 +17,17 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import jp.fieldnotes.hatunatu.dao.util.DaoNamingConventionUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class DaoNamingConventionUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
+public class DaoNamingConventionUtilTest  {
 
     /**
      * Test method for {@link DaoNamingConventionUtil#decamelize(java.lang.String)}.
      */
+    @Test
     public void testDecamelize() {
         assertNull(DaoNamingConventionUtil.decamelize(null));
         assertEquals("EMP", DaoNamingConventionUtil.decamelize("Emp"));

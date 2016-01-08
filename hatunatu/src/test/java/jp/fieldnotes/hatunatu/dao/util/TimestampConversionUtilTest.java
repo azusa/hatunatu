@@ -19,12 +19,13 @@ import java.util.Locale;
 
 import jp.fieldnotes.hatunatu.dao.util.TimestampConversionUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class TimestampConversionUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * @throws Exception
-     */
+public class TimestampConversionUtilTest {
+
+    @Test
     public void testGetPattern() throws Exception {
         assertEquals("yyyy/MM/dd HH:mm:ss", TimestampConversionUtil
                 .getPattern(Locale.JAPANESE));

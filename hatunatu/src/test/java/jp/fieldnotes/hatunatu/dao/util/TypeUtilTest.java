@@ -20,14 +20,21 @@ import java.util.Map;
 
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class TypeUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+public class TypeUtilTest  {
+
+    @Test
     public void testIsSimpleType() throws Exception {
         assertFalse(TypeUtil.isSimpleType(Map.class));
         assertTrue(TypeUtil.isSimpleType(int.class));
     }
 
+    @Test
     public void testGetDeclaredFields() throws Exception {
         Field[] fields = TypeUtil.getDeclaredFields(TestClass.class);
         assertEquals(5, fields.length);

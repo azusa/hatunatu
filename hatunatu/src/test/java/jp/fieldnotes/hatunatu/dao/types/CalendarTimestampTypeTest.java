@@ -20,15 +20,15 @@ import java.util.Calendar;
 
 import jp.fieldnotes.hatunatu.dao.types.CalendarTimestampType;
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CalendarTimestampTypeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class CalendarTimestampTypeTest {
 
     private CalendarTimestampType ctType = new CalendarTimestampType();
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testToText() throws Exception {
         Timestamp timestamp = Timestamp
                 .valueOf("2007-11-29 13:14:15.123456789");
