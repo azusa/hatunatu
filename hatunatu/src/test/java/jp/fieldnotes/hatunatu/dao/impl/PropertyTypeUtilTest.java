@@ -20,33 +20,30 @@ import java.sql.ResultSet;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeUtil;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
+import org.junit.After;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;
 
-public class PropertyTypeUtilTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * 
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class PropertyTypeUtilTest {
 
-    
-    protected void tearDown() throws Exception {
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @After
+    public void tearDown() throws Exception {
         PropertyTypeUtil.setPreserveUnderscore(false);
-        super.tearDown();
     }
 
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testCreatePropertyTypes() throws Exception {
-        PreparedStatement ps = ConnectionUtil.prepareStatement(getConnection(),
+        PreparedStatement ps = ConnectionUtil.prepareStatement(test.getConnection(),
                 "select d_name, active from dept3");
         try {
             ResultSet rs = ps.executeQuery();
@@ -68,14 +65,11 @@ public class PropertyTypeUtilTest extends S2TestCase {
         }
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testCreatePropertyTypes_preserveUnderscore() throws Exception {
         PropertyTypeUtil.setPreserveUnderscore(true);
 
-        PreparedStatement ps = ConnectionUtil.prepareStatement(getConnection(),
+        PreparedStatement ps = ConnectionUtil.prepareStatement(test.getConnection(),
                 "select d_name, active from dept3");
         try {
             ResultSet rs = ps.executeQuery();

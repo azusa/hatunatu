@@ -15,25 +15,36 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.apache.log4j.PropertyConfigurator;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResourceUtil;
 
-public class LogCustomizeTest extends S2TestCase {
+import static org.junit.Assert.assertNotNull;
+
+public class LogCustomizeTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "jp/fieldnotes/hatunatu/dao/impl/LogCustomizeTest.dicon");
 
     private EmployeeDao dao;
 
+    @Before
     public void setUp() throws Exception {
         PropertyConfigurator.configure(ResourceUtil
                 .getResource("logcustomize.properties"));
-        include("jp/fieldnotes/hatunatu/dao/impl/LogCustomizeTest.dicon");
     }
 
     /*
      * EmployeeDaoのログ出力レベルはINFOなので、ここではログがでない
      */
+    @Test
     public void testLogTx() throws Exception {
         dao.findAll();
         String sql = SqlLogRegistryLocator.getInstance().getLast()
@@ -42,6 +53,7 @@ public class LogCustomizeTest extends S2TestCase {
         System.out.println(sql);
     }
 
+    @After
     public void tearDown() throws Exception {
         PropertyConfigurator.configure(ResourceUtil
                 .getResource("log4j.properties"));

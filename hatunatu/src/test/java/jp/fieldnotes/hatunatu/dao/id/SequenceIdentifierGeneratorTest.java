@@ -19,18 +19,24 @@ import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
+import static org.junit.Assert.assertTrue;
 
-public class SequenceIdentifierGeneratorTest extends S2TestCase {
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
-    }
+public class SequenceIdentifierGeneratorTest {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(getClass());
+
+    @Test
     public void testGenerateTx() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propertyDesc = beanDesc.getPropertyDesc("id");
@@ -40,11 +46,12 @@ public class SequenceIdentifierGeneratorTest extends S2TestCase {
                 propertyType, new HSQL());
         generator.setSequenceName("myseq");
         Hoge hoge = new Hoge();
-        generator.setIdentifier(hoge, getDataSource());
+        generator.setIdentifier(hoge, test.getDataSource());
         System.out.println(hoge.getId());
         assertTrue("1", hoge.getId() > 0);
     }
 
+    @Test
     public void testGenerate_allocationSizeTx() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propertyDesc = beanDesc.getPropertyDesc("id");
@@ -55,12 +62,12 @@ public class SequenceIdentifierGeneratorTest extends S2TestCase {
         generator.setSequenceName("myseq2");
         generator.setAllocationSize(10L);
         Hoge hoge = new Hoge();
-        generator.setIdentifier(hoge, getDataSource());
+        generator.setIdentifier(hoge, test.getDataSource());
         System.out.println(hoge.getId());
         assertTrue(hoge.getId() > 0);
         int prev = hoge.getId();
         for (int i = 0; i < 31; i++) {
-            generator.setIdentifier(hoge, getDataSource());
+            generator.setIdentifier(hoge, test.getDataSource());
             System.out.println(hoge.getId());
             assertTrue(hoge.getId() > prev);
             prev = hoge.getId();

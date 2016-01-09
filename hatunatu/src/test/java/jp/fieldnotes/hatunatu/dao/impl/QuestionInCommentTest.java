@@ -18,17 +18,22 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class QuestionInCommentTest extends S2TestCase {
+import static org.junit.Assert.assertTrue;
+
+public class QuestionInCommentTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "QuestionInCommentTest.dicon");
 
     private QuestionInCommentDao dao;
 
-    protected void setUp() throws Exception {
-        include("QuestionInCommentTest.dicon");
-    }
-
     //[DAO-72]
+    @Test
     public void testInsertByManualSql2Tx() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(2222);
@@ -37,6 +42,7 @@ public class QuestionInCommentTest extends S2TestCase {
         assertTrue(true);
     }
 
+    @Test
     public void testQuestionInCommentTx(){
         dao.questionInQuote("'te?st'");
         assertTrue(true);

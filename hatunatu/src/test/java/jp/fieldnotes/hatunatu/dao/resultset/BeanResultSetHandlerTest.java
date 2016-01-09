@@ -22,17 +22,23 @@ import java.sql.ResultSet;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class BeanResultSetHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertNotNull;
 
-    /**
-     * @throws Exception
-     */
+public class BeanResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanResultSetHandler(Employee.class);
         String sql = "select * from emp where empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee ret = null;
         try {
@@ -49,13 +55,11 @@ public class BeanResultSetHandlerTest extends S2TestCase {
         System.out.println(ret.getEmpno() + "," + ret.getEname());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testHandle2() throws Exception {
         ResultSetHandler handler = new BeanResultSetHandler(Employee.class);
         String sql = "select ename, job from emp where empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee ret = null;
         try {
@@ -70,9 +74,5 @@ public class BeanResultSetHandlerTest extends S2TestCase {
         }
         assertNotNull("1", ret);
         System.out.println(ret.getEname() + "," + ret.getJob());
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

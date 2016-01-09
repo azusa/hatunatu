@@ -18,26 +18,32 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import java.util.List;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.apache.poi.hssf.record.formula.functions.Int;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * https://www.seasar.org/issues/browse/DAO-19
  */
-public class ReturnsArrayDaoTest extends S2TestCase {
+public class ReturnsArrayDaoTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"ReturnsArrayDaoTest.dicon");
 
     private EmployeeDao employeeDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("ReturnsArrayDaoTest.dicon");
-    }
 
+    @Test
     public void testReturnArray() throws Exception {
         final Employee[] array = employeeDao.getAllEmployeesAsArray();
         assertEquals(Integer.toString(array.length), true, array.length > 0);
     }
 
+    @Test
     public void testReturnList() throws Exception {
         final List list = employeeDao.getAllEmployeesAsList();
         assertEquals(Integer.toString(list.size()), true, list.size() > 0);

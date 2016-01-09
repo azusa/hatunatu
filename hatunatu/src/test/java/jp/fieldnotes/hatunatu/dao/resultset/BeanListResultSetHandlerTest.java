@@ -23,17 +23,23 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class BeanListResultSetHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertNotNull;
 
-    /**
-     * @throws Exception
-     */
+public class BeanListResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanListResultSetHandler(Employee.class);
         String sql = "select * from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -51,9 +57,5 @@ public class BeanListResultSetHandlerTest extends S2TestCase {
             Employee emp = (Employee) ret.get(i);
             System.out.println(emp.getEmpno() + "," + emp.getEname());
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

@@ -16,22 +16,27 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.impl.dao.Employee12Dao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.unit.S2TestCase;
 
-public class DeleteWithAnnotationTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class DeleteWithAnnotationTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "DeleteWithAnnotationTest.dicon");
 
     private Employee12Dao dao;
 
-    protected void setUp() throws Exception {
-        include("DeleteWithAnnotationTest.dicon");
-    }
-
+    @Test
     public void testDeleteTx() throws Exception {
-        DataTable before = readDbByTable("EMP");
+        DataTable before = test.readDbByTable("EMP");
         dao.delete(7369);
-        assertEquals(before.getRowSize() - 1, readDbByTable("EMP").getRowSize());
+        assertEquals(before.getRowSize() - 1, test.readDbByTable("EMP").getRowSize());
         dao.deleteNoWhere(7499);
-        assertEquals(before.getRowSize() - 2, readDbByTable("EMP").getRowSize());
+        assertEquals(before.getRowSize() - 2, test.readDbByTable("EMP").getRowSize());
     }
 }

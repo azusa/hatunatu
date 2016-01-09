@@ -20,23 +20,29 @@ import java.io.Serializable;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class ClobTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class ClobTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "ClobTest.dicon");
 
     private LargeTextDao largeTextDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("ClobTest.dicon");
-    }
-
+    @Test
     public void test1Tx() throws Exception {
         assertNotNull(largeTextDao);
         final LargeText largeText = largeTextDao.getLargeText(123);
         assertEquals(null, largeText);
     }
 
+    @Test
     public void test2Tx() throws Exception {
         {
             LargeText largeText = new LargeText();

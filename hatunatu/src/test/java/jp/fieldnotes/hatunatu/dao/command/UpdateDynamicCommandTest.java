@@ -17,12 +17,21 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class UpdateDynamicCommandTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class UpdateDynamicCommandTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
-        UpdateDynamicCommand cmd = new UpdateDynamicCommand(getDataSource(),
+        UpdateDynamicCommand cmd = new UpdateDynamicCommand(test.getDataSource(),
                 BasicStatementFactory.INSTANCE);
         cmd
                 .setSql("UPDATE emp SET ename = /*employee.ename*/'HOGE' WHERE empno = /*employee.empno*/1234");
@@ -33,10 +42,6 @@ public class UpdateDynamicCommandTest extends S2TestCase {
         emp.setEname("SCOTT");
         Integer count = (Integer) cmd.execute(new Object[] { emp });
         assertEquals("1", new Integer(1), count);
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

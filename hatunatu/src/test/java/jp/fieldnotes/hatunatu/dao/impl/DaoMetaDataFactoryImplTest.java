@@ -20,21 +20,26 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
 
-public class DaoMetaDataFactoryImplTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class DaoMetaDataFactoryImplTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "dao.dicon");
 
     private DaoMetaDataFactoryImpl daoMetaDataFactory;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("dao.dicon");
-    }
-
     /*
      * https://www.seasar.org/issues/browse/DAO-17
-     */
+    */
+    @Test
     public void testDispose1() throws Exception {
         // ## Arrange ##
         assertEquals(0, daoMetaDataFactory.daoMetaDataCache.size());
@@ -49,6 +54,7 @@ public class DaoMetaDataFactoryImplTest extends S2TestCase {
         assertEquals(0, daoMetaDataFactory.daoMetaDataCache.size());
     }
 
+    @Test
     public void testDispose2() throws Exception {
         // ## Arrange ##
         assertEquals(0, daoMetaDataFactory.daoMetaDataCache.size());

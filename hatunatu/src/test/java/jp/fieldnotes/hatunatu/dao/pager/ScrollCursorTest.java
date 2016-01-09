@@ -27,41 +27,41 @@ import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
 import jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper;
 import jp.fieldnotes.hatunatu.dao.pager.PagerStatementFactory;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;
 import org.seasar.framework.util.StatementUtil;
 
-/**
- * @author manhole
- */
-public class ScrollCursorTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class ScrollCursorTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     private PagerResultSetFactoryWrapper pagerResultSetFactoryWrapper;
 
     private PagerStatementFactory pagerStatementFactory = new PagerStatementFactory();
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
+    @Before
+    public void setUp() throws Exception {
         PagerContext.start();
-    }
-
-    protected void setUpAfterBindFields() throws Throwable {
-        super.setUpAfterBindFields();
         pagerResultSetFactoryWrapper = new PagerResultSetFactoryWrapper(
                 BasicResultSetFactory.INSTANCE);
-        pagerResultSetFactoryWrapper.setUseScrollCursor(isScrollCursor());
+        pagerResultSetFactoryWrapper.setUseScrollCursor(true);
+
     }
 
-    protected boolean isScrollCursor() {
-        return true;
-    }
-
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         PagerContext.end();
-        super.tearDown();
     }
 
+    @Test
     public void testPageLimitTx() throws Exception {
         // ## Arrange ##
         DefaultPagerCondition condition = new DefaultPagerCondition();
@@ -119,7 +119,7 @@ public class ScrollCursorTest extends S2TestCase {
     private List getEmployees() throws SQLException {
         List result = new ArrayList();
         PreparedStatement ps = pagerStatementFactory.createPreparedStatement(
-                getConnection(), "SELECT EMPNO FROM EMP ORDER BY EMPNO");
+                test.getConnection(), "SELECT EMPNO FROM EMP ORDER BY EMPNO");
         try {
             ResultSet rs = pagerResultSetFactoryWrapper.createResultSet(ps);
             try {

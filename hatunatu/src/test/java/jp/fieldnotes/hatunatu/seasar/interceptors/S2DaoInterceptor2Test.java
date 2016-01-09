@@ -15,18 +15,23 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
 import java.util.List;
 
-public class S2DaoInterceptor2Test extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class S2DaoInterceptor2Test  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "EmployeeAutoDao.dicon");
 
     private EmployeeAutoDao dao;
 
-    public void setUp() {
-        include("EmployeeAutoDao.dicon");
-    }
-
+    @Test
     public void testInsertTx() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(99);
@@ -34,18 +39,21 @@ public class S2DaoInterceptor2Test extends S2TestCase {
         assertEquals("1", 1, dao.insert(emp));
     }
 
+    @Test
     public void testSelect() throws Exception {
         Employee emp = dao.getEmployee(7788);
         System.out.println(emp);
         assertEquals("1", 7788, emp.getEmpno());
     }
 
+    @Test
     public void testSelectQuery() throws Exception {
         List employees = dao.getEmployeesBySal(0, 1000);
         System.out.println(employees);
         assertEquals("1", 2, employees.size());
     }
 
+    @Test
     public void testInsertBatchTx() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(99);
@@ -56,6 +64,7 @@ public class S2DaoInterceptor2Test extends S2TestCase {
         assertEquals("1", 2, dao.insertBatch(new Employee[] { emp, emp2 }));
     }
 
+    @Test
     public void testFullWidthTildaTx() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(99);

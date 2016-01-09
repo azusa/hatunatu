@@ -15,26 +15,28 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-/**
- * @author higa
- * 
- */
-public class S2DaoInterceptor3Test extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class S2DaoInterceptor3Test {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "DepartmentAutoDao.dicon");
 
     private DepartmentAutoDao dao;
 
-    public void setUp() {
-        include("DepartmentAutoDao.dicon");
-    }
-
+    @Test
     public void testUpdateTx() throws Exception {
         Department dept = new Department();
         dept.setDeptno(10);
         assertEquals("1", 1, dao.update(dept));
     }
 
+    @Test
     public void testDeleteTx() throws Exception {
         Department dept = new Department();
         dept.setDeptno(10);

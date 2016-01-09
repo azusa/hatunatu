@@ -20,25 +20,30 @@ import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto2;
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class DtoMetaDataFactoryImplTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+
+public class DtoMetaDataFactoryImplTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"dao.dicon");
 
     private DtoMetaDataFactory factory;
 
-    protected void setUp() throws Exception {
-        include("dao.dicon");
-    }
-
-    /**
-     * Test method for {@link DtoMetaDataFactoryImpl#getDtoMetaData(java.lang.Class)}.
-     */
+    @Test
     public void testGetDtoMetaData() {
         DtoMetaData dmd = factory.getDtoMetaData(EmployeeDto.class);
         assertNotNull(dmd);
         assertSame(dmd, factory.getDtoMetaData(EmployeeDto.class));
     }
 
+    @Test
     public void testColumnAnnotationForDto() {
         DtoMetaData dmd = factory.getDtoMetaData(EmployeeDto2.class);
         PropertyType pt = dmd.getPropertyType("departmentName");

@@ -24,15 +24,20 @@ import jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl;
 import jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl;
 import jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
+import static org.junit.Assert.*;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("jdbc-derby.dicon");
-    }
+public class ProcedureMetaDataFactoryImplTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "jdbc-derby.dicon");
+
+
+    @Test
     public void testCreateProcedureMetaData() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -58,6 +63,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         assertEquals(ValueTypes.STRING, ppt.getValueType());
     }
 
+    @Test
     public void testCreateProcedureMetaData_noParameter() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -70,6 +76,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         assertEquals(0, metaData.getParameterTypeSize());
     }
 
+    @Test
     public void testCreateProcedureMetaData_simpleParameter() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -85,6 +92,7 @@ public class ProcedureMetaDataFactoryImplTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testCreateProcedureMetaData_multiParameters() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();

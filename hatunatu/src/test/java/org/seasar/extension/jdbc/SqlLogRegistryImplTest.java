@@ -17,10 +17,18 @@ package org.seasar.extension.jdbc;
 
 import jp.fieldnotes.hatunatu.dao.impl.SqlLogImpl;
 import jp.fieldnotes.hatunatu.dao.impl.SqlLogRegistryImpl;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.container.servlet.S2ContainerDestroyer;
 
-public class SqlLogRegistryImplTest extends S2TestCase {
+import static org.junit.Assert.*;
+
+public class SqlLogRegistryImplTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     private String rawSql = "select * from emp where empno = ?";
 
@@ -42,10 +50,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
     private SqlLog sqlLog4 = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testGet() throws Exception {
         SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);
@@ -54,10 +59,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
         assertSame(sqlLog2, registry.get(1));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testGetLast() throws Exception {
         SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         assertNull(registry.getLast());
@@ -67,10 +69,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
         assertSame(sqlLog2, registry.getLast());
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testGetSize() throws Exception {
         SqlLogRegistryImpl registry = new SqlLogRegistryImpl(2);
         registry.add(sqlLog);
@@ -82,10 +81,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
         assertSame(sqlLog4, registry.get(1));
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testClear() throws Exception {
         SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);
@@ -93,10 +89,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
         assertTrue(registry.isEmpty());
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testClearWithLocator() throws Exception {
         SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
         registry.add(sqlLog);

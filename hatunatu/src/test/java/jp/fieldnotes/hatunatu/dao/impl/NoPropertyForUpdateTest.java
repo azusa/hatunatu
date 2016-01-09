@@ -17,23 +17,30 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 /**
  * [DAO-150]
- * 
+ *
  * https://www.seasar.org/issues/browse/DAO-150
  *
  */
-public class NoPropertyForUpdateTest extends S2TestCase {
+public class NoPropertyForUpdateTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"NoPropertyForUpdate.dicon");
+
 
     private NoPropertyForUpdateDao noPropertyForUpdateDao;
 
-    protected void setUp() throws Exception {
-        include("NoPropertyForUpdate.dicon");
-    }
-
+    @Test
     public void testExceptionOnUpdate() {
         try {
             noPropertyForUpdateDao.update(new NoPropertyForUpdate());

@@ -23,27 +23,31 @@ import java.util.Random;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import org.seasar.extension.unit.S2TestCase;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BlobTest extends S2TestCase {
+import static org.junit.Assert.*;
+
+public class BlobTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "BlobTest.dicon");
 
     private LargeBinaryDao largeBinaryByteArrayDao;
 
     private LargeBinaryStreamDao largeBinaryStreamDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("BlobTest.dicon");
-    }
 
     /*
      * レコードが無い場合はnullを返すこと。
      */
+    @Test
     public void testBinary1Tx() throws Exception {
         assertNotNull(largeBinaryByteArrayDao);
         final LargeBinary largeBinary = largeBinaryByteArrayDao
                 .getLargeBinary(123);
-        assertEquals(null, largeBinary);
+        assertNull(largeBinary);
     }
 
     /*
@@ -76,7 +80,7 @@ public class BlobTest extends S2TestCase {
         {
             final LargeBinary largeBinary = largeBinaryByteArrayDao
                     .getLargeBinary(111);
-            assertEquals(null, largeBinary);
+            assertNull(largeBinary);
         }
     }
 
@@ -100,7 +104,7 @@ public class BlobTest extends S2TestCase {
         {
             final LargeBinary largeBinary = largeBinaryByteArrayDao
                     .getLargeBinary(4321);
-            assertEquals(bytes, largeBinary.getLargeBinary());
+            assertArrayEquals(bytes, largeBinary.getLargeBinary());
             assertEquals(0, largeBinary.getVersionNo());
         }
     }
@@ -109,7 +113,7 @@ public class BlobTest extends S2TestCase {
         assertNotNull(largeBinaryStreamDao);
         final LargeBinaryStream largeBinary = largeBinaryStreamDao
                 .getLargeBinary(123);
-        assertEquals(null, largeBinary);
+        assertNull(largeBinary);
     }
 
     public void no_testBinaryStream2Tx() throws Exception {
@@ -131,7 +135,7 @@ public class BlobTest extends S2TestCase {
         {
             final LargeBinaryStream largeBinary = largeBinaryStreamDao
                     .getLargeBinary(321);
-            assertEquals(toInputStream("AAA"), largeBinary.getLargeBinary());
+            assertInputStreamEquals(toInputStream("AAA"), largeBinary.getLargeBinary());
             assertEquals(1, largeBinary.getVersionNo());
         }
     }
@@ -140,7 +144,7 @@ public class BlobTest extends S2TestCase {
         return new ByteArrayInputStream(s.getBytes());
     }
 
-    private void assertEquals(InputStream expected, InputStream actual)
+    private void assertInputStreamEquals(InputStream expected, InputStream actual)
             throws IOException {
         while (true) {
             int exp = expected.read();
@@ -155,18 +159,18 @@ public class BlobTest extends S2TestCase {
         }
     }
 
-    private void assertEquals(byte[] expected, byte[] actual) {
-        if (expected.length != actual.length) {
-            fail();
-            return;
-        }
-        for (int i = 0; i < actual.length; i++) {
-            if (expected[i] != actual[i]) {
-                fail();
-                return;
-            }
-        }
-    }
+//    private void assertEquals(byte[] expected, byte[] actual) {
+//        if (expected.length != actual.length) {
+//            fail();
+//            return;
+//        }
+//        for (int i = 0; i < actual.length; i++) {
+//            if (expected[i] != actual[i]) {
+//                fail();
+//                return;
+//            }
+//        }
+//    }
 
     public static interface LargeBinaryDao {
 

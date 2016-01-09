@@ -17,29 +17,29 @@ package jp.fieldnotes.hatunatu.dao.handler;
 
 import java.math.BigDecimal;
 
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Test;
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.unit.S2TestCase;
 
-public class BasicHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class BasicHandlerTest  {
 
-    /**
-     * 
-     * @throws Exception
-     */
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testLogSql() throws Exception {
         final String sql = "update emp set ename = ?, comm = ? where empno = ?";
         Object[] args = new Object[] { "hoge", new BigDecimal("100.5"),
                 new Integer(7788) };
         Class[] argTypes = new Class[] { String.class, BigDecimal.class,
                 Integer.class };
-        BasicHandler handler = new BasicHandler(getDataSource(), sql);
+        BasicHandler handler = new BasicHandler(test.getDataSource(), sql);
         assertTrue(handler.getLoggerClass() == BasicHandler.class);
         handler.logSql(args, argTypes);
 

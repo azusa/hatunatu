@@ -19,10 +19,15 @@ import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-public class BasicSelectHandlerForOracleTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class BasicSelectHandlerForOracleTest  {
     /**
      * 
      */
@@ -33,25 +38,22 @@ public class BasicSelectHandlerForOracleTest extends S2TestCase {
      */
     public static final String FULL_WIDTH_TILDE = "\uFF5E";
 
-    /**
-     * @throws Exception
-     */
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
         String sql = "insert into emp(empno, ename) values(99, ?)";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         handler.execute(new Object[] { WAVE_DASH });
 
         String sql2 = "select ename from emp where empno = 99";
-        BasicSelectHandler handler2 = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
                 sql2, new ObjectResultSetHandler(),
                 BasicStatementFactory.INSTANCE, new OracleResultSetFactory());
         String ret = (String) handler2.execute((Object[]) null);
         System.out.println(ret);
         assertEquals("1", FULL_WIDTH_TILDE, ret);
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

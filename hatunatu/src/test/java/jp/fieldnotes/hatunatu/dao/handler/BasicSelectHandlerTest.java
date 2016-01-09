@@ -19,30 +19,34 @@ import java.util.Map;
 
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-public class BasicSelectHandlerTest extends S2TestCase {
+import static org.junit.Assert.*;
 
-    /**
-     * @throws Exception
-     */
+public class BasicSelectHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecute() throws Exception {
         String sql = "select * from emp where empno = ?";
-        BasicSelectHandler handler = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
                 sql, new MapResultSetHandler());
         Map ret = (Map) handler.execute(new Object[] { new Integer(7788) });
         System.out.println(ret);
         assertNotNull("1", ret);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByBrokenSql() throws Exception {
         final String sql = "selec * from emp";
-        BasicSelectHandler handler = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
                 sql, new MapResultSetHandler());
         try {
             handler.execute(new Object[] {});
@@ -54,12 +58,10 @@ public class BasicSelectHandlerTest extends S2TestCase {
         }
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByInvalidTableName() throws Exception {
         final String sql = "select * from UNKNOWN";
-        BasicSelectHandler handler = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
                 sql, new MapResultSetHandler());
         try {
             handler.execute(new Object[] {});
@@ -69,10 +71,6 @@ public class BasicSelectHandlerTest extends S2TestCase {
             final SSQLException cause = (SSQLException) e.getCause();
             assertEquals(sql, cause.getSql());
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

@@ -22,21 +22,23 @@ import java.sql.ResultSet;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class ObjectResultSetHandlerTest extends S2TestCase {
+import static org.junit.Assert.*;
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
+public class ObjectResultSetHandlerTest  {
 
-    /**
-     * @throws Exception
-     */
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new ObjectResultSetHandler(null);
         String sql = "select ename from emp where empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         String ret = null;
         try {
@@ -51,13 +53,12 @@ public class ObjectResultSetHandlerTest extends S2TestCase {
         }
         assertEquals("SCOTT", ret);
     }
-    /**
-     * @throws Exception
-     */
+
+    @Test
     public void testHandle_restrict() throws Exception {
         ResultSetHandler handler = new ObjectResultSetHandler.RestrictObjectResultSetHandler(null);
         String sql = "select ename from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         String ret = null;
         try {

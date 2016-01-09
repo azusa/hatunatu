@@ -18,62 +18,62 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import java.util.Date;
 
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-public class BasicUpdateHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-    /**
-     * @throws Exception
-     */
+public class BasicUpdateHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
         String sql = "update emp set ename = ?, comm = ? where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         int ret = handler.execute(new Object[] { "SCOTT", null,
                 new Integer(7788) });
         assertEquals(1, ret);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExecuteWithQuestionTx() throws Exception {
         String sql = "update emp set job = 'AA?A' where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         int ret = handler.execute(new Object[] { new Integer(7788) });
         assertEquals(1, ret);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExecuteWithQuestion2Tx() throws Exception {
         String sql = "update emp set job = 'AA' where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         int ret = handler.execute(new Object[] { new Integer(7788) });
         assertEquals(1, ret);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExecuteWithQuestion3Tx() throws Exception {
         String sql = "update emp set ename = ?, job = 'AA' where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         int ret = handler.execute(new Object[] { "SCOTT", new Integer(7788) });
         assertEquals(1, ret);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByBrokenSqlTx() throws Exception {
         String sql = "pdate emp set ename = ?, comm = ? where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         try {
             handler.execute(new Object[] { "SCOTT", null, new Integer(7788) });
@@ -85,12 +85,10 @@ public class BasicUpdateHandlerTest extends S2TestCase {
         }
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByWrongDataTypeTx() throws Exception {
         final String sql = "update emp set comm = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql);
         try {
             handler.execute(new Object[] { new Date() });
@@ -100,10 +98,6 @@ public class BasicUpdateHandlerTest extends S2TestCase {
             final org.seasar.framework.exception.SSQLException cause = (org.seasar.framework.exception.SSQLException) e.getCause();
             assertEquals(sql, cause.getSql());
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

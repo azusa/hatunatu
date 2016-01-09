@@ -21,19 +21,27 @@ import java.util.List;
 import java.util.Map;
 
 import jp.fieldnotes.hatunatu.dao.impl.MapListResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-    /**
-     * @throws Exception
-     */
+public class BasicReturningRowsBatchHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+    
+    @Test
     public void testExecuteTx() throws Exception {
         String sql = "update emp set ename = ?, comm = ? where empno = ?";
         BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                getDataSource(), sql, 2);
+                test.getDataSource(), sql, 2);
         List list = new ArrayList();
         list.add(new Object[] { "aaa", null, new Integer(7369) });
         list.add(new Object[] { "bbb", new Double(100.5), new Integer(7499) });
@@ -44,7 +52,7 @@ public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
         assertEquals(1, rows[2]);
         assertEquals(3, rows.length);
         String sql2 = "select empno, ename, comm from emp where empno in (7369, 7499, 7521) order by empno";
-        BasicSelectHandler handler2 = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
                 sql2, new MapListResultSetHandler());
         List ret2 = (List) handler2.execute((Object[]) null);
         Map rec = (Map) ret2.get(0);
@@ -55,13 +63,11 @@ public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
         assertEquals("ccc", rec.get("ename"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByBrokenSqlTx() throws Exception {
         final String sql = "updat emp set ename = ?, comm = ? where empno = ?";
         BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                getDataSource(), sql, 2);
+                test.getDataSource(), sql, 2);
         List list = new ArrayList();
         list.add(new Object[] { "aaa", null, new Integer(7369) });
         try {
@@ -74,13 +80,11 @@ public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
         }
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testExceptionByWrongDataTypeTx() throws Exception {
         final String sql = "update emp set ename = ?, comm = ? where empno = ?";
         BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                getDataSource(), sql, 2);
+                test.getDataSource(), sql, 2);
         List list = new ArrayList();
         list.add(new Object[] { "aaa", new Date(), new Integer(7369) });
         try {
@@ -91,10 +95,6 @@ public class BasicReturningRowsBatchHandlerTest extends S2TestCase {
             final SSQLException cause = (SSQLException) e.getCause();
             assertEquals(sql, cause.getSql());
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

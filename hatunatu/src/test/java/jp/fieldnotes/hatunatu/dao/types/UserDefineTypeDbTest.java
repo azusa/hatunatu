@@ -22,14 +22,24 @@ import java.sql.ResultSet;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class UserDefineTypeDbTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+public class UserDefineTypeDbTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanResultSetHandler(EmpDto.class);
         String sql = "select sal from emp where empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         EmpDto ret = null;
         try {
@@ -44,9 +54,5 @@ public class UserDefineTypeDbTest extends S2TestCase {
         }
         assertNotNull(ret);
         assertEquals(3000, ret.sal.value(), 0);
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

@@ -25,9 +25,17 @@ import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee21;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class FastPropertyTypeFactoryTest extends S2TestCase {
+import static org.junit.Assert.*;
+
+public class FastPropertyTypeFactoryTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, getClass().getName().replace('.', '/') + ".dicon");
 
     private PropertyTypeFactoryBuilder builder;
 
@@ -43,11 +51,8 @@ public class FastPropertyTypeFactoryTest extends S2TestCase {
 
     private boolean modifiedPropertyNamesInvoked;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include(getClass().getName().replace('.', '/') + ".dicon");
-    }
 
+    @Test
     public void testDto() throws Exception {
         PropertyTypeFactory factory = createDtoPropertyTypeFactory();
         PropertyType[] propertyTypes = factory.createDtoPropertyTypes();
@@ -55,6 +60,7 @@ public class FastPropertyTypeFactoryTest extends S2TestCase {
         assertEquals(6, propertyTypes.length);
     }
 
+    @Test
     public void testBean() throws Exception {
         PropertyTypeFactory factory = createBeanPropertyTypeFactory();
         PropertyType[] propertyTypes = factory.createBeanPropertyTypes("EMP");
@@ -132,8 +138,8 @@ public class FastPropertyTypeFactoryTest extends S2TestCase {
     private PropertyTypeFactory createBeanPropertyTypeFactory() {
         BeanAnnotationReader beanAnnotationReader = new BeanAnnotationReaderImpl(
                 beanClass);
-        DatabaseMetaData databaseMetaData = getDatabaseMetaData();
-        Dbms dbms = DbmsManager.getDbms(getDatabaseMetaData());
+        DatabaseMetaData databaseMetaData = test.getDatabaseMetaData();
+        Dbms dbms = DbmsManager.getDbms(test.getDatabaseMetaData());
         return builder.build(beanClass, beanAnnotationReader, dbms,
                 databaseMetaData);
     }

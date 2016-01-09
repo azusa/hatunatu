@@ -15,25 +15,32 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class AssertExactlyOneRowInterceptorTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+public class AssertExactlyOneRowInterceptorTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "AssertExactlyOneRowInterceptorTest.dicon");
 
     private EmployeeDao employeeDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("AssertExactlyOneRowInterceptorTest.dicon");
-    }
 
+    @Test
     public void testOneRowTx() throws Exception {
         final int ret = employeeDao.updateSal("AD%");
         assertEquals(1, ret);
     }
 
+    @Test
     public void testMoreThanOneRowTx() throws Exception {
         try {
             final int ret = employeeDao.updateSal("A%");
@@ -44,6 +51,7 @@ public class AssertExactlyOneRowInterceptorTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testNoRowTx() throws Exception {
         try {
             final int ret = employeeDao.updateSal("ZZ%");

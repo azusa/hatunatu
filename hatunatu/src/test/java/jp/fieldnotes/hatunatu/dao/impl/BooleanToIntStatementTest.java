@@ -18,29 +18,31 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntStatementFactory;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import org.seasar.extension.unit.S2TestCase;
 
-public class BooleanToIntStatementTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
 
-    /**
-     * @throws Exception
-     */
+public class BooleanToIntStatementTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testBooleanToIntTx() throws Exception {
         String sql = "update dept set active = ? where deptno = 10";
-        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
                 sql, BooleanToIntStatementFactory.INSTANCE);
         int ret = handler.execute(new Object[] { Boolean.FALSE });
         assertEquals("1", 1, ret);
 
         String sql2 = "select active from dept where deptno = 10";
-        BasicSelectHandler handler2 = new BasicSelectHandler(getDataSource(),
+        BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
                 sql2, new ObjectResultSetHandler());
         Number active = (Number) handler2.execute((Object[]) null);
         assertEquals("1", 0, active.intValue());
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

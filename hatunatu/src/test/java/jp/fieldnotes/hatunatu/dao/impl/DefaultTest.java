@@ -24,24 +24,29 @@ import java.util.List;
 import java.util.Map;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SRuntimeException;
 
-public class DefaultTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+public class DefaultTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "DefaultTest.dicon");
 
     private DefaultTableDao defaultTableDao;
 
     private PkOnlyTableDao pkOnlyTableDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("DefaultTest.dicon");
-    }
-
+    @Test
     public void testLearningMetaDataForColumnsTx() throws Exception {
-        final DatabaseMetaData metaData = getConnection().getMetaData();
+        final DatabaseMetaData metaData = test.getConnection().getMetaData();
         String userName = metaData.getUserName();
         userName = DatabaseMetaDataUtil.convertIdentifier(metaData, userName);
         final ResultSet rset = metaData.getColumns(null, userName,
@@ -60,8 +65,9 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testLearningGetDefaultValueTx() throws Exception {
-        final DatabaseMetaData metaData = getConnection().getMetaData();
+        final DatabaseMetaData metaData = test.getConnection().getMetaData();
         String userName = DatabaseMetaDataUtil.convertIdentifier(metaData,
                 metaData.getUserName());
         final ResultSet rset = metaData.getColumns(null, userName,
@@ -95,6 +101,7 @@ public class DefaultTest extends S2TestCase {
         assertEquals(1, columns[3]);
     }
 
+    @Test
     public void testInsertByAutoSqlTx() throws Exception {
         Integer id;
         {
@@ -112,6 +119,7 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testInsertBatchByAutoSqlTx() throws Exception {
         DefaultTable bean1 = new DefaultTable();
         bean1.setAaa("11");
@@ -137,6 +145,7 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testInsertBatchDefaultByAutoSqlTx() throws Exception {
         DefaultTable bean1 = new DefaultTable();
         bean1.setAaa("11");
@@ -171,6 +180,7 @@ public class DefaultTest extends S2TestCase {
     }
 
     // [DAO-9]
+    @Test
     public void testInsertBatchDefaultByAutoSql2Tx() throws Exception {
         DefaultTable bean1 = new DefaultTable();
         bean1.setAaa("11");
@@ -196,6 +206,7 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testInsertDefaultByAutoSqlTx() throws Exception {
         Integer id;
         {
@@ -212,9 +223,7 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
-    /*
-     * [DAO-29]にて、例外を投げないようにしました。
-     */
+    @Test
     public void testNotThrownExceptionWhenNullDataOnlyTx() throws Exception {
         Integer id;
         {
@@ -230,22 +239,8 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
-    /*
-     * 問題が見つかったため[DAO-9]、バッチ更新ではINSERT文からnull値のカラムを
-     * 除外する機能(s2dao-1.0.33で追加)をサポートしないことにしました。
-     */
-    public void no_testThrownExceptionWhenNullDataOnlyByBatchTx()
-            throws Exception {
-        DefaultTable bean = new DefaultTable();
-        try {
-            defaultTableDao.insertBatch(new DefaultTable[] { bean });
-            fail("should be thrown SRuntimeException, when only null properties");
-        } catch (SRuntimeException e) {
-            e.printStackTrace();
-            assertEquals("EDAO0014", e.getMessageCode());
-        }
-    }
 
+    @Test
     public void testInsertByManualSqlTx() throws Exception {
         Integer id;
         {
@@ -262,6 +257,7 @@ public class DefaultTest extends S2TestCase {
         }
     }
 
+    @Test
     public void testInsertDefaultByManualSqlTx() throws Exception {
         Integer id;
         {
@@ -279,6 +275,7 @@ public class DefaultTest extends S2TestCase {
     }
 
     // https://www.seasar.org/issues/browse/DAO-16
+    @Test
     public void testInsertPkOnlyTableTx() throws Exception {
         PkOnlyTable bean = new PkOnlyTable();
         bean.setAaa(new Integer(123));

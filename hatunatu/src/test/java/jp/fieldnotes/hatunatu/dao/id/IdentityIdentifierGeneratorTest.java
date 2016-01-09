@@ -20,21 +20,26 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
+import static org.junit.Assert.assertTrue;
 
-public class IdentityIdentifierGeneratorTest extends S2TestCase {
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
-    }
+public class IdentityIdentifierGeneratorTest {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testGetGeneratedValueTx() throws Exception {
         BasicUpdateHandler updateHandler = new BasicUpdateHandler(
-                getDataSource(),
+                test.getDataSource(),
                 "insert into identitytable(id_name) values('hoge')");
         updateHandler.execute(null);
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
@@ -44,7 +49,7 @@ public class IdentityIdentifierGeneratorTest extends S2TestCase {
         IdentityIdentifierGenerator generator = new IdentityIdentifierGenerator(
                 propertyType, new HSQL());
         Hoge hoge = new Hoge();
-        generator.setIdentifier(hoge, getDataSource());
+        generator.setIdentifier(hoge, test.getDataSource());
         System.out.println(hoge.getId());
         assertTrue("1", hoge.getId() >= 0);
     }

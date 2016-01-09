@@ -20,22 +20,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.unit.S2TestCase;
 
-public class ObjectArrayResultSetHandlerTest extends S2TestCase {
+import static org.junit.Assert.assertEquals;
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
+public class ObjectArrayResultSetHandlerTest {
 
-    /**
-     * @throws Exception
-     */
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new ObjectArrayResultSetHandler(
                 Integer.class);
         String sql = "select empno from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Integer[] ret = null;
         try {
