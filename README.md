@@ -1,5 +1,5 @@
 #Hatunatu
 
-[![wercker status](https://app.wercker.com/status/f6b6f4f5f89b9d6dde09e30a482198bb/s "wercker status")](https://app.wercker.com/project/bykey/f6b6f4f5f89b9d6dde09e30a482198bb)
+[![wercker status](https://app.wercker.com/status/1147c07dfc32e6286c59314841e0ea8f/m "wercker status")](https://app.wercker.com/project/bykey/1147c07dfc32e6286c59314841e0ea8f)
 
 Hatunatu is Java Object-Relation Mapping Framework, folked from [seasarorg/s2dao](https://github.com/seasarorg/s2dao).
