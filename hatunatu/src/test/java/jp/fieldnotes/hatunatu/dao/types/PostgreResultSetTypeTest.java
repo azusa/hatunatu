@@ -15,6 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -29,22 +30,19 @@ import org.seasar.framework.mock.sql.MockResultSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class PostgreResultSetTypeTest {
 
-    private boolean gotResultSet;
-
     @Test
     public void testGetValueCallableStatementInt() throws Exception {
-        MockCallableStatement cs = new MockCallableStatement(null, null) {
-            public Object getObject(int index) throws SQLException {
-                gotResultSet = true;
-                return new MockResultSet();
-            }
-        };
+        CallableStatement cs = mock(CallableStatement.class);
+        when(cs.getObject(1)).thenReturn(new Object());
         PostgreResultSetType rsType = new PostgreResultSetType();
         assertNotNull(rsType.getValue(cs, 1));
-        assertTrue(gotResultSet);
+        verify(cs).getObject(1);
     }
 
     @Test

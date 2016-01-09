@@ -15,6 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 
 import jp.fieldnotes.hatunatu.dao.types.OracleResultSetType;
@@ -27,35 +28,28 @@ import org.seasar.framework.mock.sql.MockResultSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class OracleResultSetTypeTest {
 
-    private boolean gotObject;
-
     @Test
     public void testGetValueCallableStatementInt() throws Exception {
-        MockCallableStatement cs = new MockCallableStatement(null, null) {
-            public Object getObject(int parameterIndex) throws SQLException {
-                gotObject = true;
-                return new MockResultSet();
-            }
-        };
+        CallableStatement cs = mock(CallableStatement.class);
+        when(cs.getObject(1)).thenReturn(new Object());
         OracleResultSetType rsType = new OracleResultSetType();
         assertNotNull(rsType.getValue(cs, 1));
-        assertTrue(gotObject);
+        verify(cs).getObject(1);
     }
 
     @Test
     public void testGetValueCallableStatementString() throws Exception {
-        MockCallableStatement cs = new MockCallableStatement(null, null) {
-            public Object getObject(String parameterName) throws SQLException {
-                gotObject = true;
-                return new MockResultSet();
-            }
-        };
+        CallableStatement cs = mock(CallableStatement.class);
+        when(cs.getObject("hoge")).thenReturn(new Object());
         OracleResultSetType rsType = new OracleResultSetType();
         assertNotNull(rsType.getValue(cs, "hoge"));
-        assertTrue(gotObject);
+        verify(cs).getObject("hoge");
     }
 
     @Test
@@ -64,9 +58,7 @@ public class OracleResultSetTypeTest {
         assertEquals(OracleResultSetType.CURSOR, rsType.getSqlType());
     }
 
-    /**
-     * 
-     */
+    @Test
     public void testToText() {
         OracleResultSetType rsType = new OracleResultSetType();
         assertEquals("null", rsType.toText(null));
