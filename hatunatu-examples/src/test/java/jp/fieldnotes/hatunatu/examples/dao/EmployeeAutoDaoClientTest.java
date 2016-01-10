@@ -15,10 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class EmployeeAutoDaoClientTest extends TestCase {
+public class EmployeeAutoDaoClientTest {
 
+    @Test
     public void testNoException() throws Exception {
         EmployeeAutoDaoClient.main(new String[] {});
     }

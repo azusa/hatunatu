@@ -15,14 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-/**
- * @author azusa
- *
- */
-public class ConvertTableExampleClientTest extends TestCase {
+public class ConvertTableExampleClientTest {
 
+    @Test
     public void testMain() {
         ConvertTableExampleClient.main(null);
     }

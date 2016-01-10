@@ -15,14 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-/**
- * @author azusa
- *
- */
-public class TruncateTableDaoClientTest extends TestCase {
+public class TruncateTableDaoClientTest  {
 
+    @Test
     public void testNoException() throws Exception {
         TruncateTableDaoClient.main(null);
     }

@@ -15,10 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class DepartmentManagerClientTest extends TestCase {
+public class DepartmentManagerClientTest  {
 
+    @Test
     public void testNoException() throws Exception {
         DepartmentManagerClient.main(new String[] {});
     }
