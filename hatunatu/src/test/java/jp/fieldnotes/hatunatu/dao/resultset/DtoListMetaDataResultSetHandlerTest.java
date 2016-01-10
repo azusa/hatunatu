@@ -25,16 +25,25 @@ import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto3;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class DtoListMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class DtoListMetaDataResultSetHandlerTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     public void testHandle() throws Exception {
         ResultSetHandler handler = new DtoListMetaDataResultSetHandler(
-                createDtoMetaData(EmployeeDto.class), createRowCreator());
+                test.createDtoMetaData(EmployeeDto.class), createRowCreator());
         String sql = "select empno, ename, dname from emp, dept where empno = 7788 and emp.deptno = dept.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -55,11 +64,12 @@ public class DtoListMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertEquals("RESEARCH", dto.getDname());
     }
 
+    @Test
     public void testHandle2() throws Exception {
         ResultSetHandler handler = new DtoListMetaDataResultSetHandler(
-                createDtoMetaData(EmployeeDto3.class), createRowCreator());
+                test.createDtoMetaData(EmployeeDto3.class), createRowCreator());
         String sql = "select employee_id, employee_name from emp4 where employee_id = 7369";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -81,9 +91,5 @@ public class DtoListMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     protected RowCreator createRowCreator() {// [DAO-118] (2007/08/25)
         return new RowCreatorImpl();
-    }
-    
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

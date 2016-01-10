@@ -20,24 +20,29 @@ import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.command.SelectDynamicCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department2;
 import jp.fieldnotes.hatunatu.dao.impl.dao.Department2AutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BooleanPropertyTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
+public class BooleanPropertyTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testInsertAndSelectTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Department2AutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(Department2AutoDao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(Department2AutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(Department2AutoDao.class,"insert"));
         Department2 dept = new Department2();
         dept.setDeptno(99);
         dept.setDname("hoge");
         dept.setActive(true);
         cmd.execute(new Object[] { dept });
         SelectDynamicCommand cmd2 = (SelectDynamicCommand) dmd
-                .getSqlCommand(getSingleDaoMethod(Department2AutoDao.class,"getDepartment"));
+                .getSqlCommand(test.getSingleDaoMethod(Department2AutoDao.class,"getDepartment"));
         Department2 dept2 = (Department2) cmd2
                 .execute(new Object[] { new Integer(99) });
         assertEquals("1", true, dept2.isActive());

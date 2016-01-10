@@ -19,15 +19,19 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("dao.dicon");
-    }
+public class BeanMetaDataFactoryImplTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "dao.dicon");
+
+    @Test
     public void test_Accessor() {
         // ## Arrange ##
         final String invokeMark = "test_Accessor()";
@@ -40,14 +44,15 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
 
         // ## Act ##
         beanMetaDataFactoryImpl
-                .setAnnotationReaderFactory(getAnnotationReaderFactory());
+                .setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
 
         // ## Assert ##
         assertEquals(invokeMark, beanMetaDataFactoryImpl.toString());
     }
 
+    @Test
     public void test_createBeanMetaData_Tx() {
-        final BeanMetaDataFactory bmdFactory = getBeanMetaDataFactory();
+        final BeanMetaDataFactory bmdFactory = test.getBeanMetaDataFactory();
         final Class beanClass = Employee.class; // This should have a relation property.
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass);
         assertNotNull(bmd);
@@ -60,8 +65,9 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void test_createBeanMetaData_NestLevelOne_Tx() {
-        final BeanMetaDataFactory bmdFactory = getBeanMetaDataFactory();
+        final BeanMetaDataFactory bmdFactory = test.getBeanMetaDataFactory();
         final Class beanClass = Employee.class;// This should have a relation property.
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass, 1);
         assertNotNull(bmd);
@@ -71,6 +77,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         assertEquals(new Integer(0), new Integer(relationPropertyTypeSize));
     }
 
+    @Test
     public void test_newBeanMetaDataImpl() {
         // ## Arrange ##
         final String invokeMark = "test_newBeanMetaDataImpl()";
@@ -87,6 +94,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         assertEquals(invokeMark, beanMetaDataFactoryImpl.toString());
     }
 
+    @Test
     public void test_isRelationNestLevel() {
         // ## Arrange ##
         final String invokeMark = "test_isRelationNestLevel()";
@@ -121,6 +129,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         assertEquals(invokeMark, beanMetaDataFactoryImpl.toString());
     }
 
+    @Test
     public void test_getLimitRelationNestLevel() {
         // ## Arrange ##
         final String invokeMark = "test_getLimitRelationNestLevel()";
@@ -136,6 +145,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         assertEquals(invokeMark, beanMetaDataFactoryImpl.toString());
     }
 
+    @Test
     public void testCreateBeanMetaData_byNullClass() throws Exception {
         // ## Arrange ##
         final BeanMetaDataFactoryImpl factory = new BeanMetaDataFactoryImpl();
@@ -149,6 +159,7 @@ public class BeanMetaDataFactoryImplTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testCreateBeanMetaData_byNullBean() throws Exception {
         BeanMetaDataFactoryImpl factory = new BeanMetaDataFactoryImpl();
         BeanMetaData metaData = factory.createBeanMetaData(HogeDao.class,

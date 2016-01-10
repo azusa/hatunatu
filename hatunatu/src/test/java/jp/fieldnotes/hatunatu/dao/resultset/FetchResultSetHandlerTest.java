@@ -21,31 +21,41 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.util.Map;
 
-public class FetchResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+public class FetchResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "dao.dicon");
 
     DtoMetaDataFactory dtoMetaDataFactory;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("dao.dicon");
+    @Before
+    public void setUp() throws Exception {
         PagerContext.start();
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
+    @After
+    public void tearDown() throws Exception {
         PagerContext.end();
     }
 
+    @Test
     public void testCreateResultSetHandler() {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
-                Employee.class, createBeanMetaData(Employee.class),
+                Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
         {
             FetchHandler fetchHandler = new FetchHandler<Employee>() {
@@ -91,7 +101,7 @@ public class FetchResultSetHandlerTest extends S2DaoTestCase {
 
     public void testGetParameterClass() {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
-                Employee.class, createBeanMetaData(Employee.class),
+                Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
         FetchHandler fetchHandler = new FetchHandler<Employee>() {
             public boolean execute(Employee bean) {
@@ -104,7 +114,7 @@ public class FetchResultSetHandlerTest extends S2DaoTestCase {
 
     public void testGetFetchHandler() {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
-                Employee.class, createBeanMetaData(Employee.class),
+                Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
         FetchHandler fetchHandler = new FetchHandler<Employee>() {
             public boolean execute(Employee bean) {

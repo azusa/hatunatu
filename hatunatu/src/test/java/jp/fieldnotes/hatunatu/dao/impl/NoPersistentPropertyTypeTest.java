@@ -22,22 +22,28 @@ import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 /**
  * https://www.seasar.org/issues/browse/DAO-20
  */
-public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
+public class NoPersistentPropertyTypeTest {
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
+    @Test
     public void testNoPersistentPropertyTypeException1() throws Exception {
         try {
-            final DaoMetaDataImpl dmd = createDaoMetaData(Foo1Dao.class);
-            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Foo1Dao.class,"findAll"));
+            final DaoMetaDataImpl dmd = test.createDaoMetaData(Foo1Dao.class);
+            final SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Foo1Dao.class,"findAll"));
             command.execute(null);
             fail();
         } catch (MethodSetupFailureRuntimeException e) {
@@ -48,12 +54,13 @@ public class NoPersistentPropertyTypeTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testNoPersistentPropertyTypeException2() throws Exception {
         // ## Arrange ##
-        final DaoMetaDataImpl dmd = createDaoMetaData(Foo2Dao.class);
+        final DaoMetaDataImpl dmd = test.createDaoMetaData(Foo2Dao.class);
 
         // ## Act ##
-        final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Foo2Dao.class,"findAll"));
+        final SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Foo2Dao.class,"findAll"));
 
         // ## Assert ##
         final List result = (List) command.execute(null);

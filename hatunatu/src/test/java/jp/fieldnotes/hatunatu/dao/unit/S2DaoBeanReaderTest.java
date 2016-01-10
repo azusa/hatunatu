@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.unit;
 
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
@@ -24,16 +26,19 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author higa
  * 
  */
-public class S2DaoBeanReaderTest extends S2DaoTestCase {
+public class S2DaoBeanReaderTest  {
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
-    }
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
+
+    @Test
     public void testRead() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(7788);
@@ -44,7 +49,7 @@ public class S2DaoBeanReaderTest extends S2DaoTestCase {
         dept.setDname("HOGE");
         emp.setDepartment(dept);
         S2DaoBeanReader reader = new S2DaoBeanReader(emp,
-                createBeanMetaData(emp.getClass()));
+                test.createBeanMetaData(emp.getClass()));
         DataSet ds = reader.read();
         DataTable table = ds.getTable(0);
         DataRow row = table.getRow(0);
@@ -55,6 +60,7 @@ public class S2DaoBeanReaderTest extends S2DaoTestCase {
         assertEquals("5", RowStates.UNCHANGED, row.getState());
     }
 
+    @Test
     public void testRead2() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(7788);
@@ -62,7 +68,7 @@ public class S2DaoBeanReaderTest extends S2DaoTestCase {
         Timestamp ts = new Timestamp(new Date().getTime());
         emp.setTimestamp(ts);
         S2DaoBeanReader reader = new S2DaoBeanReader(emp,
-                createBeanMetaData(emp.getClass()));
+                test.createBeanMetaData(emp.getClass()));
         DataSet ds = reader.read();
         DataTable table = ds.getTable(0);
         DataRow row = table.getRow(0);

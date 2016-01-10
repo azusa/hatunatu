@@ -17,8 +17,11 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,21 +29,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FetchObjectResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class FetchObjectResultSetHandlerTest {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         String sql = "select empno from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         final List<Integer> ret = new ArrayList<Integer>();
         ResultSetHandler handler = new FetchObjectResultSetHandler(

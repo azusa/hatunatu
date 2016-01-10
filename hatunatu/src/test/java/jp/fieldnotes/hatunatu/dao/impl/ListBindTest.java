@@ -22,17 +22,22 @@ import java.util.List;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class ListBindTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+
+public class ListBindTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"ListBindTest.dicon" );
 
     private EmployeeDao employeeDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("ListBindTest.dicon");
-    }
 
+    @Test
     public void testListBindTx() throws Exception {
         // ## Arrange ##
         final List param = Arrays.asList(new Integer[] { new Integer(7566),
@@ -53,6 +58,7 @@ public class ListBindTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testArrayBindTx() throws Exception {
         // ## Arrange ##
         final Integer[] param = new Integer[] { new Integer(7900),

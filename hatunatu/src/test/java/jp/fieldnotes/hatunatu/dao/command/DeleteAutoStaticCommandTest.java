@@ -22,34 +22,46 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.DepartmentAutoDao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+public class DeleteAutoStaticCommandTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"delete"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"delete"));
 
-        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
+        SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
         Employee emp = (Employee) cmd2
                 .execute(new Object[] { new Integer(7788) });
         Integer count = (Integer) cmd.execute(new Object[] { emp });
         assertEquals("1", new Integer(1), count);
     }
 
+    @Test
     public void testExecute2Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
+        DaoMetaData dmd = test.createDaoMetaData(DepartmentAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
         Department dept = new Department();
         dept.setDeptno(10);
         Integer count = (Integer) cmd.execute(new Object[] { dept });
         assertEquals("1", new Integer(1), count);
     }
 
+    @Test
     public void testExecute3Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(DepartmentAutoDao.class);
+        DaoMetaData dmd = test.createDaoMetaData(DepartmentAutoDao.class);
         DeleteAutoStaticCommand cmd = (DeleteAutoStaticCommand) dmd
-                .getSqlCommand(getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
+                .getSqlCommand(test.getSingleDaoMethod(DepartmentAutoDao.class,"delete"));
         Department dept = new Department();
         dept.setDeptno(10);
         dept.setVersionNo(-1);
@@ -59,10 +71,6 @@ public class DeleteAutoStaticCommandTest extends S2DaoTestCase {
         } catch (UpdateFailureRuntimeException ex) {
             System.out.println(ex);
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

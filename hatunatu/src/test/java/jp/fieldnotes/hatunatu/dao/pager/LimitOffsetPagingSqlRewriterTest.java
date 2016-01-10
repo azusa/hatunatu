@@ -17,24 +17,33 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import java.text.SimpleDateFormat;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.dataset.DataSet;
+
+import javax.sql.DataSource;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
     private static final int TEST_OFFSET = 18;
 
     private static final int TEST_LIMIT = 12;
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "LimitOffsetTest.dicon");
+
     CustomerDao dao;
 
-    LimitOffsetPagingSqlRewriter rewriter;
+    LimitOffsetPagingSqlRewriter rewriter =  new LimitOffsetPagingSqlRewriter();
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("LimitOffsetTest.dicon");
-        rewriter = new LimitOffsetPagingSqlRewriter();
-    }
 
+    @Test
     public void testMakeCountSql() {
         assertEquals("count(*)で全件数を取得するSQLを生成",
                 "SELECT count(*) FROM (SELECT * FROM DEPARTMENT) AS total",
@@ -85,6 +94,7 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
                         .makeCountSql("SELECT * FROM DEPARTMENT order\n\tby\n\n 名前 \n\tASC \n\n\n, 組織_ID \n\tDESC \n"));
     }
 
+    @Test
     public void testSetChopOrderByAndMakeCountSql() throws Exception {
         assertEquals("count(*)で全件数を取得するSQLを生成(chopOrderBy=true, order by 除去)",
                 "SELECT count(*) FROM (SELECT * FROM DEPARTMENT ) AS total",
@@ -105,12 +115,14 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
      * wrapper.makeBaseSql("SELECT * FROM DEPARTMENT")); } finally {
      * PagerContext.getContext().popArgs(); } }
      */
+    @Test
     public void testLimitOffsetSql() throws Exception {
         assertEquals("指定されたlimit offsetが付加されたSQLを生成",
                 "SELECT * FROM DEPARTMENT LIMIT 10 OFFSET 55", rewriter
                         .makeLimitOffsetSql("SELECT * FROM DEPARTMENT", 10, 55));
     }
 
+    @Test
     public void testPagingTx() throws Exception {
         readXlsAllReplaceDb("PagerTestData.xls");
         DefaultPagerCondition condition = new DefaultPagerCondition();
@@ -124,6 +136,7 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testWithSqlCommentTx() throws Exception {
         readXlsAllReplaceDb("PagerTestData.xls");
         DataSet expected = readXls("PagingData01.xls");
@@ -135,10 +148,11 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
         condition.setOffset(TEST_OFFSET);
         Customer[] actual = dao.getPagedRow2(condition);
         assertNotNull(actual);
-        assertEquals(expected, actual);
+        assertDataSetEquals("PagerTestData", expected, actual);
         assertEquals(81, condition.getCount());
     }
 
+    @Test
     public void testPagingCompatibityFalseTx() throws Exception {
         rewriter.setCountSqlCompatibility(false);
         readXlsAllReplaceDb("PagerTestData.xls");
@@ -151,17 +165,28 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
         condition.setOffset(TEST_OFFSET);
         Customer[] actual = dao.getPagedRow2(condition);
         assertNotNull(actual);
-        assertEquals(expected, actual);
+        assertDataSetEquals("PagerTestData.xls",expected, actual);
         assertEquals(81, condition.getCount());
     }
 
+    @Test
     public void testNonPagingCompatibityFalseTx() throws Exception {
         rewriter.setCountSqlCompatibility(false);
         readXlsAllReplaceDb("PagerTestData.xls");
         DataSet expected = readXls("PagerTestData.xls");
         Customer[] actual = dao.getAll();
         assertNotNull(actual);
-        assertEquals(expected, actual);
+        assertDataSetEquals("PagerTestData",expected, actual);
+    }
+
+    @Override
+    protected DataSource getDataSource() {
+        return test.getDataSource();
+    }
+
+    @Override
+    protected BeanMetaData createBeanMetaData(final Class beanClass) {
+        return test.createBeanMetaData(beanClass);
     }
 
 }

@@ -17,27 +17,33 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class OracleTest extends S2DaoTestCase {
+import static org.junit.Assert.assertTrue;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class OracleTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+
+    @Test
     public void testCreateAutoSelectList() throws Exception {
         Dbms dbms = new Oracle();
-        setDbms(dbms);
-        BeanMetaData bmd = createBeanMetaData(Employee.class);
+        test.setDbms(dbms);
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         String sql = dbms.getAutoSelectSql(bmd);
         System.out.println(sql);
     }
 
+    @Test
     public void testCreateAutoSelectList2() throws Exception {
         Dbms dbms = new Oracle();
-        setDbms(dbms);
-        BeanMetaData bmd = createBeanMetaData(Department.class);
+        test.setDbms(dbms);
+        BeanMetaData bmd = test.createBeanMetaData(Department.class);
         String sql = dbms.getAutoSelectSql(bmd);
         System.out.println(sql);
         assertTrue("1", sql.endsWith("FROM DEPT"));

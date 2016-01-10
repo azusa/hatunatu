@@ -17,10 +17,20 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.framework.util.ClassUtil;
 
-public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+
+public class UpdateModifiedOnlyCommandTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, ClassUtil.getSimpleClassName(
+            UpdateModifiedOnlyCommandTest.class).replace('.', '/')
+            + ".dicon");
 
     /*
      * TODO testing...
@@ -31,13 +41,6 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
 
     private EmpByReflectionDao empByReflectionDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include(ClassUtil.getSimpleClassName(
-                UpdateModifiedOnlyCommandTest.class).replace('.', '/')
-                + ".dicon");
-    }
-
 
     /*
      * InterfaceではなくReflectionでModifiedPropertiesを取得する方法のテスト。
@@ -46,6 +49,7 @@ public class UpdateModifiedOnlyCommandTest extends S2DaoTestCase {
      * 
      * また、既にModifiedPropertiesプロパティを持つEntityはエンハンスされないこと。
      */
+    @Test
     public void testModifiedPropertiesByReflectionTx() throws Exception {
         // ## Arrange ##
         final int targetEmpno = 7499;

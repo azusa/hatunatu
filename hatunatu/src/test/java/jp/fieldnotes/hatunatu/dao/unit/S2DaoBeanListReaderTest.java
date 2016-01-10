@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.unit;
 
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
@@ -23,12 +25,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class S2DaoBeanListReaderTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
-    }
+public class S2DaoBeanListReaderTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+
+    @Test
     public void testRead() throws Exception {
         Employee emp = new Employee();
         emp.setEmpno(7788);
@@ -41,7 +46,7 @@ public class S2DaoBeanListReaderTest extends S2DaoTestCase {
         List list = new ArrayList();
         list.add(emp);
         S2DaoBeanListReader reader = new S2DaoBeanListReader(list,
-                getBeanMetaDataFactory());
+                test.getBeanMetaDataFactory());
         DataSet ds = reader.read();
         DataTable table = ds.getTable(0);
         DataRow row = table.getRow(0);

@@ -16,17 +16,21 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class CharBindTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+
+public class CharBindTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"CharBindTest.dicon" );
 
     private CharTableDao charTableDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("CharBindTest.dicon");
-    }
-
+    @Test
     public void testCharBindTx() throws Exception {
         // ## Arrange ##
         {

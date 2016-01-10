@@ -29,8 +29,12 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.condition.EmployeeSearchCondition;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,13 +42,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+public class FetchBeanMetaDataResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     private BeanMetaData beanMetaData;
 
+    @Test
     public void testHandle() throws Exception {
         String sql = "select * from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         final List<Employee> ret = new ArrayList<Employee>();
         ResultSetHandler handler = new FetchBeanMetaDataResultSetHandler(
@@ -72,13 +84,14 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testHandle2() {
         try {
             PagerContext.start();
-            DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
+            DaoMetaData dmd = test.createDaoMetaData(EmployeeDao.class);
             assertNotNull("1", dmd);
             SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
-                    .getSqlCommand(getSingleDaoMethod(EmployeeDao.class, "fetchEmployeesBySearchCondition"));
+                    .getSqlCommand(test.getSingleDaoMethod(EmployeeDao.class, "fetchEmployeesBySearchCondition"));
             assertNotNull("2", cmd);
             System.out.println(cmd.toString());
             final List<Employee> ret = new ArrayList<Employee>();
@@ -106,20 +119,11 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-        setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
-    }
 
-    protected void setUpAfterBindFields() throws Throwable {
-        super.setUpAfterBindFields();
-        beanMetaData = createBeanMetaData(Employee.class);
+
+    @Before
+    public void setUpAfterBindFields() throws Throwable {
+        beanMetaData = test.createBeanMetaData(Employee.class);
     }
 
     protected RowCreator createRowCreator() {// [DAO-118] (2007/08/25)

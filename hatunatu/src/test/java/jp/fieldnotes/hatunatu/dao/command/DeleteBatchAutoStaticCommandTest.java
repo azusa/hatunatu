@@ -21,13 +21,22 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
+public class DeleteBatchAutoStaticCommandTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch"));
         Employee emp = new Employee();
         emp.setEmpno(7499);
         emp.setEname("hoge");
@@ -41,7 +50,7 @@ public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(2), count);
 
         // delete failure test
-        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch2"));
+        SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class, "deleteBatch2"));
         Employee emp3 = new Employee();
         emp3.setEmpno(7782);
         emp3.setEname("hoge");
@@ -55,10 +64,6 @@ public class DeleteBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("2", 2, ret.length);
         assertEquals("3", 1, ret[0]);
         assertEquals("4", 0, ret[1]); // delete failure
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

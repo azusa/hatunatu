@@ -25,18 +25,29 @@ import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BeanMetaDataResultSetHandler2Test extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class BeanMetaDataResultSetHandler2Test  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     private BeanMetaData beanMetaData;
 
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanMetaDataResultSetHandler(
-                beanMetaData, createRowCreator(), createRelationRowCreator());
+                beanMetaData, new RowCreatorImpl(), new RelationRowCreatorImpl());
         String sql = "select empno, dept.dname as d_name from emp, dept where empno = 7788 and emp.deptno = dept.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         MyEmp ret = null;
         try {
@@ -54,21 +65,9 @@ public class BeanMetaDataResultSetHandler2Test extends S2DaoTestCase {
         assertEquals("2", "RESEARCH", ret.getDname());
     }
 
-    protected RowCreator createRowCreator() {// [DAO-118] (2007/08/25)
-        return new RowCreatorImpl();
-    }
-
-    protected RelationRowCreator createRelationRowCreator() {
-        return new RelationRowCreatorImpl();
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
-    }
-
-    protected void setUpAfterBindFields() throws Throwable {
-        super.setUpAfterBindFields();
-        beanMetaData = createBeanMetaData(MyEmp.class);
+    @Before
+    public void setUp() throws Throwable {
+        beanMetaData = test.createBeanMetaData(MyEmp.class);
     }
 
     public static class MyEmp {

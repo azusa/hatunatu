@@ -20,26 +20,32 @@ import java.util.List;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class OverloadSqlCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertTrue;
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
+public class OverloadSqlCommandTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecute_WithStringArguments() {
         Method method = BeanDescFactory.getBeanDesc(MyDao.class).getMethodDesc("getEmployees", String.class).getMethod();
-        SqlCommand command = createDaoMetaData(MyDao.class).getSqlCommand(
+        SqlCommand command = test.createDaoMetaData(MyDao.class).getSqlCommand(
                 method);
         command.execute(new Object[] { "hoge" });
         assertTrue(true);
     }
 
+    @Test
     public void testExecute_WithIntArguments() {
         Method method = BeanDescFactory.getBeanDesc(MyDao.class).getMethodDesc("getEmployees", Integer.TYPE).getMethod();
-        SqlCommand command = createDaoMetaData(MyDao.class).getSqlCommand(
+        SqlCommand command = test.createDaoMetaData(MyDao.class).getSqlCommand(
                 method);
         command.execute(new Object[] { 7369 });
         assertTrue(true);

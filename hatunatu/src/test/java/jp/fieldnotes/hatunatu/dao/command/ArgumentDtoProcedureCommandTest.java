@@ -24,59 +24,73 @@ import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.dao.impl.Procedures;
 
-public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("jdbc-derby.dicon");
+public class ArgumentDtoProcedureCommandTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "jdbc-derby.dicon");
+
+    @Before
+    public void setUp() throws Exception {
         Procedures.params = new HashMap();
     }
 
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         Procedures.params = null;
-        super.tearDown();
     }
 
+    @Test
     public void testOutParameterTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class,"executeAaa1"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeAaa1"));
         Aaa1 dto = new Aaa1();
         command.execute(new Object[] { dto });
         assertNotNull(dto.getFoo());
     }
 
+    @Test
     public void testMultiOutParametersTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeAaa2"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeAaa2"));
         Aaa2 dto = new Aaa2();
         command.execute(new Object[] { dto });
         assertNotNull(dto.getBbb());
         assertNotNull(dto.getCcc());
     }
 
+    @Test
     public void testEmptyArgumentTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeAaa3"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeAaa3"));
         command.execute(new Object[] {});
         assertTrue(Procedures.isAaa3Invoked);
     }
 
+    @Test
     public void testInParameterTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class,"executeBbb1"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeBbb1"));
         Bbb1 dto = new Bbb1();
         dto.setCcc("hoge");
         command.execute(new Object[] { dto });
         assertEquals("hoge", Procedures.params.get("ccc"));
     }
 
+    @Test
     public void testMultiInParametersTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeBbb2"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeBbb2"));
         Bbb2 dto = new Bbb2();
         dto.setCcc("hoge");
         dto.setDdd(new BigDecimal("10"));
@@ -89,9 +103,10 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
                 (Timestamp) Procedures.params.get("eee"));
     }
 
+    @Test
     public void testInOutMixedParametersTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class,"executeCcc1"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeCcc1"));
         Ccc1 dto = new Ccc1();
         dto.setCcc("hoge");
         dto.setDdd(new BigDecimal("10"));
@@ -102,9 +117,10 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
         assertNotNull(dto.getEee());
     }
 
+    @Test
     public void testNullArgumentTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeCcc1"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeCcc1"));
         try {
             command.execute(new Object[] { null });
             fail();
@@ -114,9 +130,10 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testInOutMixedParameters2Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeCcc2"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeCcc2"));
         Ccc2 dto = new Ccc2();
         dto.setDdd(new BigDecimal("10"));
         command.execute(new Object[] { dto });
@@ -126,18 +143,20 @@ public class ArgumentDtoProcedureCommandTest extends S2DaoTestCase {
         assertNotNull(dto.getEee());
     }
 
+    @Test
     public void testInOutParameterTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "executeDdd1"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeDdd1"));
         Ddd1 dto = new Ddd1();
         dto.setCcc("ab");
         command.execute(new Object[] { dto });
         assertEquals("abcd", dto.getCcc());
     }
 
+    @Test
     public void testReturnParameterTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Dao.class);
-        SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(Dao.class, "max"));
+        DaoMetaData dmd = test.createDaoMetaData(Dao.class);
+        SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "max"));
         MaxDto dto = new MaxDto();
         dto.setBbb(5d);
         dto.setCcc(10d);

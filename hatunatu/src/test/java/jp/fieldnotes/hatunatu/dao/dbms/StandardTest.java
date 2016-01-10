@@ -17,30 +17,43 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class StandardTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
+public class StandardTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Before
+    public void setUp() throws Exception {
         Dbms dbms = new Standard();
-        setDbms(dbms);
+        test.setDbms(dbms);
     }
 
+    @Test
     public void testCreateAutoSelectList() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(Employee.class);
-        String sql = getDbms().getAutoSelectSql(bmd);
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
+        String sql = test.getDbms().getAutoSelectSql(bmd);
         System.out.println(sql);
     }
 
+    @Test
     public void testDispose() throws Exception {
         final Standard standard = new Standard();
-        setDbms(standard);
+        test.setDbms(standard);
         assertEquals(0, standard.autoSelectFromClauseCache.size());
 
-        final BeanMetaData bmd = createBeanMetaData(Employee.class);
+        final BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         {
             final String sql = standard.getAutoSelectSql(bmd);
             assertNotNull(sql);
@@ -58,9 +71,10 @@ public class StandardTest extends S2DaoTestCase {
         assertEquals(0, standard.autoSelectFromClauseCache.size());
     }
 
+    @Test
     public void testGetIdentitySelectString() throws Exception {
         try {
-            getDbms().getIdentitySelectString();
+            test.getDbms().getIdentitySelectString();
             fail();
         } catch (SRuntimeException e) {
             assertEquals("EDAO0022", e.getMessageCode());
@@ -68,9 +82,10 @@ public class StandardTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testGetSequenceNextValString() throws Exception {
         try {
-            getDbms().getSequenceNextValString(null);
+            test.getDbms().getSequenceNextValString(null);
             fail();
         } catch (SRuntimeException e) {
             assertEquals("EDAO0022", e.getMessageCode());

@@ -29,17 +29,26 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee23;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
+public class BeanListMetaDataResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee.class);
         ResultSetHandler handler = new BeanListMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select * from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -59,12 +68,13 @@ public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testHandle2() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee.class);
         ResultSetHandler handler = new BeanListMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.*, dept.dname as dname_0 from emp, dept where emp.deptno = dept.deptno and emp.deptno = 20";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -88,12 +98,13 @@ public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testHandle3() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee.class);
         ResultSetHandler handler = new BeanListMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.*, dept.deptno as deptno_0, dept.dname as dname_0 from emp, dept where dept.deptno = 20 and emp.deptno = dept.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -111,12 +122,13 @@ public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertSame("1", emp.getDepartment(), emp2.getDepartment());
     }
 
+    @Test
     public void testHandle_relationship() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee23.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee23.class);
         ResultSetHandler handler = new BeanListMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.empno, emp.ename, emp.deptno, department.deptno as deptno_0, department.dname as dname_0 from EMP5 emp LEFT OUTER JOIN DEPT department on emp.deptno = department.deptno order by emp.empno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List ret = null;
         try {
@@ -145,10 +157,6 @@ public class BeanListMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     protected RelationRowCreator createRelationRowCreator() {
         return new RelationRowCreatorImpl();
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

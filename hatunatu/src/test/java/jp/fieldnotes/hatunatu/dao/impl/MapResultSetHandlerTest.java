@@ -22,11 +22,20 @@ import java.util.Map;
 
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class MapResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
+public class MapResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new MapResultSetHandler(){
 
@@ -36,7 +45,7 @@ public class MapResultSetHandlerTest extends S2DaoTestCase {
             
         };
         String sql = "select employee_id, employee_name from emp4 where employee_id = 7369";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Map ret = null;
         try {
@@ -53,7 +62,8 @@ public class MapResultSetHandlerTest extends S2DaoTestCase {
         assertEquals(new Integer(7369), ret.get("employeeId"));
         assertEquals("SMITH", ret.get("employeeName"));
     }
-    
+
+    @Test
     public void testHandleNotSingleRecord() throws Exception {
         final boolean[] calls = {false};
         ResultSetHandler handler = new MapResultSetHandler(){
@@ -65,7 +75,7 @@ public class MapResultSetHandlerTest extends S2DaoTestCase {
             
         };
         String sql = "select employee_id, employee_name from emp4";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Map ret = null;
         try {
@@ -82,10 +92,11 @@ public class MapResultSetHandlerTest extends S2DaoTestCase {
         assertNotNull(ret);
     }
 
+    @Test
     public void testHandle_restrict() throws Exception {
         ResultSetHandler handler = new RestrictMapResultSetHandler();
         String sql = "select employee_id, employee_name from emp4";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Map ret = null;
         try {
@@ -104,10 +115,5 @@ public class MapResultSetHandlerTest extends S2DaoTestCase {
             ps.close();
         }
         assertNull(ret);
-    }
-
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 }

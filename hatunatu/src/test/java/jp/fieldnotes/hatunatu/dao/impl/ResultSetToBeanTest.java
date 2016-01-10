@@ -19,21 +19,26 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class ResultSetToBeanTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class ResultSetToBeanTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
 
     // https://www.seasar.org/issues/browse/DAO-26
+    @Test
     public void testMappingByPropertyNameTx() throws Exception {
         // ## Arrange ##
-        final DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
+        final DaoMetaData dmd = test.createDaoMetaData(EmployeeDao.class);
         {
-            final SqlCommand insertCommand = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"insert"));
+            final SqlCommand insertCommand = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeDao.class,"insert"));
             Employee bean = new Employee();
             bean.setDepartmentId(new Integer(123));
             bean.setEmployeeId(new Integer(7650));
@@ -44,12 +49,12 @@ public class ResultSetToBeanTest extends S2DaoTestCase {
         // ## Act ##
         // ## Assert ##
         {
-            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"find1"));
+            final SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeDao.class,"find1"));
             Employee bean = (Employee) command.execute(null);
             assertEquals("foo", bean.getEmployeeName());
         }
         {
-            final SqlCommand command = dmd.getSqlCommand(getSingleDaoMethod(EmployeeDao.class,"find2"));
+            final SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeDao.class,"find2"));
             Employee bean = (Employee) command.execute(null);
             assertEquals("foo", bean.getEmployeeName());
         }

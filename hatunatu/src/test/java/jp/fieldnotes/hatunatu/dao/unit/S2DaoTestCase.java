@@ -15,69 +15,93 @@
  */
 package jp.fieldnotes.hatunatu.dao.unit;
 
-import jp.fieldnotes.hatunatu.api.*;
-import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
-import jp.fieldnotes.hatunatu.dao.*;
-import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
-import jp.fieldnotes.hatunatu.dao.impl.*;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import junit.framework.Assert;
+import org.seasar.extension.dataset.DataReader;
 import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.unit.S2TestCase;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.seasar.extension.dataset.impl.SqlWriter;
+import org.seasar.extension.dataset.impl.XlsReader;
+import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
+import org.seasar.extension.unit.MapListReader;
+import org.seasar.extension.unit.MapReader;
+import org.seasar.framework.util.ResourceUtil;
 
-import java.lang.reflect.Method;
-import java.sql.DatabaseMetaData;
+import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
-public abstract class S2DaoTestCase extends S2TestCase {
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
-    private ValueTypeFactory valueTypeFactory;
+public abstract class S2DaoTestCase  {
 
-    private AnnotationReaderFactory annotationReaderFactory;
-
-    private BeanMetaDataFactory beanMetaDataFactory;
-
-    private DaoNamingConvention daoNamingConvention;
-
-    private Dbms dbms;
-
-    private ResultSetHandlerFactory resultSetHandlerFactory;
-
-    private DtoMetaDataFactory dtoMetaDataFactory;
-
-    private PropertyTypeFactoryBuilder propertyTypeFactoryBuilder;
-
-    private RelationPropertyTypeFactoryBuilder relationPropertyTypeFactoryBuilder;
-
-    private TableNaming tableNaming;
-
-    private ColumnNaming columnNaming;
-
-    private ProcedureMetaDataFactory procedureMetaDataFactory;
-
-    protected void tearDown() throws Exception {
-        valueTypeFactory = null;
-        annotationReaderFactory = null;
-        beanMetaDataFactory = null;
-        dbms = null;
-        resultSetHandlerFactory = null;
-        dtoMetaDataFactory = null;
-        propertyTypeFactoryBuilder = null;
-        relationPropertyTypeFactoryBuilder = null;
-        tableNaming = null;
-        columnNaming = null;
-        procedureMetaDataFactory = null;
-        PagerContext.end();
-        super.tearDown();
+    public void readXlsAllReplaceDb(String path) {
+        DataSet dataSet = readXls(path);
+        for (int i = dataSet.getTableSize() - 1; i >= 0; --i) {
+            deleteTable(dataSet.getTable(i).getTableName());
+        }
+        writeDb(dataSet);
     }
+
+    public DataSet readXls(String path) {
+        DataReader reader = new XlsReader( ResourceUtil.convertPath(path, getClass()), true);
+        return reader.read();
+    }
+
+    public void writeDb(DataSet dataSet) {
+        SqlWriter writer = new SqlWriter(getDataSource());
+        writer.write(dataSet);
+    }
+
+
+
+    public void deleteTable(String tableName) {
+        org.seasar.extension.jdbc.UpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+                "DELETE FROM " + tableName);
+        handler.execute(null);
+    }
+    public void assertDataSetEquals(String message, DataSet expected, Object actual) {
+        if (expected == null || actual == null) {
+            Assert.assertEquals(message, expected, actual);
+            return;
+        }
+        if (actual instanceof List) {
+            List actualList = (List) actual;
+            Assert.assertFalse(actualList.isEmpty());
+            Object actualItem = actualList.get(0);
+            if (actualItem instanceof Map) {
+                assertMapListEquals(message, expected, actualList);
+            } else {
+                assertBeanListEquals(message, expected, actualList);
+            }
+        } else if (actual instanceof Object[]) {
+            assertDataSetEquals(message, expected, Arrays.asList((Object[]) actual));
+        } else {
+            if (actual instanceof Map) {
+                assertMapEquals(message, expected, (Map) actual);
+            } else {
+                assertBeanEquals(message, expected, actual);
+            }
+        }
+    }
+    public void assertDataSetEquals(String message, DataSet expected, DataSet actual) {
+        message = message == null ? "" : message;
+        junit.framework.TestCase.assertEquals(message, expected.getTableSize(), actual.getTableSize());
+        assertThat(message, actual.getTableSize(), is(expected.getTableSize()));
+        for (int i = 0; i < expected.getTableSize(); ++i) {
+            junit.framework.TestCase.assertEquals(message, expected.getTable(i), actual.getTable(i));
+        }
+    }
+
+    protected abstract DataSource getDataSource();
 
     protected void assertBeanEquals(final String message,
             final DataSet expected, final Object bean) {
 
         final S2DaoBeanReader reader = new S2DaoBeanReader(bean,
                 createBeanMetaData(bean.getClass()));
-        assertEquals(message, expected, reader.read());
+        assertDataSetEquals(message, expected, reader.read());
     }
 
     protected void assertBeanListEquals(final String message,
@@ -85,230 +109,24 @@ public abstract class S2DaoTestCase extends S2TestCase {
 
         final S2DaoBeanListReader reader = new S2DaoBeanListReader(list,
                 createBeanMetaData(list.get(0).getClass()));
-        assertEquals(message, expected, reader.read());
+        assertDataSetEquals(message, expected, reader.read());
     }
 
-    protected BeanMetaData createBeanMetaData(final Class beanClass) {
-        final BeanMetaDataFactory factory = getBeanMetaDataFactory();
-        return factory.createBeanMetaData(beanClass);
+    protected void assertMapListEquals(String message, DataSet expected,
+                                       List list) {
+
+        MapListReader reader = new MapListReader(list);
+        assertDataSetEquals(message, expected, reader.read());
     }
 
-    protected DtoMetaDataImpl createDtoMetaData(final Class dtoClass) {
-        final DtoMetaDataImpl dmd = new DtoMetaDataImpl();
-        final BeanAnnotationReader reader = getAnnotationReaderFactory()
-                .createBeanAnnotationReader(dtoClass);
-        final PropertyTypeFactoryBuilder builder = getPropertyTypeFactoryBuilder();
-        final PropertyTypeFactory propertyTypeFactory = builder.build(dtoClass,
-                reader);
-        dmd.setBeanClass(dtoClass);
-        dmd.setBeanAnnotationReader(getAnnotationReaderFactory()
-                .createBeanAnnotationReader(dtoClass));
-        dmd.setPropertyTypeFactory(propertyTypeFactory);
-        dmd.initialize();
-        return dmd;
+    protected void assertMapEquals(String message, DataSet expected, Map map) {
+
+        MapReader reader = new MapReader(map);
+        assertDataSetEquals(message, expected, reader.read());
     }
 
-    protected DaoMetaDataImpl createDaoMetaData(final Class daoClass) {
-        final DaoMetaDataImpl dmd = new DaoMetaDataImpl();
-        final BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(daoClass);
-        final jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader = getAnnotationReaderFactory()
-                .createDaoAnnotationReader(daoBeanDesc);
-        final BeanMetaDataFactory bmdf = getBeanMetaDataFactory();
-        final DtoMetaDataFactory dmdf = getDtoMetaDataFactory();
-
-        dmd.setDaoClass(daoClass);
-        dmd.setDataSource(getDataSource());
-        dmd.setStatementFactory(BasicStatementFactory.INSTANCE);
-        dmd.setResultSetFactory(BasicResultSetFactory.INSTANCE);
-        dmd.setValueTypeFactory(getValueTypeFactory());
-        dmd.setBeanMetaDataFactory(bmdf);
-        dmd.setDaoNamingConvention(getDaoNamingConvention());
-        dmd.setDaoAnnotationReader(daoAnnotationReader);
-        dmd.setProcedureMetaDataFactory(getProcedureMetaDataFactory());
-        dmd.setDtoMetaDataFactory(dmdf);
-        dmd.setResultSetHandlerFactory(getResultSetHandlerFactory());
-        dmd.initialize();
-        return dmd;
-    }
-
-    protected BeanMetaDataFactory getBeanMetaDataFactory() {
-        if (beanMetaDataFactory == null) {
-            final BeanMetaDataFactoryImpl impl = new BeanMetaDataFactoryImpl() {
-                protected Dbms getDbms() {
-                    return S2DaoTestCase.this.getDbms();
-                }
-            };
-            impl.setAnnotationReaderFactory(getAnnotationReaderFactory());
-            impl.setDataSource(getDataSource());
-            impl.setDaoNamingConvention(getDaoNamingConvention());
-            impl.setPropertyTypeFactoryBuilder(getPropertyTypeFactoryBuilder());
-            impl
-                    .setRelationPropertyTypeFactoryBuilder(getRelationPropertyTypeFactoryBuilder(impl));
-            impl.setTableNaming(getTableNaming());
-            NullBeanEnhancer enhancer = new NullBeanEnhancer();
-            enhancer.setDaoNamingConvention(getDaoNamingConvention());
-            impl.setBeanEnhancer(enhancer);
-            beanMetaDataFactory = impl;
-        }
-        return beanMetaDataFactory;
-    }
-
-    protected Method getSingleDaoMethod(Class daoClass, String methodName) {
-        MethodDesc[] methodDesc = BeanDescFactory.getBeanDesc(daoClass).getMethodDescs(methodName);
-        if (methodDesc.length >= 2){
-            throw new AssertionError(methodName + "is overloaded.");
-        }
-        return methodDesc[0].getMethod();
-    }
-
-    protected Dbms getDbms() {
-        if (dbms == null) {
-            final DatabaseMetaData dbMetaData = getDatabaseMetaData();
-            dbms = DbmsManager.getDbms(dbMetaData);
-        }
-        return dbms;
-    }
-
-    protected void setDbms(final Dbms dbms) {
-        this.dbms = dbms;
-    }
-
-    protected AnnotationReaderFactory getAnnotationReaderFactory() {
-        if (annotationReaderFactory == null) {
-            annotationReaderFactory = new AnnotationReaderFactoryImpl();
-        }
-        return annotationReaderFactory;
-    }
-
-    protected void setAnnotationReaderFactory(
-            final AnnotationReaderFactory annotationReaderFactory) {
-        this.annotationReaderFactory = annotationReaderFactory;
-    }
-
-    protected ValueTypeFactory getValueTypeFactory() {
-        if (valueTypeFactory == null) {
-            final ValueTypeFactoryImpl impl = new ValueTypeFactoryImpl();
-            valueTypeFactory = impl;
-        }
-        return valueTypeFactory;
-    }
-
-    protected void setValueTypeFactory(final ValueTypeFactory valueTypeFactory) {
-        this.valueTypeFactory = valueTypeFactory;
-    }
-
-    protected DaoNamingConvention getDaoNamingConvention() {
-        if (daoNamingConvention == null) {
-            daoNamingConvention = new DaoNamingConventionImpl();
-        }
-        return daoNamingConvention;
-    }
-
-    protected void setDaoNamingConvention(
-            final DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
-    }
+    protected abstract BeanMetaData createBeanMetaData(final Class beanClass);
 
 
-
-    protected ResultSetHandlerFactory getResultSetHandlerFactory() {
-        if (resultSetHandlerFactory == null) {
-            final ResultSetHandlerFactorySelector factory = new ResultSetHandlerFactorySelector();
-            factory.setDtoMetaDataFactory(getDtoMetaDataFactory());
-            factory.init();
-            resultSetHandlerFactory = factory;
-        }
-        return resultSetHandlerFactory;
-    }
-
-    protected void setResultSetHandlerFactory(
-            final ResultSetHandlerFactory resultSetHandlerFactory) {
-        this.resultSetHandlerFactory = resultSetHandlerFactory;
-    }
-
-    protected DtoMetaDataFactory getDtoMetaDataFactory() {
-        if (dtoMetaDataFactory == null) {
-            final DtoMetaDataFactoryImpl factory = new DtoMetaDataFactoryImpl();
-            factory.setAnnotationReaderFactory(getAnnotationReaderFactory());
-            factory
-                    .setPropertyTypeFactoryBuilder(getPropertyTypeFactoryBuilder());
-            dtoMetaDataFactory = factory;
-        }
-        return dtoMetaDataFactory;
-    }
-
-    protected void setDtoMetaDataFactory(
-            final DtoMetaDataFactory dtoMetaDataFactory) {
-        this.dtoMetaDataFactory = dtoMetaDataFactory;
-    }
-
-    protected ColumnNaming getColumnNaming() {
-        if (columnNaming == null) {
-            columnNaming = new DefaultColumnNaming();
-        }
-        return columnNaming;
-    }
-
-    protected void setColumnNaming(final ColumnNaming columnNaming) {
-        this.columnNaming = columnNaming;
-    }
-
-    protected PropertyTypeFactoryBuilder getPropertyTypeFactoryBuilder() {
-        if (propertyTypeFactoryBuilder == null) {
-            final PropertyTypeFactoryBuilderImpl builder = new PropertyTypeFactoryBuilderImpl();
-            builder.setColumnNaming(getColumnNaming());
-            builder.setDaoNamingConvention(getDaoNamingConvention());
-            builder.setValueTypeFactory(getValueTypeFactory());
-            propertyTypeFactoryBuilder = builder;
-        }
-        return propertyTypeFactoryBuilder;
-    }
-
-    protected void setPropertyTypeFactoryBuilder(
-            final PropertyTypeFactoryBuilder propertyTypeFactoryBuilder) {
-        this.propertyTypeFactoryBuilder = propertyTypeFactoryBuilder;
-    }
-
-    protected RelationPropertyTypeFactoryBuilder getRelationPropertyTypeFactoryBuilder(
-            final BeanMetaDataFactory beanMetaDataFactory) {
-        if (relationPropertyTypeFactoryBuilder == null) {
-            final RelationPropertyTypeFactoryBuilderImpl builder = new RelationPropertyTypeFactoryBuilderImpl();
-            builder.setBeanMetaDataFactory(beanMetaDataFactory);
-            relationPropertyTypeFactoryBuilder = builder;
-        }
-        return relationPropertyTypeFactoryBuilder;
-    }
-
-    protected void setRelationPropertyTypeFactoryBuilder(
-            final RelationPropertyTypeFactoryBuilder relationPropertyTypeFactoryBuilder) {
-        this.relationPropertyTypeFactoryBuilder = relationPropertyTypeFactoryBuilder;
-    }
-
-    protected TableNaming getTableNaming() {
-        if (tableNaming == null) {
-            tableNaming = new DefaultTableNaming();
-        }
-        return tableNaming;
-    }
-
-    protected void setTableNaming(final TableNaming tableNaming) {
-        this.tableNaming = tableNaming;
-    }
-
-    protected ProcedureMetaDataFactory getProcedureMetaDataFactory() {
-        if (procedureMetaDataFactory == null) {
-            final ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
-            factory.setValueTypeFactory(valueTypeFactory);
-            factory.setAnnotationReaderFactory(annotationReaderFactory);
-            factory.initialize();
-            procedureMetaDataFactory = factory;
-        }
-        return procedureMetaDataFactory;
-    }
-
-    protected void setProcedureMetaDataFactory(
-            final ProcedureMetaDataFactory procedureMetaDataFactory) {
-        this.procedureMetaDataFactory = procedureMetaDataFactory;
-    }
 
 }

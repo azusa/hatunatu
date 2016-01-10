@@ -23,13 +23,22 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
+public class UpdateBatchAutoStaticCommandTest{
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch"));
         Employee emp = new Employee();
         emp.setEmpno(7499);
         emp.setEname("hoge");
@@ -43,7 +52,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(2), count);
 
         // update failure test
-        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch2"));
+        SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch2"));
         Employee emp3 = new Employee();
         emp3.setEmpno(7782);
         emp3.setEname("hoge");
@@ -59,10 +68,11 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("4", 0, ret[1]); // update failure
     }
 
+    @Test
     public void testExecuteByListTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
         {
-            SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"updateBatchByList"));
+            SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"updateBatchByList"));
             final List list = new ArrayList();
             {
                 Employee emp = new Employee();
@@ -83,7 +93,7 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
         }
 
         {
-            SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
+            SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"getEmployee"));
             {
                 final Employee employee = (Employee) cmd
                         .execute(new Object[] { new Integer(7499) });
@@ -95,10 +105,6 @@ public class UpdateBatchAutoStaticCommandTest extends S2DaoTestCase {
                 assertEquals("hoge2", employee.getEname());
             }
         }
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

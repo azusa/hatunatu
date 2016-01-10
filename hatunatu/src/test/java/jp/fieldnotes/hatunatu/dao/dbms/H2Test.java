@@ -20,19 +20,23 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
-public class H2Test extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("jdbc-h2.dicon");
-    }
+public class H2Test  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "jdbc-h2.dicon");
+
+    @Test
     public void test1() throws Exception {
-        final Connection con = getConnection();
+        final Connection con = test.getConnection();
 
         final Statement stmt = con.createStatement();
         stmt.executeUpdate("DROP TABLE IF EXISTS H2TEST");
@@ -75,15 +79,16 @@ public class H2Test extends S2DaoTestCase {
         con.close();
     }
 
+    @Test
     public void testSequence() throws Exception {
         // ## Arrange ##
-        final Connection con = getConnection();
+        final Connection con = test.getConnection();
         final Statement stmt = con.createStatement();
         stmt.executeUpdate("DROP SEQUENCE IF EXISTS H2TEST_SEQ");
         stmt
                 .executeUpdate("CREATE SEQUENCE H2TEST_SEQ START WITH 7650 INCREMENT BY 1");
         stmt.close();
-        final Dbms dbms = DbmsManager.getDbms(getDataSource());
+        final Dbms dbms = DbmsManager.getDbms(test.getDataSource());
         assertEquals(true, dbms instanceof H2);
 
         // ## Act ##
@@ -91,7 +96,7 @@ public class H2Test extends S2DaoTestCase {
         final String sequenceNextValString = dbms
                 .getSequenceNextValString("H2TEST_SEQ");
         final BasicSelectHandler nextvalHandler = new BasicSelectHandler(
-                getDataSource(), sequenceNextValString,
+                test.getDataSource(), sequenceNextValString,
                 new ObjectResultSetHandler());
         {
             final Number nextval = (Number) nextvalHandler.execute(null);
@@ -108,7 +113,7 @@ public class H2Test extends S2DaoTestCase {
 
         final String identitySelectString = dbms.getIdentitySelectString();
         final BasicSelectHandler identityHandler = new BasicSelectHandler(
-                getDataSource(), identitySelectString,
+                test.getDataSource(), identitySelectString,
                 new ObjectResultSetHandler());
         {
             final Number currval = (Number) identityHandler.execute(null);

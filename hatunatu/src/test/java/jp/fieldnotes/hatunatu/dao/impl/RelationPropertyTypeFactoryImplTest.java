@@ -21,15 +21,20 @@ import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class RelationPropertyTypeFactoryImplTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class RelationPropertyTypeFactoryImplTest {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void test() throws Exception {
         RelationPropertyTypeFactoryImpl factory = createRelationPropertyTypeFactoryImpl();
         RelationPropertyType[] types = factory.createRelationPropertyTypes();
@@ -41,8 +46,8 @@ public class RelationPropertyTypeFactoryImplTest extends S2DaoTestCase {
         Class beanClass = Employee20.class;
         BeanAnnotationReader beanAnnotationReader = new BeanAnnotationReaderImpl(
                 beanClass);
-        BeanMetaDataFactory beanMetaDataFactory = getBeanMetaDataFactory();
-        DatabaseMetaData databaseMetaData = getDatabaseMetaData();
+        BeanMetaDataFactory beanMetaDataFactory = test.getBeanMetaDataFactory();
+        DatabaseMetaData databaseMetaData = test.getDatabaseMetaData();
         int relationNestLevel = 0;
         boolean isStopRelationCreation = false;
         return new RelationPropertyTypeFactoryImpl(beanClass,

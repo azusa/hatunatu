@@ -21,59 +21,75 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.DtoMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class ResultSetHandlerFactoryImplTest extends S2DaoTestCase {
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class ResultSetHandlerFactoryImplTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
     private ResultSetHandlerFactoryImpl resultSetHandlerFactoryImpl;
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
+    @Before
+    public void setUp() throws Exception {
         resultSetHandlerFactoryImpl = new ResultSetHandlerFactoryImpl();
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
     }
 
+    @Test
     public void testCreateBeanMetaDataResultSetHandler_restrict() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl
-                .createBeanMetaDataResultSetHandler(getBeanMetaDataFactory()
+                .createBeanMetaDataResultSetHandler(test.getBeanMetaDataFactory()
                         .createBeanMetaData(Employee.class)) instanceof BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler);
     }
 
+    @Test
     public void testCreateBeanMetaDataResultSetHandler() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
         ResultSetHandler handler = resultSetHandlerFactoryImpl
-                .createBeanMetaDataResultSetHandler(getBeanMetaDataFactory()
+                .createBeanMetaDataResultSetHandler(test.getBeanMetaDataFactory()
                         .createBeanMetaData(Employee.class));
         assertTrue(handler instanceof BeanMetaDataResultSetHandler);
 
         assertFalse(handler instanceof BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler);
     }
 
+    @Test
     public void testCreateDtoMetaDataResultSet_restrict() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl
-                .createDtoMetaDataResultSetHandler(getBeanMetaDataFactory()
+                .createDtoMetaDataResultSetHandler(test.getBeanMetaDataFactory()
                         .createBeanMetaData(Employee.class)) instanceof DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler);
     }
 
+    @Test
     public void testCreateDtoMetaDataResultSet() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
         ResultSetHandler handler = resultSetHandlerFactoryImpl
-                .createDtoMetaDataResultSetHandler(getBeanMetaDataFactory()
+                .createDtoMetaDataResultSetHandler(test.getBeanMetaDataFactory()
                         .createBeanMetaData(Employee.class));
         assertTrue(handler instanceof DtoMetaDataResultSetHandler);
 
         assertFalse(handler instanceof DtoMetaDataResultSetHandler.RestrictDtoMetaDataResultSetHandler);
     }
 
+    @Test
     public void testCreateObjectMetaDataResultSet_restrict() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl
                 .createObjectResultSetHandler(null) instanceof ObjectResultSetHandler.RestrictObjectResultSetHandler);
     }
 
+    @Test
     public void testCreateObjectMetaDataResultSet() {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
         ResultSetHandler handler = resultSetHandlerFactoryImpl

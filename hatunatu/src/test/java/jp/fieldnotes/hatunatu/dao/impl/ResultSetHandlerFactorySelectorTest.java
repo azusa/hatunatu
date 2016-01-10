@@ -23,14 +23,22 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import jp.fieldnotes.hatunatu.dao.resultset.FetchResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
+import static org.junit.Assert.assertTrue;
+
+public class ResultSetHandlerFactorySelectorTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "dao.dicon");
 
     ResultSetHandlerFactory resultSetHandlerFactory;
 
@@ -38,20 +46,11 @@ public class ResultSetHandlerFactorySelectorTest extends S2DaoTestCase {
 
     BeanMetaDataFactory beanMetaDataFactory;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("dao.dicon");
-    }
-
     /**
      * Test method for
      * {@link ResultSetHandlerFactorySelector#getResultSetHandler(jp.fieldnotes.hatunatu.api.DaoAnnotationReader, BeanMetaData, Method)}.
      */
+    @Test
     public void testGetResultSetHandler() {
         BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(EmployeeDao.class);
         jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader = annotationReaderFactory

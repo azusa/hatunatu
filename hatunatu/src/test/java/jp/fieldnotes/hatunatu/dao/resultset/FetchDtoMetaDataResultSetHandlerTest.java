@@ -21,8 +21,11 @@ import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto3;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,29 +33,23 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author jundu
- * 
- */
-public class FetchDtoMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("j2ee.dicon");
-    }
+public class FetchDtoMetaDataResultSetHandlerTest  {
 
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+
+    @Test
     public void testHandle() throws Exception {
         String sql = "select empno, ename, dname from emp, dept where empno = 7788 and emp.deptno = dept.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         final List<EmployeeDto> ret = new ArrayList<EmployeeDto>();
         ResultSetHandler handler = new FetchDtoMetaDataResultSetHandler(
-                createDtoMetaData(EmployeeDto.class), createRowCreator(),
+                test.createDtoMetaData(EmployeeDto.class), createRowCreator(),
                 new FetchHandler<EmployeeDto>() {
                     public boolean execute(EmployeeDto bean) {
                         ret.add(bean);
@@ -77,13 +74,14 @@ public class FetchDtoMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertEquals("RESEARCH", dto.getDname());
     }
 
+    @Test
     public void testHandle2() throws Exception {
         String sql = "select employee_id, employee_name from emp4 where employee_id = 7369";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         final List<EmployeeDto3> ret = new ArrayList<EmployeeDto3>();
         ResultSetHandler handler = new FetchDtoMetaDataResultSetHandler(
-                createDtoMetaData(EmployeeDto3.class), createRowCreator(),
+                test.createDtoMetaData(EmployeeDto3.class), createRowCreator(),
                 new FetchHandler<EmployeeDto3>() {
                     public boolean execute(EmployeeDto3 bean) {
                         ret.add(bean);

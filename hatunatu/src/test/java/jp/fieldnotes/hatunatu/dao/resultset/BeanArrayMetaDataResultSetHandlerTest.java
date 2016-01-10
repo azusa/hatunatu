@@ -24,17 +24,26 @@ import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BeanArrayMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.assertNotNull;
 
+public class BeanArrayMetaDataResultSetHandlerTest {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
         ResultSetHandler handler = new BeanArrayMetaDataResultSetHandler(
-                createBeanMetaData(Employee.class), createRowCreator(),
+                test.createBeanMetaData(Employee.class), createRowCreator(),
                 createRelationRowCreator());
         String sql = "select * from emp";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee[] ret = null;
         try {
@@ -60,14 +69,6 @@ public class BeanArrayMetaDataResultSetHandlerTest extends S2DaoTestCase {
 
     protected RelationRowCreator createRelationRowCreator() {
         return new RelationRowCreatorImpl();
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
-    }
-
-    protected void setUpAfterContainerInit() throws Throwable {
-        super.setUpAfterContainerInit();
     }
 
 }

@@ -25,10 +25,6 @@ import java.sql.Timestamp;
 
 public class DefaultBeanMetaDataImplTest extends BeanMetaDataImplTest {
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
-
     protected Class getBeanClass(String className) {
         if (className.equals("MyBean")) {
             return MyBean.class;

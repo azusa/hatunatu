@@ -25,11 +25,17 @@ import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.rules.ExternalResource;
+import org.seasar.extension.dataset.DataReader;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.dataset.impl.SqlTableReader;
+import org.seasar.extension.dataset.impl.SqlWriter;
+import org.seasar.extension.dataset.impl.XlsReader;
+import org.seasar.extension.jdbc.*;
+import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
+import org.seasar.extension.unit.BeanListReader;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
@@ -50,10 +56,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class HatunatuTest extends ExternalResource {
 
@@ -170,20 +172,28 @@ public class HatunatuTest extends ExternalResource {
         return reader.read();
     }
 
-    public void assertBeanEquals(final String message,
-                                    final DataSet expected, final Object bean) {
-
-        final S2DaoBeanReader reader = new S2DaoBeanReader(bean,
-                createBeanMetaData(bean.getClass()));
-        assertThat(message, reader.read(), is(expected));
+    public void readXlsAllReplaceDb(String path) {
+        DataSet dataSet = readXls(path);
+        for (int i = dataSet.getTableSize() - 1; i >= 0; --i) {
+            deleteTable(dataSet.getTable(i).getTableName());
+        }
+        writeDb(dataSet);
     }
 
-    public void assertBeanListEquals(final String message,
-                                        final DataSet expected, final List list) {
+    private void deleteTable(String tableName) {
+        org.seasar.extension.jdbc.UpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+                "DELETE FROM " + tableName);
+        handler.execute(null);
+    }
 
-        final S2DaoBeanListReader reader = new S2DaoBeanListReader(list,
-                createBeanMetaData(list.get(0).getClass()));
-        assertThat(message, reader.read(), is(expected));
+    public DataSet readXls(String path) {
+        DataReader reader = new XlsReader(ResourceUtil.convertPath(path, instance.getClass()), true);
+        return reader.read();
+    }
+
+    private void writeDb(DataSet dataSet) {
+        SqlWriter writer = new SqlWriter(this.getDataSource());
+        writer.write(dataSet);
     }
 
     public BeanMetaData createBeanMetaData(final Class beanClass) {
@@ -242,7 +252,7 @@ public class HatunatuTest extends ExternalResource {
             impl.setPropertyTypeFactoryBuilder(getPropertyTypeFactoryBuilder());
             impl
                     .setRelationPropertyTypeFactoryBuilder(getRelationPropertyTypeFactoryBuilder(impl));
-            impl.setTableNaming(getTableNaming());
+            impl.setTableNaming(new DefaultTableNaming());
             NullBeanEnhancer enhancer = new NullBeanEnhancer();
             enhancer.setDaoNamingConvention(getDaoNamingConvention());
             impl.setBeanEnhancer(enhancer);
@@ -325,10 +335,6 @@ public class HatunatuTest extends ExternalResource {
         return resultSetHandlerFactory;
     }
 
-    protected void setResultSetHandlerFactory(
-            final ResultSetHandlerFactory resultSetHandlerFactory) {
-        this.resultSetHandlerFactory = resultSetHandlerFactory;
-    }
 
     protected DtoMetaDataFactory getDtoMetaDataFactory() {
         if (dtoMetaDataFactory == null) {
@@ -341,18 +347,6 @@ public class HatunatuTest extends ExternalResource {
         return dtoMetaDataFactory;
     }
 
-    protected void setDtoMetaDataFactory(
-            final DtoMetaDataFactory dtoMetaDataFactory) {
-        this.dtoMetaDataFactory = dtoMetaDataFactory;
-    }
-
-    protected ColumnNaming getColumnNaming() {
-        if (columnNaming == null) {
-            columnNaming = new DefaultColumnNaming();
-        }
-        return columnNaming;
-    }
-
     protected void setColumnNaming(final ColumnNaming columnNaming) {
         this.columnNaming = columnNaming;
     }
@@ -360,17 +354,12 @@ public class HatunatuTest extends ExternalResource {
     protected PropertyTypeFactoryBuilder getPropertyTypeFactoryBuilder() {
         if (propertyTypeFactoryBuilder == null) {
             final PropertyTypeFactoryBuilderImpl builder = new PropertyTypeFactoryBuilderImpl();
-            builder.setColumnNaming(getColumnNaming());
+            builder.setColumnNaming(new DefaultColumnNaming());
             builder.setDaoNamingConvention(getDaoNamingConvention());
             builder.setValueTypeFactory(getValueTypeFactory());
             propertyTypeFactoryBuilder = builder;
         }
         return propertyTypeFactoryBuilder;
-    }
-
-    protected void setPropertyTypeFactoryBuilder(
-            final PropertyTypeFactoryBuilder propertyTypeFactoryBuilder) {
-        this.propertyTypeFactoryBuilder = propertyTypeFactoryBuilder;
     }
 
     protected RelationPropertyTypeFactoryBuilder getRelationPropertyTypeFactoryBuilder(
@@ -383,21 +372,6 @@ public class HatunatuTest extends ExternalResource {
         return relationPropertyTypeFactoryBuilder;
     }
 
-    protected void setRelationPropertyTypeFactoryBuilder(
-            final RelationPropertyTypeFactoryBuilder relationPropertyTypeFactoryBuilder) {
-        this.relationPropertyTypeFactoryBuilder = relationPropertyTypeFactoryBuilder;
-    }
-
-    protected TableNaming getTableNaming() {
-        if (tableNaming == null) {
-            tableNaming = new DefaultTableNaming();
-        }
-        return tableNaming;
-    }
-
-    protected void setTableNaming(final TableNaming tableNaming) {
-        this.tableNaming = tableNaming;
-    }
 
     protected ProcedureMetaDataFactory getProcedureMetaDataFactory() {
         if (procedureMetaDataFactory == null) {
@@ -410,10 +384,6 @@ public class HatunatuTest extends ExternalResource {
         return procedureMetaDataFactory;
     }
 
-    protected void setProcedureMetaDataFactory(
-            final ProcedureMetaDataFactory procedureMetaDataFactory) {
-        this.procedureMetaDataFactory = procedureMetaDataFactory;
-    }
 
     private S2Container getContainer() {
         return container;
@@ -515,10 +485,6 @@ public class HatunatuTest extends ExternalResource {
         }
         dataSource = null;
     }
-
-
-
-
 
     private void setUpContainer() throws Throwable {
         Env.setFilePath(ENV_PATH);

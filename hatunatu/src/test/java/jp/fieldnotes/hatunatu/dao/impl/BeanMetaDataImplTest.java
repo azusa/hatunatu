@@ -20,19 +20,27 @@ import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import org.junit.Rule;
+import org.junit.Test;
 
-public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-    protected void setUp() throws Exception {
-        include("j2ee.dicon");
-    }
+public abstract class BeanMetaDataImplTest  {
+    
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
 
     protected abstract Class getBeanClass(String className);
 
+    @Test
     public void testSetup() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("MyBean"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("MyBean"));
         assertEquals("1", "MyBean", bmd.getTableName());
         assertEquals("2", 3, bmd.getPropertyTypeSize());
         PropertyType aaa = bmd.getPropertyType("aaa");
@@ -49,8 +57,9 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
         assertEquals("11", "aaa", bmd.getPrimaryKey(0));
     }
 
+    @Test
     public void testSetupDatabaseMetaData() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
         PropertyType empno = bmd.getPropertyType("empno");
         assertEquals("1", true, empno.isPrimaryKey());
         assertEquals("2", true, empno.isPersistent());
@@ -60,9 +69,10 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
         assertEquals("4", false, dummy.isPersistent());
     }
 
+    @Test
     public void testSetupAutoSelectList() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Department"));
-        BeanMetaData bmd2 = createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Department"));
+        BeanMetaData bmd2 = test.createBeanMetaData(getBeanClass("Employee"));
         String sql = bmd.getAutoSelectList();
         String sql2 = bmd2.getAutoSelectList();
         System.out.println(sql);
@@ -73,15 +83,17 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
         assertTrue("3", sql2.indexOf("dummy_0") < 0);
     }
 
+    @Test
     public void testConvertFullColumnName() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
         assertEquals("1", "EMP.empno", bmd.convertFullColumnName("empno"));
         assertEquals("2", "department.dname", bmd
                 .convertFullColumnName("dname_0"));
     }
 
+    @Test
     public void testHasPropertyTypeByAliasName() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
         assertEquals("1", true, bmd.hasPropertyTypeByAliasName("empno"));
         assertEquals("2", true, bmd.hasPropertyTypeByAliasName("dname_0"));
         assertEquals("3", false, bmd.hasPropertyTypeByAliasName("xxx"));
@@ -89,63 +101,74 @@ public abstract class BeanMetaDataImplTest extends S2DaoTestCase {
         assertEquals("5", false, bmd.hasPropertyTypeByAliasName("xxx_0"));
     }
 
+    @Test
     public void testGetPropertyTypeByAliasName() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
         assertNotNull("1", bmd.getPropertyTypeByAliasName("empno"));
         assertNotNull("2", bmd.getPropertyTypeByAliasName("dname_0"));
     }
 
+    @Test
     public void testSelfReference() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Employee4"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee4"));
         RelationPropertyType rpt = bmd.getRelationPropertyType("parent");
         assertEquals("1", true, getBeanClass("Employee4").isAssignableFrom(
                 rpt.getBeanMetaData().getBeanClass()));
     }
 
+    @Test
     public void testNoPersistentPropsEmpty() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Ddd"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Ddd"));
         PropertyType pt = bmd.getPropertyType("name");
         assertEquals("1", false, pt.isPersistent());
     }
 
+    @Test
     public void testNoPersistentPropsDefined() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Eee"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Eee"));
         PropertyType pt = bmd.getPropertyType("name");
         assertEquals("1", false, pt.isPersistent());
     }
 
+    @Test
     public void testPrimaryKeyForIdentifier() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("IdentityTable"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("IdentityTable"));
         assertEquals("1", "id", bmd.getPrimaryKey(0));
     }
 
+    @Test
     public void testGetVersionNoPropertyName() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Fff"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Fff"));
         assertEquals("1", "version", bmd.getVersionNoPropertyName());
     }
 
+    @Test
     public void testGetTimestampPropertyName() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Fff"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Fff"));
         assertEquals("1", "updated", bmd.getTimestampPropertyName());
     }
 
+    @Test
     public void testGetPrimaryKeyWithoutIdAnnotation() throws Exception {
-        runTestEmployee(createBeanMetaData(Employee3A.class));
+        runTestEmployee(test.createBeanMetaData(Employee3A.class));
     }
 
+    @Test
     public void testGetPrimaryKeyWithIdAnnotation() throws Exception {
-        runTestEmployee(createBeanMetaData(Employee3B.class));
+        runTestEmployee(test.createBeanMetaData(Employee3B.class));
     }
 
+    @Test
     public void testConvertClassName() throws Exception {
-        BeanMetaDataFactoryImpl factory = (BeanMetaDataFactoryImpl) getBeanMetaDataFactory();
+        BeanMetaDataFactoryImpl factory = (BeanMetaDataFactoryImpl) test.getBeanMetaDataFactory();
         factory.setTableNaming(new DecamelizeTableNaming());
         BeanMetaData metaData = factory.createBeanMetaData(NoPkTable.class);
         assertEquals("NO_PK_TABLE", metaData.getTableName());
     }
 
+    @Test
     public void testMultiIdentities() throws Exception {
-        BeanMetaData bmd = createBeanMetaData(getBeanClass("Ggg"));
+        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Ggg"));
         assertEquals(2, bmd.getIdentifierGeneratorSize());
         assertNotNull(bmd.getIdentifierGenerator("id"));
         assertNotNull(bmd.getIdentifierGenerator("id2"));

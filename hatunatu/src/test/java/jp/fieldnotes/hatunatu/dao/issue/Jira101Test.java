@@ -17,18 +17,20 @@ package jp.fieldnotes.hatunatu.dao.issue;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.framework.util.ClassUtil;
 
-public class Jira101Test extends S2DaoTestCase {
+public class Jira101Test {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,ClassUtil.getShortClassName(Jira101Test.class) + ".dicon");
 
     private Jira101Dao dao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include(ClassUtil.getShortClassName(Jira101Test.class) + ".dicon");
-    }
-
+    @Test
     public void testJira101Tx() throws Exception {
         {
             final Jira101Entity entity = new Jira101Entity();

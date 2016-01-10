@@ -15,23 +15,29 @@
  */
 package jp.fieldnotes.hatunatu.dao.unit;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
+import jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl;
+import org.junit.Rule;
+import org.junit.Test;
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.dataset.impl.DataSetImpl;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
 public class S2DaoTestCaseTest extends S2DaoTestCase {
 
-    protected void setUp() {
-        include("j2ee.dicon");
-    }
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
 
+    @Test
     public void testAssertBeanEquals() {
         DataSet expected = new DataSetImpl();
         DataTable table = expected.addTable("emp");
@@ -45,9 +51,10 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
         Foo foo = new Foo();
         foo.setBbb("222");
         bean.setFoo(foo);
-        assertEquals("1", expected, bean);
+        assertDataSetEquals("1", expected, bean);
     }
 
+    @Test
     public void testAssertBeanListEquals() {
         DataSet expected = new DataSetImpl();
         DataTable table = expected.addTable("emp");
@@ -63,7 +70,17 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
         bean.setFoo(foo);
         List list = new ArrayList();
         list.add(bean);
-        assertEquals("1", expected, list);
+        assertDataSetEquals("1", expected, list);
+    }
+
+    @Override
+    protected DataSource getDataSource() {
+        return test.getDataSource();
+    }
+
+    @Override
+    protected BeanMetaData createBeanMetaData(final Class beanClass) {
+        return test.createBeanMetaData(beanClass);
     }
 
     public static class Hoge {

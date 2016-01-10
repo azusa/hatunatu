@@ -18,17 +18,21 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class NoPkTableTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+
+public class NoPkTableTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this,"NoPkTableTest.dicon");
 
     private NoPkTableDao noPkTableDao;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        include("NoPkTableTest.dicon");
-    }
-
+    @Test
     public void testCRUDTx() throws Exception {
         {
             final NoPkTable[] beans = noPkTableDao.findAll();

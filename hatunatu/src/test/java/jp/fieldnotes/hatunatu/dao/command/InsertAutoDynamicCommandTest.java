@@ -26,16 +26,25 @@ import jp.fieldnotes.hatunatu.dao.impl.bean.IdentityTable;
 import jp.fieldnotes.hatunatu.dao.impl.dao.Employee9Dao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.IdentityTableAutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
+public class InsertAutoDynamicCommandTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+    
+    @Test
     public void testExecuteTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insert"));
         assertTrue(cmd instanceof InsertAutoDynamicCommand);
         Employee emp = new Employee();
         emp.setEmpno(99);
@@ -47,10 +56,11 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     /*
      * https://www.seasar.org/issues/browse/DAO-29
      */
+    @Test
     public void testInsertPkOnlyTx() throws Exception {
         // ## Arrange ##
-        DaoMetaData dmd = createDaoMetaData(EmpDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmpDao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(EmpDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmpDao.class,"insert"));
 
         // ## Act ##
         Emp emp = new Emp();
@@ -63,10 +73,11 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
     /*
      * https://www.seasar.org/issues/browse/DAO-29
      */
+    @Test
     public void testInsertAllNullTx() throws Exception {
         // ## Arrange ##
-        final DaoMetaData dmd = createDaoMetaData(IdentityTableAutoDao.class);
-        final SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
+        final DaoMetaData dmd = test.createDaoMetaData(IdentityTableAutoDao.class);
+        final SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
         final IdentityTable table = new IdentityTable();
 
         // ## Act ##
@@ -84,10 +95,11 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
      * https://www.seasar.org/issues/browse/DAO-89
      * TABLEと関連付いていないDaoとBeanではINSERT時にわかりやすいエラーメッセージを出すこと。
      */
+    @Test
     public void testInsertNoTableTx() throws Exception {
         // ## Arrange ##
-        final DaoMetaData dmd = createDaoMetaData(FooDtoDao.class);
-        final SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(FooDtoDao.class,"insert"));
+        final DaoMetaData dmd = test.createDaoMetaData(FooDtoDao.class);
+        final SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(FooDtoDao.class,"insert"));
         final FooDto dto = new FooDto();
 
         // ## Act ##
@@ -102,9 +114,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         }
     }
 
+    @Test
     public void testExecute2Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(IdentityTableAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(IdentityTableAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(IdentityTableAutoDao.class,"insert"));
         IdentityTable table = new IdentityTable();
         table.setIdName("hoge");
         Integer count1 = (Integer) cmd.execute(new Object[] { table });
@@ -119,9 +132,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals("2", 1, id2 - id1);
     }
 
+    @Test
     public void testExecute3_1Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(SeqTable1Dao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(SeqTable1Dao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(SeqTable1Dao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(SeqTable1Dao.class,"insert"));
         SeqTable1 table1 = new SeqTable1();
         table1.setName("hoge");
         Integer count = (Integer) cmd.execute(new Object[] { table1 });
@@ -130,9 +144,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertTrue("2", table1.getId() > 0);
     }
 
+    @Test
     public void testExecute3_2Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(SeqTable2Dao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(SeqTable2Dao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(SeqTable2Dao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(SeqTable2Dao.class,"insert"));
         SeqTable2 table1 = new SeqTable2();
         table1.setName("hoge");
         Integer count = (Integer) cmd.execute(new Object[] { table1 });
@@ -148,9 +163,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
                 .intValue());
     }
 
+    @Test
     public void testExecute4Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert2"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insert2"));
         Employee emp = new Employee();
         emp.setEmpno(99);
         emp.setEname("hoge");
@@ -158,9 +174,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(1), count);
     }
 
+    @Test
     public void testExecute5Tx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insert3"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insert3"));
         Employee emp = new Employee();
         emp.setEmpno(99);
         emp.setEname("hoge");
@@ -169,9 +186,10 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals("1", new Integer(1), count);
     }
 
+    @Test
     public void testInsertCompositePkTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(CompositePkDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(CompositePkDao.class, "insert"));
+        DaoMetaData dmd = test.createDaoMetaData(CompositePkDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(CompositePkDao.class, "insert"));
         CompositePk compositePk = new CompositePk();
         compositePk.setPk2(10);
         compositePk.setAaa("hoge");
@@ -180,15 +198,12 @@ public class InsertAutoDynamicCommandTest extends S2DaoTestCase {
         assertEquals(10, compositePk.getPk2());
     }
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
 
-
+    @Test
     public void testUsingColumnAnnotationForSql_Insert() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(Employee9Dao.class);
+        DaoMetaData dmd = test.createDaoMetaData(Employee9Dao.class);
         InsertAutoDynamicCommand cmd = (InsertAutoDynamicCommand) dmd
-                .getSqlCommand(getSingleDaoMethod(Employee9Dao.class, "insert"));
+                .getSqlCommand(test.getSingleDaoMethod(Employee9Dao.class, "insert"));
         Employee9 bean = new Employee9();
         bean.setEmpno(new Integer(321));
         bean.setEname("foo");

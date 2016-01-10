@@ -19,13 +19,22 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class InsertBatchAutoStaticCommandTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
 
+public class InsertBatchAutoStaticCommandTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testExecuteTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(EmployeeAutoDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insertBatch"));
+        DaoMetaData dmd = test.createDaoMetaData(EmployeeAutoDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insertBatch"));
         Employee emp = new Employee();
         emp.setEmpno(99);
         emp.setEname("hoge");
@@ -36,7 +45,7 @@ public class InsertBatchAutoStaticCommandTest extends S2DaoTestCase {
                 emp, emp2 } });
         assertEquals("1", new Integer(2), count);
 
-        SqlCommand cmd2 = dmd.getSqlCommand(getSingleDaoMethod(EmployeeAutoDao.class,"insertBatch2"));
+        SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insertBatch2"));
         Employee emp3 = new Employee();
         emp3.setEmpno(97);
         emp3.setEname("hoge3");
@@ -48,10 +57,6 @@ public class InsertBatchAutoStaticCommandTest extends S2DaoTestCase {
         assertEquals("2", 2, ret.length);
         assertEquals("3", 1, ret[0]);
         assertEquals("4", 1, ret[1]);
-    }
-
-    public void setUp() {
-        include("j2ee.dicon");
     }
 
 }

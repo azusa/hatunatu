@@ -29,17 +29,26 @@ import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee23;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
+import static org.junit.Assert.*;
 
+public class BeanMetaDataResultSetHandlerTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this);
+
+    @Test
     public void testHandle() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee.class);
         ResultSetHandler handler = new BeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.*, dept.deptno as deptno_0, dept.dname as dname_0 from emp, dept where empno = 7788 and emp.deptno = dept.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee ret = null;
         try {
@@ -60,12 +69,13 @@ public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertEquals("4", "RESEARCH", dept.getDname());
     }
 
+    @Test
     public void testHandle2() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee.class);
         ResultSetHandler handler = new BeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select ename, job from emp where empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee ret = null;
         try {
@@ -84,12 +94,13 @@ public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertNull("2", dept);
     }
 
+    @Test
     public void testHandle_relationshipIsNull() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee23.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee23.class);
         ResultSetHandler handler = new BeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.empno, emp.ename, emp.deptno, department.deptno as deptno_0, department.dname as dname_0 from EMP5 emp LEFT OUTER JOIN DEPT department on emp.deptno = department.deptno where emp.empno = 7788";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee23 ret = null;
         try {
@@ -109,12 +120,13 @@ public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertNull(ret.getDepartment());
     }
 
+    @Test
     public void testHandle_relationshipIsNotNull() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee23.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee23.class);
         ResultSetHandler handler = new BeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.empno, emp.ename, emp.deptno, department.deptno as deptno_0, department.dname as dname_0 from EMP5 emp LEFT OUTER JOIN DEPT department on emp.deptno = department.deptno where emp.empno = 7839";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee23 ret = null;
         try {
@@ -137,12 +149,13 @@ public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         assertEquals("ACCOUNTING", dept.getDname());
     }
 
+    @Test
     public void testHandle_notSingleResult() throws Exception {
-        BeanMetaData beanMetaData = createBeanMetaData(Employee23.class);
+        BeanMetaData beanMetaData = test.createBeanMetaData(Employee23.class);
         ResultSetHandler handler = new BeanMetaDataResultSetHandler.RestrictBeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator());
         String sql = "select emp.empno, emp.ename, emp.deptno, department.deptno as deptno_0, department.dname as dname_0 from EMP5 emp LEFT OUTER JOIN DEPT department on emp.deptno = department.deptno";
-        Connection con = getConnection();
+        Connection con = test.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         Employee23 ret = null;
         try {
@@ -171,8 +184,5 @@ public class BeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         return new RelationRowCreatorImpl();
     }
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
 
 }

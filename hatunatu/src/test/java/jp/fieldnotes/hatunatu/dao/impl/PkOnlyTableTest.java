@@ -20,33 +20,37 @@ import jp.fieldnotes.hatunatu.dao.exception.MethodSetupFailureRuntimeException;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class PkOnlyTableTest extends S2DaoTestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-    public void setUp() {
-        include("j2ee.dicon");
-    }
+public class PkOnlyTableTest  {
+
+    @Rule
+    public HatunatuTest test = new HatunatuTest(this, "PkOnlyTableTest.dicon");
+
+    private PkOnlyTableDao2 dao;
 
     /*
      * https://www.seasar.org/issues/browse/DAO-16
      */
+    @Test
     public void testInsertTx() throws Exception {
-        DaoMetaData dmd = createDaoMetaData(PkOnlyTableDao.class);
-        SqlCommand cmd = dmd.getSqlCommand(getSingleDaoMethod(PkOnlyTableDao.class,"insert"));
+        DaoMetaData dmd = test.createDaoMetaData(PkOnlyTableDao.class);
+        SqlCommand cmd = dmd.getSqlCommand(test.getSingleDaoMethod(PkOnlyTableDao.class,"insert"));
         PkOnlyTable data = new PkOnlyTable();
         data.setAaa("value");
         Integer i = (Integer) cmd.execute(new Object[] { data });
         assertEquals(1, i.intValue());
     }
 
-    public void setUpUpdateUnlessNullTx() {
-        include("PkOnlyTableTest.dicon");
-    }
-
+    @Test
     public void testUpdateUnlessNullTx() throws Exception {
-        PkOnlyTableDao2 dao = (PkOnlyTableDao2) getComponent(PkOnlyTableDao2.class);
         try {
             dao.updateUnlessNull(new PkOnlyTable());
             fail();
@@ -56,15 +60,12 @@ public class PkOnlyTableTest extends S2DaoTestCase {
         }
     }
 
-    public void setUpUpdateTx() {
-        include("PkOnlyTableTest.dicon");
-    }
 
     /*
      * https://www.seasar.org/issues/browse/DAO-52
      */
+    @Test
     public void testUpdateTx() throws Exception {
-        PkOnlyTableDao2 dao = (PkOnlyTableDao2) getComponent(PkOnlyTableDao2.class);
         try {
             dao.update(new PkOnlyTable());
             fail();
