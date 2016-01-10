@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
+
+import javax.sql.DataSource;
 
 /*
  * INSERT, UPDATE, DELETE文用

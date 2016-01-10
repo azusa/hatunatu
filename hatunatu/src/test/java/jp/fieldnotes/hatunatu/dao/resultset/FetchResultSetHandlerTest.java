@@ -15,15 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
-import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,9 +29,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class FetchResultSetHandlerTest  {
 

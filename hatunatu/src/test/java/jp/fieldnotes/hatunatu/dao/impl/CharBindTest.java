@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
 

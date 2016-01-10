@@ -15,19 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.ProcedureMetaData;
 import jp.fieldnotes.hatunatu.dao.ProcedureParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
-import jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl;
-import jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl;
-import jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl;
+import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 
 import static org.junit.Assert.*;
 

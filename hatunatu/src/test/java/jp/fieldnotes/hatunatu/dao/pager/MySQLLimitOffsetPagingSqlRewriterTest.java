@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.dao.pager.LimitOffsetPagingSqlRewriter;
-import jp.fieldnotes.hatunatu.dao.pager.MySQLLimitOffsetPagingSqlRewriter;
 import junit.framework.TestCase;
 
 /**

@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
-import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
 import junit.framework.TestCase;
 
 public class PagerContextTest extends TestCase {

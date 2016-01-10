@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.id;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.api.ValueType;
 
 public class IdentifierResultSetHandler implements ResultSetHandler {
 

@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
-import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 import jp.fieldnotes.hatunatu.util.log.Logger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MapResultSetHandler extends AbstractMapResultSetHandler {
 

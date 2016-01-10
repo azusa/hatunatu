@@ -15,30 +15,25 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import java.io.Serializable;
-import java.util.List;
-
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
-import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
+import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
-import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class SelectDynamicCommandTest  {
 

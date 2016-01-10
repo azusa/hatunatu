@@ -15,17 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import java.text.SimpleDateFormat;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.dataset.DataSet;
 
 import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

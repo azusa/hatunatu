@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+
+import javax.sql.DataSource;
 
 public abstract class AbstractStaticCommand extends AbstractSqlCommand {
 

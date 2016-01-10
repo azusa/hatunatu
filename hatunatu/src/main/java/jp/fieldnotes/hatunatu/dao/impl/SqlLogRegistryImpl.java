@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.util.LinkedList;
-
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
+
+import java.util.LinkedList;
 
 public class SqlLogRegistryImpl implements SqlLogRegistry {
 

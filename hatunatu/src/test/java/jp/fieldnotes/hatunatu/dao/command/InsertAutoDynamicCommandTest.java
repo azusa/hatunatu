@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
@@ -27,8 +28,6 @@ import jp.fieldnotes.hatunatu.dao.impl.dao.Employee9Dao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
 import jp.fieldnotes.hatunatu.dao.impl.dao.IdentityTableAutoDao;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 import org.junit.Rule;

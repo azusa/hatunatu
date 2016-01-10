@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
+import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 
 class ResultSetUtil {
 

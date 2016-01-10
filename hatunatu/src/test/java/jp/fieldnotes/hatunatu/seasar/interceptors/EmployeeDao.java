@@ -19,7 +19,6 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 import java.util.List;
-import java.util.Map;
 
 public interface EmployeeDao {
 

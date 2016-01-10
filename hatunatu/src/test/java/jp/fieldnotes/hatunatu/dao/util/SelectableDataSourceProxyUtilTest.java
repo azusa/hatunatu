@@ -15,20 +15,16 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
+import org.junit.Test;
+import org.seasar.extension.datasource.impl.DataSourceFactoryImpl;
+import org.seasar.extension.datasource.impl.SelectableDataSourceProxy;
+
+import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
-
-import javax.sql.DataSource;
-
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
-import org.junit.Test;
-import org.seasar.extension.datasource.impl.DataSourceFactoryImpl;
-import org.seasar.extension.datasource.impl.SelectableDataSourceProxy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

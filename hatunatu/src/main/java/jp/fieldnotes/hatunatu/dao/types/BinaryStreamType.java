@@ -15,17 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.io.InputStreamUtil;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.sql.*;
 
 public class BinaryStreamType extends AbstractValueType {
 

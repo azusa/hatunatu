@@ -15,14 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.Node;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlParserImpl;
 import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
+
+import javax.sql.DataSource;
 
 public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
 

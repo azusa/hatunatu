@@ -15,8 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
 import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
 public class ValueTypeFactoryImpl implements ValueTypeFactory {

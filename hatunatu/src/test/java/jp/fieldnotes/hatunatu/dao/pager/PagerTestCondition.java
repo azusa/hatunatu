@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.dao.pager.DefaultPagerCondition;
-
 import java.util.Date;
 
 public class PagerTestCondition extends DefaultPagerCondition {

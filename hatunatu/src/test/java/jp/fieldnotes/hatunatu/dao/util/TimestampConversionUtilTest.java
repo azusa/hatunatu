@@ -15,11 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-import java.util.Locale;
-
-import jp.fieldnotes.hatunatu.dao.util.TimestampConversionUtil;
-import junit.framework.TestCase;
 import org.junit.Test;
+
+import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 

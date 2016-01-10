@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.util.Collections;
-import java.util.Set;
-
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.BeanEnhancer;
 import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
 import jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataImpl.ModifiedPropertySupport;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+
+import java.util.Collections;
+import java.util.Set;
 
 public class NullBeanEnhancer implements BeanEnhancer, ModifiedPropertySupport {
 

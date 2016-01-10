@@ -15,11 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.Map;
-
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
@@ -27,6 +22,11 @@ import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Map;
 
 public abstract class AbstractMapResultSetHandler implements ResultSetHandler {
 

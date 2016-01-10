@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+
+import javax.sql.DataSource;
 
 public class InsertBatchAutoHandler extends AbstractBatchAutoHandler {
 

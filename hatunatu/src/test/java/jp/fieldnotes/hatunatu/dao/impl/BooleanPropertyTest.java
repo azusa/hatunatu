@@ -21,7 +21,6 @@ import jp.fieldnotes.hatunatu.dao.command.SelectDynamicCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department2;
 import jp.fieldnotes.hatunatu.dao.impl.dao.Department2AutoDao;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
 

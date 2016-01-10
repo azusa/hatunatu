@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-import jp.fieldnotes.hatunatu.api.*;
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

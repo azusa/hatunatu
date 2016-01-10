@@ -15,12 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 
 import static org.junit.Assert.assertEquals;
 

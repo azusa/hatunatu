@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
 

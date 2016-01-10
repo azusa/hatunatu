@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.dao.AnnotationReaderFactory;
 import jp.fieldnotes.hatunatu.dao.ArgumentDtoAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
-import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 
 public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
 

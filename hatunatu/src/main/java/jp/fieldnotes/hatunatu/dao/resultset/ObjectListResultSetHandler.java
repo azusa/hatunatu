@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
 
 public class ObjectListResultSetHandler extends AbstractObjectResultSetHandler {
 

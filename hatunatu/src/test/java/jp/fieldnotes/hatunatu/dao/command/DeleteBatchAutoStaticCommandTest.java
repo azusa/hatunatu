@@ -15,16 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import java.sql.Timestamp;
-
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeAutoDao;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
 

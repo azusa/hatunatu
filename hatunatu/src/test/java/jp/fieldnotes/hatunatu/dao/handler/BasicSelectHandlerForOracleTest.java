@@ -15,15 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
-import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
-import jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
-import org.seasar.extension.unit.S2TestCase;
 
 import static org.junit.Assert.assertEquals;
 

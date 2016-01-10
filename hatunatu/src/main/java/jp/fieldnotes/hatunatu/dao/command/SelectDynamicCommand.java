@@ -15,14 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
+
+import javax.sql.DataSource;
 
 public class SelectDynamicCommand extends AbstractDynamicCommand {
 

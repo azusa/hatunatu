@@ -16,11 +16,9 @@
 package jp.fieldnotes.hatunatu.dao.unit;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
-import jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.dataset.DataRow;

@@ -15,18 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.math.BigDecimal;
-
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Test;
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
-import org.seasar.extension.unit.S2TestCase;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import java.math.BigDecimal;
+
+import static org.junit.Assert.*;
 
 public class BasicHandlerTest  {
 

@@ -16,18 +16,15 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto2;
-import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 public class DtoMetaDataFactoryImplTest  {
 

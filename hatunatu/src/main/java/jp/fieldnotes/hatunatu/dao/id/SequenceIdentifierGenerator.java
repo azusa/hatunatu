@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.id;
 
-import java.util.HashMap;
-
-import javax.sql.DataSource;
-
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
-import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.util.convert.LongConversionUtil;
+
+import javax.sql.DataSource;
+import java.util.HashMap;
 
 public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
 

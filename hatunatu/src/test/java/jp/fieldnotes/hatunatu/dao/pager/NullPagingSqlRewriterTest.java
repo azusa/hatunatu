@@ -15,7 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import junit.framework.TestCase;
 
 public class NullPagingSqlRewriterTest extends TestCase {

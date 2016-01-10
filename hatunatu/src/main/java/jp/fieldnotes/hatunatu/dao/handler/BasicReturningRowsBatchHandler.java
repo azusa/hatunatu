@@ -15,12 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.List;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.dao.ReturningRowsBatchHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
@@ -28,6 +22,11 @@ import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
 
 public class BasicReturningRowsBatchHandler extends BasicHandler implements
         ReturningRowsBatchHandler {

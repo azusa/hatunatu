@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicHandler;
+
+import javax.sql.DataSource;
 
 public abstract class AbstractSqlCommand implements SqlCommand,
         InjectDaoClassSupport {

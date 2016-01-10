@@ -15,19 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
-import junit.framework.AssertionFailedError;
-import junit.framework.TestCase;
-
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
 import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
 import jp.fieldnotes.hatunatu.dao.dbms.MySQL;
 import jp.fieldnotes.hatunatu.dao.dbms.Oracle;
 import jp.fieldnotes.hatunatu.dao.dbms.PostgreSQL;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import junit.framework.TestCase;
 
 import java.util.Date;
 

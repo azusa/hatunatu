@@ -15,16 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.DatabaseMetaData;
-
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
-import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.sql.DatabaseMetaData;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.lang.reflect.Method;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandlerFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandlerFactory;
+
+import java.lang.reflect.Method;
 
 public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory {
 

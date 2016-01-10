@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.lang.reflect.Field;
-
-import jp.fieldnotes.hatunatu.dao.ProcedureParameterType;
 import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.ProcedureParameterType;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
+
+import java.lang.reflect.Field;
 
 public class ProcedureParameterTypeImpl implements ProcedureParameterType {
 

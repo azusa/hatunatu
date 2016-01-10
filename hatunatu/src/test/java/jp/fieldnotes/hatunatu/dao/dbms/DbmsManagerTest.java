@@ -15,10 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.dbms.DB2;
-import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
-import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
-import jp.fieldnotes.hatunatu.dao.dbms.Standard;
 import junit.framework.TestCase;
 
 /**

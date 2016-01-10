@@ -15,17 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
+import org.junit.Test;
+
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
-import org.junit.Test;
 
 import static org.junit.Assert.*;
 

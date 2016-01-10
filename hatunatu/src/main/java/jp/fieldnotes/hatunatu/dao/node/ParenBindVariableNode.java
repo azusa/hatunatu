@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.node;
 
+import jp.fieldnotes.hatunatu.dao.CommandContext;
+import jp.fieldnotes.hatunatu.dao.Node;
+import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
+
 import java.lang.reflect.Array;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.Node;
-import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
 
 public class ParenBindVariableNode extends AbstractNode {
 

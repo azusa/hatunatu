@@ -17,8 +17,8 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
 public class PropertyTypeImpl implements PropertyType {
 

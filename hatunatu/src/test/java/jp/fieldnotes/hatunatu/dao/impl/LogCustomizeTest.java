@@ -15,15 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.apache.log4j.PropertyConfigurator;
-import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResourceUtil;
 
 import static org.junit.Assert.assertNotNull;

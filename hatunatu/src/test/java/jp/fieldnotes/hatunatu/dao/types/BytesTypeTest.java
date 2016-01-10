@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import jp.fieldnotes.hatunatu.dao.types.BytesType;
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

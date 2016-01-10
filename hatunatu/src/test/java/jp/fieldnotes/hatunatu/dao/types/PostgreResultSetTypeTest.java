@@ -15,24 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.sql.CallableStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-
-import jp.fieldnotes.hatunatu.dao.types.OracleResultSetType;
-import jp.fieldnotes.hatunatu.dao.types.PostgreResultSetType;
-import junit.framework.TestCase;
-
 import org.junit.Test;
-import org.seasar.framework.mock.sql.MockCallableStatement;
-import org.seasar.framework.mock.sql.MockResultSet;
+
+import java.sql.CallableStatement;
+import java.sql.Types;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class PostgreResultSetTypeTest {
 

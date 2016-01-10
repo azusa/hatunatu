@@ -15,15 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
-import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.DtoMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

@@ -15,13 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 public class ConfigurableStatementFactory implements StatementFactory {
 

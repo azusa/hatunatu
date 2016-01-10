@@ -15,13 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
-import jp.fieldnotes.hatunatu.dao.types.DateTimestampType;
-import org.junit.Ignore;
-import org.junit.Test;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;

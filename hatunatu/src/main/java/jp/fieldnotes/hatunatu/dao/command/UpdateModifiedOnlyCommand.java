@@ -15,17 +15,16 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
+import jp.fieldnotes.hatunatu.util.log.Logger;
+
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
-import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.util.log.Logger;
 
 public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
 

@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractBatchAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.UpdateBatchAutoHandler;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
+
+import javax.sql.DataSource;
 
 public class UpdateBatchAutoStaticCommand extends
         AbstractBatchAutoStaticCommand {

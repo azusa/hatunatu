@@ -15,13 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

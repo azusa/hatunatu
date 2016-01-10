@@ -15,11 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.impl.NullBeanMetaData;
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.dao.exception.BeanNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.dao.NullBean;
+import jp.fieldnotes.hatunatu.dao.exception.BeanNotFoundRuntimeException;
+import junit.framework.TestCase;
 
 public class NullBeanMetaDataTest extends TestCase {
 

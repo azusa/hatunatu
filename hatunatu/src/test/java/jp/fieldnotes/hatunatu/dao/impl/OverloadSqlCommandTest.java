@@ -15,16 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.lang.reflect.Method;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 

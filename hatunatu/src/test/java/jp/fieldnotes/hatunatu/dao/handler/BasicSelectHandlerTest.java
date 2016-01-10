@@ -15,16 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.util.Map;
-
-import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.exception.SSQLException;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 

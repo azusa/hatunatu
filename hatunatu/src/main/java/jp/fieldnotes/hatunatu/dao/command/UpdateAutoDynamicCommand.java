@@ -15,16 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
-import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
+import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
+
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
 

@@ -15,12 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import org.junit.Test;
+
 import java.sql.Timestamp;
 import java.util.Calendar;
-
-import jp.fieldnotes.hatunatu.dao.types.CalendarTimestampType;
-import junit.framework.TestCase;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 

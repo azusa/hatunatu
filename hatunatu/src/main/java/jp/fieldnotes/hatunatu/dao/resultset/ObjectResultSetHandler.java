@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
 

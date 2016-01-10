@@ -15,18 +15,16 @@
  */
 package jp.fieldnotes.hatunatu.dao.id;
 
-import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import org.junit.Before;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
-import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 import static org.junit.Assert.assertTrue;
 

@@ -15,7 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalParameterTypeRuntimeException;
 import org.junit.Test;
 

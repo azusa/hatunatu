@@ -15,13 +15,13 @@
  */
 package org.seasar.extension.jdbc.impl;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
 public class ObjectResultSetHandler implements ResultSetHandler {
 

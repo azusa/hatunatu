@@ -16,14 +16,12 @@
 package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
-import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto3;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import org.junit.Rule;
 import org.junit.Test;
 

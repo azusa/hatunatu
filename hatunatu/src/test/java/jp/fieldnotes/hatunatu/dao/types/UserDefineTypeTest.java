@@ -15,16 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.lang.reflect.Method;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import junit.framework.TestCase;
-
 import jp.fieldnotes.hatunatu.dao.impl.PreparedStatementWrapper;
 import jp.fieldnotes.hatunatu.dao.impl.ResultSetWrapper;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.lang.reflect.Method;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
 

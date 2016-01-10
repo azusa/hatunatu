@@ -15,14 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.exception.IllegalBindArgSizeRuntimeException;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import jp.fieldnotes.hatunatu.dao.exception.IllegalBindArgSizeRuntimeException;
-import jp.fieldnotes.hatunatu.api.ValueType;
 
 public class BindVariableUtil {
 

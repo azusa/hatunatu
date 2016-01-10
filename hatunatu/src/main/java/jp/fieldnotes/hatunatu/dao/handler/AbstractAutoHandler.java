@@ -15,6 +15,21 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.UpdateHandler;
+import jp.fieldnotes.hatunatu.dao.exception.NotSingleRowUpdatedRuntimeException;
+import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
+import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.log.Logger;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
+import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,22 +37,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.exception.NotSingleRowUpdatedRuntimeException;
-import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.UpdateHandler;
-import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
-import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
-import jp.fieldnotes.hatunatu.util.log.Logger;
-import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 public abstract class AbstractAutoHandler extends BasicHandler implements
         UpdateHandler {

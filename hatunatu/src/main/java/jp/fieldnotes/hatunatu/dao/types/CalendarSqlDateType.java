@@ -15,13 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.util.convert.CalendarConversionUtil;
 
 public class CalendarSqlDateType extends SqlDateType {
 

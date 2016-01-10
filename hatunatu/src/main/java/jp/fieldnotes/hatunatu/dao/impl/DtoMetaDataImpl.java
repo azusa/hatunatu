@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
-import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
+import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 

@@ -15,16 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import junit.framework.TestCase;
+import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.factory.S2ContainerFactory;
+
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
-
-import javax.sql.DataSource;
-
-import junit.framework.TestCase;
-
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
 
 public class FunctionTest extends TestCase {
 

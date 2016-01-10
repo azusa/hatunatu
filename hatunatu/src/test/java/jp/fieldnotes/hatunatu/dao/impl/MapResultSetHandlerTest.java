@@ -15,18 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
+import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
+import org.junit.Test;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
-
-import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
-import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler.RestrictMapResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import org.junit.Rule;
-import org.junit.Test;
 
 import static org.junit.Assert.*;
 

@@ -15,23 +15,22 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.HashMap;
-
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.dao.impl.Procedures;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 

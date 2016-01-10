@@ -15,10 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

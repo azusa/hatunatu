@@ -15,21 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.parser;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import junit.framework.TestCase;
-
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.exception.EndCommentNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.SqlParser;
-import jp.fieldnotes.hatunatu.dao.exception.TokenNotClosedRuntimeException;
 import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
+import jp.fieldnotes.hatunatu.dao.exception.EndCommentNotFoundRuntimeException;
+import jp.fieldnotes.hatunatu.dao.exception.TokenNotClosedRuntimeException;
 import jp.fieldnotes.hatunatu.dao.node.BindVariableNode;
 import jp.fieldnotes.hatunatu.dao.node.IfNode;
 import jp.fieldnotes.hatunatu.dao.node.SqlNode;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

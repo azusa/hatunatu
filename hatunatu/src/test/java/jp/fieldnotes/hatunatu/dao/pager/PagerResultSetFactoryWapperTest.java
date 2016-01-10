@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import java.sql.ResultSet;
-
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import junit.framework.TestCase;
+
+import java.sql.ResultSet;
 
 public class PagerResultSetFactoryWapperTest extends TestCase {
 

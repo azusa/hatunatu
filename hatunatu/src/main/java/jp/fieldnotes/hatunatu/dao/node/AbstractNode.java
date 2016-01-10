@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.node;
 
+import jp.fieldnotes.hatunatu.dao.Node;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.Node;
 
 public abstract class AbstractNode implements Node {
 

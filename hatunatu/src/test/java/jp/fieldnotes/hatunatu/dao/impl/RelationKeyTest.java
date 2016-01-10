@@ -15,11 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
-import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
+import junit.framework.TestCase;
 
 public class RelationKeyTest extends TestCase {
 

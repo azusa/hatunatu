@@ -15,12 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.types.bytes;
 
-import java.io.Serializable;
-
-import junit.framework.TestCase;
-import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
-import jp.fieldnotes.hatunatu.dao.types.bytes.SerializableType;
 import org.junit.Test;
+
+import java.io.Serializable;
 
 import static org.junit.Assert.assertEquals;
 

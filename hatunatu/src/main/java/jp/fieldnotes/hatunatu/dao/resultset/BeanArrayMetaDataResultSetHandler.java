@@ -15,14 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
+import jp.fieldnotes.hatunatu.dao.RowCreator;
+
 import java.lang.reflect.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
-import jp.fieldnotes.hatunatu.dao.RowCreator;
 
 public class BeanArrayMetaDataResultSetHandler extends
         BeanListMetaDataResultSetHandler {

@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class PropertyTypeUtil {
 

@@ -15,18 +15,16 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeUtil;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.util.ResultSetUtil;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import static org.junit.Assert.assertEquals;
 

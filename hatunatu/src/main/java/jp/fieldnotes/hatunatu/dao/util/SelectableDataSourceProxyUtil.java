@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.util.exception.NoSuchFieldRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
+
+import javax.sql.DataSource;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * Seasar2.3とSeasar2.4における動的なデータソースの仕様の違いを吸収するユーティリティです。

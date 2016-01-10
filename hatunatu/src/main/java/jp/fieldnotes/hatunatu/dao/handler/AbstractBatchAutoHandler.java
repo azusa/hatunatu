@@ -15,14 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.ReturningRowsBatchHandler;
@@ -31,6 +23,13 @@ import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
         implements ReturningRowsBatchHandler {

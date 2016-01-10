@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.DatabaseMetaData;
-
 import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactory;
 import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactoryBuilder;
+
+import java.sql.DatabaseMetaData;
 
 public class RelationPropertyTypeFactoryBuilderImpl implements
         RelationPropertyTypeFactoryBuilder {

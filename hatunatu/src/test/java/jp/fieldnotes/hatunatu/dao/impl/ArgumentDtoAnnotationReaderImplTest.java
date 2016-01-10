@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.impl.ArgumentDtoAnnotationReaderImpl;
-import junit.framework.TestCase;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.dao.ArgumentDtoAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import junit.framework.TestCase;
 
 import java.lang.reflect.Field;
 

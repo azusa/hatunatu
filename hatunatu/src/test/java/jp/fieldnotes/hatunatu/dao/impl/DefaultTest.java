@@ -15,6 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
+import org.junit.Rule;
+import org.junit.Test;
+import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
+
 import java.io.Serializable;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -22,15 +29,6 @@ import java.sql.ResultSetMetaData;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
-import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import org.junit.Rule;
-import org.junit.Test;
-import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
-import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.exception.SRuntimeException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

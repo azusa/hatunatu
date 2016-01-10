@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import junit.framework.TestCase;
 
 public class AnnotationReaderFactoryImplTest extends TestCase {
 

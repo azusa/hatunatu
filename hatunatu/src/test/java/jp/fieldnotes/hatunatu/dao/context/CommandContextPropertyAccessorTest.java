@@ -15,11 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.context;
 
-import junit.framework.TestCase;
+import jp.fieldnotes.hatunatu.dao.CommandContext;
 import ognl.Ognl;
 import ognl.OgnlRuntime;
-
-import jp.fieldnotes.hatunatu.dao.CommandContext;
 import org.junit.After;
 import org.junit.Test;
 

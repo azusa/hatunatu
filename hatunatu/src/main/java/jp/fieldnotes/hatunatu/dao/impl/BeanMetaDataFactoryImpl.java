@@ -15,16 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 
 public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 

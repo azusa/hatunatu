@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
+import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 
 public class MockResultSetFactory implements ResultSetFactory {
 

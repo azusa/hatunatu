@@ -19,8 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
-
 public class OracleResultSetFactory extends BasicResultSetFactory {
 
     public ResultSet getResultSet(Statement statement) {

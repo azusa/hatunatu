@@ -15,12 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.util.ImplementInterfaceWalker;
-import junit.framework.TestCase;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 

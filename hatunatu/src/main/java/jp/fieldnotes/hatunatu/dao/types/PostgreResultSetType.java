@@ -15,14 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
+
+import java.sql.*;
 
 public class PostgreResultSetType extends AbstractValueType {
 

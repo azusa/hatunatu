@@ -15,16 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.TimeZone;
-
-import jp.fieldnotes.hatunatu.dao.types.CalendarTimeType;
-import junit.framework.TestCase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

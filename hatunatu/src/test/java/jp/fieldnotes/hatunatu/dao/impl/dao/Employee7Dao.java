@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
-import jp.fieldnotes.hatunatu.dao.impl.bean.Employee5;
 
 public interface Employee7Dao {
 

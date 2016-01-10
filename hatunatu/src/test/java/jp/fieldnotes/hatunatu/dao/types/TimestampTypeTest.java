@@ -15,11 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.sql.Timestamp;
-
-import jp.fieldnotes.hatunatu.dao.types.TimestampType;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
 

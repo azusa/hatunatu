@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.dao.impl.SqlLogRegistryImpl;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.container.servlet.S2ContainerDestroyer;
 
 import static org.junit.Assert.*;

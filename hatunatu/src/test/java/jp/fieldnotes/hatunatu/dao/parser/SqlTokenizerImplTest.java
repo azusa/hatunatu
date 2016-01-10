@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.parser;
 
-import junit.framework.TestCase;
-
 import jp.fieldnotes.hatunatu.dao.SqlTokenizer;
 import jp.fieldnotes.hatunatu.dao.exception.TokenNotClosedRuntimeException;
 import org.junit.Test;

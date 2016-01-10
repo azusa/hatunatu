@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.id;
 
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
-import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
+import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+
+import javax.sql.DataSource;
 
 public abstract class AbstractIdentifierGenerator implements
         IdentifierGenerator {

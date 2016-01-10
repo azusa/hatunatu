@@ -16,13 +16,13 @@
 package jp.fieldnotes.hatunatu.dao.unit;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import org.seasar.extension.dataset.*;
 import org.seasar.extension.dataset.impl.DataSetImpl;
 import org.seasar.extension.dataset.states.RowStates;
 import org.seasar.extension.dataset.types.ColumnTypes;
-import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 
 public class S2DaoBeanReader implements DataReader {
 

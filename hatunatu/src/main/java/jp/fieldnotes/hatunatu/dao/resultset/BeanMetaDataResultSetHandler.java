@@ -15,12 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
@@ -29,6 +23,12 @@ import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
 import jp.fieldnotes.hatunatu.util.log.Logger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class BeanMetaDataResultSetHandler extends
         AbstractBeanMetaDataResultSetHandler {

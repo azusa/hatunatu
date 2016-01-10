@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
+
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
-
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.api.RelationPropertyType;
-import jp.fieldnotes.hatunatu.api.PropertyType;
 
 public class RelationRowCreationResource {
 

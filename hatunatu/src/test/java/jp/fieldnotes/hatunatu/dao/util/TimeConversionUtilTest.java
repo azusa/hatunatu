@@ -15,12 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
+import org.junit.Test;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-
-import jp.fieldnotes.hatunatu.dao.util.TimeConversionUtil;
-import junit.framework.TestCase;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

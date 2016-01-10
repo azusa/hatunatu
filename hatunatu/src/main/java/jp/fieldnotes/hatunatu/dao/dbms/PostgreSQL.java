@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
+import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
+import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType.Trait;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.*;
-
-import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType;
-import jp.fieldnotes.hatunatu.dao.types.bytes.BytesType.Trait;
 
 public class PostgreSQL extends Standard {
 

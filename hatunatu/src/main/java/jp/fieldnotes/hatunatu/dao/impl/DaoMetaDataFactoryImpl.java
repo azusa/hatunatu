@@ -15,28 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
-import jp.fieldnotes.hatunatu.dao.AnnotationReaderFactory;
-import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.DaoMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
-import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.ProcedureMetaDataFactory;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandlerFactory;
-import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
-import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
-import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
+
+import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
 

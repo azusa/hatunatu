@@ -15,13 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 
 public class MapListResultSetHandler extends AbstractMapResultSetHandler {
 

@@ -17,12 +17,7 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class ConnectionUtil {

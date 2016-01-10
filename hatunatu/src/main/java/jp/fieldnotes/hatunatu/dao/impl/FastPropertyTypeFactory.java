@@ -15,20 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
-import jp.fieldnotes.hatunatu.dao.ColumnNaming;
-import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
-import jp.fieldnotes.hatunatu.dao.Dbms;
-import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
-import jp.fieldnotes.hatunatu.dao.ValueTypeFactory;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.ValueType;
-import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
 

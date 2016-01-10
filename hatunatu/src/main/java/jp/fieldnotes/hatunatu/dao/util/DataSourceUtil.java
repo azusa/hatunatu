@@ -17,10 +17,9 @@ package jp.fieldnotes.hatunatu.dao.util;
 
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
 
 
 public class DataSourceUtil {

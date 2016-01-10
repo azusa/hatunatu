@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import java.util.List;
-
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.InsertBatchAutoHandler;
-import jp.fieldnotes.hatunatu.api.PropertyType;
+
+import java.util.List;
 
 public class InsertBatchAutoDynamicCommand extends InsertAutoDynamicCommand {
 

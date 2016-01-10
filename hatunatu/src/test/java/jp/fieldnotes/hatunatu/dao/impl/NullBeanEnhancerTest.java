@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.util.Set;
-
-import junit.framework.TestCase;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee22;
+import junit.framework.TestCase;
+
+import java.util.Set;
 
 public class NullBeanEnhancerTest extends TestCase {
 

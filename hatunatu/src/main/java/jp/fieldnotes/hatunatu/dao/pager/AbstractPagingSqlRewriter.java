@@ -15,20 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
+import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
 

@@ -15,25 +15,20 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.SelectHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
+
+import javax.sql.DataSource;
+import java.sql.*;
 
 public class BasicSelectHandler extends BasicHandler implements SelectHandler {
 

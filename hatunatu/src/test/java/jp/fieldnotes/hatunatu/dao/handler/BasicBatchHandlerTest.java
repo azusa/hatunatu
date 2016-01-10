@@ -15,22 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
+import jp.fieldnotes.hatunatu.dao.impl.MapListResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import org.junit.Rule;
+import org.junit.Test;
+import org.seasar.framework.exception.SSQLException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import jp.fieldnotes.hatunatu.dao.impl.MapListResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import org.junit.Rule;
-import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.exception.SSQLException;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class BasicBatchHandlerTest  {
 

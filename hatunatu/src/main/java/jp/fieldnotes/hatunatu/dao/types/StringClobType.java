@@ -15,19 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
-import java.io.Reader;
-import java.io.StringReader;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.util.convert.StringConversionUtil;
 import jp.fieldnotes.hatunatu.util.io.ReaderUtil;
+
+import java.io.Reader;
+import java.io.StringReader;
+import java.sql.*;
 
 public class StringClobType extends AbstractValueType {
 

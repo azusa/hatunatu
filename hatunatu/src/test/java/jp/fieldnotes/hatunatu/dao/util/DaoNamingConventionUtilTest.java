@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-import jp.fieldnotes.hatunatu.dao.util.DaoNamingConventionUtil;
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -15,8 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.types.bytes;
 
-import jp.fieldnotes.hatunatu.dao.dbms.PostgreSQL;
 import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.dbms.PostgreSQL;
 import jp.fieldnotes.hatunatu.dao.types.StringClobType;
 
 public class ValueTypes {

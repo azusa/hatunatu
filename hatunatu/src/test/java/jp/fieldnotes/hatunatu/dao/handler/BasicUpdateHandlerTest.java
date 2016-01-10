@@ -15,18 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import java.util.Date;
-
-import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.unit.S2TestCase;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import java.util.Date;
+
+import static org.junit.Assert.*;
 
 public class BasicUpdateHandlerTest  {
 

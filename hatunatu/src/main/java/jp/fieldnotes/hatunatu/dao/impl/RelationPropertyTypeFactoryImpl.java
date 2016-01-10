@@ -15,19 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.RelationPropertyType;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
+import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
+import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactory;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+
 import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
-import jp.fieldnotes.hatunatu.api.BeanMetaData;
-import jp.fieldnotes.hatunatu.dao.BeanMetaDataFactory;
-import jp.fieldnotes.hatunatu.api.RelationPropertyType;
-import jp.fieldnotes.hatunatu.dao.RelationPropertyTypeFactory;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
-import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 
 public class RelationPropertyTypeFactoryImpl implements
         RelationPropertyTypeFactory {

@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.types;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import jp.fieldnotes.hatunatu.api.ValueType;
 
 public abstract class AbstractValueType implements ValueType {
 

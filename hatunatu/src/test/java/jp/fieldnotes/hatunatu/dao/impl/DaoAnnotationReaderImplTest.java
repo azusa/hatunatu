@@ -15,22 +15,21 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
-
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
-import junit.framework.TestCase;
-import jp.fieldnotes.hatunatu.dao.AnnotationReaderFactory;
 import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
-import jp.fieldnotes.hatunatu.dao.NullBean;
-import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.dao.AnnotationReaderFactory;
+import jp.fieldnotes.hatunatu.dao.NullBean;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

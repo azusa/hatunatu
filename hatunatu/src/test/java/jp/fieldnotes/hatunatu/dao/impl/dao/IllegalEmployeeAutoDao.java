@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.impl.bean.Employee5;
-
 public interface IllegalEmployeeAutoDao {
 
     public void insertIllegal(int empno);

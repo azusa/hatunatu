@@ -15,17 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
-import jp.fieldnotes.hatunatu.dao.util.MethodUtil;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.seasar.framework.util.ClassUtil;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import java.lang.reflect.Method;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class MethodUtilTest  {
 

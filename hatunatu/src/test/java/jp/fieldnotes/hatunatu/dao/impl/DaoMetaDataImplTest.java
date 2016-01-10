@@ -34,7 +34,6 @@ import jp.fieldnotes.hatunatu.dao.resultset.BeanListMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.framework.beans.BeanDesc;
