@@ -13,25 +13,27 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
-import org.junit.Test;
+package jp.fieldnotes.hatunatu.api.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+public class SqlCommandException extends RuntimeException {
 
-public class NullPagingSqlRewriterTest {
-
-    NullPagingSqlRewriter rewriter = new NullPagingSqlRewriter();
-
-    @Test
-    public void testRewrite() {
-        String sql = "SELECT * FROM EMP WHERE ENAME = 'SCOTT'";
-        QueryObject queryObject = new QueryObject();
-        queryObject.setSql(sql);
-        rewriter.rewrite(queryObject);
-        assertThat(queryObject.getSql(), is(sql));
+    public SqlCommandException() {
     }
 
+    public SqlCommandException(String message) {
+        super(message);
+    }
+
+    public SqlCommandException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public SqlCommandException(Throwable cause) {
+        super(cause);
+    }
+
+    public SqlCommandException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }

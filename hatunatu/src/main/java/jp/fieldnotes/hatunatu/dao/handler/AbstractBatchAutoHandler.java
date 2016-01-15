@@ -19,16 +19,13 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.ReturningRowsBatchHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
@@ -41,33 +38,23 @@ public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
         super(dataSource, statementFactory, beanMetaData, propertyTypes, false);
     }
 
-    public int[] execute(List list, Class[] argTypes)
-            throws SQLRuntimeException {
-        return execute(list);
-    }
-
-    public int[] execute(List list) throws SQLRuntimeException {
+    @Override
+    public int[] execute(QueryObject queryObject, List<Object[]> list) throws Exception {
         if (list == null) {
             throw new IllegalArgumentException("list");
         }
-        Connection connection = getConnection();
-        try {
-            PreparedStatement ps = prepareStatement(connection);
-            try {
-                for (Iterator iter = list.iterator(); iter.hasNext();) {
-                    Object bean = (Object) iter.next();
-                    execute(ps, bean);
+        try (Connection connection = getConnection()) {
+            try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
+                for (Object bean : list) {
+                    execute(queryObject, ps, bean);
                 }
                 return PreparedStatementUtil.executeBatch(ps);
-            } finally {
-                StatementUtil.close(ps);
             }
-        } finally {
-            ConnectionUtil.close(connection);
         }
     }
 
-    public int execute(Object[] args) throws SQLRuntimeException {
+
+    public int[] executeBatch(QueryObject queryObject, Object[] args) throws Exception {
         List list = null;
         if (args[0] instanceof Object[]) {
             list = Arrays.asList((Object[]) args[0]);
@@ -77,33 +64,13 @@ public abstract class AbstractBatchAutoHandler extends AbstractAutoHandler
         if (list == null) {
             throw new IllegalArgumentException("args[0]");
         }
-        int[] ret = execute(list);
-        int updatedRow = 0;
-        for (int i = 0; i < ret.length; i++) {
-            if (ret[i] > 0) {
-                updatedRow += ret[i];
-            }
-        }
-        return updatedRow;
+        return execute(queryObject, list);
     }
 
-    public int[] executeBatch(Object[] args) throws SQLRuntimeException {
-        List list = null;
-        if (args[0] instanceof Object[]) {
-            list = Arrays.asList((Object[]) args[0]);
-        } else if (args[0] instanceof List) {
-            list = (List) args[0];
-        }
-        if (list == null) {
-            throw new IllegalArgumentException("args[0]");
-        }
-        return execute(list);
-    }
-
-    protected void execute(PreparedStatement ps, Object bean) {
-        setupBindVariables(bean);
-        logSql(getBindVariables(), getArgTypes(getBindVariables()));
-        bindArgs(ps, getBindVariables(), getBindVariableValueTypes());
+    protected void execute(QueryObject queryObject, PreparedStatement ps, Object bean) {
+        setupBindVariables(bean, queryObject);
+        logSql(queryObject);
+        bindArgs(ps, queryObject.getBindArguments(), queryObject.getBindVariableValueTypes());
         PreparedStatementUtil.addBatch(ps);
     }
 }

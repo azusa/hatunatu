@@ -15,15 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.util.ResultSetUtil;
-import org.seasar.framework.util.StatementUtil;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -45,17 +44,12 @@ public class ScrollCursorTest  {
 
     @Before
     public void setUp() throws Exception {
-        PagerContext.start();
         pagerResultSetFactoryWrapper = new PagerResultSetFactoryWrapper(
                 BasicResultSetFactory.INSTANCE);
         pagerResultSetFactoryWrapper.setUseScrollCursor(true);
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-        PagerContext.end();
-    }
 
     @Test
     public void testPageLimitTx() throws Exception {
@@ -64,10 +58,9 @@ public class ScrollCursorTest  {
         condition.setLimit(2);
         assertEquals(0, condition.getOffset());
         assertEquals(0, condition.getCount());
-        PagerContext.getContext().pushArgs(new Object[] { condition });
 
         // ## Act ##
-        List employees = getEmployees();
+        List employees = getEmployees(condition);
 
         // ## Assert ##
         assertEquals(14, condition.getCount());
@@ -84,7 +77,7 @@ public class ScrollCursorTest  {
         PagerContext.getContext().pushArgs(new Object[] { condition });
 
         // ## Act ##
-        List employees = getEmployees();
+        List employees = getEmployees(condition);
 
         // ## Assert ##
         assertEquals(14, condition.getCount());
@@ -98,10 +91,9 @@ public class ScrollCursorTest  {
         DefaultPagerCondition condition = new DefaultPagerCondition();
         condition.setLimit(5);
         condition.setOffset(10);
-        PagerContext.getContext().pushArgs(new Object[] { condition });
 
         // ## Act ##
-        List employees = getEmployees();
+        List employees = getEmployees(condition);
 
         // ## Assert ##
         assertEquals(14, condition.getCount());
@@ -112,21 +104,18 @@ public class ScrollCursorTest  {
         assertEquals(new BigDecimal("7934"), (BigDecimal) employees.get(3));
     }
 
-    private List getEmployees() throws SQLException {
+    private List getEmployees(PagerCondition condition) throws SQLException {
         List result = new ArrayList();
-        PreparedStatement ps = pagerStatementFactory.createPreparedStatement(
-                test.getConnection(), "SELECT EMPNO FROM EMP ORDER BY EMPNO");
-        try {
-            ResultSet rs = pagerResultSetFactoryWrapper.createResultSet(ps);
-            try {
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql("SELECT EMPNO FROM EMP ORDER BY EMPNO");
+        queryObject.setMethodArguments(new Object[]{condition});
+        try (PreparedStatement ps = pagerStatementFactory.createPreparedStatement(
+                test.getConnection(), queryObject)) {
+            try (ResultSet rs = pagerResultSetFactoryWrapper.createResultSet(ps, new Object[]{condition})) {
                 while (rs.next()) {
                     result.add(rs.getObject(1));
                 }
-            } finally {
-                ResultSetUtil.close(rs);
             }
-        } finally {
-            StatementUtil.close(ps);
         }
         return result;
     }

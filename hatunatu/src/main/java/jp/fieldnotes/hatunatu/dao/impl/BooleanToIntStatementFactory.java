@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 
 import java.sql.CallableStatement;
@@ -29,9 +30,10 @@ public class BooleanToIntStatementFactory implements StatementFactory {
      */
     public static final StatementFactory INSTANCE = new BooleanToIntStatementFactory();
 
-    public PreparedStatement createPreparedStatement(Connection con, String sql) {
+    @Override
+    public PreparedStatement createPreparedStatement(Connection con, QueryObject queryObject) {
         return new BooleanToIntPreparedStatement(ConnectionUtil
-                .prepareStatement(con, sql), sql);
+                .prepareStatement(con, queryObject.getSql()), queryObject.getSql());
     }
 
     public CallableStatement createCallableStatement(Connection con, String sql) {

@@ -30,5 +30,5 @@ public interface EmployeeAutoDao {
 
     public int insert(Employee employee);
 
-    public int insertBatch(Employee[] employees);
+    public int[] insertBatch(Employee[] employees);
 }

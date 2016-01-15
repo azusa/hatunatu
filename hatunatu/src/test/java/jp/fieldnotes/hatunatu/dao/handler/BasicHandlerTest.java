@@ -15,7 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.jdbc.SqlLog;
 import org.seasar.extension.jdbc.SqlLogRegistry;
@@ -27,6 +29,7 @@ import static org.junit.Assert.*;
 
 public class BasicHandlerTest  {
 
+    @Rule
     public HatunatuTest test = new HatunatuTest(this);
 
     @Test
@@ -36,13 +39,20 @@ public class BasicHandlerTest  {
                 new Integer(7788) };
         Class[] argTypes = new Class[] { String.class, BigDecimal.class,
                 Integer.class };
-        BasicHandler handler = new BasicHandler(test.getDataSource(), sql);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(args);
+        queryObject.setBindTypes(argTypes);
+        BasicHandler handler = new BasicHandler() {
+        };
+        handler.setDataSource(test.getDataSource());
         assertTrue(handler.getLoggerClass() == BasicHandler.class);
-        handler.logSql(args, argTypes);
+
+        handler.logSql(queryObject);
 
         assertSqlLog(sql, args, argTypes);
         handler.setLoggerClass(BasicHandlerTest.class);
-        handler.logSql(args, argTypes);
+        handler.logSql(queryObject);
         assertSqlLog(sql, args, argTypes);
         assertTrue(handler.getLoggerClass() == BasicHandlerTest.class);
     }

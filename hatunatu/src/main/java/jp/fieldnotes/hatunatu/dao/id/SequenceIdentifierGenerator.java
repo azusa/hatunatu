@@ -79,7 +79,7 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
         this.allocationSize = allocationSize;
     }
 
-    public void setIdentifier(Object bean, DataSource ds) {
+    public void setIdentifier(Object bean, DataSource ds) throws Exception {
         setIdentifier(bean, getNextValue(ds));
     }
 
@@ -94,7 +94,7 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
      *            データソース
      * @return 識別子の値
      */
-    protected Object getNextValue(DataSource ds) {
+    protected Object getNextValue(DataSource ds) throws Exception {
         if (allocationSize > 0) {
             long value = getIdContext(ds).getNextValue(ds);
             return new Long(value);
@@ -109,7 +109,7 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
      *            データソース
      * @return 初期値
      */
-    protected Object getNewInitialValue(DataSource ds) {
+    protected Object getNewInitialValue(DataSource ds) throws Exception {
         return executeSql(ds, getDbms().getSequenceNextValString(sequenceName),
                 null);
     }
@@ -153,7 +153,7 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
          *            データソース
          * @return 自動生成された識別子の値
          */
-        public synchronized long getNextValue(DataSource ds) {
+        public synchronized long getNextValue(DataSource ds) throws Exception {
             if (allocated < allocationSize) {
                 return initialValue + allocated++;
             }

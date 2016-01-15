@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
 import jp.fieldnotes.hatunatu.dao.exception.UpdateFailureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
@@ -26,8 +27,9 @@ import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 
 public class DeleteAutoStaticCommandTest {
 
@@ -67,7 +69,8 @@ public class DeleteAutoStaticCommandTest {
         try {
             cmd.execute(new Object[] { dept });
             fail("1");
-        } catch (UpdateFailureRuntimeException ex) {
+        } catch (SqlCommandException ex) {
+            assertThat(ex.getCause(), is(instanceOf(UpdateFailureRuntimeException.class)));
             System.out.println(ex);
         }
     }

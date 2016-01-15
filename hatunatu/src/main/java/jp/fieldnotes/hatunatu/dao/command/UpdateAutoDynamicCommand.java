@@ -20,6 +20,7 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
      * 
      * @see jp.fieldnotes.hatunatu.api.SqlCommand#execute(java.lang.Object[])
      */
-    public Object execute(Object[] args) {
+    protected Object doExecute(Object[] args) throws Exception {
         final Object bean = args[0];
         final BeanMetaData bmd = getBeanMetaData();
         final PropertyType[] propertyTypes = createUpdatePropertyTypes(bmd,
@@ -52,9 +53,12 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
         UpdateAutoHandler handler = new UpdateAutoHandler(getDataSource(),
                 getStatementFactory(), bmd, propertyTypes,
                 isCheckSingleRowUpdate());
-        injectDaoClass(handler);
-        handler.setSql(createUpdateSql(bmd, propertyTypes));
-        int i = handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(createUpdateSql(bmd, propertyTypes));
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+
+        int i = handler.execute(queryObject);
         return new Integer(i);
     }
 

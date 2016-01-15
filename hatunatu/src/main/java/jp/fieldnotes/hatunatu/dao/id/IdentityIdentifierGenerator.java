@@ -35,7 +35,7 @@ public class IdentityIdentifierGenerator extends AbstractIdentifierGenerator {
      * @see IdentifierGenerator#setIdentifier(java.lang.Object,
      *      javax.sql.DataSource)
      */
-    public void setIdentifier(Object bean, DataSource ds) {
+    public void setIdentifier(Object bean, DataSource ds) throws Exception {
         Object value = executeSql(ds, getDbms().getIdentitySelectString(), null);
         setIdentifier(bean, value);
     }

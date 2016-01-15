@@ -30,11 +30,13 @@ public class BasicResultSetFactory implements ResultSetFactory {
      */
     public static final ResultSetFactory INSTANCE = new BasicResultSetFactory();
 
+    @Override
     public ResultSet getResultSet(Statement statement) {
         return StatementUtil.getResultSet(statement);
     }
 
-    public ResultSet createResultSet(PreparedStatement ps) {
+    @Override
+    public ResultSet createResultSet(PreparedStatement ps, Object[] methodArgument) {
         return PreparedStatementUtil.executeQuery(ps);
     }
 

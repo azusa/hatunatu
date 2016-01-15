@@ -17,14 +17,23 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
 import jp.fieldnotes.hatunatu.dao.handler.InsertBatchAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 public class InsertBatchAutoDynamicCommand extends InsertAutoDynamicCommand {
 
-    public Object execute(Object[] args) {
+    public InsertBatchAutoDynamicCommand(DataSource dataSource,
+                                         StatementFactory statementFactory) {
+        super(dataSource, statementFactory);
+    }
+
+    @Override
+    public Object doExecute(Object[] args) throws Exception {
         Object[] beans = null;
         if (args[0] instanceof Object[]) {
             beans = (Object[]) args[0];
@@ -42,9 +51,12 @@ public class InsertBatchAutoDynamicCommand extends InsertAutoDynamicCommand {
 
         AbstractAutoHandler handler = new InsertBatchAutoHandler(
                 getDataSource(), getStatementFactory(), bmd, propertyTypes);
-        injectDaoClass(handler);
-        handler.setSql(sql);
-        int rows = handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+        int rows = handler.execute(queryObject);
+
         return new Integer(rows);
     }
 

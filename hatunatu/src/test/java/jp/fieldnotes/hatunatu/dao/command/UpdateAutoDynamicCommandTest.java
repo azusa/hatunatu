@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.exception.NoUpdatePropertyTypeRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
@@ -27,6 +28,8 @@ import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class UpdateAutoDynamicCommandTest  {
@@ -102,8 +105,8 @@ public class UpdateAutoDynamicCommandTest  {
         try {
             unlessNull.execute(new Object[] { data });
             fail();
-        } catch (NoUpdatePropertyTypeRuntimeException e) {
-            assertTrue(true);
+        } catch (SqlCommandException e) {
+            assertThat(e.getCause(), is(instanceOf(NoUpdatePropertyTypeRuntimeException.class)));
         }
     }
 

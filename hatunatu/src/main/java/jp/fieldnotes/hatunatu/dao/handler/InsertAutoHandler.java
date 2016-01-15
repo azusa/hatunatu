@@ -19,6 +19,7 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 
@@ -32,11 +33,13 @@ public class InsertAutoHandler extends AbstractAutoHandler {
                 checkSingleRowUpdate);
     }
 
-    protected void setupBindVariables(Object bean) {
-        setupInsertBindVariables(bean);
+    @Override
+    protected void setupBindVariables(Object bean, QueryObject queryObject) {
+        setupInsertBindVariables(bean, queryObject);
     }
 
-    protected void preUpdateBean(Object bean) {
+    @Override
+    protected void preUpdateBean(Object bean) throws Exception {
         BeanMetaData bmd = getBeanMetaData();
         for (int i = 0; i < bmd.getIdentifierGeneratorSize(); i++) {
             IdentifierGenerator generator = bmd.getIdentifierGenerator(i);
@@ -46,7 +49,8 @@ public class InsertAutoHandler extends AbstractAutoHandler {
         }
     }
 
-    protected void postUpdateBean(Object bean) {
+    @Override
+    protected void postUpdateBean(Object bean) throws Exception {
         BeanMetaData bmd = getBeanMetaData();
         for (int i = 0; i < bmd.getIdentifierGeneratorSize(); i++) {
             IdentifierGenerator generator = bmd.getIdentifierGenerator(i);

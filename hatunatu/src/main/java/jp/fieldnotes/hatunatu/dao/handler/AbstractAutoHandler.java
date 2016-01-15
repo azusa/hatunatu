@@ -22,12 +22,11 @@ import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.UpdateHandler;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleRowUpdatedRuntimeException;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -42,10 +41,6 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
         UpdateHandler {
 
     private BeanMetaData beanMetaData;
-
-    private Object[] bindVariables;
-
-    private ValueType[] bindVariableValueTypes;
 
     private Timestamp timestamp;
 
@@ -74,22 +69,6 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
         return Logger.getLogger(loggerClass);
     }
 
-    protected Object[] getBindVariables() {
-        return bindVariables;
-    }
-
-    protected void setBindVariables(Object[] bindVariables) {
-        this.bindVariables = bindVariables;
-    }
-
-    protected ValueType[] getBindVariableValueTypes() {
-        return bindVariableValueTypes;
-    }
-
-    protected void setBindVariableValueTypes(ValueType[] bindVariableValueTypes) {
-        this.bindVariableValueTypes = bindVariableValueTypes;
-    }
-
     protected Timestamp getTimestamp() {
         return timestamp;
     }
@@ -114,31 +93,22 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
         this.propertyTypes = propertyTypes;
     }
 
-    public int execute(Object[] args) throws SQLRuntimeException {
-        Connection connection = getConnection();
-        try {
-            return execute(connection, args[0]);
-        } finally {
-            ConnectionUtil.close(connection);
+    @Override
+    public int execute(QueryObject queryObject) throws Exception {
+        try (Connection connection = getConnection()) {
+            return execute(connection, queryObject);
         }
     }
 
-    public int execute(Object[] args, Class[] argTypes)
-            throws SQLRuntimeException {
-        return execute(args);
-    }
-
-    protected int execute(Connection connection, Object bean) {
+    protected int execute(Connection connection, QueryObject queryObject) throws Exception {
+        Object bean = queryObject.getMethodArguments()[0];
         preUpdateBean(bean);
-        setupBindVariables(bean);
-        logSql(bindVariables, getArgTypes(bindVariables));
-        PreparedStatement ps = prepareStatement(connection);
+        setupBindVariables(bean, queryObject);
+        logSql(queryObject);
         int ret = -1;
-        try {
-            bindArgs(ps, bindVariables, bindVariableValueTypes);
+        try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
+            bindArgs(ps, queryObject.getBindArguments(), queryObject.getBindVariableValueTypes());
             ret = PreparedStatementUtil.executeUpdate(ps);
-        } finally {
-            StatementUtil.close(ps);
         }
         if (checkSingleRowUpdate && ret != 1) {
             throw new NotSingleRowUpdatedRuntimeException(bean, ret);
@@ -162,17 +132,17 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
         }
     }
 
-    protected void preUpdateBean(Object bean) {
+    protected void preUpdateBean(Object bean) throws Exception {
     }
 
-    protected void postUpdateBean(Object bean) {
+    protected void postUpdateBean(Object bean) throws Exception {
     }
 
-    protected abstract void setupBindVariables(Object bean);
+    protected abstract void setupBindVariables(Object bean, QueryObject queryObject);
 
-    protected void setupInsertBindVariables(Object bean) {
-        List varList = new ArrayList();
-        List varValueTypeList = new ArrayList();
+    protected void setupInsertBindVariables(Object bean, QueryObject queryObject) {
+        List<Object> varList = new ArrayList<>();
+        List<ValueType> varValueTypeList = new ArrayList<>();
         final BeanMetaData bmd = getBeanMetaData();
         final String timestampPropertyName = bmd.getTimestampPropertyName();
         final String versionNoPropertyName = bmd.getVersionNoPropertyName();
@@ -189,14 +159,14 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
             }
             varValueTypeList.add(pt.getValueType());
         }
-        setBindVariables(varList.toArray());
-        setBindVariableValueTypes((ValueType[]) varValueTypeList
+        queryObject.setBindArguments(varList.toArray());
+        queryObject.setBindVariableValueTypes(varValueTypeList
                 .toArray(new ValueType[varValueTypeList.size()]));
     }
 
-    protected void setupUpdateBindVariables(Object bean) {
-        List varList = new ArrayList();
-        List varValueTypeList = new ArrayList();
+    protected void setupUpdateBindVariables(Object bean, QueryObject queryObject) {
+        List<Object> varList = new ArrayList<>();
+        List<ValueType> varValueTypeList = new ArrayList<>();
         final BeanMetaData bmd = getBeanMetaData();
         final String timestampPropertyName = bmd.getTimestampPropertyName();
         final String versionNoPropertyName = bmd.getVersionNoPropertyName();
@@ -216,22 +186,22 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
             varValueTypeList.add(pt.getValueType());
         }
         addAutoUpdateWhereBindVariables(varList, varValueTypeList, bean);
-        setBindVariables(varList.toArray());
-        setBindVariableValueTypes((ValueType[]) varValueTypeList
+        queryObject.setBindArguments(varList.toArray());
+        queryObject.setBindVariableValueTypes(varValueTypeList
                 .toArray(new ValueType[varValueTypeList.size()]));
     }
 
-    protected void setupDeleteBindVariables(Object bean) {
-        List varList = new ArrayList();
-        List varValueTypeList = new ArrayList();
+    protected void setupDeleteBindVariables(Object bean, QueryObject queryObject) {
+        List<Object> varList = new ArrayList<>();
+        List<ValueType> varValueTypeList = new ArrayList<>();
         addAutoUpdateWhereBindVariables(varList, varValueTypeList, bean);
-        setBindVariables(varList.toArray());
-        setBindVariableValueTypes((ValueType[]) varValueTypeList
+        queryObject.setBindArguments(varList.toArray());
+        queryObject.setBindVariableValueTypes(varValueTypeList
                 .toArray(new ValueType[varValueTypeList.size()]));
     }
 
     protected void addAutoUpdateWhereBindVariables(List varList,
-            List varValueTypeList, Object bean) {
+                                                   List<ValueType> varValueTypeList, Object bean) {
         BeanMetaData bmd = getBeanMetaData();
         for (int i = 0; i < bmd.getPrimaryKeySize(); ++i) {
             PropertyType pt = bmd.getPropertyTypeByColumnName(bmd

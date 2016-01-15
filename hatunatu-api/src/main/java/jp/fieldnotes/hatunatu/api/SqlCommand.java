@@ -15,11 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.api;
 
-/**
- * @author higa
- * 
- */
 public interface SqlCommand {
 
     public Object execute(Object[] args);
+
+    void setDaoClass(Class daoClass);
 }

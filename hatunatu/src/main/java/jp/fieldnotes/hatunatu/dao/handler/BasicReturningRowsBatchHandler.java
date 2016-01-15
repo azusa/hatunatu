@@ -18,14 +18,13 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.dao.ReturningRowsBatchHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class BasicReturningRowsBatchHandler extends BasicHandler implements
@@ -46,12 +45,10 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      */
-    public BasicReturningRowsBatchHandler(final DataSource dataSource,
-            final String sql) {
-        this(dataSource, sql, -1);
+    public BasicReturningRowsBatchHandler(final DataSource dataSource
+    ) {
+        this(dataSource, -1);
     }
 
     /**
@@ -59,14 +56,12 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param batchSize
      *            バッチ数
      */
     public BasicReturningRowsBatchHandler(final DataSource dataSource,
-            final String sql, final int batchSize) {
-        this(dataSource, sql, batchSize, BasicStatementFactory.INSTANCE);
+                                          final int batchSize) {
+        this(dataSource, batchSize, BasicStatementFactory.INSTANCE);
     }
 
     /**
@@ -74,19 +69,16 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param batchSize
      *            バッチ数
      * @param statementFactory
      *            ステートメントファクトリ
      */
     public BasicReturningRowsBatchHandler(final DataSource dataSource,
-            final String sql, final int batchSize,
-            final StatementFactory statementFactory) {
+                                          final int batchSize,
+                                          final StatementFactory statementFactory) {
 
         setDataSource(dataSource);
-        setSql(sql);
         setBatchSize(batchSize);
         setStatementFactory(statementFactory);
     }
@@ -110,21 +102,18 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
         this.batchSize = batchSize;
     }
 
-    public int[] execute(final List list) throws SQLRuntimeException {
+    @Override
+    public int[] execute(final QueryObject queryObject, final List<Object[]> list) throws Exception {
         if (list.size() == 0) {
             return EMPTY_ARRAY;
         }
-        final Object[] args = (Object[]) list.get(0);
-        return execute(list, getArgTypes(args));
+        final Object[] args = list.get(0);
+        return execute(queryObject, list, getArgTypes(args));
     }
 
-    public int[] execute(final List list, final Class[] argTypes)
-            throws SQLRuntimeException {
-        final Connection connection = getConnection();
-        try {
-            return execute(connection, list, argTypes);
-        } finally {
-            ConnectionUtil.close(connection);
+    protected int[] execute(final QueryObject queryObject, final List<Object[]> list, final Class[] argTypes) throws SQLException {
+        try (Connection connection = getConnection()) {
+            return execute(connection, queryObject, list, argTypes);
         }
     }
 
@@ -140,24 +129,21 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
      * @return バッチ内のコマンドごとに 1 つの要素が格納されている更新カウントの配列。
      *         配列の要素はコマンドがバッチに追加された順序で並べられる
      */
-    protected int[] execute(final Connection connection, final List list,
-            final Class[] argTypes) {
+    protected int[] execute(final Connection connection, final QueryObject queryObject, final List<Object[]> list,
+                            final Class[] argTypes) throws SQLException {
         final int size = batchSize > 0 ? Math.min(batchSize, list.size())
                 : list.size();
         if (size == 0) {
             return EMPTY_ARRAY;
         }
-        final PreparedStatement ps = prepareStatement(connection);
-        try {
+        try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
             for (int i = 0; i < list.size(); ++i) {
-                final Object[] args = (Object[]) list.get(i);
-                logSql(args, argTypes);
+                final Object[] args = list.get(i);
+                logSql(queryObject);
                 bindArgs(ps, args, argTypes);
                 PreparedStatementUtil.addBatch(ps);
             }
             return PreparedStatementUtil.executeBatch(ps);
-        } finally {
-            StatementUtil.close(ps);
         }
     }
 

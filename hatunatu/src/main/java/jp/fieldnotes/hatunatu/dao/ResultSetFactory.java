@@ -19,24 +19,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * Factory of {@link ResultSet}
+ */
 public interface ResultSetFactory {
 
     /**
-     * 結果セットを返します。
-     * 
-     * @param statement
-     *            文
-     * @return 結果セット
+     * Create {@link ResultSet}。
+     *
+     * @param statement SQL statement.
+     * @return ResultSet
      */
     ResultSet getResultSet(Statement statement);
 
     /**
-     * 結果セットを作成します。
-     * 
-     * @param ps
-     *            準備された文
-     * @return 結果セット
+     * Create {@link ResultSet}
+     * @param ps Prepared Statement.
+     * @param methodArgument Argument of DAO.
+     * @return ResultSet
      */
-    ResultSet createResultSet(PreparedStatement ps);
+    ResultSet createResultSet(PreparedStatement ps, Object[] methodArgument);
 
 }

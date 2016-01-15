@@ -34,7 +34,7 @@ public class MockResultSet extends MockResultSetBase {
 
     public boolean next() throws SQLException {
         callNextCount++;
-        if (counter <= total) {
+        if (counter < total) {
             counter++;
             return true;
         } else {

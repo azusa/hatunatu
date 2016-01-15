@@ -15,6 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 import java.util.List;
@@ -31,19 +32,6 @@ public interface ReturningRowsBatchHandler {
      * @throws SQLRuntimeException
      *             SQL例外が発生した場合
      */
-    int[] execute(List list) throws SQLRuntimeException;
-
-    /**
-     * 一つのコマンド (SQL) に複数のパラメータを適用してバッチ実行します。
-     * 
-     * @param list
-     *            バッチ実行するSQLに渡されるパラメータの配列からなるリスト
-     * @param argTypes
-     *            パラメータのタイプの配列
-     * @return バッチ内のコマンドごとに1つの要素が格納されている更新カウントの配列。 配列の要素はコマンドがバッチに追加された順序で並べられます
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
-     */
-    int[] execute(List list, Class[] argTypes) throws SQLRuntimeException;
+    int[] execute(QueryObject queryObject, List<Object[]> list) throws SQLRuntimeException, Exception;
 
 }

@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import org.junit.Test;
 
 import java.sql.CallableStatement;
@@ -50,14 +51,16 @@ public class ConfigurableStatementFactoryTest {
 
         ConfigurableStatementFactory statementFactory = spy(new ConfigurableStatementFactory(mockStatementFactory));
 
-        when(mockStatementFactory.createPreparedStatement(anyObject(), anyString())).thenReturn(mockPreparedStatement);
+        when(mockStatementFactory.createPreparedStatement(anyObject(), anyObject())).thenReturn(mockPreparedStatement);
 
         // ## Act ##
-        PreparedStatement result = statementFactory.createPreparedStatement(mockConnection,"some sql");
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql("some sql");
+        PreparedStatement result = statementFactory.createPreparedStatement(mockConnection, queryObject);
 
         assertSame(mockPreparedStatement, result);
 
-        verify(mockStatementFactory).createPreparedStatement(mockConnection, "some sql");
+        verify(mockStatementFactory).createPreparedStatement(mockConnection, queryObject);
     }
 
 
@@ -93,7 +96,7 @@ public class ConfigurableStatementFactoryTest {
 
         StatementFactory mockStatementFactory = mock(StatementFactory.class);
 
-        when(mockStatementFactory.createPreparedStatement(anyObject(), anyString())).thenReturn(mockPreparedStatement);
+        when(mockStatementFactory.createPreparedStatement(anyObject(), anyObject())).thenReturn(mockPreparedStatement);
 
         ConfigurableStatementFactory statementFactory = new ConfigurableStatementFactory(mockStatementFactory);
 
@@ -101,8 +104,10 @@ public class ConfigurableStatementFactoryTest {
         statementFactory.setMaxRows(new Integer(221));
         statementFactory.setQueryTimeout(new Integer(321));
 
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql("select ...");
         statementFactory.createPreparedStatement(con,
-                "select ...");
+                queryObject);
 
         verify(mockPreparedStatement).setFetchSize(123);
         verify(mockPreparedStatement).setMaxRows(221);

@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+
 import java.sql.SQLException;
 
 public interface PagingSqlRewriter {
@@ -22,15 +24,8 @@ public interface PagingSqlRewriter {
     /**
      * 指定されたSQL文を書き換え、 ページング処理が含まれたSQLを返します。
      * 
-     * @param sql
-     *            書き換え対象のSQL
-     * @param args
-     *            対象のSQLにバインドされる予定の値
-     * @param argTypes
-     *            対象のSQLにバインドされる予定の値の型
-     * @return 書き換え済みのSQL
      */
-    public String rewrite(String sql, Object[] args, Class[] argTypes);
+    void rewrite(QueryObject queryObject) throws Exception;
 
     /**
      * 元のSQLによる結果総件数を設定します
@@ -46,14 +41,7 @@ public interface PagingSqlRewriter {
      * @throws SQLException
      *             SQLExceptionが発生した場合
      */
-    public void setCount(String baseSQL, Object[] args, Object[] bindVariables,
-            Class[] bindVariableTypes);
+    void setCount(QueryObject queryObject) throws Exception;
 
-    /**
-     * カウントを取るSQLの実行タイミングの互換性設定を返します。
-     * 
-     * @return S2Dao1.0.49以前と同様のタイミングの場合<code>true</code>
-     */
-    public boolean isCountSqlCompatibility();
 
 }

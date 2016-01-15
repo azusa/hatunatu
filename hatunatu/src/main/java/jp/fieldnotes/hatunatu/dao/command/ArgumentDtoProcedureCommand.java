@@ -18,19 +18,15 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.handler.ArgumentDtoProcedureHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
-public class ArgumentDtoProcedureCommand implements SqlCommand,
+public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements SqlCommand,
         InjectDaoClassSupport {
 
-    protected DataSource dataSource;
-
     protected ResultSetHandler resultSetHandler;
-
-    protected StatementFactory statementFactory;
 
     protected ResultSetFactory resultSetFactory;
 
@@ -41,9 +37,7 @@ public class ArgumentDtoProcedureCommand implements SqlCommand,
     /**
      * インスタンスを構築します。
      * 
-     * @param dataSource データソース
      * @param resultSetHandler　{@link ResultSet}のハンドラ
-     * @param statementFactory　{@link Statement}のファクトリ
      * @param resultSetFactory　{@link ResultSet}のファクトリ
      * @param procedureMetaData　プロシージャのメタ情報
      */
@@ -52,15 +46,14 @@ public class ArgumentDtoProcedureCommand implements SqlCommand,
             final StatementFactory statementFactory,
             final ResultSetFactory resultSetFactory,
             final ProcedureMetaData procedureMetaData) {
-
-        this.dataSource = dataSource;
+        super(dataSource, statementFactory);
         this.resultSetHandler = resultSetHandler;
-        this.statementFactory = statementFactory;
         this.resultSetFactory = resultSetFactory;
         this.procedureMetaData = procedureMetaData;
     }
 
-    public Object execute(final Object[] args) {
+    @Override
+    protected Object doExecute(final Object[] args) throws Exception {
         final ArgumentDtoProcedureHandler handler = new ArgumentDtoProcedureHandler(
                 dataSource, createSql(procedureMetaData), resultSetHandler,
                 statementFactory, resultSetFactory, procedureMetaData);
@@ -68,7 +61,11 @@ public class ArgumentDtoProcedureCommand implements SqlCommand,
             handler.setLoggerClass(daoClass);
         }
         handler.setFetchSize(-1);
-        return handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(createSql(procedureMetaData));
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+        return handler.execute(queryObject);
     }
 
     public void setDaoClass(Class clazz) {

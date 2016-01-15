@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao;
 
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 
 public interface UpdateHandler {
@@ -29,18 +30,5 @@ public interface UpdateHandler {
      * @throws SQLRuntimeException
      *             SQL例外が発生した場合
      */
-    int execute(Object[] args) throws SQLRuntimeException;
-
-    /**
-     * 更新を行ないます。
-     * 
-     * @param args
-     *            引数
-     * @param argTypes
-     *            引数の型
-     * @return 更新した行数
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
-     */
-    int execute(Object[] args, Class[] argTypes) throws SQLRuntimeException;
+    int execute(QueryObject queryObject) throws Exception;
 }

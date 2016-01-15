@@ -27,6 +27,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class UpdateBatchAutoStaticCommandTest{
@@ -46,9 +47,10 @@ public class UpdateBatchAutoStaticCommandTest{
         emp2.setEmpno(7369);
         emp2.setEname("hoge2");
         emp2.setTimestamp(Timestamp.valueOf("2000-01-01 00:00:00.0"));
-        Integer count = (Integer) cmd.execute(new Object[] { new Employee[] {
+        int[] count = (int[]) cmd.execute(new Object[]{new Employee[]{
                 emp, emp2 } });
-        assertEquals("1", new Integer(2), count);
+        assertArrayEquals(new int[]{1, 1}, count);
+//        assertEquals("1", new Integer(2), count);
 
         // update failure test
         SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"updateBatch2"));
@@ -87,8 +89,9 @@ public class UpdateBatchAutoStaticCommandTest{
                 emp.setTimestamp(Timestamp.valueOf("2000-01-01 00:00:00.0"));
                 list.add(emp);
             }
-            Integer count = (Integer) cmd.execute(new Object[] { list });
-            assertEquals("1", new Integer(2), count);
+            int[] count = (int[]) cmd.execute(new Object[]{list});
+            assertArrayEquals(new int[]{1, 1}, count);
+            //assertEquals("1", new Integer(2), count);
         }
 
         {

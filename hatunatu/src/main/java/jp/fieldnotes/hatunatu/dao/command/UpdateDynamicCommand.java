@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 
@@ -31,13 +32,17 @@ public class UpdateDynamicCommand extends AbstractDynamicCommand {
         super(dataSource, statementFactory);
     }
 
-    public Object execute(Object[] args) {
+    @Override
+    protected Object doExecute(Object[] args) throws Exception {
         CommandContext ctx = apply(args);
         BasicUpdateHandler updateHandler = new BasicUpdateHandler(
-                getDataSource(), ctx.getSql(), getStatementFactory());
-        injectDaoClass(updateHandler);
-        return new Integer(updateHandler.execute(ctx.getBindVariables(), ctx
-                .getBindVariableTypes()));
+                getDataSource(), getStatementFactory());
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(ctx.getSql());
+        queryObject.setBindArguments(ctx.getBindVariables());
+        queryObject.setBindTypes(ctx.getBindVariableTypes());
+        queryObject.setMethodArguments(args);
+        return new Integer(updateHandler.execute(queryObject));
     }
 
 }

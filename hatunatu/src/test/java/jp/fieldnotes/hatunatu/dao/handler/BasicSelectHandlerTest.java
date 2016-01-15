@@ -16,15 +16,14 @@
 package jp.fieldnotes.hatunatu.dao.handler;
 
 import jp.fieldnotes.hatunatu.dao.impl.MapResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.exception.SSQLException;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class BasicSelectHandlerTest  {
 
@@ -36,39 +35,14 @@ public class BasicSelectHandlerTest  {
         String sql = "select * from emp where empno = ?";
         BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
                 sql, new MapResultSetHandler());
-        Map ret = (Map) handler.execute(new Object[] { new Integer(7788) });
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(new Object[]{new Integer(7788)});
+        queryObject.setBindTypes(new Class[]{Integer.class});
+        Map ret = (Map) handler.execute(queryObject);
         System.out.println(ret);
         assertNotNull("1", ret);
     }
 
-    @Test
-    public void testExceptionByBrokenSql() throws Exception {
-        final String sql = "selec * from emp";
-        BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
-                sql, new MapResultSetHandler());
-        try {
-            handler.execute(new Object[] {});
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final SSQLException cause = (SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
-
-    @Test
-    public void testExceptionByInvalidTableName() throws Exception {
-        final String sql = "select * from UNKNOWN";
-        BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
-                sql, new MapResultSetHandler());
-        try {
-            handler.execute(new Object[] {});
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final SSQLException cause = (SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
 
 }

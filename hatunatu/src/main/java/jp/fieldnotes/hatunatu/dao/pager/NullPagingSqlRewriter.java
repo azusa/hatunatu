@@ -16,21 +16,17 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+
 public class NullPagingSqlRewriter implements PagingSqlRewriter {
 
-    private boolean countSqlCompatibility = true;
-
-    public String rewrite(String sql, Object[] args, Class[] argTypes) {
-        return sql;
+    @Override
+    public void rewrite(QueryObject queryObject) {
     }
 
-    public void setCount(String baseSQL, Object[] args, Object[] bindVariables,
-            Class[] bindVariableTypes) {
+    @Override
+    public void setCount(QueryObject queryObject) {
         // 何もしない
-    }
-
-    public boolean isCountSqlCompatibility() {
-        return countSqlCompatibility;
     }
 
 }

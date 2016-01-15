@@ -22,11 +22,14 @@ import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 
 public abstract class AbstractIdentifierGenerator implements
         IdentifierGenerator {
+
+    private static final Object[] EMPTY_ARGS = new Object[0];
 
     protected ResultSetHandler resultSetHandler;
 
@@ -49,12 +52,14 @@ public abstract class AbstractIdentifierGenerator implements
         return dbms;
     }
 
-    protected Object executeSql(DataSource ds, String sql, Object[] args) {
+    protected Object executeSql(DataSource ds, String sql, Object[] args) throws Exception {
         BasicSelectHandler handler = new BasicSelectHandler(ds, sql,
                 resultSetHandler);
         // [DAO-139]
         handler.setFetchSize(-1);
-        return handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        return handler.execute(queryObject);
     }
 
     protected void setIdentifier(Object bean, Object value) {

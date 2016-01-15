@@ -20,6 +20,7 @@ import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 
 import javax.sql.DataSource;
@@ -48,26 +49,32 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
         return resultSetHandler;
     }
 
-    public Object execute(Object[] args) {
+    @Override
+    protected Object doExecute(Object[] args) throws Exception {
         CommandContext ctx = apply(args);
         Object[] bindVariables = ctx.getBindVariables();
         Class[] bindVariableTypes = ctx.getBindVariableTypes();
         String sql = ctx.getSql();
-        String executingSql = pagingSqlRewriter.rewrite(sql, bindVariables,
-                bindVariableTypes);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(bindVariables);
+        queryObject.setBindTypes(bindVariableTypes);
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+
+        pagingSqlRewriter.rewrite(queryObject);
         BasicSelectHandler selectHandler = new BasicSelectHandler(
-                getDataSource(), executingSql, resultSetHandler,
+                getDataSource(), queryObject.getSql(), resultSetHandler,
                 getStatementFactory(), resultSetFactory);
-        injectDaoClass(selectHandler);
         /*
          * Statement#setFetchSizeをサポートしていないDBMSがあるため、
          * S2DaoからはsetFetchSizeを行わないようにする。
          * https://www.seasar.org/issues/browse/DAO-2
          */
         selectHandler.setFetchSize(-1);
-        Object ret = selectHandler.execute(ctx.getBindVariables(), ctx
-                .getBindVariableTypes());
-        pagingSqlRewriter.setCount(sql, args, bindVariables, bindVariableTypes);
+
+        Object ret = selectHandler.execute(queryObject);
+        pagingSqlRewriter.setCount(queryObject);
 
         return ret;
     }

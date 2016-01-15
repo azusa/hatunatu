@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractBatchAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 
@@ -36,15 +37,13 @@ public abstract class AbstractBatchAutoStaticCommand extends
 
     protected abstract AbstractBatchAutoHandler createBatchAutoHandler();
 
-    public Object execute(Object[] args) {
+    @Override
+    protected Object doExecute(Object[] args) throws Exception {
         AbstractBatchAutoHandler handler = createBatchAutoHandler();
-        injectDaoClass(handler);
-        handler.setSql(getSql());
-        if (this.returningRows) {
-            return handler.executeBatch(args);
-        } else {
-            int updatedRows = handler.execute(args);
-            return new Integer(updatedRows);
-        }
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(getSql());
+        queryObject.setDaoClass(daoClass);
+        queryObject.setMethodArguments(args);
+        return handler.executeBatch(queryObject, args);
     }
 }

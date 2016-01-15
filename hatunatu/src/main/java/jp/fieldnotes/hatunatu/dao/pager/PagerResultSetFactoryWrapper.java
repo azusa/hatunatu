@@ -25,16 +25,17 @@ import java.sql.Statement;
 
 public class PagerResultSetFactoryWrapper implements ResultSetFactory {
 
-    /** オリジナルのResultSetFactory */
+    private static final Object[] EMPTY_ARGS = new Object[0];
+
     private ResultSetFactory resultSetFactory;
 
     private boolean useScrollCursor = true;
 
     /**
-     * コンストラクタ
-     * 
-     * @param resultSetFactory
-     *            オリジナルのResultSetFactory
+     * Constructor.
+     *
+     * @param resultSetFactory original {@link ResultSetFactory},
+     *
      */
     public PagerResultSetFactoryWrapper(ResultSetFactory resultSetFactory) {
         this.resultSetFactory = resultSetFactory;
@@ -51,29 +52,31 @@ public class PagerResultSetFactoryWrapper implements ResultSetFactory {
         this.useScrollCursor = useScrollCursor;
     }
 
+    @Override
     public ResultSet getResultSet(Statement statement) {
         ResultSet resultSet = resultSetFactory.getResultSet(statement);
-        return wrapResultSet(resultSet);
+        return wrapResultSet(resultSet, EMPTY_ARGS);
     }
+
 
     /**
-     * ResultSetを生成します。
-     * <p>
-     * PagerContextにPagerConditionがセットされている場合、
-     * ResultSetをPagerResultSetWrapperでラップして返します。
-     * 
-     * @param PreparedStatement
-     * @return ResultSet
+     * {@inheritDoc}
+     *
+     * Wraps {@link ResultSet} by {@link PagerResultSetWrapper} if arguments contain {@link PagerCondition}.
+     *
+     * @param ps Prepared Statement.
+     * @param methodArgument Argument of DAO.
+     * @return
      */
-    public ResultSet createResultSet(PreparedStatement ps) {
-        ResultSet resultSet = resultSetFactory.createResultSet(ps);
-        return wrapResultSet(resultSet);
+    @Override
+    public ResultSet createResultSet(PreparedStatement ps, Object[] methodArgument) {
+        ResultSet resultSet = resultSetFactory.createResultSet(ps, methodArgument);
+        return wrapResultSet(resultSet, methodArgument);
     }
 
-    protected ResultSet wrapResultSet(ResultSet resultSet) {
-        Object[] args = PagerContext.getContext().peekArgs();
-        if (PagerContext.isPagerCondition(args)) {
-            PagerCondition condition = PagerContext.getPagerCondition(args);
+    protected ResultSet wrapResultSet(ResultSet resultSet, Object[] methodArgument) {
+        if (PagerContext.isPagerCondition(methodArgument)) {
+            PagerCondition condition = PagerContext.getPagerCondition(methodArgument);
             return new PagerResultSetWrapper(resultSet, condition,
                     useScrollCursor);
         } else {

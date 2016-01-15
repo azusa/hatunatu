@@ -25,7 +25,7 @@ public interface IdentifierGenerator {
 
     public boolean isSelfGenerate();
 
-    public void setIdentifier(Object bean, DataSource ds);
+    public void setIdentifier(Object bean, DataSource ds) throws Exception;
 
     public String getPropertyName();
 }
