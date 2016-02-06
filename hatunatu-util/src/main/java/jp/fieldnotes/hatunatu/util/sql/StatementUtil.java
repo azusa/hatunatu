@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.util.sql;
 
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.util.log.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
-import jp.fieldnotes.hatunatu.util.log.Logger;
-
-import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.*;
-import static jp.fieldnotes.hatunatu.util.log.Logger.*;
+import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.assertArgumentNotEmpty;
+import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.assertArgumentNotNull;
 
 
 /**
@@ -112,27 +112,6 @@ public abstract class StatementUtil {
             statement.setQueryTimeout(queryTimeout);
         } catch (final SQLException ex) {
             throw new SQLRuntimeException(ex);
-        }
-    }
-
-    /**
-     * {@link Statement}を閉じます。
-     * <p>
-     * {@link Statement#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
-     * </p>
-     * 
-     * @param statement
-     *            {@link Statement}
-     * @see Statement#close()
-     */
-    public static void close(final Statement statement) {
-        if (statement == null) {
-            return;
-        }
-        try {
-            statement.close();
-        } catch (final SQLException e) {
-            logger.log(format("EUTL0017", e.getMessage()), e);
         }
     }
 
