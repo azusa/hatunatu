@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
@@ -74,7 +73,6 @@ public class ScrollCursorTest  {
         DefaultPagerCondition condition = new DefaultPagerCondition();
         condition.setLimit(2);
         condition.setOffset(1);
-        PagerContext.getContext().pushArgs(new Object[] { condition });
 
         // ## Act ##
         List employees = getEmployees(condition);

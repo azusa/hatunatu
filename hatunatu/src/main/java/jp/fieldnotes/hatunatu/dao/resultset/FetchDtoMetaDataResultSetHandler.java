@@ -19,6 +19,7 @@ import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +44,8 @@ public class FetchDtoMetaDataResultSetHandler extends
      * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     @SuppressWarnings("unchecked")
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         // Map<String(columnName), PropertyType>
         Map<String, PropertyType> propertyCache = null;
 

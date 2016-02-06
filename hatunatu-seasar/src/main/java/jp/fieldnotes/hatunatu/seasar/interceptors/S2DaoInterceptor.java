@@ -15,12 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.DaoMetaDataFactory;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.NumberConversionUtil;
@@ -42,22 +41,7 @@ public class S2DaoInterceptor extends AbstractInterceptor implements MethodInter
     }
 
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        boolean started = false;
-        PagerContext pagerContext = PagerContext.getContext();
-        if (pagerContext == null) {
-            PagerContext.start();
-            started = true;
-            pagerContext = PagerContext.getContext();
-        }
-        pagerContext.pushArgs(invocation.getArguments());
-        try {
-            return doInvoke(invocation);
-        } finally {
-            pagerContext.popArgs();
-            if (started) {
-                PagerContext.end();
-            }
-        }
+        return doInvoke(invocation);
     }
 
     private Object doInvoke(MethodInvocation invocation) throws Throwable {

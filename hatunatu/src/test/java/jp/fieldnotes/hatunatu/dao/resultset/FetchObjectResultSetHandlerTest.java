@@ -39,7 +39,7 @@ public class FetchObjectResultSetHandlerTest {
     public void testHandle() throws Exception {
         String sql = "select empno from emp";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         final List<Integer> ret = new ArrayList<Integer>();
         ResultSetHandler handler = new FetchObjectResultSetHandler(
                 Integer.class, new FetchHandler<Integer>() {
@@ -48,15 +48,8 @@ public class FetchObjectResultSetHandlerTest {
                         return true;
                     }
                 });
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            handler.handle(rs, test.getQueryObject());
         }
         assertNotNull(ret);
         assertEquals(14, ret.size());

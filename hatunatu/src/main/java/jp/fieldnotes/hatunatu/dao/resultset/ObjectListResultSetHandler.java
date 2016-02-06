@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +35,8 @@ public class ObjectListResultSetHandler extends AbstractObjectResultSetHandler {
         super(clazz);
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         List ret = new ArrayList(100);
         ValueType valueType = getValueType(rs);
         while (rs.next()) {

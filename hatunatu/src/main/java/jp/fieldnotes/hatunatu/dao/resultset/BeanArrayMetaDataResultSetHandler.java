@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.lang.reflect.Array;
 import java.sql.ResultSet;
@@ -40,8 +41,9 @@ public class BeanArrayMetaDataResultSetHandler extends
     /**
      * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
-    public Object handle(ResultSet rs) throws SQLException {
-        List list = (List) super.handle(rs);
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
+        List list = (List) super.handle(rs, queryObject);
         return list.toArray((Object[]) Array.newInstance(getBeanMetaData()
                 .getBeanClass(), list.size()));
     }

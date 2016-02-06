@@ -17,6 +17,7 @@ package org.seasar.extension.jdbc.impl;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 
 import java.sql.ResultSet;
@@ -31,7 +32,8 @@ public class ObjectResultSetHandler implements ResultSetHandler {
     public ObjectResultSetHandler() {
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         if (rs.next()) {
             ResultSetMetaData rsmd = rs.getMetaData();
             ValueType valueType = ValueTypes

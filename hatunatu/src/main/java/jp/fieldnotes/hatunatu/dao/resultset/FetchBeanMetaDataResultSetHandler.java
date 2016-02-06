@@ -23,6 +23,7 @@ import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCache;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +50,8 @@ public class FetchBeanMetaDataResultSetHandler extends
      * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     @SuppressWarnings("unchecked")
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         // Set<String(columnName)>
         final Set columnNames = createColumnNames(rs.getMetaData());
 

@@ -22,6 +22,7 @@ import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.RelationKey;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 import java.sql.ResultSet;
@@ -52,7 +53,8 @@ public class BeanMetaDataResultSetHandler extends
     /**
      * @see ResultSetHandler#handle(java.sql.ResultSet)
      */
-    public Object handle(ResultSet resultSet) throws SQLException {
+    @Override
+    public Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException {
         if (resultSet.next()) {
             // Set<String(columnName)>
             final Set columnNames = createColumnNames(resultSet.getMetaData());// [DAO-118]

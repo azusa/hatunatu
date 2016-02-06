@@ -42,7 +42,7 @@ public class BeanResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee) handler.handle(rs);
+                ret = (Employee) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -63,7 +63,7 @@ public class BeanResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee) handler.handle(rs);
+                ret = (Employee) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

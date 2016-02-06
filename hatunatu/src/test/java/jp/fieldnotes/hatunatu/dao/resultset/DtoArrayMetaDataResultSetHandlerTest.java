@@ -46,7 +46,7 @@ public class DtoArrayMetaDataResultSetHandlerTest{
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (EmployeeDto[]) handler.handle(rs);
+                ret = (EmployeeDto[]) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

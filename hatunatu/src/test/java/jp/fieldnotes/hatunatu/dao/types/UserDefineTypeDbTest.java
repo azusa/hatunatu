@@ -43,7 +43,7 @@ public class UserDefineTypeDbTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (EmpDto) handler.handle(rs);
+                ret = (EmpDto) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

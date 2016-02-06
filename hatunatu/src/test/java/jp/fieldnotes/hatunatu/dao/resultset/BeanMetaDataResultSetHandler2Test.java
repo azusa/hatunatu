@@ -49,7 +49,7 @@ public class BeanMetaDataResultSetHandler2Test  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (MyEmp) handler.handle(rs);
+                ret = (MyEmp) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

@@ -37,17 +37,10 @@ public class ObjectResultSetHandlerTest  {
         ResultSetHandler handler = new ObjectResultSetHandler(null);
         String sql = "select ename from emp where empno = 7788";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
         String ret = null;
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                ret = (String) handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();
+        ) {
+            ret = (String) handler.handle(rs, test.getQueryObject());
         }
         assertEquals("SCOTT", ret);
     }
@@ -57,22 +50,15 @@ public class ObjectResultSetHandlerTest  {
         ResultSetHandler handler = new ObjectResultSetHandler.RestrictObjectResultSetHandler(null);
         String sql = "select ename from emp";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
         String ret = null;
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();
+        ) {
                 try{
-                    ret = (String) handler.handle(rs);
+                    ret = (String) handler.handle(rs, test.getQueryObject());
                     fail();
                 } catch(NotSingleResultRuntimeException e){
                     assertTrue(true);
                 }
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
         }
         assertNull(ret);
     }

@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 import java.sql.ResultSet;
@@ -36,7 +37,8 @@ public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
         super(clazz);
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         if (rs.next()) {
             Object value = getValueType(rs).getValue(rs, 1);
             if (rs.next()) {

@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 
 import java.sql.ResultSet;
@@ -28,7 +29,8 @@ public class MapListResultSetHandler extends AbstractMapResultSetHandler {
     public MapListResultSetHandler() {
     }
 
-    public Object handle(ResultSet resultSet) throws SQLException {
+    @Override
+    public Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException {
         PropertyType[] propertyTypes = createPropertyTypes(resultSet
                 .getMetaData());
         List list = new ArrayList();

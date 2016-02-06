@@ -175,7 +175,7 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         logSql(queryObject);
         try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
             bindArgs(ps, queryObject.getBindArguments(), queryObject.getBindTypes());
-            return execute(ps, queryObject.getMethodArguments());
+            return execute(ps, queryObject);
         }
     }
 
@@ -204,14 +204,14 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         return ps;
     }
 
-    protected Object execute(PreparedStatement ps, Object[] methodArgument) throws SQLException {
+    protected Object execute(PreparedStatement ps, QueryObject queryObject) throws SQLException {
         if (resultSetHandler == null) {
             throw new EmptyRuntimeException("resultSetHandler");
         }
         ResultSet resultSet = null;
         try {
-            resultSet = createResultSet(ps, methodArgument);
-            return resultSetHandler.handle(resultSet);
+            resultSet = createResultSet(ps, queryObject.getMethodArguments());
+            return resultSetHandler.handle(resultSet, queryObject);
         } finally {
             ResultSetUtil.close(resultSet);
         }

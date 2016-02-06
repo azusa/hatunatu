@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
@@ -52,7 +51,7 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
     public void testHandle() throws Exception {
         String sql = "select * from emp";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         final List<Employee> ret = new ArrayList<Employee>();
         ResultSetHandler handler = new FetchBeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator(),
@@ -62,15 +61,9 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
                         return true;
                     }
                 });
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+
+            handler.handle(rs, test.getQueryObject());
         }
         assertNotNull("1", ret);
         for (int i = 0; i < ret.size(); ++i) {
@@ -81,8 +74,6 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
 
     @Test
     public void testHandle2() {
-        try {
-            PagerContext.start();
             DaoMetaData dmd = test.createDaoMetaData(EmployeeDao.class);
             assertNotNull("1", dmd);
             SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
@@ -102,16 +93,9 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
             EmployeeSearchCondition dto = new EmployeeSearchCondition();
             dto.setDname("RESEARCH");
             Object[] args = new Object[]{dto, handler};
-            PagerContext.getContext().pushArgs(args);
             Object count = cmd.execute(args);
             assertNotNull("3", count);
             assertEquals("4", Integer.valueOf(5), count);
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            PagerContext.getContext().popArgs();
-            PagerContext.end();
-        }
     }
 
 

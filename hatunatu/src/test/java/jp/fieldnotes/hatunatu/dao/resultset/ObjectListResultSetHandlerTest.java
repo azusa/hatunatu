@@ -37,17 +37,10 @@ public class ObjectListResultSetHandlerTest {
         ResultSetHandler handler = new ObjectListResultSetHandler(Integer.class);
         String sql = "select empno from emp";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         List ret = null;
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                ret = (List) handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+            ret = (List) handler.handle(rs, test.getQueryObject());
         }
         assertEquals(14, ret.size());
         assertEquals(Integer.class, ret.get(0).getClass());

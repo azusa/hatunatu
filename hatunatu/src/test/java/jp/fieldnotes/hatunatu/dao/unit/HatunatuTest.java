@@ -19,10 +19,10 @@ package jp.fieldnotes.hatunatu.dao.unit;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.rules.ExternalResource;
 import org.seasar.extension.dataset.DataReader;
@@ -109,6 +109,8 @@ public class HatunatuTest extends ExternalResource {
 
     private String dataSourceDiconName;
 
+    private QueryObject queryObject = new QueryObject();
+
     public HatunatuTest(Object instance){
         this(instance, "j2ee.dicon");
     }
@@ -152,7 +154,6 @@ public class HatunatuTest extends ExternalResource {
         tableNaming = null;
         columnNaming = null;
         procedureMetaDataFactory = null;
-        PagerContext.end();
 
     }
 
@@ -321,6 +322,10 @@ public class HatunatuTest extends ExternalResource {
         }
         connection = DataSourceUtil.getConnection(this.dataSource);
         return connection;
+    }
+
+    public QueryObject getQueryObject() {
+        return this.queryObject;
     }
 
     protected ResultSetHandlerFactory getResultSetHandlerFactory() {

@@ -77,7 +77,7 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         try (CallableStatement cs = prepareCallableStatement(connection, queryObject)) {
             bindArgs(cs, dto);
             if (cs.execute()) {
-                return handleResultSet(cs);
+                return handleResultSet(cs, queryObject);
             } else {
                 return handleOutParameters(cs, dto);
             }
@@ -161,12 +161,12 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      * @return <code>ResultSet</code>から変換された値
      * @throws SQLException SQL例外が発生した場合
      */
-    protected Object handleResultSet(final CallableStatement cs)
+    protected Object handleResultSet(final CallableStatement cs, QueryObject queryObject)
             throws SQLException {
         ResultSet rs = null;
         try {
             rs = getResultSetFactory().getResultSet(cs);
-            return getResultSetHandler().handle(rs);
+            return getResultSetHandler().handle(rs, queryObject);
         } finally {
             ResultSetUtil.close(rs);
         }

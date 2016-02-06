@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 import java.sql.ResultSet;
@@ -40,7 +41,8 @@ public class DtoMetaDataResultSetHandler extends
         super(dtoMetaData, rowCreator);
     }
 
-    public Object handle(ResultSet resultSet) throws SQLException {
+    @Override
+    public Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException {
         // Map<String(columnName), PropertyType>
         Map propertyCache = null;// [DAO-118] (2007/08/26)
 

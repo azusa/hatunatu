@@ -16,8 +16,8 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.exception.NotSingleResultRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.parser.SqlTokenizerImpl;
 import jp.fieldnotes.hatunatu.dao.resultset.AbstractMapResultSetHandler;
 import jp.fieldnotes.hatunatu.util.log.Logger;
@@ -33,10 +33,8 @@ public class MapResultSetHandler extends AbstractMapResultSetHandler {
     public MapResultSetHandler() {
     }
 
-    /**
-     * @see ResultSetHandler#handle(java.sql.ResultSet)
-     */
-    public Object handle(ResultSet resultSet) throws SQLException {
+    @Override
+    public Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException {
         if (resultSet.next()) {
             PropertyType[] propertyTypes = createPropertyTypes(resultSet
                     .getMetaData());
