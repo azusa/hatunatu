@@ -23,7 +23,6 @@ import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
-import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
@@ -204,12 +203,8 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         if (resultSetHandler == null) {
             throw new EmptyRuntimeException("resultSetHandler");
         }
-        ResultSet resultSet = null;
-        try {
-            resultSet = createResultSet(ps, queryObject.getMethodArguments());
+        try (ResultSet resultSet = createResultSet(ps, queryObject.getMethodArguments())) {
             return resultSetHandler.handle(resultSet, queryObject);
-        } finally {
-            ResultSetUtil.close(resultSet);
         }
     }
 
