@@ -34,7 +34,7 @@ public class BasicSelectHandlerTest  {
     public void testExecute() throws Exception {
         String sql = "select * from emp where empno = ?";
         BasicSelectHandler handler = new BasicSelectHandler(test.getDataSource(),
-                sql, new MapResultSetHandler());
+                new MapResultSetHandler());
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setBindArguments(new Object[]{new Integer(7788)});

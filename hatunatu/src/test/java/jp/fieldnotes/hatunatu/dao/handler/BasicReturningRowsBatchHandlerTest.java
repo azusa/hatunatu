@@ -50,7 +50,7 @@ public class BasicReturningRowsBatchHandlerTest  {
         assertEquals(3, rows.length);
         String sql2 = "select empno, ename, comm from emp where empno in (7369, 7499, 7521) order by empno";
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                sql2, new MapListResultSetHandler());
+                new MapListResultSetHandler());
         queryObject = new QueryObject();
         queryObject.setSql(sql2);
 

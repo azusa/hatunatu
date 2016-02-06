@@ -50,15 +50,13 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param resultSetHandler
      *            結果セットハンドラ
      */
-    public BasicSelectHandler(DataSource dataSource, String sql,
-            ResultSetHandler resultSetHandler) {
+    public BasicSelectHandler(DataSource dataSource,
+                              ResultSetHandler resultSetHandler) {
 
-        this(dataSource, sql, resultSetHandler, BasicStatementFactory.INSTANCE,
+        this(dataSource, resultSetHandler, BasicStatementFactory.INSTANCE,
                 BasicResultSetFactory.INSTANCE);
     }
 
@@ -67,8 +65,6 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param resultSetHandler
      *            結果セットハンドラ
      * @param statementFactory
@@ -76,9 +72,9 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * @param resultSetFactory
      *            結果セットファクトリ
      */
-    public BasicSelectHandler(DataSource dataSource, String sql,
-            ResultSetHandler resultSetHandler,
-            StatementFactory statementFactory, ResultSetFactory resultSetFactory) {
+    public BasicSelectHandler(DataSource dataSource,
+                              ResultSetHandler resultSetHandler,
+                              StatementFactory statementFactory, ResultSetFactory resultSetFactory) {
 
         setDataSource(dataSource);
         setResultSetHandler(resultSetHandler);

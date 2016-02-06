@@ -64,7 +64,7 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
 
         pagingSqlRewriter.rewrite(queryObject);
         BasicSelectHandler selectHandler = new BasicSelectHandler(
-                getDataSource(), queryObject.getSql(), resultSetHandler,
+                getDataSource(), resultSetHandler,
                 getStatementFactory(), resultSetFactory);
         /*
          * Statement#setFetchSizeをサポートしていないDBMSがあるため、

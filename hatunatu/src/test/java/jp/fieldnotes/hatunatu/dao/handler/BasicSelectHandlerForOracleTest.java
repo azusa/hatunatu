@@ -51,7 +51,7 @@ public class BasicSelectHandlerForOracleTest  {
 
         String sql2 = "select ename from emp where empno = 99";
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                sql2, new ObjectResultSetHandler(),
+                new ObjectResultSetHandler(),
                 BasicStatementFactory.INSTANCE, new OracleResultSetFactory());
         queryObject = new QueryObject();
         queryObject.setSql(sql2);

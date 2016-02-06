@@ -99,7 +99,7 @@ public class H2Test  {
         queryObject.setSql(sequenceNextValString);
 
         final BasicSelectHandler nextvalHandler = new BasicSelectHandler(
-                test.getDataSource(), sequenceNextValString,
+                test.getDataSource(),
                 new ObjectResultSetHandler());
         {
             final Number nextval = (Number) nextvalHandler.execute(queryObject);
@@ -116,7 +116,7 @@ public class H2Test  {
 
         final String identitySelectString = dbms.getIdentitySelectString();
         final BasicSelectHandler identityHandler = new BasicSelectHandler(
-                test.getDataSource(), identitySelectString,
+                test.getDataSource(),
                 new ObjectResultSetHandler());
         QueryObject queryObject2 = new QueryObject();
         queryObject2.setSql(identitySelectString);

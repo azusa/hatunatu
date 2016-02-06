@@ -53,19 +53,18 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      * インスタンスを構築します。
      * 
      * @param dataSource データソース
-     * @param sql SQL
      * @param resultSetHandler　{@link ResultSet}のハンドラ
      * @param statementFactory　{@link Statement}のファクトリ
      * @param resultSetFactory　{@link ResultSet}のファクトリ
      * @param procedureMetaData　プロシージャのメタ情報
      */
     public ArgumentDtoProcedureHandler(final DataSource dataSource,
-            final String sql, final ResultSetHandler resultSetHandler,
-            final StatementFactory statementFactory,
-            final ResultSetFactory resultSetFactory,
-            final ProcedureMetaData procedureMetaData) {
+                                       final ResultSetHandler resultSetHandler,
+                                       final StatementFactory statementFactory,
+                                       final ResultSetFactory resultSetFactory,
+                                       final ProcedureMetaData procedureMetaData) {
 
-        super(dataSource, sql, resultSetHandler, statementFactory,
+        super(dataSource, resultSetHandler, statementFactory,
                 resultSetFactory);
         setProcedureMetaData(procedureMetaData);
     }

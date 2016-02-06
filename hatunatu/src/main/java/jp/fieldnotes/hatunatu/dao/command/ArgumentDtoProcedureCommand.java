@@ -55,7 +55,7 @@ public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements S
     @Override
     protected Object doExecute(final Object[] args) throws Exception {
         final ArgumentDtoProcedureHandler handler = new ArgumentDtoProcedureHandler(
-                dataSource, createSql(procedureMetaData), resultSetHandler,
+                dataSource, resultSetHandler,
                 statementFactory, resultSetFactory, procedureMetaData);
         if (daoClass != null) {
             handler.setLoggerClass(daoClass);

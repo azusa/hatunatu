@@ -53,7 +53,7 @@ public abstract class AbstractIdentifierGenerator implements
     }
 
     protected Object executeSql(DataSource ds, String sql, Object[] args) throws Exception {
-        BasicSelectHandler handler = new BasicSelectHandler(ds, sql,
+        BasicSelectHandler handler = new BasicSelectHandler(ds,
                 resultSetHandler);
         // [DAO-139]
         handler.setFetchSize(-1);

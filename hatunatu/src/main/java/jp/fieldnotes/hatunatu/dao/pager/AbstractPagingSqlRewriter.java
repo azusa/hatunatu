@@ -131,7 +131,7 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
         queryObject.setSql(countSQL);
 
         BasicSelectHandler handler = new BasicSelectHandler(dataSource,
-                countSQL, new ObjectResultSetHandler(), statementFactory,
+                new ObjectResultSetHandler(), statementFactory,
                 resultsetFactory);
         // [DAO-139]
         handler.setFetchSize(-1);

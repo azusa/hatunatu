@@ -47,7 +47,7 @@ public class BooleanToIntStatementTest  {
         queryObject.setSql(sql2);
 
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                sql2, new ObjectResultSetHandler());
+                new ObjectResultSetHandler());
         Number active = (Number) handler2.execute(queryObject);
         assertEquals("1", 0, active.intValue());
     }
