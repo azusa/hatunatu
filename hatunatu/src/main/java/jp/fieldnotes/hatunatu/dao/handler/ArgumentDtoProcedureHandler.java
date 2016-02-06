@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
-import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
@@ -162,12 +161,8 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      */
     protected Object handleResultSet(final CallableStatement cs, QueryObject queryObject)
             throws SQLException {
-        ResultSet rs = null;
-        try {
-            rs = getResultSetFactory().getResultSet(cs);
+        try (ResultSet rs = getResultSetFactory().getResultSet(cs)) {
             return getResultSetHandler().handle(rs, queryObject);
-        } finally {
-            ResultSetUtil.close(rs);
         }
     }
 
