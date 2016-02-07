@@ -15,7 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.id;
 
-import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.Dbms;
 
@@ -24,25 +23,19 @@ import javax.sql.DataSource;
 public class IdentityIdentifierGenerator extends AbstractIdentifierGenerator {
 
     /**
-     * @param propertyType
-     * @param dbms
+     * {@inheritDoc}
      */
     public IdentityIdentifierGenerator(PropertyType propertyType, Dbms dbms) {
         super(propertyType, dbms);
     }
 
-    /**
-     * @see IdentifierGenerator#setIdentifier(java.lang.Object,
-     *      javax.sql.DataSource)
-     */
+    @Override
     public void setIdentifier(Object bean, DataSource ds) throws Exception {
         Object value = executeSql(ds, getDbms().getIdentitySelectString(), null);
         setIdentifier(bean, value);
     }
 
-    /**
-     * @see IdentifierGenerator#isSelfGenerate()
-     */
+    @Override
     public boolean isSelfGenerate() {
         return false;
     }

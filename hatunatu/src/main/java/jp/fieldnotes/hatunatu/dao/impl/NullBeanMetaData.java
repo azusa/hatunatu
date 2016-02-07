@@ -34,16 +34,19 @@ public class NullBeanMetaData implements BeanMetaData {
         this.daoInterface = daoInterface;
     }
 
+    @Override
     public String convertFullColumnName(String alias) {
         throwException();
         return null;
     }
 
+    @Override
     public String getAutoSelectList() {
         throwException();
         return null;
     }
 
+    @Override
     public Set getModifiedPropertyNames(Object bean) {
         throwException();
         return null;
@@ -54,126 +57,150 @@ public class NullBeanMetaData implements BeanMetaData {
         return false;
     }
 
+    @Override
     public String getPrimaryKey(int index) {
         throwException();
         return null;
     }
 
+    @Override
     public int getPrimaryKeySize() {
         throwException();
         return 0;
     }
 
+    @Override
     public PropertyType getPropertyTypeByAliasName(String aliasName)
             throws ColumnNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public PropertyType getPropertyTypeByColumnName(String columnName)
             throws ColumnNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public RelationPropertyType getRelationPropertyType(int index) {
         throwException();
         return null;
     }
 
+    @Override
     public RelationPropertyType getRelationPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public int getRelationPropertyTypeSize() {
         throwException();
         return 0;
     }
 
+    @Override
     public String getTableName() {
         throwException();
         return null;
     }
 
+    @Override
     public String getTimestampPropertyName() {
         throwException();
         return null;
     }
 
+    @Override
     public PropertyType getTimestampPropertyType()
             throws PropertyNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public String getVersionNoPropertyName() {
         throwException();
         return null;
     }
 
+    @Override
     public PropertyType getVersionNoPropertyType()
             throws PropertyNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public boolean hasPropertyTypeByAliasName(String aliasName) {
         throwException();
         return false;
     }
 
+    @Override
     public boolean hasPropertyTypeByColumnName(String columnName) {
         throwException();
         return false;
     }
 
+    @Override
     public boolean hasTimestampPropertyType() {
         throwException();
         return false;
     }
 
+    @Override
     public boolean hasVersionNoPropertyType() {
         throwException();
         return false;
     }
 
+    @Override
     public Class getBeanClass() {
         return NullBean.class;
     }
 
+    @Override
     public PropertyType getPropertyType(int index) {
         throwException();
         return null;
     }
 
+    @Override
     public PropertyType getPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
         throwException();
         return null;
     }
 
+    @Override
     public int getPropertyTypeSize() {
         throwException();
         return 0;
     }
 
+    @Override
     public IdentifierGenerator getIdentifierGenerator(int index) {
         throwException();
         return null;
     }
 
+    @Override
     public IdentifierGenerator getIdentifierGenerator(String propertyName) {
         throwException();
         return null;
     }
 
+    @Override
     public int getIdentifierGeneratorSize() {
         throwException();
         return 0;
     }
 
+    @Override
     public boolean hasPropertyType(String propertyName) {
         throwException();
         return false;

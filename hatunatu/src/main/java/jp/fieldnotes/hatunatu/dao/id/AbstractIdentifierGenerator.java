@@ -44,6 +44,7 @@ public abstract class AbstractIdentifierGenerator implements
                 .getValueType());
     }
 
+    @Override
     public String getPropertyName() {
         return propertyType.getPropertyName();
     }

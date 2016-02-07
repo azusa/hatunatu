@@ -19,13 +19,13 @@ import javax.sql.DataSource;
 
 /**
  * @author higa
- * 
+ *
  */
 public interface IdentifierGenerator {
 
-    public boolean isSelfGenerate();
+    boolean isSelfGenerate();
 
-    public void setIdentifier(Object bean, DataSource ds) throws Exception;
+    void setIdentifier(Object bean, DataSource ds) throws Exception;
 
-    public String getPropertyName();
+    String getPropertyName();
 }

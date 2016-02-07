@@ -32,20 +32,12 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
     private HashMap idContextMap = new HashMap();
 
     /**
-     * @param propertyType
-     *            プロパティの型
-     * @param dbms
-     *            DBMS
+     * {@inheritDoc}
      */
     public SequenceIdentifierGenerator(PropertyType propertyType, Dbms dbms) {
         super(propertyType, dbms);
     }
 
-    /**
-     * シーケンス名を返します。
-     * 
-     * @return シーケンス名
-     */
     public String getSequenceName() {
         return sequenceName;
     }
@@ -79,10 +71,12 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
         this.allocationSize = allocationSize;
     }
 
+    @Override
     public void setIdentifier(Object bean, DataSource ds) throws Exception {
         setIdentifier(bean, getNextValue(ds));
     }
 
+    @Override
     public boolean isSelfGenerate() {
         return getDbms().isSelfGenerate();
     }

@@ -81,6 +81,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getTableName()
      */
+    @Override
     public String getTableName() {
         return tableName;
     }
@@ -88,6 +89,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getVersionNoPropertyType()
      */
+    @Override
     public PropertyType getVersionNoPropertyType()
             throws PropertyNotFoundRuntimeException {
 
@@ -97,12 +99,14 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getTimestampPropertyType()
      */
+    @Override
     public PropertyType getTimestampPropertyType()
             throws PropertyNotFoundRuntimeException {
 
         return getPropertyType(getTimestampPropertyName());
     }
 
+    @Override
     public String getVersionNoPropertyName() {
         return versionNoPropertyName;
     }
@@ -111,6 +115,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         this.versionNoPropertyName = versionNoPropertyName;
     }
 
+    @Override
     public String getTimestampPropertyName() {
         return timestampPropertyName;
     }
@@ -122,6 +127,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getPropertyTypeByColumnName(java.lang.String)
      */
+    @Override
     public PropertyType getPropertyTypeByColumnName(String columnName)
             throws ColumnNotFoundRuntimeException {
 
@@ -133,6 +139,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         return propertyType;
     }
 
+    @Override
     public PropertyType getPropertyTypeByAliasName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
             return getPropertyTypeByColumnName(alias);
@@ -159,6 +166,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#hasPropertyTypeByColumnName(java.lang.String)
      */
+    @Override
     public boolean hasPropertyTypeByColumnName(String columnName) {
         return propertyTypesByColumnName.get(columnName) != null;
     }
@@ -166,6 +174,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#hasPropertyTypeByAliasName(java.lang.String)
      */
+    @Override
     public boolean hasPropertyTypeByAliasName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
             return true;
@@ -192,6 +201,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#hasVersionNoPropertyType()
      */
+    @Override
     public boolean hasVersionNoPropertyType() {
         return hasPropertyType(getVersionNoPropertyName());
     }
@@ -199,6 +209,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#hasTimestampPropertyType()
      */
+    @Override
     public boolean hasTimestampPropertyType() {
         return hasPropertyType(getTimestampPropertyName());
     }
@@ -206,6 +217,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#convertFullColumnName(java.lang.String)
      */
+    @Override
     public String convertFullColumnName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
             return tableName + "." + alias;
@@ -232,6 +244,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getRelationPropertyTypeSize()
      */
+    @Override
     public int getRelationPropertyTypeSize() {
         return relationPropertyTypes.size();
     }
@@ -239,6 +252,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getRelationPropertyType(int)
      */
+    @Override
     public RelationPropertyType getRelationPropertyType(int index) {
         return (RelationPropertyType) relationPropertyTypes.get(index);
     }
@@ -246,6 +260,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getRelationPropertyType(java.lang.String)
      */
+    @Override
     public RelationPropertyType getRelationPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
 
@@ -320,6 +335,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getPrimaryKeySize()
      */
+    @Override
     public int getPrimaryKeySize() {
         return primaryKeys.length;
     }
@@ -327,18 +343,22 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getPrimaryKey(int)
      */
+    @Override
     public String getPrimaryKey(int index) {
         return primaryKeys[index].getColumnName();
     }
 
+    @Override
     public int getIdentifierGeneratorSize() {
         return identifierGenerators.size();
     }
 
+    @Override
     public IdentifierGenerator getIdentifierGenerator(int index) {
         return (IdentifierGenerator) identifierGenerators.get(index);
     }
 
+    @Override
     public IdentifierGenerator getIdentifierGenerator(String propertyName) {
         return (IdentifierGenerator) identifierGeneratorsByPropertyName
                 .get(propertyName);
@@ -347,6 +367,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
     /**
      * @see BeanMetaData#getAutoSelectList()
      */
+    @Override
     public synchronized String getAutoSelectList() {
         if (autoSelectList != null) {
             return autoSelectList;
@@ -408,6 +429,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         this.modifiedPropertySupport = propertyModifiedSupport;
     }
 
+    @Override
     public Set getModifiedPropertyNames(final Object bean) {
         return getModifiedPropertySupport().getModifiedPropertyNames(bean);
     }
