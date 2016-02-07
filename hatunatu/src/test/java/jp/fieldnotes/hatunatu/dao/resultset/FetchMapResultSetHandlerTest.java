@@ -41,7 +41,7 @@ public class FetchMapResultSetHandlerTest  {
     public void testHandle() throws Exception {
         String sql = "select employee_id, employee_name from emp4 where employee_id = 7369";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         final List<Map> list = new ArrayList<Map>();
         ResultSetHandler handler = new FetchMapResultSetHandler(
                 new FetchHandler<Map>() {
@@ -50,15 +50,8 @@ public class FetchMapResultSetHandlerTest  {
                         return true;
                     }
                 });
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            handler.handle(rs, test.getQueryObject());
         }
         assertNotNull(list);
         assertEquals(1, list.size());

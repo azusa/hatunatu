@@ -47,7 +47,7 @@ public class DtoListMetaDataResultSetHandlerTest {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (List) handler.handle(rs);
+                ret = (List) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -73,7 +73,7 @@ public class DtoListMetaDataResultSetHandlerTest {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (List) handler.handle(rs);
+                ret = (List) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

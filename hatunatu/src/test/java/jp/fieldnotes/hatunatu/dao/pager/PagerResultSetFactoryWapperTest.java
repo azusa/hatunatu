@@ -16,96 +16,71 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
-import junit.framework.TestCase;
+import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.sql.ResultSet;
 
-public class PagerResultSetFactoryWapperTest extends TestCase {
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.*;
 
-    MockResultSetFactory original;
+public class PagerResultSetFactoryWapperTest {
+
+    ResultSetFactory original;
 
     PagerResultSetFactoryWrapper wrapper;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        original = new MockResultSetFactory();
+    ResultSet expect;
+
+    @Before
+    public void setUp() throws Exception {
+        original = mock(ResultSetFactory.class);
         wrapper = new PagerResultSetFactoryWrapper(original);
-        PagerContext.start();
+        expect = mock(ResultSet.class);
+        when(original.createResultSet(anyObject(), anyObject())).thenReturn(expect);
+
     }
 
-    protected void tearDown() throws Exception {
-        PagerContext.end();
-        super.tearDown();
-    }
 
+    @Test
     public void testCreateResultSetNotPagerCondition() throws Exception {
-        try {
-            PagerContext.getContext().pushArgs(createNormalArgs());
-            ResultSet resultSet = wrapper.createResultSet(null);
-            assertEquals(1, original.getCreatedResultSetCount());
-            assertEquals(original.getCreatedResultSet(0), resultSet);
-        } finally {
-            PagerContext.getContext().popArgs();
-        }
+        ResultSet resultSet = wrapper.createResultSet(null, createNormalArgs());
+        verify(original).createResultSet(anyObject(), anyObject());
+        assertThat(resultSet, is(sameInstance(expect)));
     }
 
+    @Test
     public void testCreateResultSetPagerCondition() throws Exception {
-        try {
-            PagerContext.getContext().pushArgs(createPagerConditionArgs());
-            ResultSet resultSet = wrapper.createResultSet(null);
-            assertEquals(1, original.getCreatedResultSetCount());
-            assertEquals(PagerResultSetWrapper.class, resultSet.getClass());
-        } finally {
-            PagerContext.getContext().popArgs();
-        }
+        ResultSet resultSet = wrapper.createResultSet(null, createPagerConditionArgs());
+        verify(original).createResultSet(anyObject(), anyObject());
+        assertThat(resultSet, is(instanceOf(PagerResultSetWrapper.class)));
     }
 
+    @Test
     public void testCreateResultSetPagerConditionNoneLimit() throws Exception {
-        try {
-            PagerContext.getContext().pushArgs(
-                    createPagerConditionArgsNoneLimit());
-            ResultSet resultSet = wrapper.createResultSet(null);
-            assertEquals(1, original.getCreatedResultSetCount());
-            assertEquals(original.getCreatedResultSet(0), resultSet);
-        } finally {
-            PagerContext.getContext().popArgs();
-        }
+        ResultSet resultSet = wrapper.createResultSet(null, createPagerConditionArgsNoneLimit());
+        verify(original).createResultSet(anyObject(), anyObject());
+        assertThat(resultSet, is(sameInstance(expect)));
     }
 
-    public void testCreateResultSetSequence() throws Exception {
-        try {
-            PagerContext.getContext().pushArgs(createPagerConditionArgs());
-            PagerContext.getContext().pushArgs(createNormalArgs());
-            ResultSet resultSet = wrapper.createResultSet(null);
-            assertEquals(1, original.getCreatedResultSetCount());
-            assertEquals(original.getCreatedResultSet(0), resultSet);
-        } finally {
-            PagerContext.getContext().popArgs();
-            try {
-                ResultSet resultSet = wrapper.createResultSet(null);
-                assertEquals(2, original.getCreatedResultSetCount());
-                assertEquals(PagerResultSetWrapper.class, resultSet.getClass());
-            } finally {
-                PagerContext.getContext().popArgs();
-            }
-        }
-    }
 
     private Object[] createNormalArgs() {
-        return new Object[] {};
+        return new Object[]{};
     }
 
     private Object[] createPagerConditionArgs() {
         DefaultPagerCondition pagerConditionBase = new DefaultPagerCondition();
         pagerConditionBase.setLimit(10);
-        return new Object[] { pagerConditionBase };
+        return new Object[]{pagerConditionBase};
     }
 
     private Object[] createPagerConditionArgsNoneLimit() {
         DefaultPagerCondition pagerConditionBase = new DefaultPagerCondition();
         pagerConditionBase.setLimit(PagerCondition.NONE_LIMIT);
-        return new Object[] { pagerConditionBase };
+        return new Object[]{pagerConditionBase};
     }
 
 }

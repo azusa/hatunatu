@@ -23,7 +23,7 @@ import java.util.List;
 public class S2DaoBeanListReader extends S2DaoBeanReader {
 
     public S2DaoBeanListReader(List list,
-            BeanMetaDataFactory beanMetaDataFactory) {
+                               BeanMetaDataFactory beanMetaDataFactory) throws Exception {
         final BeanMetaData beanMetaData = beanMetaDataFactory
                 .createBeanMetaData(list.get(0).getClass());
         initialize(list, beanMetaData);

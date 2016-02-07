@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ParameterType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
@@ -121,10 +122,11 @@ public class ArgumentDtoProcedureCommandTest {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeCcc1"));
         try {
-            command.execute(new Object[] { null });
+            command.execute(new Object[]{null});
             fail();
-        } catch (SIllegalArgumentException e) {
-            assertEquals("EDAO0029", e.getMessageCode());
+        } catch (SqlCommandException e) {
+            SIllegalArgumentException cause = (SIllegalArgumentException) e.getCause();
+            assertEquals("EDAO0029", cause.getMessageCode());
             System.out.println(e.getMessage());
         }
     }

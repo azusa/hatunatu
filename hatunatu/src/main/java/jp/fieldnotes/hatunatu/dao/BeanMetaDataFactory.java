@@ -18,14 +18,15 @@ package jp.fieldnotes.hatunatu.dao;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 
 public interface BeanMetaDataFactory {
 
-    BeanMetaData createBeanMetaData(Class daoInterface, Class beanClass);
+    BeanMetaData createBeanMetaData(Class daoInterface, Class beanClass) throws SQLException;
 
-    BeanMetaData createBeanMetaData(Class beanClass);
+    BeanMetaData createBeanMetaData(Class beanClass) throws SQLException;
 
-    BeanMetaData createBeanMetaData(Class beanClass, int relationNestLevel);
+    BeanMetaData createBeanMetaData(Class beanClass, int relationNestLevel) throws SQLException;
 
     BeanMetaData createBeanMetaData(DatabaseMetaData dbMetaData,
             Class beanClass, int relationNestLevel);

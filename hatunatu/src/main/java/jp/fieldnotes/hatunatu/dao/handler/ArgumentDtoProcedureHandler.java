@@ -18,9 +18,8 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
-import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
@@ -53,47 +52,40 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      * インスタンスを構築します。
      * 
      * @param dataSource データソース
-     * @param sql SQL
      * @param resultSetHandler　{@link ResultSet}のハンドラ
      * @param statementFactory　{@link Statement}のファクトリ
      * @param resultSetFactory　{@link ResultSet}のファクトリ
      * @param procedureMetaData　プロシージャのメタ情報
      */
     public ArgumentDtoProcedureHandler(final DataSource dataSource,
-            final String sql, final ResultSetHandler resultSetHandler,
-            final StatementFactory statementFactory,
-            final ResultSetFactory resultSetFactory,
-            final ProcedureMetaData procedureMetaData) {
+                                       final ResultSetHandler resultSetHandler,
+                                       final StatementFactory statementFactory,
+                                       final ResultSetFactory resultSetFactory,
+                                       final ProcedureMetaData procedureMetaData) {
 
-        super(dataSource, sql, resultSetHandler, statementFactory,
+        super(dataSource, resultSetHandler, statementFactory,
                 resultSetFactory);
         setProcedureMetaData(procedureMetaData);
     }
 
-    public Object execute(final Connection connection, final Object[] args,
-            final Class[] argTypes) {
-        final Object dto = getArgumentDto(args);
-        logSql(args, argTypes);
-        CallableStatement cs = null;
-        try {
-            cs = prepareCallableStatement(connection);
+    @Override
+    public Object execute(final Connection connection, QueryObject queryObject) throws SQLException {
+        final Object dto = getArgumentDto(queryObject.getMethodArguments());
+        logSql(queryObject);
+        try (CallableStatement cs = prepareCallableStatement(connection, queryObject)) {
             bindArgs(cs, dto);
             if (cs.execute()) {
-                return handleResultSet(cs);
+                return handleResultSet(cs, queryObject);
             } else {
                 return handleOutParameters(cs, dto);
             }
-        } catch (final SQLException e) {
-            throw new SQLRuntimeException(e);
-        } finally {
-            StatementUtil.close(cs);
         }
     }
 
-    protected String getCompleteSql(final Object[] args) {
-        String sql = getSql();
-        Object dto = getArgumentDto(args);
-        if (args == null || dto == null) {
+    protected String getCompleteSql(final QueryObject queryObject) {
+        String sql = queryObject.getSql();
+        Object dto = getArgumentDto(queryObject.getMethodArguments());
+        if (queryObject.getMethodArguments() == null || dto == null) {
             return sql;
         }
         StringBuilder buf = new StringBuilder(100);
@@ -117,19 +109,13 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         return buf.toString();
     }
 
-    /**
-     * ストアドプロシージャを表す文を生成します。
-     * 
-     * @param connection コネクション
-     * @return　ストアドプロシージャを表す文
-     */
     protected CallableStatement prepareCallableStatement(
-            final Connection connection) {
-        if (getSql() == null) {
+            final Connection connection, QueryObject queryObject) {
+        if (queryObject.getSql() == null) {
             throw new EmptyRuntimeException("sql");
         }
         final CallableStatement cs = getStatementFactory()
-                .createCallableStatement(connection, getSql());
+                .createCallableStatement(connection, queryObject.getSql());
         if (getFetchSize() > -1) {
             StatementUtil.setFetchSize(cs, getFetchSize());
         }
@@ -173,14 +159,10 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      * @return <code>ResultSet</code>から変換された値
      * @throws SQLException SQL例外が発生した場合
      */
-    protected Object handleResultSet(final CallableStatement cs)
+    protected Object handleResultSet(final CallableStatement cs, QueryObject queryObject)
             throws SQLException {
-        ResultSet rs = null;
-        try {
-            rs = getResultSetFactory().getResultSet(cs);
-            return getResultSetHandler().handle(rs);
-        } finally {
-            ResultSetUtil.close(rs);
+        try (ResultSet rs = getResultSetFactory().getResultSet(cs)) {
+            return getResultSetHandler().handle(rs, queryObject);
         }
     }
 
@@ -188,7 +170,7 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
      * <code>OUT</code>パラメータを処理します。
      * 
      * @param cs　ストアドプロシージャを表す文
-     * @param args 引数のDTO
+     * @param dto 引数のDTO
      * @return 引数のDTO
      * @throws SQLException
      */

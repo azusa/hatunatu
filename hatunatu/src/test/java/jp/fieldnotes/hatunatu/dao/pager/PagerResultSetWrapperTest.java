@@ -16,29 +16,34 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class PagerResultSetWrapperTest extends TestCase {
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
+public class PagerResultSetWrapperTest {
+
+    @Test
     public void testNext() throws Exception {
 
-        // assertPaging(50, 20, 10, 11, 50);
-        // assertPaging(50, 45, 10, 6, 50);
-        // assertPaging(5 , 0, 10, 6, 5);
-        // assertPaging(1 , 0, 10, 1, 1);
+        assertPaging(50, 20, 10, 51, 50);
+        assertPaging(50, 45, 10, 51, 50);
+        assertPaging(5, 0, 10, 6, 5);
+        assertPaging(1, 0, 10, 2, 1);
     }
 
-    public void assertPaging(int total, int offset, int limit,
-            int expectedNextCount, int expectedCount) throws Exception {
+    private void assertPaging(int total, int offset, int limit,
+                              int expectedNextCount, int expectedCount) throws Exception {
         MockResultSet original = new MockResultSet(total);
         PagerCondition condition = new DefaultPagerCondition();
         condition.setOffset(offset);
         condition.setLimit(limit);
         PagerResultSetWrapper wrapper = new PagerResultSetWrapper(original,
-                condition, true);
+                condition, false);
         while (wrapper.next()) {
         }
-        assertEquals(expectedNextCount, original.getCallNextCount());
+        assertThat(original.getCallNextCount(), is(expectedNextCount));
         assertEquals(expectedCount, condition.getCount());
     }
 

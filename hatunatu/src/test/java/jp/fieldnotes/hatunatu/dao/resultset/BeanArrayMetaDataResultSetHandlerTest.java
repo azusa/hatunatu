@@ -48,7 +48,7 @@ public class BeanArrayMetaDataResultSetHandlerTest {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee[]) handler.handle(rs);
+                ret = (Employee[]) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }

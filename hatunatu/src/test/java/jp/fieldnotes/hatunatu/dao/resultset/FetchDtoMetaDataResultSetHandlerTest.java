@@ -44,7 +44,7 @@ public class FetchDtoMetaDataResultSetHandlerTest  {
     public void testHandle() throws Exception {
         String sql = "select empno, ename, dname from emp, dept where empno = 7788 and emp.deptno = dept.deptno";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         final List<EmployeeDto> ret = new ArrayList<EmployeeDto>();
         ResultSetHandler handler = new FetchDtoMetaDataResultSetHandler(
                 test.createDtoMetaData(EmployeeDto.class), createRowCreator(),
@@ -54,15 +54,8 @@ public class FetchDtoMetaDataResultSetHandlerTest  {
                         return true;
                     };
                 });
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+            handler.handle(rs, test.getQueryObject());
         }
         assertNotNull(ret);
         assertEquals(1, ret.size());
@@ -76,7 +69,7 @@ public class FetchDtoMetaDataResultSetHandlerTest  {
     public void testHandle2() throws Exception {
         String sql = "select employee_id, employee_name from emp4 where employee_id = 7369";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         final List<EmployeeDto3> ret = new ArrayList<EmployeeDto3>();
         ResultSetHandler handler = new FetchDtoMetaDataResultSetHandler(
                 test.createDtoMetaData(EmployeeDto3.class), createRowCreator(),
@@ -86,15 +79,9 @@ public class FetchDtoMetaDataResultSetHandlerTest  {
                         return true;
                     };
                 });
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+
+            handler.handle(rs, test.getQueryObject());
         }
         assertNotNull(ret);
         assertEquals(1, ret.size());

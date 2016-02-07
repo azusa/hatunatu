@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
@@ -94,37 +95,42 @@ public class H2Test  {
         // ## Assert ##
         final String sequenceNextValString = dbms
                 .getSequenceNextValString("H2TEST_SEQ");
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sequenceNextValString);
+
         final BasicSelectHandler nextvalHandler = new BasicSelectHandler(
-                test.getDataSource(), sequenceNextValString,
+                test.getDataSource(),
                 new ObjectResultSetHandler());
         {
-            final Number nextval = (Number) nextvalHandler.execute(null);
+            final Number nextval = (Number) nextvalHandler.execute(queryObject);
             assertEquals(7650, nextval.intValue());
         }
         {
-            final Number nextval = (Number) nextvalHandler.execute(null);
+            final Number nextval = (Number) nextvalHandler.execute(queryObject);
             assertEquals(7651, nextval.intValue());
         }
         {
-            final Number nextval = (Number) nextvalHandler.execute(null);
+            final Number nextval = (Number) nextvalHandler.execute(queryObject);
             assertEquals(7652, nextval.intValue());
         }
 
         final String identitySelectString = dbms.getIdentitySelectString();
         final BasicSelectHandler identityHandler = new BasicSelectHandler(
-                test.getDataSource(), identitySelectString,
+                test.getDataSource(),
                 new ObjectResultSetHandler());
+        QueryObject queryObject2 = new QueryObject();
+        queryObject2.setSql(identitySelectString);
         {
-            final Number currval = (Number) identityHandler.execute(null);
+            final Number currval = (Number) identityHandler.execute(queryObject2);
             assertEquals(7652, currval.intValue());
         }
         {
-            final Number currval = (Number) identityHandler.execute(null);
+            final Number currval = (Number) identityHandler.execute(queryObject2);
             assertEquals(7652, currval.intValue());
         }
         {
-            nextvalHandler.execute(null);
-            final Number currval = (Number) identityHandler.execute(null);
+            nextvalHandler.execute(queryObject);
+            final Number currval = (Number) identityHandler.execute(queryObject2);
             assertEquals(7653, currval.intValue());
         }
 

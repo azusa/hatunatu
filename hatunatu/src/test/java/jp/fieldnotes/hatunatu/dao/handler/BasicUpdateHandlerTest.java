@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
+import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BasicUpdateHandlerTest  {
 
@@ -33,9 +32,13 @@ public class BasicUpdateHandlerTest  {
     public void testExecuteTx() throws Exception {
         String sql = "update emp set ename = ?, comm = ? where empno = ?";
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        int ret = handler.execute(new Object[] { "SCOTT", null,
+                BasicStatementFactory.INSTANCE);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(new Object[]{"SCOTT", null,
                 new Integer(7788) });
+        queryObject.setBindTypes(new Class[]{String.class, null, Integer.class});
+        int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }
 
@@ -43,57 +46,46 @@ public class BasicUpdateHandlerTest  {
     public void testExecuteWithQuestionTx() throws Exception {
         String sql = "update emp set job = 'AA?A' where empno = ?";
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        int ret = handler.execute(new Object[] { new Integer(7788) });
+                BasicStatementFactory.INSTANCE);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(new Object[]{new Integer(7788)});
+        queryObject.setBindTypes(new Class[]{Integer.class});
+
+
+        int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }
 
     @Test
     public void testExecuteWithQuestion2Tx() throws Exception {
         String sql = "update emp set job = 'AA' where empno = ?";
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(new Object[]{new Integer(7788)});
+        queryObject.setBindTypes(new Class[]{Integer.class});
+
+
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        int ret = handler.execute(new Object[] { new Integer(7788) });
+                BasicStatementFactory.INSTANCE);
+        int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }
 
     @Test
     public void testExecuteWithQuestion3Tx() throws Exception {
         String sql = "update emp set ename = ?, job = 'AA' where empno = ?";
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setBindArguments(new Object[]{"SCOTT", new Integer(7788)});
+        queryObject.setBindTypes(new Class[]{String.class, Integer.class});
+
+
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        int ret = handler.execute(new Object[] { "SCOTT", new Integer(7788) });
+                BasicStatementFactory.INSTANCE);
+        int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }
 
-    @Test
-    public void testExceptionByBrokenSqlTx() throws Exception {
-        String sql = "pdate emp set ename = ?, comm = ? where empno = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        try {
-            handler.execute(new Object[] { "SCOTT", null, new Integer(7788) });
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final org.seasar.framework.exception.SSQLException cause = (org.seasar.framework.exception.SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
-
-    @Test
-    public void testExceptionByWrongDataTypeTx() throws Exception {
-        final String sql = "update emp set comm = ?";
-        BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                sql);
-        try {
-            handler.execute(new Object[] { new Date() });
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final org.seasar.framework.exception.SSQLException cause = (org.seasar.framework.exception.SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
 
 }

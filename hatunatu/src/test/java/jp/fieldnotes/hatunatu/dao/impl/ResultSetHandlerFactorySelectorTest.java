@@ -49,7 +49,7 @@ public class ResultSetHandlerFactorySelectorTest  {
      * {@link ResultSetHandlerFactorySelector#getResultSetHandler(jp.fieldnotes.hatunatu.api.DaoAnnotationReader, BeanMetaData, Method)}.
      */
     @Test
-    public void testGetResultSetHandler() {
+    public void testGetResultSetHandler() throws Exception {
         BeanDesc daoBeanDesc = BeanDescFactory.getBeanDesc(EmployeeDao.class);
         jp.fieldnotes.hatunatu.api.DaoAnnotationReader daoAnnotationReader = annotationReaderFactory
                 .createDaoAnnotationReader(daoBeanDesc);

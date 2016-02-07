@@ -15,8 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.api.pager;
 
-import java.util.Stack;
-
 /**
  * ページャの情報をスレッドローカルに保持します。
  * 
@@ -27,42 +25,11 @@ public class PagerContext {
 
     private static final Object[] EMPTY_ARGS = new Object[0];
 
-    /** スレッドローカル */
-    private static ThreadLocal threadLocal = new ThreadLocal();
-
-    /** Stack */
-    private Stack argsStack = new Stack();
-
     /**
      * コンストラクタ
      */
     private PagerContext() {
     };
-
-    /**
-     * 現在のスレッドに結びついたPagerContextを取得します。
-     * 
-     * @return PagerContext
-     */
-    public static PagerContext getContext() {
-        return (PagerContext) threadLocal.get();
-    }
-
-    public void pushArgs(Object[] args) {
-        argsStack.push(args);
-    }
-
-    public Object[] popArgs() {
-        return (Object[]) argsStack.pop();
-    }
-
-    public Object[] peekArgs() {
-        if (argsStack.size() == 0) {
-            return EMPTY_ARGS;
-        } else {
-            return (Object[]) argsStack.peek();
-        }
-    }
 
     /**
      * メソッドの引数にPagerConditionが含まれているかどうかを判定します。
@@ -99,22 +66,6 @@ public class PagerContext {
             }
         }
         return null;
-    }
-
-    /**
-     * ThreadLocalのインスタンスに、PagerContextを設定します。
-     *
-     */
-    public static void start() {
-        threadLocal.set(new PagerContext());
-    }
-
-    /**
-     * ThreadLocalのインスタンスに設定されているPagerContextをクリアします。
-     *
-     */
-    public static void end() {
-        threadLocal.set(null);
     }
 
 }

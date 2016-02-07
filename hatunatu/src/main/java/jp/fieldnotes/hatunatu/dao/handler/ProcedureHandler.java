@@ -15,10 +15,10 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 public interface ProcedureHandler {
 
-    public Object execute(Object[] args) throws SQLRuntimeException;
+    public Object execute(QueryObject queryObject) throws Exception;
 
 }

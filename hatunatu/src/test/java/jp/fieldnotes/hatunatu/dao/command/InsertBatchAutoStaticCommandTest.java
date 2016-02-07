@@ -23,6 +23,7 @@ import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class InsertBatchAutoStaticCommandTest  {
@@ -40,9 +41,10 @@ public class InsertBatchAutoStaticCommandTest  {
         Employee emp2 = new Employee();
         emp2.setEmpno(98);
         emp2.setEname("hoge2");
-        Integer count = (Integer) cmd.execute(new Object[] { new Employee[] {
+        int[] count = (int[]) cmd.execute(new Object[]{new Employee[]{
                 emp, emp2 } });
-        assertEquals("1", new Integer(2), count);
+        assertArrayEquals(new int[]{1, 1}, count);
+//        assertEquals("1", new Integer(2), count);
 
         SqlCommand cmd2 = dmd.getSqlCommand(test.getSingleDaoMethod(EmployeeAutoDao.class,"insertBatch2"));
         Employee emp3 = new Employee();

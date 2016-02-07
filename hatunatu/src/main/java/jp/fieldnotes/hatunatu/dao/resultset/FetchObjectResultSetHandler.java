@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +42,8 @@ public class FetchObjectResultSetHandler extends AbstractObjectResultSetHandler 
      * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
      */
     @SuppressWarnings("unchecked")
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         ValueType valueType = getValueType(rs);
         int count = 0;
         while (rs.next()) {

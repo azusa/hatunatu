@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
@@ -84,8 +85,9 @@ public class InsertAutoDynamicCommandTest  {
         try {
             cmd.execute(new Object[] { table });
             fail();
-        } catch (SRuntimeException e) {
-            final String message = e.getMessage();
+        } catch (SqlCommandException e) {
+            SRuntimeException cause = (SRuntimeException) e.getCause();
+            final String message = cause.getMessage();
             assertEquals(true, StringUtil.contains(message, "EDAO0014"));
         }
     }
@@ -106,8 +108,9 @@ public class InsertAutoDynamicCommandTest  {
         try {
             cmd.execute(new Object[] { dto });
             fail();
-        } catch (final SRuntimeException e) {
-            final String message = e.getMessage();
+        } catch (final SqlCommandException e) {
+            SRuntimeException cause = (SRuntimeException) e.getCause();
+            final String message = cause.getMessage();
             System.out.println(message);
             assertEquals(true, StringUtil.contains(message, "EDAO0024"));
         }

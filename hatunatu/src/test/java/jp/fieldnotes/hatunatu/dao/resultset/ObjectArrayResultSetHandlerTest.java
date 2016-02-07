@@ -37,17 +37,10 @@ public class ObjectArrayResultSetHandlerTest {
                 Integer.class);
         String sql = "select empno from emp";
         Connection con = test.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
+
         Integer[] ret = null;
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                ret = (Integer[]) handler.handle(rs);
-            } finally {
-                rs.close();
-            }
-        } finally {
-            ps.close();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            ret = (Integer[]) handler.handle(rs, test.getQueryObject());
         }
         assertEquals(14, ret.length);
     }

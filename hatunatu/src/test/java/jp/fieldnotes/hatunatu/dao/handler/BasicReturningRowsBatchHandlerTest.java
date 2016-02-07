@@ -16,18 +16,16 @@
 package jp.fieldnotes.hatunatu.dao.handler;
 
 import jp.fieldnotes.hatunatu.dao.impl.MapListResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.exception.SSQLException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BasicReturningRowsBatchHandlerTest  {
 
@@ -38,20 +36,25 @@ public class BasicReturningRowsBatchHandlerTest  {
     public void testExecuteTx() throws Exception {
         String sql = "update emp set ename = ?, comm = ? where empno = ?";
         BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                test.getDataSource(), sql, 2);
-        List list = new ArrayList();
+                test.getDataSource(), 2);
+        List<Object[]> list = new ArrayList<>();
         list.add(new Object[] { "aaa", null, new Integer(7369) });
         list.add(new Object[] { "bbb", new Double(100.5), new Integer(7499) });
         list.add(new Object[] { "ccc", null, new Integer(7521) });
-        int[] rows = handler.execute(list);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        int[] rows = handler.execute(queryObject, list);
         assertEquals(1, rows[0]);
         assertEquals(1, rows[1]);
         assertEquals(1, rows[2]);
         assertEquals(3, rows.length);
         String sql2 = "select empno, ename, comm from emp where empno in (7369, 7499, 7521) order by empno";
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                sql2, new MapListResultSetHandler());
-        List ret2 = (List) handler2.execute((Object[]) null);
+                new MapListResultSetHandler());
+        queryObject = new QueryObject();
+        queryObject.setSql(sql2);
+
+        List ret2 = (List) handler2.execute(queryObject);
         Map rec = (Map) ret2.get(0);
         assertEquals("aaa", rec.get("ename"));
         rec = (Map) ret2.get(1);
@@ -60,38 +63,6 @@ public class BasicReturningRowsBatchHandlerTest  {
         assertEquals("ccc", rec.get("ename"));
     }
 
-    @Test
-    public void testExceptionByBrokenSqlTx() throws Exception {
-        final String sql = "updat emp set ename = ?, comm = ? where empno = ?";
-        BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                test.getDataSource(), sql, 2);
-        List list = new ArrayList();
-        list.add(new Object[] { "aaa", null, new Integer(7369) });
-        try {
-            handler.execute(list);
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final SSQLException cause = (SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
 
-    @Test
-    public void testExceptionByWrongDataTypeTx() throws Exception {
-        final String sql = "update emp set ename = ?, comm = ? where empno = ?";
-        BasicReturningRowsBatchHandler handler = new BasicReturningRowsBatchHandler(
-                test.getDataSource(), sql, 2);
-        List list = new ArrayList();
-        list.add(new Object[] { "aaa", new Date(), new Integer(7369) });
-        try {
-            handler.execute(list);
-            fail();
-        } catch (SQLRuntimeException e) {
-            assertTrue(e.getMessage(), e.getMessage().indexOf(sql) > -1);
-            final SSQLException cause = (SSQLException) e.getCause();
-            assertEquals(sql, cause.getSql());
-        }
-    }
 
 }

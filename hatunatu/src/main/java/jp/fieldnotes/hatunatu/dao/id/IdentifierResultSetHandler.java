@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.id;
 
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +30,8 @@ public class IdentifierResultSetHandler implements ResultSetHandler {
         this.valueType = valueType;
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         if (rs.next()) {
             return valueType.getValue(rs, 1);
         }

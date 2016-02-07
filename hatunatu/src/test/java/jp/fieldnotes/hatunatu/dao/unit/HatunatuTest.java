@@ -19,10 +19,10 @@ package jp.fieldnotes.hatunatu.dao.unit;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import org.junit.rules.ExternalResource;
 import org.seasar.extension.dataset.DataReader;
@@ -52,6 +52,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +110,8 @@ public class HatunatuTest extends ExternalResource {
 
     private String dataSourceDiconName;
 
+    private QueryObject queryObject = new QueryObject();
+
     public HatunatuTest(Object instance){
         this(instance, "j2ee.dicon");
     }
@@ -152,7 +155,6 @@ public class HatunatuTest extends ExternalResource {
         tableNaming = null;
         columnNaming = null;
         procedureMetaDataFactory = null;
-        PagerContext.end();
 
     }
 
@@ -194,7 +196,7 @@ public class HatunatuTest extends ExternalResource {
         writer.write(dataSet);
     }
 
-    public BeanMetaData createBeanMetaData(final Class beanClass) {
+    public BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException {
         final BeanMetaDataFactory factory = getBeanMetaDataFactory();
         return factory.createBeanMetaData(beanClass);
     }
@@ -233,7 +235,6 @@ public class HatunatuTest extends ExternalResource {
         dmd.setProcedureMetaDataFactory(getProcedureMetaDataFactory());
         dmd.setDtoMetaDataFactory(dmdf);
         dmd.setResultSetHandlerFactory(getResultSetHandlerFactory());
-        dmd.initialize();
         return dmd;
     }
 
@@ -321,6 +322,10 @@ public class HatunatuTest extends ExternalResource {
         }
         connection = DataSourceUtil.getConnection(this.dataSource);
         return connection;
+    }
+
+    public QueryObject getQueryObject() {
+        return this.queryObject;
     }
 
     protected ResultSetHandlerFactory getResultSetHandlerFactory() {

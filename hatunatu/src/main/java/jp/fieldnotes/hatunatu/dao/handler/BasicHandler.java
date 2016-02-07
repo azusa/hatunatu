@@ -20,6 +20,7 @@ import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.SqlLogImpl;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
@@ -40,11 +41,9 @@ import java.sql.SQLException;
  * @author higa
  * 
  */
-public class BasicHandler {
+public abstract class BasicHandler {
 
     private DataSource dataSource;
-
-    private String sql;
 
     private StatementFactory statementFactory = BasicStatementFactory.INSTANCE;
 
@@ -64,28 +63,13 @@ public class BasicHandler {
      * 
      * @param ds
      *            データソース
-     * @param sql
-     *            SQL
-     */
-    public BasicHandler(DataSource ds, String sql) {
-        this(ds, sql, BasicStatementFactory.INSTANCE);
-    }
-
-    /**
-     * {@link BasicHandler}を作成します。
-     * 
-     * @param ds
-     *            データソース
-     * @param sql
-     *            SQL
      * @param statementFactory
      *            ステートメントファクトリ
      */
-    public BasicHandler(DataSource ds, String sql,
-            StatementFactory statementFactory) {
+    public BasicHandler(DataSource ds,
+                        StatementFactory statementFactory) {
 
         setDataSource(ds);
-        setSql(sql);
         setStatementFactory(statementFactory);
     }
 
@@ -108,24 +92,7 @@ public class BasicHandler {
         this.dataSource = dataSource;
     }
 
-    /**
-     * SQLを返します。
-     * 
-     * @return SQL
-     */
-    public String getSql() {
-        return sql;
-    }
 
-    /**
-     * SQLを設定します。
-     * 
-     * @param sql
-     *            SQL
-     */
-    public void setSql(String sql) {
-        this.sql = sql;
-    }
 
     /**
      * ステートメントファクトリを返します。
@@ -163,13 +130,11 @@ public class BasicHandler {
      * 
      * @param connection
      *            コネクション
+     * @param queryObject
      * @return 準備されたステートメント
      */
-    protected PreparedStatement prepareStatement(Connection connection) {
-        if (sql == null) {
-            throw new EmptyRuntimeException("sql");
-        }
-        return statementFactory.createPreparedStatement(connection, sql);
+    protected PreparedStatement prepareStatement(Connection connection, QueryObject queryObject) {
+        return statementFactory.createPreparedStatement(connection, queryObject);
     }
 
     /**
@@ -220,14 +185,14 @@ public class BasicHandler {
     }
 
     /**
-     * 完全なSQL文を返します。
-     * 
-     * @param args
-     *            引数
-     * @return 完全なSQL文
+     * Returns Complate SQL.
+     *
+     * @param queryObject
+     *            An object of SQL query.
+     * @return Complate SQL
      */
-    protected String getCompleteSql(Object[] args) {
-        return BindVariableUtil.getCompleteSql(sql, args);
+    protected String getCompleteSql(QueryObject queryObject) {
+        return BindVariableUtil.getCompleteSql(queryObject.getSql(), queryObject.getBindArguments());
     }
 
     /**
@@ -254,23 +219,20 @@ public class BasicHandler {
 
     /**
      * SQLをログ出力します。
-     * 
-     * @param args
-     *            SQLにバインドされる値の配列
-     * @param argTypes
-     *            SQLにバインドされる値の型の配列
+     *
+     * @param queryObject
      */
-    protected void logSql(Object[] args, Class[] argTypes) {
+    protected void logSql(QueryObject queryObject) {
         Logger logger = Logger.getLogger(loggerClass);
         SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator.getInstance();
         if (logger.isDebugEnabled() || sqlLogRegistry != null) {
-            String completeSql = getCompleteSql(args);
+            String completeSql = getCompleteSql(queryObject);
             if (logger.isDebugEnabled()) {
                 logger.debug(completeSql);
             }
             if (sqlLogRegistry != null) {
-                SqlLog sqlLog = new SqlLogImpl(getSql(), completeSql, args,
-                        argTypes);
+                SqlLog sqlLog = new SqlLogImpl(queryObject.getSql(), completeSql, queryObject.getBindArguments(),
+                        queryObject.getBindTypes());
                 sqlLogRegistry.add(sqlLog);
             }
         }

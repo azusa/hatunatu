@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,7 +38,8 @@ public class DtoListMetaDataResultSetHandler extends
         super(dtoMetaData, rowCreator);
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
         // Map<String(columnName), PropertyType>
         Map propertyCache = null;// [DAO-118] (2007/08/26)
 

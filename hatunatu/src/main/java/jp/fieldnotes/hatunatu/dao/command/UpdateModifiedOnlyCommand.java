@@ -19,6 +19,7 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.UpdateAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
 import javax.sql.DataSource;
@@ -38,7 +39,8 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
         super(dataSource, statementFactory);
     }
 
-    public Object execute(final Object[] args) {
+    @Override
+    protected Object doExecute(final Object[] args) throws Exception {
         final Object bean = args[0];
         final BeanMetaData bmd = getBeanMetaData();
         final PropertyType[] propertyTypes = createUpdatePropertyTypes(bmd,
@@ -54,9 +56,11 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
         final UpdateAutoHandler handler = new UpdateAutoHandler(
                 getDataSource(), getStatementFactory(), bmd, propertyTypes,
                 isCheckSingleRowUpdate());
-        injectDaoClass(handler);
-        handler.setSql(createUpdateSql(bmd, propertyTypes));
-        final int i = handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(createUpdateSql(bmd, propertyTypes));
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+        final int i = handler.execute(queryObject);
         return new Integer(i);
     }
 

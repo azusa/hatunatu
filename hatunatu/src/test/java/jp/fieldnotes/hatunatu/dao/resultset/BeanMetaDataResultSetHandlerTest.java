@@ -52,7 +52,7 @@ public class BeanMetaDataResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee) handler.handle(rs);
+                ret = (Employee) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -79,7 +79,7 @@ public class BeanMetaDataResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee) handler.handle(rs);
+                ret = (Employee) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -104,7 +104,7 @@ public class BeanMetaDataResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee23) handler.handle(rs);
+                ret = (Employee23) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -130,7 +130,7 @@ public class BeanMetaDataResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Employee23) handler.handle(rs);
+                ret = (Employee23) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -160,7 +160,7 @@ public class BeanMetaDataResultSetHandlerTest  {
             ResultSet rs = ps.executeQuery();
             try {
                 try {
-                    ret = (Employee23) handler.handle(rs);
+                    ret = (Employee23) handler.handle(rs, test.getQueryObject());
                     fail();
                 } catch (NotSingleResultRuntimeException e){
                     assertTrue(true);

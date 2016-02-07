@@ -27,6 +27,7 @@ import org.seasar.extension.dataset.DataTable;
 import org.seasar.extension.dataset.impl.DataSetImpl;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
     public HatunatuTest test = new HatunatuTest(this);
 
     @Test
-    public void testAssertBeanEquals() {
+    public void testAssertBeanEquals() throws Exception {
         DataSet expected = new DataSetImpl();
         DataTable table = expected.addTable("emp");
         table.addColumn("aaa");
@@ -53,7 +54,7 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
     }
 
     @Test
-    public void testAssertBeanListEquals() {
+    public void testAssertBeanListEquals() throws Exception {
         DataSet expected = new DataSetImpl();
         DataTable table = expected.addTable("emp");
         table.addColumn("aaa");
@@ -77,7 +78,7 @@ public class S2DaoTestCaseTest extends S2DaoTestCase {
     }
 
     @Override
-    protected BeanMetaData createBeanMetaData(final Class beanClass) {
+    protected BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException {
         return test.createBeanMetaData(beanClass);
     }
 

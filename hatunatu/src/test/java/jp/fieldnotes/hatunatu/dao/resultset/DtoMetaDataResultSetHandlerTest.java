@@ -46,7 +46,7 @@ public class DtoMetaDataResultSetHandlerTest {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                dto = (EmployeeDto) handler.handle(rs);
+                dto = (EmployeeDto) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -71,7 +71,7 @@ public class DtoMetaDataResultSetHandlerTest {
             ResultSet rs = ps.executeQuery();
             try {
                 try {
-                    dto = (EmployeeDto) handler.handle(rs);
+                    dto = (EmployeeDto) handler.handle(rs, test.getQueryObject());
                     fail();
                 } catch(NotSingleResultRuntimeException e){
                     assertTrue(true);

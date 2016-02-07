@@ -16,31 +16,17 @@
 package jp.fieldnotes.hatunatu.dao;
 
 
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 public interface SelectHandler {
 
     /**
-     * 検索を行ないます。
-     * 
-     * @param args
-     *            引数
-     * @return 検索結果
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
+     * Execute Select.
+     *
+     * @param queryObject Query
+     * @return Result of execution
+     * @throws Exception When an exception occurred
      */
-    Object execute(Object[] args) throws SQLRuntimeException;
+    Object execute(QueryObject queryObject) throws Exception;
 
-    /**
-     * 検索を行ないます。
-     * 
-     * @param args
-     *            引数
-     * @param argTypes
-     *            引数の型
-     * @return 検索結果
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
-     */
-    Object execute(Object[] args, Class[] argTypes) throws SQLRuntimeException;
 }

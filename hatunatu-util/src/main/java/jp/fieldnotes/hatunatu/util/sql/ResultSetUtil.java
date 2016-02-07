@@ -15,14 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.util.sql;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
 
-import static jp.fieldnotes.hatunatu.util.log.Logger.*;
-import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static jp.fieldnotes.hatunatu.util.misc.AssertionUtil.assertArgumentNotNull;
 
 /**
  * {@link ResultSet}のためのユーティリティクラスです。
@@ -33,25 +32,6 @@ public abstract class ResultSetUtil {
 
     private static final Logger logger = Logger.getLogger(ResultSetUtil.class);
 
-    /**
-     * 結果セットを閉じます。
-     * <p>
-     * {@link ResultSet#close()}が例外をスローした場合はログにエラーメッセージを出力します。 例外は再スローされません。
-     * </p>
-     * 
-     * @param resultSet
-     *            結果セット
-     */
-    public static void close(final ResultSet resultSet) {
-        if (resultSet == null) {
-            return;
-        }
-        try {
-            resultSet.close();
-        } catch (final SQLException e) {
-            logger.log(format("EUTL0017", e.getMessage()), e);
-        }
-    }
 
     /**
      * 結果セットを次に進めます。

@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 
@@ -30,7 +31,8 @@ public class DeleteBatchAutoHandler extends AbstractBatchAutoHandler {
         super(dataSource, statementFactory, beanMetaData, propertyTypes);
     }
 
-    protected void setupBindVariables(Object bean) {
-        setupDeleteBindVariables(bean);
+    @Override
+    protected void setupBindVariables(Object bean, QueryObject queryObject) {
+        setupDeleteBindVariables(bean, queryObject);
     }
 }

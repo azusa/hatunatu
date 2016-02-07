@@ -19,6 +19,7 @@ import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntPreparedStatement;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 
 import java.sql.*;
@@ -27,24 +28,21 @@ public class PagerStatementFactory implements StatementFactory {
 
     protected boolean booleanToInt = false;
 
-    public PreparedStatement createPreparedStatement(Connection con, String sql) {
-        /*
-         * https://www.seasar.org/issues/browse/DAO-42
-         */
-        final Object[] args = PagerContext.getContext().peekArgs();
+    @Override
+    public PreparedStatement createPreparedStatement(Connection con, QueryObject queryObject) {
         PreparedStatement pstmt = null;
-        if (PagerContext.isPagerCondition(args)) {
+        if (PagerContext.isPagerCondition(queryObject.getMethodArguments())) {
             try {
-                pstmt = con.prepareStatement(sql,
+                pstmt = con.prepareStatement(queryObject.getSql(),
                         ResultSet.TYPE_SCROLL_INSENSITIVE,
                         ResultSet.CONCUR_READ_ONLY);
             } catch (SQLException e) {
                 throw new SQLRuntimeException(e);
             }
-            return createPreparedStatement(pstmt, sql);
+            return createPreparedStatement(pstmt, queryObject.getSql());
         }
-        pstmt = ConnectionUtil.prepareStatement(con, sql);
-        return createPreparedStatement(pstmt, sql);
+        pstmt = ConnectionUtil.prepareStatement(con, queryObject.getSql());
+        return createPreparedStatement(pstmt, queryObject.getSql());
     }
 
     private PreparedStatement createPreparedStatement(PreparedStatement pstmt,

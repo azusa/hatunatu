@@ -50,7 +50,7 @@ public class BeanMetaDataFactoryImplTest  {
     }
 
     @Test
-    public void test_createBeanMetaData_Tx() {
+    public void test_createBeanMetaData_Tx() throws Exception {
         final BeanMetaDataFactory bmdFactory = test.getBeanMetaDataFactory();
         final Class beanClass = Employee.class; // This should have a relation property.
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass);
@@ -65,7 +65,7 @@ public class BeanMetaDataFactoryImplTest  {
     }
 
     @Test
-    public void test_createBeanMetaData_NestLevelOne_Tx() {
+    public void test_createBeanMetaData_NestLevelOne_Tx() throws Exception {
         final BeanMetaDataFactory bmdFactory = test.getBeanMetaDataFactory();
         final Class beanClass = Employee.class;// This should have a relation property.
         final BeanMetaData bmd = bmdFactory.createBeanMetaData(beanClass, 1);

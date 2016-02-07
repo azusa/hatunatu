@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+
 import java.lang.reflect.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,8 +35,9 @@ public class ObjectArrayResultSetHandler extends ObjectListResultSetHandler {
         super(clazz);
     }
 
-    public Object handle(ResultSet rs) throws SQLException {
-        List list = (List) super.handle(rs);
+    @Override
+    public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
+        List list = (List) super.handle(rs, queryObject);
         Object array = Array.newInstance(clazz, list.size());
         for (int i = 0; i < list.size(); i++) {
             Array.set(array, i, list.get(i));

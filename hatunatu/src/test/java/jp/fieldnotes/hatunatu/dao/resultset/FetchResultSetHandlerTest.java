@@ -15,15 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.resultset;
 
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.DtoMetaDataFactory;
 import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,18 +35,9 @@ public class FetchResultSetHandlerTest  {
 
     DtoMetaDataFactory dtoMetaDataFactory;
 
-    @Before
-    public void setUp() throws Exception {
-        PagerContext.start();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        PagerContext.end();
-    }
 
     @Test
-    public void testCreateResultSetHandler() {
+    public void testCreateResultSetHandler() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
@@ -95,7 +83,8 @@ public class FetchResultSetHandlerTest  {
         }
     }
 
-    public void testGetParameterClass() {
+    @Test
+    public void testGetParameterClass() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
@@ -108,7 +97,8 @@ public class FetchResultSetHandlerTest  {
         assertEquals(Employee.class, clazz);
     }
 
-    public void testGetFetchHandler() {
+    @Test
+    public void testGetFetchHandler() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
@@ -119,30 +109,27 @@ public class FetchResultSetHandlerTest  {
         };
         {
             Object[] args = new Object[] { "aaa", fetchHandler };
-            PagerContext.getContext().pushArgs(args);
-            FetchHandler aqtual = resultSetHandler.getFetchHandler();
-            PagerContext.getContext().popArgs();
+            test.getQueryObject().setMethodArguments(args);
+            FetchHandler aqtual = resultSetHandler.getFetchHandler(test.getQueryObject());
             assertEquals(fetchHandler, aqtual);
         }
         {
             Object[] args = new Object[] { "aaa" };
-            PagerContext.getContext().pushArgs(args);
+            test.getQueryObject().setMethodArguments(args);
             try {
-                FetchHandler aqtual = resultSetHandler.getFetchHandler();
+                FetchHandler aqtual = resultSetHandler.getFetchHandler(test.getQueryObject());
                 fail();
             } catch (IllegalArgumentException e) {
             }
-            PagerContext.getContext().popArgs();
         }
         {
             Object[] args = new Object[] { "aaa", fetchHandler, "bbb" };
-            PagerContext.getContext().pushArgs(args);
+            test.getQueryObject().setMethodArguments(args);
             try {
-                FetchHandler aqtual = resultSetHandler.getFetchHandler();
+                FetchHandler aqtual = resultSetHandler.getFetchHandler(test.getQueryObject());
                 fail();
             } catch (IllegalArgumentException e) {
             }
-            PagerContext.getContext().popArgs();
         }
     }
 

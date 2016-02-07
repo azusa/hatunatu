@@ -50,7 +50,7 @@ public class MapResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Map) handler.handle(rs);
+                ret = (Map) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -80,7 +80,7 @@ public class MapResultSetHandlerTest  {
         try {
             ResultSet rs = ps.executeQuery();
             try {
-                ret = (Map) handler.handle(rs);
+                ret = (Map) handler.handle(rs, test.getQueryObject());
             } finally {
                 rs.close();
             }
@@ -102,7 +102,7 @@ public class MapResultSetHandlerTest  {
             ResultSet rs = ps.executeQuery();
             try {
                 try {
-                    ret = (Map) handler.handle(rs);
+                    ret = (Map) handler.handle(rs, test.getQueryObject());
                     fail();
                 } catch(NotSingleResultRuntimeException e){
                     assertTrue(true);

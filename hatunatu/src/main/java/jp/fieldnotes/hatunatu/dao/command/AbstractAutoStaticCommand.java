@@ -21,6 +21,7 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.PrimaryKeyNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.dao.handler.AbstractAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 import javax.sql.DataSource;
@@ -42,11 +43,14 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
         setupSql();
     }
 
-    public Object execute(Object[] args) {
+    @Override
+    protected Object doExecute(Object[] args) throws Exception {
         AbstractAutoHandler handler = createAutoHandler();
-        handler.setSql(getSql());
-        injectDaoClass(handler);
-        int rows = handler.execute(args);
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(getSql());
+        queryObject.setDaoClass(daoClass);
+        queryObject.setMethodArguments(args);
+        int rows = handler.execute(queryObject);
         return new Integer(rows);
     }
 

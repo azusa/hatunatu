@@ -17,14 +17,13 @@ package jp.fieldnotes.hatunatu.dao.handler;
 
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.UpdateHandler;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
-import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class BasicUpdateHandler extends BasicHandler implements UpdateHandler {
 
@@ -34,45 +33,30 @@ public class BasicUpdateHandler extends BasicHandler implements UpdateHandler {
     public BasicUpdateHandler() {
     }
 
-    /**
-     * {@link BasicUpdateHandler}を作成します。
-     * 
-     * @param dataSource
-     *            データソース
-     * @param sql
-     *            SQL
-     */
-    public BasicUpdateHandler(DataSource dataSource, String sql) {
-        super(dataSource, sql);
-    }
 
     /**
      * {@link BasicUpdateHandler}を作成します。
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param statementFactory
      *            ステートメントファクトリ
      */
-    public BasicUpdateHandler(DataSource dataSource, String sql,
-            StatementFactory statementFactory) {
+    public BasicUpdateHandler(DataSource dataSource,
+                              StatementFactory statementFactory) {
 
-        super(dataSource, sql, statementFactory);
+        super(dataSource, statementFactory);
     }
 
-    public int execute(Object[] args) throws SQLRuntimeException {
-        return execute(args, getArgTypes(args));
+    @Override
+    public int execute(QueryObject queryObject) throws Exception {
+        return execute(queryObject, queryObject.getBindArguments(), getArgTypes(queryObject.getBindTypes()));
     }
 
-    public int execute(Object[] args, Class[] argTypes)
-            throws SQLRuntimeException {
-        Connection connection = getConnection();
-        try {
-            return execute(connection, args, argTypes);
-        } finally {
-            ConnectionUtil.close(connection);
+    protected int execute(QueryObject queryObject, Object[] args, Class[] argTypes)
+            throws SQLException {
+        try (Connection connection = getConnection()) {
+            return execute(connection, queryObject, args, argTypes);
         }
     }
 
@@ -87,14 +71,11 @@ public class BasicUpdateHandler extends BasicHandler implements UpdateHandler {
      *            引数の型
      * @return 更新した行数
      */
-    public int execute(Connection connection, Object[] args, Class[] argTypes) {
-        logSql(args, argTypes);
-        PreparedStatement ps = prepareStatement(connection);
-        try {
+    protected int execute(Connection connection, QueryObject queryObject, Object[] args, Class[] argTypes) throws SQLException {
+        logSql(queryObject);
+        try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
             bindArgs(ps, args, argTypes);
             return PreparedStatementUtil.executeUpdate(ps);
-        } finally {
-            StatementUtil.close(ps);
         }
     }
 }

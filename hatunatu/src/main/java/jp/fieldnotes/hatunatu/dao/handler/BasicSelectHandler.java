@@ -22,9 +22,7 @@ import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
-import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
-import jp.fieldnotes.hatunatu.util.sql.ResultSetUtil;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
 import javax.sql.DataSource;
@@ -51,15 +49,13 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param resultSetHandler
      *            結果セットハンドラ
      */
-    public BasicSelectHandler(DataSource dataSource, String sql,
-            ResultSetHandler resultSetHandler) {
+    public BasicSelectHandler(DataSource dataSource,
+                              ResultSetHandler resultSetHandler) {
 
-        this(dataSource, sql, resultSetHandler, BasicStatementFactory.INSTANCE,
+        this(dataSource, resultSetHandler, BasicStatementFactory.INSTANCE,
                 BasicResultSetFactory.INSTANCE);
     }
 
@@ -68,8 +64,6 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * 
      * @param dataSource
      *            データソース
-     * @param sql
-     *            SQL
      * @param resultSetHandler
      *            結果セットハンドラ
      * @param statementFactory
@@ -77,12 +71,11 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      * @param resultSetFactory
      *            結果セットファクトリ
      */
-    public BasicSelectHandler(DataSource dataSource, String sql,
-            ResultSetHandler resultSetHandler,
-            StatementFactory statementFactory, ResultSetFactory resultSetFactory) {
+    public BasicSelectHandler(DataSource dataSource,
+                              ResultSetHandler resultSetHandler,
+                              StatementFactory statementFactory, ResultSetFactory resultSetFactory) {
 
         setDataSource(dataSource);
-        setSql(sql);
         setResultSetHandler(resultSetHandler);
         setStatementFactory(statementFactory);
         setResultSetFactory(resultSetFactory);
@@ -164,45 +157,20 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         this.maxRows = maxRows;
     }
 
-    public Object execute(Object[] args) throws SQLRuntimeException {
-        return execute(args, getArgTypes(args));
-    }
-
-    public Object execute(Object[] args, Class[] argTypes)
-            throws SQLRuntimeException {
-        Connection con = getConnection();
-        try {
-            return execute(con, args, argTypes);
-        } finally {
-            ConnectionUtil.close(con);
+    @Override
+    public Object execute(QueryObject queryObject)
+            throws Exception {
+        try (Connection con = getConnection()) {
+            return execute(con, queryObject);
         }
     }
 
-    /**
-     * SQL文を実行します。
-     * 
-     * @param connection
-     *            コネクション
-     * @param args
-     *            引数
-     * @param argTypes
-     *            引数の型
-     * @return 実行した結果
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
-     */
-    public Object execute(Connection connection, Object[] args, Class[] argTypes)
-            throws SQLRuntimeException {
-        logSql(args, argTypes);
-        PreparedStatement ps = null;
-        try {
-            ps = prepareStatement(connection);
-            bindArgs(ps, args, argTypes);
-            return execute(ps);
-        } catch (SQLException ex) {
-            throw new SQLRuntimeException(ex);
-        } finally {
-            StatementUtil.close(ps);
+    protected Object execute(Connection connection, QueryObject queryObject)
+            throws Exception {
+        logSql(queryObject);
+        try (PreparedStatement ps = prepareStatement(connection, queryObject)) {
+            bindArgs(ps, queryObject.getBindArguments(), queryObject.getBindTypes());
+            return execute(ps, queryObject);
         }
     }
 
@@ -219,8 +187,9 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         return args;
     }
 
-    protected PreparedStatement prepareStatement(Connection connection) {
-        PreparedStatement ps = super.prepareStatement(connection);
+    @Override
+    protected PreparedStatement prepareStatement(Connection connection, QueryObject queryObject) {
+        PreparedStatement ps = super.prepareStatement(connection, queryObject);
         if (fetchSize > -1) {
             StatementUtil.setFetchSize(ps, fetchSize);
         }
@@ -230,25 +199,12 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         return ps;
     }
 
-    /**
-     * SQL文を実行します。
-     * 
-     * @param ps
-     *            準備されたステートメント
-     * @return 実行結果
-     * @throws SQLException
-     *             SQL例外が発生した場合
-     */
-    protected Object execute(PreparedStatement ps) throws SQLException {
+    protected Object execute(PreparedStatement ps, QueryObject queryObject) throws SQLException {
         if (resultSetHandler == null) {
             throw new EmptyRuntimeException("resultSetHandler");
         }
-        ResultSet resultSet = null;
-        try {
-            resultSet = createResultSet(ps);
-            return resultSetHandler.handle(resultSet);
-        } finally {
-            ResultSetUtil.close(resultSet);
+        try (ResultSet resultSet = createResultSet(ps, queryObject.getMethodArguments())) {
+            return resultSetHandler.handle(resultSet, queryObject);
         }
     }
 
@@ -268,7 +224,7 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
      *            準備されたステートメント
      * @return 結果セット
      */
-    protected ResultSet createResultSet(PreparedStatement ps) {
-        return resultSetFactory.createResultSet(ps);
+    protected ResultSet createResultSet(PreparedStatement ps, Object[] methodArgument) {
+        return resultSetFactory.createResultSet(ps, methodArgument);
     }
 }

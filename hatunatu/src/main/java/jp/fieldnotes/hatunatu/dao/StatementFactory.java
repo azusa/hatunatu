@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,15 +24,13 @@ import java.sql.PreparedStatement;
 public interface StatementFactory {
 
     /**
-     * 準備された文を作成します。
-     * 
-     * @param con
-     *            コネクション
-     * @param sql
-     *            SQL
-     * @return 準備された文
+     * Create {@link PreparedStatement}.
+     *
+     * @param con Connection
+     * @param queryObject
+     * @return PreparedStatemnt
      */
-    public PreparedStatement createPreparedStatement(Connection con, String sql);
+    public PreparedStatement createPreparedStatement(Connection con, QueryObject queryObject);
 
     /**
      * ストアドプロシージャ用の文を作成します。

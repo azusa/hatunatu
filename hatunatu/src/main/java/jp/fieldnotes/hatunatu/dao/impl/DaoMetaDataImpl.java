@@ -48,6 +48,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,7 +92,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected Dbms dbms;
 
-    protected Map<Class,BeanMetaData> beanMetaDataCache = new HashMap<>();
+    protected Map<Class, BeanMetaData> beanMetaDataCache = new HashMap<>();
 
     protected Map<Method, SqlCommand> sqlCommands = new HashMap<>();
 
@@ -113,99 +114,98 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected boolean checkSingleRowUpdateForAll = true;
 
+    private AtomicBoolean initialized = new AtomicBoolean(false);
+
     public DaoMetaDataImpl() {
     }
 
-    public void initialize() {
-        daoInterface = getDaoInterface(daoClass);
-        daoBeanDesc = BeanDescFactory.getBeanDesc(daoClass);
-        final Connection con = DataSourceUtil.getConnection(dataSource);
-        try {
-            final DatabaseMetaData dbMetaData = ConnectionUtil.getMetaData(con);
-            dbms = DbmsManager.getDbms(dbMetaData);
-        } finally {
-            ConnectionUtil.close(con);
-        }
-        checkSingleRowUpdateForAll = daoAnnotationReader
-                .isCheckSingleRowUpdate();
-    }
-
     @Override
-    public synchronized SqlCommand getSqlCommand(final Method method)
-            throws MethodNotFoundRuntimeException {
-
-        SqlCommand cmd = sqlCommands.get(method);
-        if (cmd == null) {
-            if (MethodUtil.isAbstract(method)) {
-                Class<?> beanClass;
-                if (isSelect(method)){
-                    beanClass = daoAnnotationReader.getBeanClass(method);
-                } else {
-                    if (method.getParameterTypes().length >= 1) {
-                        if (List.class.isAssignableFrom(method.getParameterTypes()[0])) {
-                            beanClass = GenericsUtil.getRawClass(GenericsUtil.getGenericParameter(method.getGenericParameterTypes()[0], 0));
-                        } else if (method.getParameterTypes()[0].isArray()) {
-                            beanClass = method.getParameterTypes()[0].getComponentType();
-                        } else {
-                            beanClass = method.getParameterTypes()[0];
-                        }
-                    } else {
-                        beanClass = NullBean.class;
-                    }
-                }
-                BeanMetaData beanMetaData;
-                if (beanMetaDataCache.containsKey(beanClass)){
-                    beanMetaData = beanMetaDataCache.get(beanClass);
-                } else {
-                    beanMetaData = beanMetaDataFactory.createBeanMetaData(beanClass);
-                    beanMetaDataCache.put(beanClass, beanMetaData);
-                }
-                setupMethod(method, beanMetaData);
-            }
-            cmd = sqlCommands.get(method);
-            if (cmd == null) {
-                throw new MethodNotFoundRuntimeException(daoClass, method.getName(), method.getParameterTypes());
-            }
-        }
-        return cmd;
-
-    }
-
-    protected void setupMethod(final Method method, BeanMetaData beanMetaData) {
-        setupMethod(daoInterface, method, beanMetaData);
-    }
-
-    protected void setupMethod(final Class daoInterface, final Method method, BeanMetaData beanMetaData) {
+    public synchronized SqlCommand getSqlCommand(final Method method) {
         try {
-            assertAnnotation(method);
-
-            setupMethodByAnnotation(method, beanMetaData);
-
-            if (!completedSetupMethod(method)) {
-                setupMethodBySqlFile(daoInterface, method, beanMetaData);
+            if (!initialized.get()) {
+                daoInterface = getDaoInterface(daoClass);
+                daoBeanDesc = BeanDescFactory.getBeanDesc(daoClass);
+                try (Connection con = DataSourceUtil.getConnection(dataSource)) {
+                    final DatabaseMetaData dbMetaData = ConnectionUtil.getMetaData(con);
+                    dbms = DbmsManager.getDbms(dbMetaData);
+                }
+                checkSingleRowUpdateForAll = daoAnnotationReader
+                        .isCheckSingleRowUpdate();
+                initialized.set(true);
             }
 
-            if (!completedSetupMethod(method)) {
-                setupMethodByInterfaces(daoInterface, method, beanMetaData);
+            SqlCommand cmd = sqlCommands.get(method);
+            if (cmd == null) {
+                if (MethodUtil.isAbstract(method)) {
+                    Class<?> beanClass;
+                    if (isSelect(method)) {
+                        beanClass = daoAnnotationReader.getBeanClass(method);
+                    } else {
+                        if (method.getParameterTypes().length >= 1) {
+                            if (List.class.isAssignableFrom(method.getParameterTypes()[0])) {
+                                beanClass = GenericsUtil.getRawClass(GenericsUtil.getGenericParameter(method.getGenericParameterTypes()[0], 0));
+                            } else if (method.getParameterTypes()[0].isArray()) {
+                                beanClass = method.getParameterTypes()[0].getComponentType();
+                            } else {
+                                beanClass = method.getParameterTypes()[0];
+                            }
+                        } else {
+                            beanClass = NullBean.class;
+                        }
+                    }
+                    BeanMetaData beanMetaData;
+                    if (beanMetaDataCache.containsKey(beanClass)) {
+                        beanMetaData = beanMetaDataCache.get(beanClass);
+                    } else {
+                        beanMetaData = beanMetaDataFactory.createBeanMetaData(beanClass);
+                        beanMetaDataCache.put(beanClass, beanMetaData);
+                    }
+                    setupMethod(method, beanMetaData);
+                }
+                cmd = sqlCommands.get(method);
+                if (cmd == null) {
+                    throw new MethodNotFoundRuntimeException(daoClass, method.getName(), method.getParameterTypes());
+                }
             }
-
-            if (!completedSetupMethod(method)) {
-                setupMethodBySuperClass(daoInterface, method, beanMetaData);
-            }
-
-            if (!completedSetupMethod(method)
-                    && daoAnnotationReader.isSqlFile(method)) {
-                String fileName = getSqlFilePath(daoInterface, method) + ".sql";
-                throw new SqlFileNotFoundRuntimeException(daoInterface, method,
-                        fileName);
-            }
-
-            if (!completedSetupMethod(method)) {
-                setupMethodByAuto(method, beanMetaData);
-            }
+            return cmd;
         } catch (final Exception e) {
             throw new MethodSetupFailureRuntimeException(
                     daoInterface.getName(), method.getName(), e);
+        }
+
+
+    }
+
+    protected void setupMethod(final Method method, BeanMetaData beanMetaData) throws IOException, URISyntaxException {
+        setupMethod(daoInterface, method, beanMetaData);
+    }
+
+    protected void setupMethod(final Class daoInterface, final Method method, BeanMetaData beanMetaData) throws IOException, URISyntaxException {
+        assertAnnotation(method);
+
+        setupMethodByAnnotation(method, beanMetaData);
+
+        if (!completedSetupMethod(method)) {
+            setupMethodBySqlFile(daoInterface, method, beanMetaData);
+        }
+
+        if (!completedSetupMethod(method)) {
+            setupMethodByInterfaces(daoInterface, method, beanMetaData);
+        }
+
+        if (!completedSetupMethod(method)) {
+            setupMethodBySuperClass(daoInterface, method, beanMetaData);
+        }
+
+        if (!completedSetupMethod(method)
+                && daoAnnotationReader.isSqlFile(method)) {
+            String fileName = getSqlFilePath(daoInterface, method) + ".sql";
+            throw new SqlFileNotFoundRuntimeException(daoInterface, method,
+                    fileName);
+        }
+
+        if (!completedSetupMethod(method)) {
+            setupMethodByAuto(method, beanMetaData);
         }
     }
 
@@ -232,7 +232,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
 
     protected void setupProcedureCallMethod(final Method method,
-            final String procedureName, final BeanMetaData beanMetaData) {
+                                            final String procedureName, final BeanMetaData beanMetaData) {
 
         final ProcedureMetaData metaData = procedureMetaDataFactory
                 .createProcedureMetaData(procedureName, method);
@@ -249,7 +249,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void setupMethodBySqlFile(final Class daoInterface,
-            final Method method, final BeanMetaData beanMetaData) throws IOException, URISyntaxException {
+                                        final Method method, final BeanMetaData beanMetaData) throws IOException, URISyntaxException {
         final String base = getSqlFilePath(daoInterface, method);
         final String dbmsPath = base + dbms.getSuffix() + ".sql";
         final String standardPath = base + ".sql";
@@ -263,7 +263,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected String getSqlFilePath(final Class daoInterface,
-            final Method method) {
+                                    final Method method) {
         String base;
         String fileByAnnotation = daoAnnotationReader.getSqlFilePath(method);
         if (StringUtil.isEmpty(fileByAnnotation)) {
@@ -276,7 +276,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void setupMethodByInterfaces(final Class daoInterface,
-            final Method method, BeanMetaData beanMetaData) {
+                                           final Method method, BeanMetaData beanMetaData) throws IOException, URISyntaxException {
         final Class[] interfaces = daoInterface.getInterfaces();
         if (interfaces == null) {
             return;
@@ -291,13 +291,13 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void setupMethodBySuperClass(final Class daoInterface,
-            final Method method, BeanMetaData beanMetaData) {
+                                           final Method method, BeanMetaData beanMetaData) throws IOException, URISyntaxException {
         final Class superDaoClass = daoInterface.getSuperclass();
         if (superDaoClass != null && !Object.class.equals(superDaoClass)) {
             final Method superClassMethod = getSameSignatureMethod(
                     superDaoClass, method);
             if (superClassMethod != null) {
-                setupMethod(superDaoClass, method,beanMetaData);
+                setupMethod(superDaoClass, method, beanMetaData);
             }
         }
     }
@@ -337,7 +337,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void setupSelectMethodByManual(final Method method,
-            final String sql, BeanMetaData beanMetaData) {
+                                             final String sql, BeanMetaData beanMetaData) {
         final SelectDynamicCommand cmd = createSelectDynamicCommand(createResultSetHandler(method, beanMetaData));
         cmd.setSql(sql);
         cmd.setArgNames(daoAnnotationReader.getArgNames(method));
@@ -434,13 +434,13 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     // update & insert & delete
     protected void setupUpdateMethodByManual(final Method method,
-            final String sql, BeanMetaData beanMetaData) {
+                                             final String sql, BeanMetaData beanMetaData) {
         final UpdateDynamicCommand cmd = new UpdateDynamicCommand(dataSource,
                 statementFactory);
         cmd.setSql(sql);
         String[] argNames = daoAnnotationReader.getArgNames(method);
         if (argNames.length == 0 && isUpdateSignatureForBean(method)) {
-            argNames = new String[] { StringUtil.decapitalize(ClassUtil.getShortClassName(beanMetaData.getBeanClass().getName())) };
+            argNames = new String[]{StringUtil.decapitalize(ClassUtil.getShortClassName(beanMetaData.getBeanClass().getName()))};
         }
         cmd.setArgNames(argNames);
         cmd.setArgTypes(method.getParameterTypes());
@@ -450,9 +450,9 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isUpdateSignatureForBean(final Method method) {
-        if (isInsert(method.getName()) || isUpdate(method.getName()) || isDelete(method.getName())){
-            if (method.getParameterTypes().length == 1){
-                if (List.class.isAssignableFrom(method.getParameterTypes()[0])){
+        if (isInsert(method.getName()) || isUpdate(method.getName()) || isDelete(method.getName())) {
+            if (method.getParameterTypes().length == 1) {
+                if (List.class.isAssignableFrom(method.getParameterTypes()[0])) {
                     return false;
                 }
                 return !method.getParameterTypes()[0].isArray();
@@ -478,13 +478,11 @@ public class DaoMetaDataImpl implements DaoMetaData {
         final String[] propertyNames = getPersistentPropertyNames(method, beanMetaData);
         final SqlCommand command;
         if (isUpdateSignatureForBean(method)) {
-            final InsertAutoDynamicCommand cmd = new InsertAutoDynamicCommand();
+            final InsertAutoDynamicCommand cmd = new InsertAutoDynamicCommand(dataSource, statementFactory);
             cmd.setBeanMetaData(beanMetaData);
-            cmd.setDataSource(dataSource);
             cmd
                     .setNotSingleRowUpdatedExceptionClass(getNotSingleRowUpdatedExceptionClass(method));
             cmd.setPropertyNames(propertyNames);
-            cmd.setStatementFactory(statementFactory);
             cmd.setCheckSingleRowUpdate(isCheckSingleRowUpdate(method));
             command = cmd;
         } else {
@@ -637,7 +635,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isPropertyExist(final String[] props,
-            final String propertyName) {
+                                      final String propertyName) {
         for (String prop : props) {
             if (prop.equalsIgnoreCase(propertyName)) {
                 return true;
@@ -685,7 +683,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isAutoSelectSqlByDto(final Method method,
-            final String[] argNames) {
+                                           final String[] argNames) {
         if (argNames.length == 0) {
             if (method.getParameterTypes().length == 1) {
                 return true;
@@ -707,7 +705,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         if (isUpdateSignatureForBean(method)) {
             clazz = beanMetaData.getBeanClass();
         }
-        final Class[] types = new Class[] { clazz };
+        final Class[] types = new Class[]{clazz};
         String sql = createAutoSelectSqlByDto(clazz, beanMetaData);
         if (query != null) {
             sql = sql + " " + query;
@@ -914,14 +912,13 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     /**
      * メソッドおよびDao全体のいずれもSingleRowUpdateチェックが有効になっているかどうかを返します。
-     *
+     * <p/>
      * <p>
      * メソッドまたはDao全体のいずれもチェックが有効として設定されている場合のみ、<code>true</code>を返します。
      * どちらか一方でもチェック無効に設定されていれば、 falseを返します。
      * </p>
      *
-     * @param method
-     *            チェック対象のメソッド
+     * @param method チェック対象のメソッド
      * @return 指定されたメソッドの実行時チェックが有効なら<code>true</code>を返す。
      */
     protected boolean isCheckSingleRowUpdate(Method method) {

@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.seasar.extension.dataset.DataSet;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
@@ -183,7 +184,7 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
     }
 
     @Override
-    protected BeanMetaData createBeanMetaData(final Class beanClass) {
+    protected BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException {
         return test.createBeanMetaData(beanClass);
     }
 

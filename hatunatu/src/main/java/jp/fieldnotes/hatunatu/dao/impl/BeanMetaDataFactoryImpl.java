@@ -24,6 +24,7 @@ import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 
 public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
@@ -41,29 +42,29 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected RelationPropertyTypeFactoryBuilder relationPropertyTypeFactoryBuilder;
 
+    @Override
     public BeanMetaData createBeanMetaData(final Class daoInterface,
-            final Class beanClass) {
+                                           final Class beanClass) throws SQLException {
         if (NullBean.class == beanClass) {
             return new NullBeanMetaData(daoInterface);
         }
         return createBeanMetaData(beanClass);
     }
 
-    public BeanMetaData createBeanMetaData(final Class beanClass) {
+    @Override
+    public BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException {
         return createBeanMetaData(beanClass, 0);
     }
 
+    @Override
     public BeanMetaData createBeanMetaData(final Class beanClass,
-            final int relationNestLevel) {
+                                           final int relationNestLevel) throws SQLException {
         if (beanClass == null) {
             throw new NullPointerException("beanClass");
         }
-        final Connection con = DataSourceUtil.getConnection(dataSource);
-        try {
+        try (Connection con = DataSourceUtil.getConnection(dataSource)) {
             final DatabaseMetaData metaData = ConnectionUtil.getMetaData(con);
             return createBeanMetaData(metaData, beanClass, relationNestLevel);
-        } finally {
-            ConnectionUtil.close(con);
         }
     }
 
@@ -137,7 +138,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
                 isStopRelationCreation);
     }
 
-    protected Dbms getDbms() {
+    protected Dbms getDbms() throws SQLException {
         return DbmsManager.getDbms(dataSource);
     }
 

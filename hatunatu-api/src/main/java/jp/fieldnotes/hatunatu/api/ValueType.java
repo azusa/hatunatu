@@ -15,6 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.api;
 
+import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ import java.sql.SQLException;
  * @author higa
  * 
  */
-public interface ValueType {
+public interface ValueType extends Serializable {
 
     /**
      * カラムの値を返します。

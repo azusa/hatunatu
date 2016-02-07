@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class S2DaoInterceptor2Test  {
@@ -60,7 +61,7 @@ public class S2DaoInterceptor2Test  {
         Employee emp2 = new Employee();
         emp2.setEmpno(98);
         emp2.setEname("hoge2");
-        assertEquals("1", 2, dao.insertBatch(new Employee[] { emp, emp2 }));
+        assertArrayEquals(new int[]{1, 1}, dao.insertBatch(new Employee[]{emp, emp2}));
     }
 
     @Test

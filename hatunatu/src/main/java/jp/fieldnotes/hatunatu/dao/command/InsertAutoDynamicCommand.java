@@ -21,35 +21,31 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.handler.BasicHandler;
 import jp.fieldnotes.hatunatu.dao.handler.InsertAutoHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertAutoDynamicCommand implements SqlCommand,
+public class InsertAutoDynamicCommand extends AbstractSqlCommand implements SqlCommand,
         InjectDaoClassSupport {
-
-    private DataSource dataSource;
-
-    private StatementFactory statementFactory;
 
     private BeanMetaData beanMetaData;
 
     private String[] propertyNames;
 
-    private Class notSingleRowUpdatedExceptionClass;
-
-    private Class daoClass;
-
     private boolean checkSingleRowUpdate = true;
 
-    public InsertAutoDynamicCommand() {
+    public InsertAutoDynamicCommand(DataSource dataSource,
+                                    StatementFactory statementFactory) {
+        super(dataSource, statementFactory);
     }
 
-    public Object execute(Object[] args) {
+
+    @Override
+    protected Object doExecute(Object[] args) throws Exception {
         final Object bean = args[0];
         final BeanMetaData bmd = getBeanMetaData();
         final PropertyType[] propertyTypes = createInsertPropertyTypes(bmd,
@@ -59,9 +55,13 @@ public class InsertAutoDynamicCommand implements SqlCommand,
         InsertAutoHandler handler = new InsertAutoHandler(getDataSource(),
                 getStatementFactory(), bmd, propertyTypes,
                 isCheckSingleRowUpdate());
-        injectDaoClass(handler);
-        handler.setSql(sql);
-        int rows = handler.execute(args);
+
+        QueryObject queryObject = new QueryObject();
+        queryObject.setSql(sql);
+        queryObject.setMethodArguments(args);
+        queryObject.setDaoClass(daoClass);
+
+        int rows = handler.execute(queryObject);
         return new Integer(rows);
     }
 
@@ -69,11 +69,6 @@ public class InsertAutoDynamicCommand implements SqlCommand,
         daoClass = clazz;
     }
 
-    protected void injectDaoClass(BasicHandler handler) {
-        if (daoClass != null) {
-            handler.setLoggerClass(daoClass);
-        }
-    }
 
     protected String createInsertSql(BeanMetaData bmd,
             PropertyType[] propertyTypes) {
@@ -139,29 +134,9 @@ public class InsertAutoDynamicCommand implements SqlCommand,
         return propertyTypes;
     }
 
-    protected DataSource getDataSource() {
-        return dataSource;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    protected Class getNotSingleRowUpdatedExceptionClass() {
-        return notSingleRowUpdatedExceptionClass;
-    }
-
     public void setNotSingleRowUpdatedExceptionClass(
             Class notSingleRowUpdatedExceptionClass) {
         this.notSingleRowUpdatedExceptionClass = notSingleRowUpdatedExceptionClass;
-    }
-
-    protected StatementFactory getStatementFactory() {
-        return statementFactory;
-    }
-
-    public void setStatementFactory(StatementFactory statementFactory) {
-        this.statementFactory = statementFactory;
     }
 
     protected BeanMetaData getBeanMetaData() {

@@ -17,10 +17,10 @@ package jp.fieldnotes.hatunatu.dao.resultset;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.DtoMetaData;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 
 import java.lang.reflect.Method;
@@ -44,15 +44,11 @@ public class FetchResultSetHandler implements ResultSetHandler {
         this.dtoMetaDataFactory = dtoMetaDataFactory;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.seasar.dao.ResultSetHandler#handle(java.sql.ResultSet)
-     */
-    public Object handle(ResultSet resultSet) throws SQLException {
-        FetchHandler<?> fetchHandler = getFetchHandler();
+    @Override
+    public Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException {
+        FetchHandler<?> fetchHandler = getFetchHandler(queryObject);
         ResultSetHandler resultSetHandler = createResultSetHandler(fetchHandler);
-        return resultSetHandler.handle(resultSet);
+        return resultSetHandler.handle(resultSet, queryObject);
     }
 
     /**
@@ -112,8 +108,8 @@ public class FetchResultSetHandler implements ResultSetHandler {
     /**
      * 
      */
-    protected FetchHandler<?> getFetchHandler() {
-        Object[] args = PagerContext.getContext().peekArgs();
+    protected FetchHandler<?> getFetchHandler(QueryObject queryObject) {
+        Object[] args = queryObject.getMethodArguments();
         if (args.length < 1 || !(args[args.length - 1] instanceof FetchHandler)) {
             throw new IllegalArgumentException(
                     "Last argument is not FetchHandler.");

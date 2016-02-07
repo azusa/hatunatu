@@ -30,8 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class DefaultTest  {
 
@@ -125,9 +124,9 @@ public class DefaultTest  {
         DefaultTable bean2 = new DefaultTable();
         bean2.setAaa("21");
         bean2.setBbb("22");
-        int ret = defaultTableDao
+        int[] ret = defaultTableDao
                 .insertBatch(new DefaultTable[] { bean1, bean2 });
-        assertEquals(2, ret);
+        assertArrayEquals(new int[]{1, 1}, ret);
 
         final List defaultTables = defaultTableDao.getDefaultTables();
         assertEquals(2, defaultTables.size());
@@ -154,9 +153,9 @@ public class DefaultTest  {
         DefaultTable bean3 = new DefaultTable();
         bean3.setAaa("31");
         bean3.setBbb(null);
-        int ret = defaultTableDao.insertBatch(new DefaultTable[] { bean1,
+        int[] ret = defaultTableDao.insertBatch(new DefaultTable[]{bean1,
                 bean2, bean3 });
-        assertEquals(3, ret);
+        assertArrayEquals(new int[]{1, 1, 1}, ret);
 
         final List defaultTables = defaultTableDao.getDefaultTables();
         assertEquals(3, defaultTables.size());
@@ -186,9 +185,9 @@ public class DefaultTest  {
         DefaultTable bean2 = new DefaultTable();
         bean2.setAaa("21");
         bean2.setBbb("22");
-        int ret = defaultTableDao
+        int[] ret = defaultTableDao
                 .insertBatch(new DefaultTable[] { bean1, bean2 });
-        assertEquals(2, ret);
+        assertArrayEquals(new int[]{1, 1}, ret);
 
         final List defaultTables = defaultTableDao.getDefaultTables();
         assertEquals(2, defaultTables.size());
@@ -299,7 +298,7 @@ public class DefaultTest  {
 
         public void update(DefaultTable largeBinary);
 
-        public int insertBatch(DefaultTable[] largeBinaries);
+        public int[] insertBatch(DefaultTable[] largeBinaries);
 
     }
 

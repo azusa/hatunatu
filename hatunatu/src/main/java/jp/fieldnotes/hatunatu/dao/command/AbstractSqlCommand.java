@@ -16,30 +16,42 @@
 package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
 import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.handler.BasicHandler;
 
 import javax.sql.DataSource;
 
 public abstract class AbstractSqlCommand implements SqlCommand,
         InjectDaoClassSupport {
 
-    private DataSource dataSource;
+    protected DataSource dataSource;
 
-    private StatementFactory statementFactory;
+    protected StatementFactory statementFactory;
 
-    private String sql;
+    protected String sql;
 
-    private Class notSingleRowUpdatedExceptionClass;
+    protected Class notSingleRowUpdatedExceptionClass;
 
-    private Class daoClass;
+    protected Class daoClass;
+
 
     public AbstractSqlCommand(DataSource dataSource,
             StatementFactory statementFactory) {
         this.dataSource = dataSource;
         this.statementFactory = statementFactory;
     }
+
+    @Override
+    public final Object execute(Object[] args) {
+        try {
+            return doExecute(args);
+        } catch (Exception e) {
+            throw new SqlCommandException(e);
+        }
+    }
+
+    protected abstract Object doExecute(Object[] args) throws Exception;
 
     public DataSource getDataSource() {
         return dataSource;
@@ -70,9 +82,4 @@ public abstract class AbstractSqlCommand implements SqlCommand,
         this.daoClass = daoClass;
     }
 
-    protected void injectDaoClass(BasicHandler handler) {
-        if (daoClass != null) {
-            handler.setLoggerClass(daoClass);
-        }
-    }
 }

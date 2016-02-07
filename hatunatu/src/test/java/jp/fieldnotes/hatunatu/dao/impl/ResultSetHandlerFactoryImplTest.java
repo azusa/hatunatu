@@ -42,7 +42,7 @@ public class ResultSetHandlerFactoryImplTest  {
     }
 
     @Test
-    public void testCreateBeanMetaDataResultSetHandler_restrict() {
+    public void testCreateBeanMetaDataResultSetHandler_restrict() throws Exception {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl
                 .createBeanMetaDataResultSetHandler(test.getBeanMetaDataFactory()
@@ -50,7 +50,7 @@ public class ResultSetHandlerFactoryImplTest  {
     }
 
     @Test
-    public void testCreateBeanMetaDataResultSetHandler() {
+    public void testCreateBeanMetaDataResultSetHandler() throws Exception {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
         ResultSetHandler handler = resultSetHandlerFactoryImpl
                 .createBeanMetaDataResultSetHandler(test.getBeanMetaDataFactory()
@@ -61,7 +61,7 @@ public class ResultSetHandlerFactoryImplTest  {
     }
 
     @Test
-    public void testCreateDtoMetaDataResultSet_restrict() {
+    public void testCreateDtoMetaDataResultSet_restrict() throws Exception {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(true);
         assertTrue(resultSetHandlerFactoryImpl
                 .createDtoMetaDataResultSetHandler(test.getBeanMetaDataFactory()
@@ -69,7 +69,7 @@ public class ResultSetHandlerFactoryImplTest  {
     }
 
     @Test
-    public void testCreateDtoMetaDataResultSet() {
+    public void testCreateDtoMetaDataResultSet() throws Exception {
         resultSetHandlerFactoryImpl.setRestrictNotSingleResult(false);
         ResultSetHandler handler = resultSetHandlerFactoryImpl
                 .createDtoMetaDataResultSetHandler(test.getBeanMetaDataFactory()

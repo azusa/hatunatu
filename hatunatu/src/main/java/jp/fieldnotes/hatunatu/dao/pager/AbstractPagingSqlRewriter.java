@@ -19,8 +19,8 @@ import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
@@ -57,26 +57,21 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
     /**
      * カウントを取るタイミングについての互換性設定です。(デフォルト<code>true</code>>)
      */
-    protected boolean countSqlCompatibility = true;
+    protected boolean countSqlCompatibility = false;
 
-    public String rewrite(String sql, Object[] args, Class[] argTypes) {
-        final Object[] pagingArgs = PagerContext.getContext().peekArgs();
+    @Override
+    public void rewrite(QueryObject queryObject) {
+        final Object[] pagingArgs = queryObject.getMethodArguments();
         if (PagerContext.isPagerCondition(pagingArgs)) {
-            try {
                 PagerCondition dto = PagerContext.getPagerCondition(pagingArgs);
-                if (countSqlCompatibility) {
-                    dto.setCount(getCountLogic(sql, args, argTypes));
-                }
                 if (dto.getLimit() > 0 && dto.getOffset() > -1) {
-                    String limitOffsetSql = makeLimitOffsetSql(sql, dto
+                    String limitOffsetSql = makeLimitOffsetSql(queryObject.getSql(), dto
                             .getLimit(), dto.getOffset());
-                    return limitOffsetSql;
+                    queryObject.setOriginalSql(queryObject.getSql());
+                    queryObject.setSql(limitOffsetSql);
+                    return;
                 }
-            } catch (SQLException e) {
-                throw new SQLRuntimeException(e);
-            }
         }
-        return sql;
     }
 
     /**
@@ -122,36 +117,31 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
         this.resultsetFactory = resultsetFactory;
     }
 
-    public void setCount(String baseSQL, Object[] args, Object[] bindVariables,
-            Class[] bindVariableTypes) {
-        if (!countSqlCompatibility) {
-            // trueの場合はrewrite()で設定済み
-            if (PagerContext.isPagerCondition(args)) {
-                PagerCondition condition = PagerContext.getPagerCondition(args);
-                try {
-                    condition.setCount(getCountLogic(baseSQL, bindVariables,
-                            bindVariableTypes));
-                } catch (SQLException e) {
-                    throw new SQLRuntimeException(e);
-                }
+    @Override
+    public void setCount(QueryObject queryObject) throws Exception {
+        if (PagerContext.isPagerCondition(queryObject.getMethodArguments())) {
+            PagerCondition condition = PagerContext.getPagerCondition(queryObject.getMethodArguments());
+            condition.setCount(getCountLogic(queryObject));
             }
-        }
     }
 
-    protected int getCountLogic(String baseSQL, Object[] args, Class[] argTypes)
-            throws SQLException {
-        String countSQL = makeCountSql(baseSQL);
+    protected int getCountLogic(QueryObject queryObject)
+            throws Exception {
+        String countSQL = makeCountSql(queryObject.getOriginalSql());
+        queryObject.setSql(countSQL);
 
         BasicSelectHandler handler = new BasicSelectHandler(dataSource,
-                countSQL, new ObjectResultSetHandler(), statementFactory,
+                new ObjectResultSetHandler(), statementFactory,
                 resultsetFactory);
         // [DAO-139]
         handler.setFetchSize(-1);
         Object ret = null;
         if (isOriginalArgsRequiredForCounting()) {
-            ret = handler.execute(args, (Class[]) argTypes);
+            ret = handler.execute(queryObject);
         } else {
-            ret = handler.execute(new Object[] {}, new Class[] {});
+//            ret = handler.execute(new Object[] {}, new Class[] {});
+            ret = handler.execute(queryObject);
+
         }
         if (ret != null) {
             return IntegerConversionUtil.toPrimitiveInt(ret);

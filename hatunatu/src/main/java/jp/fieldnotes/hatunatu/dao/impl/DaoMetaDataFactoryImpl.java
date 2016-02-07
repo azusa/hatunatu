@@ -128,7 +128,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
         if (pagingSqlRewriter != null) {
             daoMetaData.setPagingSQLRewriter(pagingSqlRewriter);
         }
-        daoMetaData.initialize();
         return daoMetaData;
     }
 

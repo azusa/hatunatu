@@ -21,11 +21,13 @@ import java.sql.Statement;
 
 public class OracleResultSetFactory extends BasicResultSetFactory {
 
+    @Override
     public ResultSet getResultSet(Statement statement) {
         return new OracleResultSet(super.getResultSet(statement));
     }
 
-    public ResultSet createResultSet(PreparedStatement ps) {
-        return new OracleResultSet(super.createResultSet(ps));
+    @Override
+    public ResultSet createResultSet(PreparedStatement ps, Object[] methodArgument) {
+        return new OracleResultSet(super.createResultSet(ps, methodArgument));
     }
 }

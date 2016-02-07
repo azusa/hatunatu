@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -29,5 +31,5 @@ public interface ResultSetHandler {
      * @throws SQLException
      *             SQL例外が発生した場合
      */
-    Object handle(ResultSet resultSet) throws SQLException;
+    Object handle(ResultSet resultSet, QueryObject queryObject) throws SQLException;
 }
