@@ -52,6 +52,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -195,7 +196,7 @@ public class HatunatuTest extends ExternalResource {
         writer.write(dataSet);
     }
 
-    public BeanMetaData createBeanMetaData(final Class beanClass) {
+    public BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException {
         final BeanMetaDataFactory factory = getBeanMetaDataFactory();
         return factory.createBeanMetaData(beanClass);
     }
@@ -234,7 +235,6 @@ public class HatunatuTest extends ExternalResource {
         dmd.setProcedureMetaDataFactory(getProcedureMetaDataFactory());
         dmd.setDtoMetaDataFactory(dmdf);
         dmd.setResultSetHandlerFactory(getResultSetHandlerFactory());
-        dmd.initialize();
         return dmd;
     }
 

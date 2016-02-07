@@ -28,24 +28,6 @@ public class ConnectionUtil {
     protected ConnectionUtil() {
     }
 
-    /**
-     * コネクションを閉じます。
-     * 
-     * @param connection
-     *            コネクション
-     * @throws SQLRuntimeException
-     *             SQL例外が発生した場合
-     */
-    public static void close(Connection connection) throws SQLRuntimeException {
-        if (connection == null) {
-            return;
-        }
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            throw new SQLRuntimeException(ex);
-        }
-    }
 
     /**
      * {@link Statement}を作成します。

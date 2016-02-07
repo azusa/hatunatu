@@ -37,7 +37,7 @@ public class FetchResultSetHandlerTest  {
 
 
     @Test
-    public void testCreateResultSetHandler() {
+    public void testCreateResultSetHandler() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
@@ -84,7 +84,7 @@ public class FetchResultSetHandlerTest  {
     }
 
     @Test
-    public void testGetParameterClass() {
+    public void testGetParameterClass() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
@@ -98,7 +98,7 @@ public class FetchResultSetHandlerTest  {
     }
 
     @Test
-    public void testGetFetchHandler() {
+    public void testGetFetchHandler() throws Exception {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);

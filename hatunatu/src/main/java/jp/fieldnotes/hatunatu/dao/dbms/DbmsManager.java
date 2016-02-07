@@ -25,6 +25,7 @@ import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -43,14 +44,11 @@ public final class DbmsManager {
     private DbmsManager() {
     }
 
-    public static Dbms getDbms(DataSource dataSource) {
+    public static Dbms getDbms(DataSource dataSource) throws SQLException {
         Dbms dbms = null;
-        Connection con = DataSourceUtil.getConnection(dataSource);
-        try {
+        try (Connection con = DataSourceUtil.getConnection(dataSource)){
             DatabaseMetaData dmd = ConnectionUtil.getMetaData(con);
             dbms = getDbms(dmd);
-        } finally {
-            ConnectionUtil.close(con);
         }
         return dbms;
     }

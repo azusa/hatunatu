@@ -27,6 +27,7 @@ import org.seasar.extension.unit.MapReader;
 import org.seasar.framework.util.ResourceUtil;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,8 @@ public abstract class S2DaoTestCase  {
                 "DELETE FROM " + tableName);
         handler.execute(null);
     }
-    public void assertDataSetEquals(String message, DataSet expected, Object actual) {
+
+    public void assertDataSetEquals(String message, DataSet expected, Object actual) throws Exception {
         if (expected == null || actual == null) {
             Assert.assertEquals(message, expected, actual);
             return;
@@ -97,7 +99,7 @@ public abstract class S2DaoTestCase  {
     protected abstract DataSource getDataSource();
 
     protected void assertBeanEquals(final String message,
-            final DataSet expected, final Object bean) {
+                                    final DataSet expected, final Object bean) throws Exception {
 
         final S2DaoBeanReader reader = new S2DaoBeanReader(bean,
                 createBeanMetaData(bean.getClass()));
@@ -105,7 +107,7 @@ public abstract class S2DaoTestCase  {
     }
 
     protected void assertBeanListEquals(final String message,
-            final DataSet expected, final List list) {
+                                        final DataSet expected, final List list) throws Exception {
 
         final S2DaoBeanListReader reader = new S2DaoBeanListReader(list,
                 createBeanMetaData(list.get(0).getClass()));
@@ -125,7 +127,7 @@ public abstract class S2DaoTestCase  {
         assertDataSetEquals(message, expected, reader.read());
     }
 
-    protected abstract BeanMetaData createBeanMetaData(final Class beanClass);
+    protected abstract BeanMetaData createBeanMetaData(final Class beanClass) throws SQLException;
 
 
 
