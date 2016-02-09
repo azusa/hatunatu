@@ -89,6 +89,7 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
         return s;
     }
 
+    @Override
     protected PropertyType[] createUpdatePropertyTypes(final BeanMetaData bmd,
             final Object bean, final String[] propertyNames) {
 

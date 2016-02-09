@@ -43,6 +43,7 @@ public class SqlParserImpl implements SqlParser {
         tokenizer = new SqlTokenizerImpl(sql);
     }
 
+    @Override
     public Node parse() {
         push(new ContainerNode());
         while (SqlTokenizer.EOF != tokenizer.next()) {

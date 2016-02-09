@@ -29,24 +29,29 @@ public class LongType extends AbstractValueType {
         super(Types.BIGINT);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return LongConversionUtil.toLong(resultSet.getObject(index));
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return LongConversionUtil.toLong(resultSet.getObject(columnName));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return LongConversionUtil.toLong(cs.getObject(index));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return LongConversionUtil.toLong(cs.getObject(parameterName));
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -56,6 +61,7 @@ public class LongType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -67,6 +73,7 @@ public class LongType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

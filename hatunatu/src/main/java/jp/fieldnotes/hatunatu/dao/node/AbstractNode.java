@@ -27,14 +27,17 @@ public abstract class AbstractNode implements Node {
     public AbstractNode() {
     }
 
+    @Override
     public int getChildSize() {
         return children.size();
     }
 
+    @Override
     public Node getChild(int index) {
         return (Node) children.get(index);
     }
 
+    @Override
     public void addChild(Node node) {
         children.add(node);
     }

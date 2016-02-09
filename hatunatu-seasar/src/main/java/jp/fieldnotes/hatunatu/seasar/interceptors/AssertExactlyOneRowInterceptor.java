@@ -15,8 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import org.aopalliance.intercept.MethodInvocation;
 import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
+import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 
 /**
@@ -26,6 +26,7 @@ public class AssertExactlyOneRowInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;
 
+    @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         final Object result = invocation.proceed();
         if (result instanceof Number) {

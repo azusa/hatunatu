@@ -29,24 +29,29 @@ public class StringType extends AbstractValueType {
         super(Types.VARCHAR);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getString(index);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return resultSet.getString(columnName);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return cs.getString(index);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return cs.getString(parameterName);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -56,6 +61,7 @@ public class StringType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -65,6 +71,7 @@ public class StringType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

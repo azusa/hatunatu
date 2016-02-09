@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.node;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.Node;
 
 public class SqlNode extends AbstractNode {
 
@@ -30,9 +29,7 @@ public class SqlNode extends AbstractNode {
         return sql;
     }
 
-    /**
-     * @see Node#accept(org.seasar.dao.QueryContext)
-     */
+    @Override
     public void accept(CommandContext ctx) {
         ctx.addSql(sql);
     }

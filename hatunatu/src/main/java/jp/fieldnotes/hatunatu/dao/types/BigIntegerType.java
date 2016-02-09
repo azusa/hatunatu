@@ -31,29 +31,34 @@ public class BigIntegerType extends AbstractValueType {
         super(Types.BIGINT);
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final int index)
             throws SQLException {
         return BigIntegerConversionUtil.toBigInteger(resultSet
                 .getBigDecimal(index));
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final String columnName)
             throws SQLException {
         return BigIntegerConversionUtil.toBigInteger(resultSet
                 .getBigDecimal(columnName));
     }
 
+    @Override
     public Object getValue(final CallableStatement cs, final int index)
             throws SQLException {
         return BigIntegerConversionUtil.toBigInteger(cs.getBigDecimal(index));
     }
 
+    @Override
     public Object getValue(final CallableStatement cs,
             final String parameterName) throws SQLException {
         return BigIntegerConversionUtil.toBigInteger(cs
                 .getBigDecimal(parameterName));
     }
 
+    @Override
     public void bindValue(final PreparedStatement ps, final int index,
             final Object value) throws SQLException {
         if (value == null) {
@@ -64,6 +69,7 @@ public class BigIntegerType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(final CallableStatement cs,
             final String parameterName, final Object value) throws SQLException {
         if (value == null) {
@@ -74,6 +80,7 @@ public class BigIntegerType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

@@ -34,11 +34,13 @@ import java.sql.SQLException;
  */
 public class WaveDashStringClobType extends StringClobType {
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return StringConversionUtil.fromWaveDashToFullwidthTilde((String) super
                 .getValue(resultSet, index));
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return StringConversionUtil.fromWaveDashToFullwidthTilde((String) super

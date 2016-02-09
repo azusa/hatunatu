@@ -25,19 +25,23 @@ import java.util.Calendar;
 
 public class CalendarTimeType extends TimeType {
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return toCalendar(super.getValue(resultSet, index));
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return toCalendar(super.getValue(resultSet, columnName));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return toCalendar(super.getValue(cs, index));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return toCalendar(super.getValue(cs, parameterName));

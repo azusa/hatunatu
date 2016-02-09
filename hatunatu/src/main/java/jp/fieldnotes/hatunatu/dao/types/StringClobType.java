@@ -32,19 +32,23 @@ public class StringClobType extends AbstractValueType {
         super(Types.CLOB);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return convertToString(resultSet.getCharacterStream(index));
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return convertToString(resultSet.getCharacterStream(columnName));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return convertToString(cs.getClob(index));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return convertToString(cs.getClob(parameterName));
@@ -80,6 +84,7 @@ public class StringClobType extends AbstractValueType {
         return convertToString(clob.getCharacterStream());
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -90,6 +95,7 @@ public class StringClobType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -101,6 +107,7 @@ public class StringClobType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.node;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalBoolExpressionRuntimeException;
 import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
 
@@ -45,9 +44,7 @@ public class IfNode extends ContainerNode {
         this.elseNode = elseNode;
     }
 
-    /**
-     * @see Node#accept(org.seasar.dao.QueryContext)
-     */
+    @Override
     public void accept(CommandContext ctx) {
         Object result = OgnlUtil.getValue(parsedExpression, ctx);
         if (result instanceof Boolean) {

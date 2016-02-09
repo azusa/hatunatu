@@ -22,6 +22,7 @@ public class ElseNode extends ContainerNode {
     public ElseNode() {
     }
 
+    @Override
     public void accept(CommandContext ctx) {
         super.accept(ctx);
         ctx.setEnabled(true);

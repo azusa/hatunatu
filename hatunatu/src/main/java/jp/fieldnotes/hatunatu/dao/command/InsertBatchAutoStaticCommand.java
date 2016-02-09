@@ -33,19 +33,23 @@ public class InsertBatchAutoStaticCommand extends
         super(dataSource, statementFactory, beanMetaData, propertyNames, returningRows);
     }
 
+    @Override
     protected AbstractAutoHandler createAutoHandler() {
         return createBatchAutoHandler();
     }
 
+    @Override
     protected AbstractBatchAutoHandler createBatchAutoHandler() {
         return new InsertBatchAutoHandler(getDataSource(),
                 getStatementFactory(), getBeanMetaData(), getPropertyTypes());
     }
 
+    @Override
     protected void setupSql() {
         setupInsertSql();
     }
 
+    @Override
     protected void setupPropertyTypes(String[] propertyNames) {
         setupInsertPropertyTypes(propertyNames);
     }

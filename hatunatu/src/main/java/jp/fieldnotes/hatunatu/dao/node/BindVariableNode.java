@@ -18,7 +18,6 @@ package jp.fieldnotes.hatunatu.dao.node;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
@@ -41,9 +40,7 @@ public class BindVariableNode extends AbstractNode {
         return expression;
     }
 
-    /**
-     * @see Node#accept(org.seasar.dao.QueryContext)
-     */
+    @Override
     public void accept(CommandContext ctx) {
         Object value = ctx.getArg(names[0]);
         Class clazz = ctx.getArgType(names[0]);

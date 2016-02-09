@@ -31,20 +31,24 @@ public class BinaryStreamType extends AbstractValueType {
         super(Types.BINARY);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getBinaryStream(index);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
 
         return resultSet.getBinaryStream(columnName);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return toBinaryStream(cs.getBytes(index));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
 
@@ -58,6 +62,7 @@ public class BinaryStreamType extends AbstractValueType {
         return new ByteArrayInputStream(bytes);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
@@ -71,6 +76,7 @@ public class BinaryStreamType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
 
@@ -86,6 +92,7 @@ public class BinaryStreamType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

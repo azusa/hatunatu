@@ -65,18 +65,21 @@ public abstract class AbstractValueType implements ValueType {
         cs.setNull(parameterName, sqlType);
     }
 
+    @Override
     public void registerOutParameter(CallableStatement cs, int index)
             throws SQLException {
 
         cs.registerOutParameter(index, sqlType);
     }
 
+    @Override
     public void registerOutParameter(CallableStatement cs, String parameterName)
             throws SQLException {
 
         cs.registerOutParameter(parameterName, sqlType);
     }
 
+    @Override
     public int getSqlType() {
         return sqlType;
     }

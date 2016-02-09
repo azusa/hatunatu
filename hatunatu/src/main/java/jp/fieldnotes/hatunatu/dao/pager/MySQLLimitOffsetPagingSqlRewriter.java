@@ -24,6 +24,7 @@ public class MySQLLimitOffsetPagingSqlRewriter extends
     private static final Pattern baseSqlPattern = Pattern.compile(
             "^.*?(select)", Pattern.CASE_INSENSITIVE);
 
+    @Override
     protected String makeLimitOffsetSql(String baseSQL, int limit, int offset) {
         return super.makeLimitOffsetSql(makeCalcFoundRowsSQL(baseSQL), limit,
                 offset);
@@ -33,6 +34,7 @@ public class MySQLLimitOffsetPagingSqlRewriter extends
         this.countSqlCompatibility = false;
     }
 
+    @Override
     public String makeCountSql(String baseSQL) {
         return "SELECT FOUND_ROWS()";
     }
@@ -46,6 +48,7 @@ public class MySQLLimitOffsetPagingSqlRewriter extends
         return baseSQL;
     }
 
+    @Override
     protected boolean isOriginalArgsRequiredForCounting() {
         return false;
     }

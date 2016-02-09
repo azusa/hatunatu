@@ -66,6 +66,7 @@ public class MapResultSetHandler extends AbstractMapResultSetHandler {
             super();
         }
 
+        @Override
         protected void handleNotSingleResult() {
             throw new NotSingleResultRuntimeException();
         }

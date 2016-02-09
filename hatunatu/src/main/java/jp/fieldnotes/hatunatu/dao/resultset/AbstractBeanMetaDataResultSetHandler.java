@@ -59,6 +59,7 @@ public abstract class AbstractBeanMetaDataResultSetHandler extends
      *         PropertyType} (NotNull)
      * @throws SQLException
      */
+    @Override
     protected Map createPropertyCache(Set columnNames) throws SQLException {
         // - - - - - - - - -
         // Override for Bean
@@ -75,6 +76,7 @@ public abstract class AbstractBeanMetaDataResultSetHandler extends
      * @return Created row. (NotNull)
      * @throws SQLException
      */
+    @Override
     protected Object createRow(ResultSet rs, Map propertyCache)
             throws SQLException {
         // - - - - - - - - -

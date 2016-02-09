@@ -45,6 +45,7 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
         this.pagingSqlRewriter = pagingSqlRewriter;
     }
 
+
     public ResultSetHandler getResultSetHandler() {
         return resultSetHandler;
     }

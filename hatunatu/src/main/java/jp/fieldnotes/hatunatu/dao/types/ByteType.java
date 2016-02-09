@@ -29,26 +29,31 @@ public class ByteType extends AbstractValueType {
         super(Types.SMALLINT);
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final int index)
             throws SQLException {
         return ByteConversionUtil.toByte(resultSet.getObject(index));
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final String columnName)
             throws SQLException {
         return ByteConversionUtil.toByte(resultSet.getObject(columnName));
     }
 
+    @Override
     public Object getValue(final CallableStatement cs, final int index)
             throws SQLException {
         return ByteConversionUtil.toByte(cs.getObject(index));
     }
 
+    @Override
     public Object getValue(final CallableStatement cs,
             final String parameterName) throws SQLException {
         return ByteConversionUtil.toByte(cs.getObject(parameterName));
     }
 
+    @Override
     public void bindValue(final PreparedStatement ps, final int index,
             final Object value) throws SQLException {
         if (value == null) {
@@ -58,6 +63,7 @@ public class ByteType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(final CallableStatement cs,
             final String parameterName, final Object value) throws SQLException {
         if (value == null) {
@@ -69,6 +75,7 @@ public class ByteType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

@@ -65,6 +65,7 @@ public class InsertAutoDynamicCommand extends AbstractSqlCommand implements SqlC
         return new Integer(rows);
     }
 
+    @Override
     public void setDaoClass(Class clazz) {
         daoClass = clazz;
     }

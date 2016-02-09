@@ -99,6 +99,7 @@ class PagerResultSetWrapper extends ResultSetWrapper {
         }
     }
 
+    @Override
     public boolean next() throws SQLException {
         boolean next = super.next();
         if ((condition.getLimit() == PagerCondition.NONE_LIMIT || counter < condition

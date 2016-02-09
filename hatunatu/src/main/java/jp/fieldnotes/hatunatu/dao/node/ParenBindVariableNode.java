@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.node;
 
 import jp.fieldnotes.hatunatu.dao.CommandContext;
-import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.util.OgnlUtil;
 
 import java.lang.reflect.Array;
@@ -37,9 +36,7 @@ public class ParenBindVariableNode extends AbstractNode {
         return expression;
     }
 
-    /**
-     * @see Node#accept(org.seasar.dao.QueryContext)
-     */
+    @Override
     public void accept(CommandContext ctx) {
         Object var = OgnlUtil.getValue(parsedExpression, ctx);
         if (var instanceof List) {

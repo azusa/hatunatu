@@ -30,26 +30,31 @@ public class BigDecimalType extends AbstractValueType {
         super(Types.DECIMAL);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getBigDecimal(index);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
 
         return resultSet.getBigDecimal(columnName);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return cs.getBigDecimal(index);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
 
         return cs.getBigDecimal(parameterName);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
@@ -61,6 +66,7 @@ public class BigDecimalType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
 
@@ -72,6 +78,7 @@ public class BigDecimalType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

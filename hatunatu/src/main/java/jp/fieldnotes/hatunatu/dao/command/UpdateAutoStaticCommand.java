@@ -31,15 +31,18 @@ public class UpdateAutoStaticCommand extends AbstractAutoStaticCommand {
         super(dataSource, statementFactory, beanMetaData, propertyNames);
     }
 
+    @Override
     protected AbstractAutoHandler createAutoHandler() {
         return new UpdateAutoHandler(getDataSource(), getStatementFactory(),
                 getBeanMetaData(), getPropertyTypes(), isCheckSingleRowUpdate());
     }
 
+    @Override
     protected void setupSql() {
         setupUpdateSql();
     }
 
+    @Override
     protected void setupPropertyTypes(String[] propertyNames) {
         setupUpdatePropertyTypes(propertyNames);
 

@@ -31,15 +31,18 @@ public class DeleteAutoStaticCommand extends AbstractAutoStaticCommand {
         super(dataSource, statementFactory, beanMetaData, propertyNames);
     }
 
+    @Override
     protected AbstractAutoHandler createAutoHandler() {
         return new DeleteAutoHandler(getDataSource(), getStatementFactory(),
                 getBeanMetaData(), getPropertyTypes(), isCheckSingleRowUpdate());
     }
 
+    @Override
     protected void setupSql() {
         setupDeleteSql();
     }
 
+    @Override
     protected void setupPropertyTypes(String[] propertyNames) {
         setupDeletePropertyTypes(propertyNames);
 

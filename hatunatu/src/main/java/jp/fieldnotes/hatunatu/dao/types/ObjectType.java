@@ -28,24 +28,29 @@ public class ObjectType extends AbstractValueType {
         super(Types.VARCHAR);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getObject(index);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return resultSet.getObject(columnName);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return cs.getObject(index);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return cs.getObject(parameterName);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -55,6 +60,7 @@ public class ObjectType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -64,6 +70,7 @@ public class ObjectType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

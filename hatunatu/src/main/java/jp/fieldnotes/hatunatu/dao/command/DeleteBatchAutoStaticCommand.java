@@ -33,19 +33,23 @@ public class DeleteBatchAutoStaticCommand extends
         super(dataSource, statementFactory, beanMetaData, propertyNames, returningRows);
     }
 
+    @Override
     protected AbstractAutoHandler createAutoHandler() {
         return createBatchAutoHandler();
     }
 
+    @Override
     protected AbstractBatchAutoHandler createBatchAutoHandler() {
         return new DeleteBatchAutoHandler(getDataSource(),
                 getStatementFactory(), getBeanMetaData(), getPropertyTypes());
     }
 
+    @Override
     protected void setupSql() {
         setupDeleteSql();
     }
 
+    @Override
     protected void setupPropertyTypes(String[] propertyNames) {
         setupDeletePropertyTypes(propertyNames);
 

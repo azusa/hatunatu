@@ -33,19 +33,23 @@ public class UpdateBatchAutoStaticCommand extends
         super(dataSource, statementFactory, beanMetaData, propertyNames, returningRows);
     }
 
+    @Override
     protected AbstractAutoHandler createAutoHandler() {
         return createBatchAutoHandler();
     }
 
+    @Override
     protected AbstractBatchAutoHandler createBatchAutoHandler() {
         return new UpdateBatchAutoHandler(getDataSource(),
                 getStatementFactory(), getBeanMetaData(), getPropertyTypes());
     }
 
+    @Override
     protected void setupSql() {
         setupUpdateSql();
     }
 
+    @Override
     protected void setupPropertyTypes(String[] propertyNames) {
         setupUpdatePropertyTypes(propertyNames);
 

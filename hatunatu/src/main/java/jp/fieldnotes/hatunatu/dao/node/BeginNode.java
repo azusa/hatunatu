@@ -23,6 +23,7 @@ public class BeginNode extends ContainerNode {
     public BeginNode() {
     }
 
+    @Override
     public void accept(CommandContext ctx) {
         CommandContext childCtx = new CommandContextImpl(ctx);
         super.accept(childCtx);

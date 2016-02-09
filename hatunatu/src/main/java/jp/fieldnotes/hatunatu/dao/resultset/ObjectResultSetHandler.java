@@ -52,6 +52,7 @@ public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
     /**
      * 結果が1件でない場合の処理を行います。 デフォルトでは警告ログを出力します。
      */
+
     protected void handleNotSingleResult() {
         logger.log("WDAO0003", null);
     }
@@ -73,6 +74,7 @@ public class ObjectResultSetHandler extends AbstractObjectResultSetHandler {
             super(clazz);
         }
 
+        @Override
         protected void handleNotSingleResult() {
             throw new NotSingleResultRuntimeException();
         }

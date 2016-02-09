@@ -82,6 +82,7 @@ public class ArgumentDtoProcedureHandler extends BasicSelectHandler implements
         }
     }
 
+    @Override
     protected String getCompleteSql(final QueryObject queryObject) {
         String sql = queryObject.getSql();
         Object dto = getArgumentDto(queryObject.getMethodArguments());

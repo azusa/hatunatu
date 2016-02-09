@@ -29,24 +29,29 @@ public class SqlDateType extends AbstractValueType {
         super(Types.DATE);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getDate(index);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return resultSet.getDate(columnName);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return cs.getDate(index);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return cs.getDate(parameterName);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -56,6 +61,7 @@ public class SqlDateType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -76,6 +82,7 @@ public class SqlDateType extends AbstractValueType {
         return SqlDateConversionUtil.toDate(value);
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

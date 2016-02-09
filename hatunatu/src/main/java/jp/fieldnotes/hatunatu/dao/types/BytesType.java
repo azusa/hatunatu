@@ -55,6 +55,7 @@ public class BytesType extends AbstractValueType {
         this.trait = trait;
     }
 
+    @Override
     public void bindValue(final PreparedStatement ps, final int index,
             final Object value) throws SQLException {
         if (value == null) {
@@ -66,6 +67,7 @@ public class BytesType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(final CallableStatement cs,
             final String parameterName, final Object value) throws SQLException {
         if (value == null) {
@@ -77,26 +79,31 @@ public class BytesType extends AbstractValueType {
         }
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final int index)
             throws SQLException {
         return trait.get(resultSet, index);
     }
 
+    @Override
     public Object getValue(final ResultSet resultSet, final String columnName)
             throws SQLException {
         return trait.get(resultSet, columnName);
     }
 
+    @Override
     public Object getValue(final CallableStatement cs, final int index)
             throws SQLException {
         return trait.get(cs, index);
     }
 
+    @Override
     public Object getValue(final CallableStatement cs,
             final String parameterName) throws SQLException {
         return trait.get(cs, parameterName);
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();
@@ -253,35 +260,42 @@ public class BytesType extends AbstractValueType {
      */
     public static class BytesTrait implements Trait {
 
+        @Override
         public int getSqlType() {
             return Types.BINARY;
         }
 
+        @Override
         public void set(final PreparedStatement ps, final int parameterIndex,
                 final byte[] bytes) throws SQLException {
             ps.setBytes(parameterIndex, bytes);
         }
 
+        @Override
         public void set(final CallableStatement cs, final String parameterName,
                 final byte[] bytes) throws SQLException {
             cs.setBytes(parameterName, bytes);
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
             return rs.getBytes(columnIndex);
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
             return rs.getBytes(columnName);
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final int columnIndex)
                 throws SQLException {
             return cs.getBytes(columnIndex);
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final String columnName)
                 throws SQLException {
             return cs.getBytes(columnName);
@@ -296,22 +310,26 @@ public class BytesType extends AbstractValueType {
      */
     public static class StreamTrait implements Trait {
 
+        @Override
         public int getSqlType() {
             return Types.BINARY;
         }
 
+        @Override
         public void set(final PreparedStatement ps, final int parameterIndex,
                 final byte[] bytes) throws SQLException {
             ps.setBinaryStream(parameterIndex, new ByteArrayInputStream(bytes),
                     bytes.length);
         }
 
+        @Override
         public void set(final CallableStatement cs, final String parameterName,
                 final byte[] bytes) throws SQLException {
             cs.setBinaryStream(parameterName, new ByteArrayInputStream(bytes),
                     bytes.length);
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
             try (InputStream is = rs.getBinaryStream(columnIndex)){
@@ -321,6 +339,7 @@ public class BytesType extends AbstractValueType {
             }
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
             try (InputStream is = rs.getBinaryStream(columnName) ){
@@ -330,11 +349,13 @@ public class BytesType extends AbstractValueType {
             }
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final int columnIndex)
                 throws SQLException {
             return cs.getBytes(columnIndex);
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final String columnName)
                 throws SQLException {
             return cs.getBytes(columnName);
@@ -349,37 +370,44 @@ public class BytesType extends AbstractValueType {
      */
     public static class BlobTrait implements Trait {
 
+        @Override
         public int getSqlType() {
             return Types.BLOB;
         }
 
+        @Override
         public void set(final PreparedStatement ps, final int parameterIndex,
                 final byte[] bytes) throws SQLException {
             ps.setBinaryStream(parameterIndex, new ByteArrayInputStream(bytes),
                     bytes.length);
         }
 
+        @Override
         public void set(final CallableStatement cs, final String parameterName,
                 final byte[] bytes) throws SQLException {
             cs.setBinaryStream(parameterName, new ByteArrayInputStream(bytes),
                     bytes.length);
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
             return toBytes(rs.getBlob(columnIndex));
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
             return toBytes(rs.getBlob(columnName));
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final int columnIndex)
                 throws SQLException {
             return toBytes(cs.getBlob(columnIndex));
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final String columnName)
                 throws SQLException {
             return toBytes(cs.getBlob(columnName));

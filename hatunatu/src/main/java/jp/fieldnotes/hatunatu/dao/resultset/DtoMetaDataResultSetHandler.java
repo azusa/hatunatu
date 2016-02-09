@@ -85,6 +85,7 @@ public class DtoMetaDataResultSetHandler extends
             // TODO Auto-generated constructor stub
         }
 
+        @Override
         protected void handleNotSingleResult() {
             throw new NotSingleResultRuntimeException();
         }

@@ -40,6 +40,7 @@ public class S2DaoInterceptor extends AbstractInterceptor implements MethodInter
         this.daoMetaDataFactory = daoMetaDataFactory;
     }
 
+    @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         return doInvoke(invocation);
     }

@@ -78,6 +78,7 @@ public abstract class AbstractSqlCommand implements SqlCommand,
         this.notSingleRowUpdatedExceptionClass = notSingleRowUpdatedExceptionClass;
     }
 
+    @Override
     public void setDaoClass(Class daoClass) {
         this.daoClass = daoClass;
     }

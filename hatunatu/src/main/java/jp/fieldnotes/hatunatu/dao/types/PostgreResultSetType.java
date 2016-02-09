@@ -28,34 +28,41 @@ public class PostgreResultSetType extends AbstractValueType {
         super(Types.OTHER);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         throw new SQLException("not supported");
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         throw new SQLException("not supported");
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return cs.getObject(index);
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return cs.getObject(parameterName);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         throw new SQLException("not supported");
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         throw new SQLException("not supported");
     }
 
+    @Override
     public String toText(Object value) {
         return BindVariableUtil.nullText();
     }

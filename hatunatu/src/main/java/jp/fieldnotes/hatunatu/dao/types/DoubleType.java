@@ -29,24 +29,29 @@ public class DoubleType extends AbstractValueType {
         super(Types.DOUBLE);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return DoubleConversionUtil.toDouble(resultSet.getObject(index));
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         return DoubleConversionUtil.toDouble(resultSet.getObject(columnName));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         return DoubleConversionUtil.toDouble(cs.getObject(index));
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         return DoubleConversionUtil.toDouble(cs.getObject(parameterName));
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
         if (value == null) {
@@ -56,6 +61,7 @@ public class DoubleType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
         if (value == null) {
@@ -66,6 +72,7 @@ public class DoubleType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

@@ -17,13 +17,7 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.seasar.dao.pager.AbstractSqlRewriteStatementFactory#makeCountSql(
-     * java.lang.String)
-     */
+    @Override
     protected String makeCountSql(String baseSQL) {
         StringBuilder sqlBuf = new StringBuilder("SELECT count(*) FROM (");
         if (isChopOrderBy()) {
@@ -35,13 +29,7 @@ public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
         return sqlBuf.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.seasar.dao.pager.AbstractSqlRewriteStatementFactory#makeLimitOffsetSql
-     * (java.lang.String, int, int)
-     */
+    @Override
     protected String makeLimitOffsetSql(String baseSQL, int limit, int offset) {
         StringBuilder sqlBuf = new StringBuilder(baseSQL);
         sqlBuf.append(" LIMIT ");
@@ -51,12 +39,7 @@ public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
         return sqlBuf.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @seeorg.seasar.dao.pager.AbstractPagingSqlRewriter#
-     * isOriginalArgsRequiredForCounting()
-     */
+    @Override
     protected boolean isOriginalArgsRequiredForCounting() {
         return true;
     }

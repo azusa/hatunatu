@@ -30,6 +30,7 @@ public class BinaryType extends AbstractValueType {
         super(Types.BINARY);
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         try {
             return toByteArray(resultSet.getBlob(index));
@@ -38,6 +39,7 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    @Override
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         try {
@@ -47,6 +49,7 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    @Override
     public Object getValue(CallableStatement cs, int index) throws SQLException {
         try {
             return toByteArray(cs.getBlob(index));
@@ -55,6 +58,7 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    @Override
     public Object getValue(CallableStatement cs, String parameterName)
             throws SQLException {
         try {
@@ -75,6 +79,7 @@ public class BinaryType extends AbstractValueType {
         return blob.getBytes(1, (int) l);
     }
 
+    @Override
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
@@ -89,6 +94,7 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    @Override
     public void bindValue(CallableStatement cs, String parameterName,
             Object value) throws SQLException {
 
@@ -103,6 +109,7 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    @Override
     public String toText(Object value) {
         if (value == null) {
             return BindVariableUtil.nullText();

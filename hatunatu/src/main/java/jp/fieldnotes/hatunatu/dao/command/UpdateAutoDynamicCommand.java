@@ -39,11 +39,7 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
         super(dataSource, statementFactory);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see jp.fieldnotes.hatunatu.api.SqlCommand#execute(java.lang.Object[])
-     */
+    @Override
     protected Object doExecute(Object[] args) throws Exception {
         final Object bean = args[0];
         final BeanMetaData bmd = getBeanMetaData();
