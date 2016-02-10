@@ -17,47 +17,43 @@ package jp.fieldnotes.hatunatu.dao.id;
 
 import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
-import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
-import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
-import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.dao.impl.Identifier;
+import jp.fieldnotes.hatunatu.util.beans.util.BeanUtil;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import jp.fieldnotes.hatunatu.util.lang.ConstructorUtil;
-import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Factory of {@link IdentifierGenerator}.
+ */
 public class IdentifierGeneratorFactory {
 
-    private static Map generatorClasses = new HashMap();
+    private static Map<IdType, Class<? extends IdentifierGenerator>> generatorClasses = new HashMap<>();
 
     static {
-        addIdentifierGeneratorClass("assigned",
+        addIdentifierGeneratorClass(IdType.ASSIGNED,
                 AssignedIdentifierGenerator.class);
-        addIdentifierGeneratorClass("identity",
+        addIdentifierGeneratorClass(IdType.IDENTITY,
                 IdentityIdentifierGenerator.class);
-        addIdentifierGeneratorClass("sequence",
+        addIdentifierGeneratorClass(IdType.SEQUENCE,
                 SequenceIdentifierGenerator.class);
     }
 
     private IdentifierGeneratorFactory() {
     }
 
-    public static void addIdentifierGeneratorClass(String name, Class clazz) {
+    public static void addIdentifierGeneratorClass(IdType name, Class clazz) {
         generatorClasses.put(name, clazz);
     }
 
     public static IdentifierGenerator createIdentifierGenerator(
-            PropertyType propertyType, Dbms dbms) {
-
-        return createIdentifierGenerator(propertyType, dbms, null);
-    }
-
-    public static IdentifierGenerator createIdentifierGenerator(
-            PropertyType propertyType, Dbms dbms, String annotation) {
+            PropertyType propertyType, Dbms dbms, Identifier annotation) {
         if (propertyType == null) {
             throw new EmptyRuntimeException("propertyType");
         }
@@ -67,22 +63,15 @@ public class IdentifierGeneratorFactory {
         if (annotation == null) {
             return new AssignedIdentifierGenerator(propertyType, dbms);
         }
-        String[] array = StringUtil.split(annotation, "=, ");
-        Class clazz = getGeneratorClass(array[0]);
+        Class clazz = getGeneratorClass(annotation.getIdType());
         IdentifierGenerator generator = createIdentifierGenerator(clazz,
                 propertyType, dbms);
-        for (int i = 1; i < array.length; i += 2) {
-            setProperty(generator, array[i].trim(), array[i + 1].trim());
-        }
+        BeanUtil.copyBeanToBean(annotation, generator);
         return generator;
     }
 
-    protected static Class getGeneratorClass(String name) {
-        Class clazz = (Class) generatorClasses.get(name);
-        if (clazz != null) {
-            return clazz;
-        }
-        return ClassUtil.forName(name);
+    protected static Class getGeneratorClass(IdType name) {
+        return generatorClasses.get(name);
     }
 
     protected static IdentifierGenerator createIdentifierGenerator(Class clazz,
@@ -91,12 +80,5 @@ public class IdentifierGeneratorFactory {
                 PropertyType.class, Dbms.class });
         return (IdentifierGenerator) ConstructorUtil.newInstance(constructor,
                 new Object[] { propertyType, dbms });
-    }
-
-    protected static void setProperty(IdentifierGenerator generator,
-            String propertyName, String value) {
-        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(generator.getClass());
-        PropertyDesc pd = beanDesc.getPropertyDesc(propertyName);
-        pd.setValue(generator, value);
     }
 }

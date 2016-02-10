@@ -90,7 +90,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
     }
 
     @Override
-    public String getId(PropertyDesc pd, Dbms dbms) {
+    public Identifier getId(PropertyDesc pd, Dbms dbms) {
         String dbmsSuffix = dbms.getSuffix();
         Id id = getIds(pd, dbmsSuffix);
         if (id == null) {
@@ -163,16 +163,13 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return defaultId;
     }
 
-    protected String getIdName(Id id) {
+    protected Identifier getIdName(Id id) {
+        Identifier identifier = new Identifier();
+        identifier.setIdType(id.value());
         if (id.value().equals(IdType.SEQUENCE) && id.sequenceName() != null) {
-            StringBuilder buf = new StringBuilder(100);
-            buf.append(id.value().name().toLowerCase());
-            buf.append(", sequenceName=");
-            buf.append(id.sequenceName());
-            buf.append(", allocationSize=");
-            buf.append(id.allocationSize());
-            return buf.toString();
+            identifier.setSequenceName(id.sequenceName());
+            identifier.setAllocationSize(id.allocationSize());
         }
-        return id.value().name().toLowerCase();
+        return identifier;
     }
 }

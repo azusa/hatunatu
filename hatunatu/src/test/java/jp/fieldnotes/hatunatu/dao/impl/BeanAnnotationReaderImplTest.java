@@ -245,17 +245,17 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
         String str1 = reader1.getId(beanDesc.getPropertyDesc("aaa"),
-                new Oracle());
+                new Oracle()).toString();
         assertEquals("1", "identity", str1);
         String str2 = reader1.getId(beanDesc.getPropertyDesc("aaa"),
-                new MySQL());
+                new MySQL()).toString();
         assertEquals("2", "sequence, sequenceName=myseq, allocationSize=0",
                 str2);
         String str3 = reader1.getId(beanDesc.getPropertyDesc("aaa"),
-                new PostgreSQL());
+                new PostgreSQL()).toString();
         assertEquals("3", "sequence, sequenceName=myseq_2, allocationSize=10",
                 str3);
-        String str4 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
+        Identifier str4 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
                 new MySQL());
         assertNull("4", str4);
     }
@@ -265,12 +265,12 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
         String str1 = reader1.getId(beanDesc.getPropertyDesc("aaa"),
-                new Oracle());
+                new Oracle()).toString();
         assertEquals("1", "identity", str1);
-        String str2 = reader1
+        Identifier str2 = reader1
                 .getId(beanDesc.getPropertyDesc("aaa"), new HSQL());
         assertNull("2", str2);
-        String str3 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
+        Identifier str3 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
                 new Oracle());
         assertNull("3", str3);
     }
@@ -280,9 +280,9 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
         String str1 = reader1.getId(beanDesc.getPropertyDesc("aaa"),
-                new Oracle());
+                new Oracle()).toString();
         assertEquals("1", "identity", str1);
-        String str3 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
+        Identifier str3 = reader1.getId(beanDesc.getPropertyDesc("bbb"),
                 new Oracle());
         assertNull("2", str3);
     }

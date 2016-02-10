@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
+import jp.fieldnotes.hatunatu.dao.impl.Identifier;
 
 public interface BeanAnnotationReader {
 
@@ -31,7 +32,7 @@ public interface BeanAnnotationReader {
 
     String getTimestampPropertyName();
 
-    String getId(PropertyDesc pd, Dbms dbms);
+    Identifier getId(PropertyDesc pd, Dbms dbms);
 
     String[] getNoPersisteneProps();
 

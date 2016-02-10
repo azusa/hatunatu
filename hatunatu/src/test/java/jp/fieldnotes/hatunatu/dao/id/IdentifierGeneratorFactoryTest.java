@@ -20,41 +20,79 @@ import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.dbms.HSQL;
+import jp.fieldnotes.hatunatu.dao.impl.Identifier;
 import jp.fieldnotes.hatunatu.dao.impl.PropertyTypeImpl;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class IdentifierGeneratorFactoryTest {
 
-    @Test
-    public void testCreateIdentifierGenerator() throws Exception {
-        Dbms dbms = new HSQL();
-        Hoge hoge = new Hoge();
+    private Dbms dbms;
+
+    private Hoge hoge;
+
+    private PropertyType propertyType;
+
+    @Before
+    public void before() {
+        dbms = new HSQL();
+        hoge = new Hoge();
         hoge.setId(1);
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propertyDesc = beanDesc.getPropertyDesc("id");
-        PropertyType propertyType = new PropertyTypeImpl(propertyDesc,
+        propertyType = new PropertyTypeImpl(propertyDesc,
                 ValueTypes.getValueType(int.class));
+    }
+
+
+    @Test
+    public void testCreateAssinedIdentifierGenerator() throws Exception {
         IdentifierGenerator generator = IdentifierGeneratorFactory
                 .createIdentifierGenerator(propertyType, dbms, null);
-        assertEquals("1", AssignedIdentifierGenerator.class, generator
+        assertEquals(AssignedIdentifierGenerator.class, generator
                 .getClass());
-        generator = IdentifierGeneratorFactory.createIdentifierGenerator(
-                propertyType, dbms, "identity");
+    }
+
+    @Test
+    public void testCreateIdentityIdentifierGenerator2() throws Exception {
+        Identifier identifier = new Identifier();
+        identifier.setIdType(IdType.IDENTITY);
+        IdentifierGenerator generator = IdentifierGeneratorFactory.createIdentifierGenerator(
+                propertyType, dbms, identifier);
         assertEquals("2", IdentityIdentifierGenerator.class, generator
                 .getClass());
-        generator = IdentifierGeneratorFactory.createIdentifierGenerator(
-                propertyType, dbms, "sequence, sequenceName = myseq");
-        assertEquals("3", "myseq", ((SequenceIdentifierGenerator) generator)
+    }
+
+    @Test
+    public void testCreateSequenceIdentifierGenerator() throws Exception {
+        Identifier identifier = new Identifier();
+        identifier.setIdType(IdType.SEQUENCE);
+        identifier.setSequenceName("myseq");
+
+        IdentifierGenerator generator = IdentifierGeneratorFactory.createIdentifierGenerator(
+                propertyType, dbms, identifier);
+        assertEquals("myseq", ((SequenceIdentifierGenerator) generator)
                 .getSequenceName());
-        generator = IdentifierGeneratorFactory.createIdentifierGenerator(
+    }
+
+    @Test
+    public void testCreateSequenceAllocationSizeIdentifierGenerator4() throws Exception {
+        Identifier identifier = new Identifier();
+        identifier.setIdType(IdType.SEQUENCE);
+        identifier.setSequenceName("myseq");
+        identifier.setAllocationSize(10);
+
+        IdentifierGenerator generator = IdentifierGeneratorFactory.createIdentifierGenerator(
                 propertyType, dbms,
-                "sequence, sequenceName = myseq, allocationSize = 10");
+                identifier);
         assertEquals("4", 10, ((SequenceIdentifierGenerator) generator)
                 .getAllocationSize());
     }
+
 }
