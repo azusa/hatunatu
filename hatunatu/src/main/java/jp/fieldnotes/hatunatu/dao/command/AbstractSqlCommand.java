@@ -17,13 +17,11 @@ package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.api.exception.SqlCommandException;
-import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 
 import javax.sql.DataSource;
 
-public abstract class AbstractSqlCommand implements SqlCommand,
-        InjectDaoClassSupport {
+public abstract class AbstractSqlCommand implements SqlCommand {
 
     protected DataSource dataSource;
 

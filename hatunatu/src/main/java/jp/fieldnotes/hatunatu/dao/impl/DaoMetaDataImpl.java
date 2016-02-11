@@ -903,9 +903,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected void putSqlCommand(Method method, SqlCommand cmd) {
         if (useDaoClassForLog) {
-            if (cmd instanceof InjectDaoClassSupport) {
-                ((InjectDaoClassSupport) cmd).setDaoClass(daoClass);
-            }
+            cmd.setDaoClass(daoClass);
         }
         sqlCommands.put(method, cmd);
     }

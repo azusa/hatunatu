@@ -19,7 +19,6 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.IdentifierGenerator;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.dao.InjectDaoClassSupport;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.InsertAutoHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
@@ -29,8 +28,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertAutoDynamicCommand extends AbstractSqlCommand implements SqlCommand,
-        InjectDaoClassSupport {
+public class InsertAutoDynamicCommand extends AbstractSqlCommand implements SqlCommand {
 
     private BeanMetaData beanMetaData;
 

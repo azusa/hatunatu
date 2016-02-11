@@ -16,15 +16,17 @@
 package jp.fieldnotes.hatunatu.dao.command;
 
 import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.ProcedureMetaData;
+import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.ArgumentDtoProcedureHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 
-public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements SqlCommand,
-        InjectDaoClassSupport {
+public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements SqlCommand {
 
     protected ResultSetHandler resultSetHandler;
 
