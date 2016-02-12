@@ -19,19 +19,10 @@ import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class FetchHandlerUtilTest  {
 
 
-    /**
-     * Test method for
-     * {@link FetchHandlerUtil#isFetchHandlingEnable()}.
-     */
-    @Test
-    public void testIsFetchHandlingEnable() {
-        assertTrue(FetchHandlerUtil.isFetchHandlingEnable());
-    }
 
     /**
      * Test method for

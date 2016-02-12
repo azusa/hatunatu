@@ -21,15 +21,7 @@ public class FetchHandlerUtil {
 
     private static final Class fetchHandlerClass = FetchHandler.class;
 
-
-    public static boolean isFetchHandlingEnable() {
-        return fetchHandlerClass != null;
-    }
-
     public static boolean isFetchHandler(Class clazz) {
-        if (!isFetchHandlingEnable()) {
-            return false;
-        }
         if (clazz == null) {
             return false;
         }
