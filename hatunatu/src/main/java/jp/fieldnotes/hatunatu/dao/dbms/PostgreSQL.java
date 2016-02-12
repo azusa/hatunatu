@@ -27,10 +27,12 @@ public class PostgreSQL extends Standard {
 
     public static Trait POSTGRE_TRAIT = new PostgreTrait();
 
+    @Override
     public String getSuffix() {
         return "_postgre";
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "select nextval ('" + sequenceName + "')";
     }
@@ -41,31 +43,37 @@ public class PostgreSQL extends Standard {
             return Types.BLOB;
         }
 
+        @Override
         public void set(final PreparedStatement ps, final int parameterIndex,
                 final byte[] bytes) throws SQLException {
             ps.setBlob(parameterIndex, new BlobImpl(bytes));
         }
 
+        @Override
         public void set(final CallableStatement cs, final String parameterName,
                 final byte[] bytes) throws SQLException {
             cs.setBytes(parameterName, bytes);
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final int columnIndex)
                 throws SQLException {
             return BytesType.toBytes(rs.getBlob(columnIndex));
         }
 
+        @Override
         public byte[] get(final ResultSet rs, final String columnName)
                 throws SQLException {
             return BytesType.toBytes(rs.getBlob(columnName));
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final int columnIndex)
                 throws SQLException {
             return BytesType.toBytes(cs.getBlob(columnIndex));
         }
 
+        @Override
         public byte[] get(final CallableStatement cs, final String columnName)
                 throws SQLException {
             return BytesType.toBytes(cs.getBlob(columnName));
@@ -90,10 +98,12 @@ public class PostgreSQL extends Standard {
             this.bytes = bytes;
         }
 
+        @Override
         public InputStream getBinaryStream() throws SQLException {
             return new ByteArrayInputStream(bytes);
         }
 
+        @Override
         public byte[] getBytes(final long pos, final int length)
                 throws SQLException {
             if (length == bytes.length) {
@@ -104,42 +114,51 @@ public class PostgreSQL extends Standard {
             return result;
         }
 
+        @Override
         public long length() throws SQLException {
             return bytes.length;
         }
 
+        @Override
         public long position(final Blob pattern, final long start)
                 throws SQLException {
             throw new UnsupportedOperationException("position");
         }
 
+        @Override
         public long position(final byte[] pattern, final long start)
                 throws SQLException {
             throw new UnsupportedOperationException("position");
         }
 
+        @Override
         public OutputStream setBinaryStream(final long pos) throws SQLException {
             throw new UnsupportedOperationException("setBinaryStream");
         }
 
+        @Override
         public int setBytes(final long pos, final byte[] bytes,
                 final int offset, final int len) throws SQLException {
             throw new UnsupportedOperationException("setBytes");
         }
 
+        @Override
         public int setBytes(final long pos, final byte[] bytes)
                 throws SQLException {
             throw new UnsupportedOperationException("setBytes");
         }
 
+        @Override
         public void truncate(final long len) throws SQLException {
             throw new UnsupportedOperationException("truncate");
         }
 
+        @Override
         public void free() throws SQLException {
             throw new SQLFeatureNotSupportedException();
         }
 
+        @Override
         public InputStream getBinaryStream(long pos, long length) throws SQLException {
             throw new UnsupportedOperationException("getBinaryStream");
         }

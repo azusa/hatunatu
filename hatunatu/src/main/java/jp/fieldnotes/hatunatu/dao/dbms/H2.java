@@ -15,21 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class H2 extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_h2";
     }
 
+    @Override
     public String getIdentitySelectString() {
         return "CALL IDENTITY()";
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "CALL NEXTVAL('" + sequenceName + "')";
     }

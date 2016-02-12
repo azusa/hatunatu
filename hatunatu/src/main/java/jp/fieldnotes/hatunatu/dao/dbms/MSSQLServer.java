@@ -15,17 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class MSSQLServer extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_mssql";
     }
 
+    @Override
     public String getIdentitySelectString() {
         return "select @@identity";
     }

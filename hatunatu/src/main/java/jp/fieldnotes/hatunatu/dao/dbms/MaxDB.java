@@ -17,10 +17,12 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 public class MaxDB extends Standard {
 
+    @Override
     public String getSuffix() {
         return "_maxdb";
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "select " + sequenceName + ".nextval from dual";
     }

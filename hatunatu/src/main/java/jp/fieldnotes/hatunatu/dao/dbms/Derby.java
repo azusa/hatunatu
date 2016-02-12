@@ -15,25 +15,24 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class Derby extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_derby";
     }
 
+    @Override
     public String getIdentitySelectString() {
         return "values IDENTITY_VAL_LOCAL()";
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "values IDENTITY_VAL_LOCAL()";
     }
 
+    @Override
     public boolean isSelfGenerate() {
         return false;
     }

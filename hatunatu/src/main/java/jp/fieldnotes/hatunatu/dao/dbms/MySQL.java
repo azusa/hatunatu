@@ -15,17 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class MySQL extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_mysql";
     }
 
+    @Override
     public String getIdentitySelectString() {
         return "SELECT LAST_INSERT_ID()";
     }

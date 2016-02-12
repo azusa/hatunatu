@@ -15,17 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class Sybase extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_sybase";
     }
 
+    @Override
     public String getIdentitySelectString() {
         return "SELECT @@IDENTITY";
     }

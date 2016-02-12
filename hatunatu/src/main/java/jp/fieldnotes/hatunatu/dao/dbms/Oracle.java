@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
-import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 
@@ -27,16 +26,12 @@ import java.sql.SQLException;
 
 public class Oracle extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_oracle";
     }
 
-    /**
-     * @see Standard#createAutoSelectFromClause(BeanMetaData)
-     */
+    @Override
     protected String createAutoSelectFromClause(BeanMetaData beanMetaData) {
         StringBuilder buf = new StringBuilder(100);
         buf.append("FROM ");
@@ -71,10 +66,12 @@ public class Oracle extends Standard {
         return buf.toString();
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "select " + sequenceName + ".nextval from dual";
     }
 
+    @Override
     public ResultSet getProcedures(final DatabaseMetaData databaseMetaData,
             final String procedureName) {
         final String[] names = DatabaseMetaDataUtil.convertIdentifier(

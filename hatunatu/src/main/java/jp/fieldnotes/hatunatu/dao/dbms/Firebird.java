@@ -15,17 +15,14 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import jp.fieldnotes.hatunatu.dao.Dbms;
-
 public class Firebird extends Standard {
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "_firebird";
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         return "select gen_id( " + sequenceName + ", 1 ) from RDB$DATABASE";
     }

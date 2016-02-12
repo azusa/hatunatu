@@ -42,16 +42,12 @@ public class Standard implements Dbms, Disposable {
 
     boolean initialized;
 
-    /**
-     * @see Dbms#getSuffix()
-     */
+    @Override
     public String getSuffix() {
         return "";
     }
 
-    /**
-     * @see Dbms#getAutoSelectSql(BeanMetaData)
-     */
+    @Override
     public String getAutoSelectSql(BeanMetaData beanMetaData) {
         if (!initialized) {
             DisposableUtil.add(this);
@@ -103,18 +99,22 @@ public class Standard implements Dbms, Disposable {
         return buf.toString();
     }
 
+    @Override
     public String getIdentitySelectString() {
         throw new SRuntimeException("EDAO0022", new String[] { ("Identity") });
     }
 
+    @Override
     public String getSequenceNextValString(String sequenceName) {
         throw new SRuntimeException("EDAO0022", new String[] { ("Sequence") });
     }
 
+    @Override
     public boolean isSelfGenerate() {
         return true;
     }
 
+    @Override
     public String getBaseSql(Statement st) {
         String sql = st.toString();
         Matcher matcher = baseSqlPattern.matcher(sql);
@@ -125,11 +125,13 @@ public class Standard implements Dbms, Disposable {
         }
     }
 
+    @Override
     public synchronized void dispose() {
         autoSelectFromClauseCache.clear();
         initialized = false;
     }
 
+    @Override
     public ResultSet getProcedures(final DatabaseMetaData databaseMetaData,
             final String procedureName) {
         final String[] names = procedureName.split("\\.");
