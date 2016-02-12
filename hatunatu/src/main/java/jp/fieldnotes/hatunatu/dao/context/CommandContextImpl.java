@@ -54,9 +54,7 @@ public class CommandContextImpl implements CommandContext {
         enabled = false;
     }
 
-    /**
-     * @see CommandContext#getArg(java.lang.String)
-     */
+    @Override
     public Object getArg(String name) {
         if (args.containsKey(name)) {
             return args.get(name);
@@ -71,9 +69,7 @@ public class CommandContextImpl implements CommandContext {
         }
     }
 
-    /**
-     * @see CommandContext#getArgType(java.lang.String)
-     */
+    @Override
     public Class getArgType(String name) {
         if (argTypes.containsKey(name)) {
             return (Class) argTypes.get(name);
@@ -88,49 +84,35 @@ public class CommandContextImpl implements CommandContext {
         }
     }
 
-    /**
-     * @see CommandContext#addArg(java.lang.String,
-     *      java.lang.Object, java.lang.Class)
-     */
+    @Override
     public void addArg(String name, Object arg, Class argType) {
         args.put(name, arg);
         argTypes.put(name, argType);
     }
 
-    /**
-     * @see CommandContext#getSql()
-     */
+    @Override
     public String getSql() {
         return sqlBuf.toString();
     }
 
-    /**
-     * @see CommandContext#getBindVariables()
-     */
+    @Override
     public Object[] getBindVariables() {
         return bindVariables.toArray(new Object[bindVariables.size()]);
     }
 
-    /**
-     * @see CommandContext#getBindVariableTypes()
-     */
+    @Override
     public Class[] getBindVariableTypes() {
         return (Class[]) bindVariableTypes.toArray(new Class[bindVariableTypes
                 .size()]);
     }
 
-    /**
-     * @see CommandContext#addSql(java.lang.String)
-     */
+    @Override
     public CommandContext addSql(String sql) {
         sqlBuf.append(sql);
         return this;
     }
 
-    /**
-     * @see CommandContext#addSql(java.lang.String,
-     *      java.lang.Object, java.lang.Class)
-     */
+    @Override
     public CommandContext addSql(String sql, Object bindVariable,
             Class bindVariableType) {
 
@@ -151,16 +133,12 @@ public class CommandContextImpl implements CommandContext {
         return this;
     }
 
-    /**
-     * @see CommandContext#isEnabled()
-     */
+    @Override
     public boolean isEnabled() {
         return enabled;
     }
 
-    /**
-     * @see CommandContext#setEnabled(boolean)
-     */
+    @Override
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }

@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class CommandContextPropertyAccessor extends ObjectPropertyAccessor {
 
+    @Override
     public Object getProperty(Map cx, Object target, Object name)
             throws OgnlException {
 
