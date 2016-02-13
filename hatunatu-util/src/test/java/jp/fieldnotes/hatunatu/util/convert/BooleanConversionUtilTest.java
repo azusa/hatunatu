@@ -15,17 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author higa
  * 
  */
-public class BooleanConversionUtilTest extends TestCase {
+public class BooleanConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToBoolean() throws Exception {
         assertEquals(
             "1",

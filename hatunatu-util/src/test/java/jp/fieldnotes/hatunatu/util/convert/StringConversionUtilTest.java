@@ -15,16 +15,18 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author shinsuke
  * 
  */
-public class StringConversionUtilTest extends TestCase {
-    /**
-     * @throws Exception
-     */
+public class StringConversionUtilTest {
+
+    @Test
     public void testFromWindowsMapping() throws Exception {
         assertNull(StringConversionUtil.fromWindowsMapping(null));
         assertEquals("", StringConversionUtil.fromWindowsMapping(""));
@@ -37,9 +39,7 @@ public class StringConversionUtilTest extends TestCase {
                 .fromWindowsMapping("abc\u301C\u2016\u2212\u00A2\u00A3\u00AC"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToWindowsMapping() throws Exception {
         assertNull(StringConversionUtil.toWindowsMapping(null));
         assertEquals("", StringConversionUtil.toWindowsMapping(""));

@@ -15,17 +15,21 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
-public class OracleRownumPagingSqlRewriterTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class OracleRownumPagingSqlRewriterTest {
 
     OracleRownumPagingSqlRewriter rewriter;
 
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() throws Exception {
         rewriter = new OracleRownumPagingSqlRewriter();
     }
 
+    @Test
     public void testMakeCountSql() {
         assertEquals("count(*)で全件数を取得するSQLを生成",
                 "SELECT count(*) FROM (SELECT * FROM DEPARTMENT)", rewriter
@@ -81,6 +85,7 @@ public class OracleRownumPagingSqlRewriterTest extends TestCase {
                         .makeCountSql("SELECT * FROM DEPARTMENT order by aaa , bbb , ccc"));
     }
 
+    @Test
     public void testSetChopOrderByAndMakeCountSql() throws Exception {
         assertEquals("count(*)で全件数を取得するSQLを生成(chopOrderBy=true, order by 除去)",
                 "SELECT count(*) FROM (SELECT * FROM DEPARTMENT )", rewriter
@@ -91,6 +96,7 @@ public class OracleRownumPagingSqlRewriterTest extends TestCase {
                 rewriter.makeCountSql("SELECT * FROM DEPARTMENT order by id"));
     }
 
+    @Test
     public void testMakeCountSql_orderbyClauseInSubquery() throws Exception {
         String actual = rewriter
                 .makeCountSql("SELECT * FROM (SELECT * FROM EMPLOYEE E ORDER BY E.EMPLOYEE_NAME ASC, E.EMPLOYEE_ID DESC, E.EMPLOYEE_HIREDATE ASC)");
@@ -108,6 +114,7 @@ public class OracleRownumPagingSqlRewriterTest extends TestCase {
      * wrapper.makeBaseSql("SELECT * FROM DEPARTMENT")); } finally {
      * PagerContext.getContext().popArgs(); } }
      */
+    @Test
     public void testLimitOffsetSql() throws Exception {
         assertEquals(
                 "指定されたlimit offsetが付加されたSQLを生成",

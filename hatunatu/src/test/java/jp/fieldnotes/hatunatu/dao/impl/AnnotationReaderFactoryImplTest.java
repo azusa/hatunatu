@@ -21,20 +21,25 @@ import jp.fieldnotes.hatunatu.dao.BeanAnnotationReader;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.impl.dao.EmployeeDao;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
-public class AnnotationReaderFactoryImplTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class AnnotationReaderFactoryImplTest {
 
     private AnnotationReaderFactoryImpl fieldAnnotationReaderFactory;
 
     private AnnotationReaderFactoryImpl annotationReaderFactory;
 
-    protected void setUp() throws Exception {
-        super.setUp();
+
+    @Before
+    public void setUp() throws Exception {
         fieldAnnotationReaderFactory = new AnnotationReaderFactoryImpl();
         annotationReaderFactory = new AnnotationReaderFactoryImpl();
     }
 
+    @Test
     public void testBeanAnnotationReader() throws Exception {
         // ## Arrange ##
         final Class beanClass = Employee.class;
@@ -48,6 +53,7 @@ public class AnnotationReaderFactoryImplTest extends TestCase {
                 beanClass).getClass(), beanAnnotationReader.getClass());
     }
 
+    @Test
     public void testDaoAnnotationReader() throws Exception {
         // ## Arrange ##
         final BeanDesc daoBeanDesc = BeanDescFactory

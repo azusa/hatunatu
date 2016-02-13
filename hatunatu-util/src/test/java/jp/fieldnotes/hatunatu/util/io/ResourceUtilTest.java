@@ -15,24 +15,24 @@
  */
 package jp.fieldnotes.hatunatu.util.io;
 
+import jp.fieldnotes.hatunatu.util.exception.ResourceNotFoundRuntimeException;
+import junit.framework.TestCase;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.util.exception.ResourceNotFoundRuntimeException;
+import static org.junit.Assert.*;
 
 /**
  * @author higa
  * 
  */
-public class ResourceUtilTest extends TestCase {
+public class ResourceUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetResourcePath() throws Exception {
         assertEquals(
             "1",
@@ -48,9 +48,7 @@ public class ResourceUtilTest extends TestCase {
             ResourceUtil.getResourcePath(getClass()));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetResource() throws Exception {
         assertNotNull(ResourceUtil.getResource(
             "java/lang/String.class",
@@ -66,9 +64,7 @@ public class ResourceUtilTest extends TestCase {
         System.out.println(ResourceUtil.getResource("."));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetResourceAsStreamNoException() throws Exception {
         assertNotNull(ResourceUtil.getResourceAsStreamNoException(
             "java/lang/String.class",
@@ -78,9 +74,7 @@ public class ResourceUtilTest extends TestCase {
             "class"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetBuildDir() throws Exception {
         File file = ResourceUtil.getBuildDir(getClass());
         System.out.println(file);
@@ -93,25 +87,19 @@ public class ResourceUtilTest extends TestCase {
         loader.loadClass(TestCase.class.getName());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsExist() throws Exception {
         assertEquals("1", true, ResourceUtil.isExist("UTLMessages.properties"));
         assertEquals("2", false, ResourceUtil.isExist("hoge"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetExtension() throws Exception {
         assertEquals("1", "xml", ResourceUtil.getExtension("aaa/bbb.xml"));
         assertEquals("2", null, ResourceUtil.getExtension("aaa"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testRemoteExtension() throws Exception {
         assertEquals(
             "1",
@@ -120,9 +108,7 @@ public class ResourceUtilTest extends TestCase {
         assertEquals("2", "aaa/bbb", ResourceUtil.removeExtension("aaa/bbb"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToExternalForm() throws Exception {
         URL url = new File("/Program File").toURI().toURL();
         assertEquals(
@@ -130,9 +116,7 @@ public class ResourceUtilTest extends TestCase {
             ResourceUtil.toExternalForm(url));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetFileName() throws Exception {
         URL url = new File("/Program File").toURI().toURL();
         assertEquals(getRoot() + "Program File", ResourceUtil.getFileName(url));

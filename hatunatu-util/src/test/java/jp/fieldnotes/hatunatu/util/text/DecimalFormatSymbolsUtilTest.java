@@ -15,20 +15,18 @@
  */
 package jp.fieldnotes.hatunatu.util.text;
 
+import org.junit.Test;
+
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class DecimalFormatSymbolsUtilTest extends TestCase {
+public class DecimalFormatSymbolsUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetDecimalFormatSymbols() throws Exception {
         DecimalFormatSymbols symbols =
             DecimalFormatSymbolsUtil.getDecimalFormatSymbols(Locale.GERMAN);

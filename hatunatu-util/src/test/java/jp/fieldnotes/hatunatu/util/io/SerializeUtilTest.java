@@ -15,17 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.util.io;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author higa
  * 
  */
-public class SerializeUtilTest extends TestCase {
+public class SerializeUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testSerialize() throws Exception {
         String[] a = new String[] { "1", "2" };
         String[] b = (String[]) SerializeUtil.serialize(a);
@@ -34,9 +34,7 @@ public class SerializeUtilTest extends TestCase {
         assertEquals("3", "2", b[1]);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testObjectAndBinary() throws Exception {
         String o = "hoge";
         byte[] binary = SerializeUtil.fromObjectToBinary(o);

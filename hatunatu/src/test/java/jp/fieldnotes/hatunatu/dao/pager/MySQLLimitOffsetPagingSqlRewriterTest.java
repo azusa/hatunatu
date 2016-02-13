@@ -15,16 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author azusa
  * 
  */
-public class MySQLLimitOffsetPagingSqlRewriterTest extends TestCase {
+public class MySQLLimitOffsetPagingSqlRewriterTest {
 
     LimitOffsetPagingSqlRewriter rewriter = new MySQLLimitOffsetPagingSqlRewriter();
 
+    @Test
     public void testMakeCountSql() {
         assertEquals("SELECT FOUND_ROWS()", rewriter
                 .makeCountSql("SELECT * FROM DEPARTMENT order by id"));
@@ -39,6 +42,7 @@ public class MySQLLimitOffsetPagingSqlRewriterTest extends TestCase {
      * wrapper.makeBaseSql("SELECT * FROM DEPARTMENT")); } finally {
      * PagerContext.getContext().popArgs(); } }
      */
+    @Test
     public void testLimitOffsetSql() throws Exception {
         assertEquals(
                 "指定されたlimit offsetが付加されたSQLを生成",
@@ -46,6 +50,7 @@ public class MySQLLimitOffsetPagingSqlRewriterTest extends TestCase {
                 rewriter.makeLimitOffsetSql("SELECT * FROM DEPARTMENT", 10, 55));
     }
 
+    @Test
     public void testLimitOffsetSql2() {
         assertEquals(
                 "SQL_CALC_FOUND_ROWSが付加されたSQLを生成 (select小文字)",

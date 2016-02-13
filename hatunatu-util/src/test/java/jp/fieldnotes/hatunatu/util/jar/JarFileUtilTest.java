@@ -15,19 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.util.jar;
 
+import org.junit.Test;
+
 import java.io.File;
 import java.net.URL;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author koichik
  */
-public class JarFileUtilTest extends TestCase {
+public class JarFileUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToJarFilePath() throws Exception {
         File f = new File("/Program Files/foo.jar");
         URL url = new URL("jar:" + f.toURI().toURL() + "!/");
@@ -37,9 +37,7 @@ public class JarFileUtilTest extends TestCase {
             JarFileUtil.toJarFilePath(url));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testRelativePath() throws Exception {
         File f = new File("/Program Files/foo.jar");
         URL url = new URL("jar:" + f.toURI().toURL() + "!/foo/bar/");

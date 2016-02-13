@@ -15,28 +15,25 @@
  */
 package jp.fieldnotes.hatunatu.util.net;
 
+import jp.fieldnotes.hatunatu.util.io.CopyUtil;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import junit.framework.TestCase;
-
-import jp.fieldnotes.hatunatu.util.io.CopyUtil;
-import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author taichi
  * 
  */
-public class URLUtilTest extends TestCase {
+public class URLUtilTest {
 
-    /**
-     * Test method for
-     * 'org.seasar.framework.util.URLUtil.disableURLCaches(ClassLoader)'
-     * 
-     * @throws Exception
-     */
+    @Test
     public void testDisableURLCaches() throws Exception {
         String root = ResourceUtil.getBuildDir(getClass()).getCanonicalPath();
         String srcJar = root + "/jp/fieldnotes/hatunatu/util/io/test.jar";
@@ -61,23 +58,17 @@ public class URLUtilTest extends TestCase {
 
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testEncode() throws Exception {
         assertEquals("Program+Files", URLUtil.encode("Program Files", "UTF-8"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testDecode() throws Exception {
         assertEquals("Program Files", URLUtil.decode("Program+Files", "UTF-8"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToCanonicalProtocol() throws Exception {
         assertEquals("jar", URLUtil.toCanonicalProtocol("wsjar"));
         assertEquals("jar", URLUtil.toCanonicalProtocol("jar"));
@@ -85,9 +76,7 @@ public class URLUtilTest extends TestCase {
         assertEquals("file", URLUtil.toCanonicalProtocol("file"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToFile() throws Exception {
         File file = new File("Program Files/hoge.txt");
         URL url = file.toURI().toURL();

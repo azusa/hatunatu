@@ -17,10 +17,14 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.NullBean;
 import jp.fieldnotes.hatunatu.dao.exception.BeanNotFoundRuntimeException;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class NullBeanMetaDataTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+public class NullBeanMetaDataTest {
+
+    @Test
     public void testException() throws Exception {
         NullBeanMetaData metaData = new NullBeanMetaData(HogeDao.class);
         try {
@@ -31,6 +35,7 @@ public class NullBeanMetaDataTest extends TestCase {
         }
     }
 
+    @Test
     public void testGetBeanClass() throws Exception {
         NullBeanMetaData metaData = new NullBeanMetaData(HogeDao.class);
         assertEquals(NullBean.class, metaData.getBeanClass());

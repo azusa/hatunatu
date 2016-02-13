@@ -15,38 +15,33 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class LongConversionUtilTest extends TestCase {
+public class LongConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToLong() throws Exception {
         assertEquals(new Long("1000"), LongConversionUtil.toLong("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveLong() throws Exception {
         assertEquals(1000, LongConversionUtil.toPrimitiveLong("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveLongForEmptyString() throws Exception {
         assertEquals(0, LongConversionUtil.toPrimitiveLong(""));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToLongForEmptyString() throws Exception {
         assertNull(LongConversionUtil.toLong(""));
     }

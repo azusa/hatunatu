@@ -17,10 +17,13 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.api.pager.PagerContext;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class PagerContextTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class PagerContextTest {
+
+    @Test
     public void testIsPagerCondition() {
         PagerCondition pagerConderion = new DefaultPagerCondition();
         pagerConderion.setLimit(10);
@@ -41,6 +44,7 @@ public class PagerContextTest extends TestCase {
 
     }
 
+    @Test
     public void testGetPagerCondition() {
         PagerCondition condition = new DefaultPagerCondition();
         PagerCondition condition2 = PagerContext

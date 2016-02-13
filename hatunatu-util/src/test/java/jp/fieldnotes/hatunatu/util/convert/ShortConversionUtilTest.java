@@ -15,38 +15,33 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class ShortConversionUtilTest extends TestCase {
+public class ShortConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToShort() throws Exception {
         assertEquals(new Short("1000"), ShortConversionUtil.toShort("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveShort() throws Exception {
         assertEquals(1000, ShortConversionUtil.toPrimitiveShort("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveShortForEmptyString() throws Exception {
         assertEquals(0, ShortConversionUtil.toPrimitiveShort(""));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToShortForEmptyString() throws Exception {
         assertNull(ShortConversionUtil.toShort(""));
     }

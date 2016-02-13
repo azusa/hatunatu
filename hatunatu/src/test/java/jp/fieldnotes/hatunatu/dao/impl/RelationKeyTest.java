@@ -18,13 +18,14 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Column;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class RelationKeyTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    protected void tearDown() throws Exception {
-    }
+public class RelationKeyTest {
 
+
+    @Test
     public void testEquals() throws Exception {
         Object[] values = new Object[] { "1", "2" };
         RelationKey pk = new RelationKey(values);
@@ -34,6 +35,7 @@ public class RelationKeyTest extends TestCase {
                 .equals(pk));
     }
 
+    @Test
     public void testHashCode() throws Exception {
         Object[] values = new Object[] { "1", "2" };
         RelationKey pk = new RelationKey(values);

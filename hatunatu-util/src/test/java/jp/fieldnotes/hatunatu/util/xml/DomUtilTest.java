@@ -15,31 +15,28 @@
  */
 package jp.fieldnotes.hatunatu.util.xml;
 
-import javax.xml.parsers.DocumentBuilder;
-
-import junit.framework.TestCase;
-
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilder;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author higa
  * 
  */
-public class DomUtilTest extends TestCase {
+public class DomUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetContentsAsStream() throws Exception {
         String contents = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo/>";
         assertNotNull("1", DomUtil.getContentsAsStream(contents, "UTF-8"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToString() throws Exception {
         DocumentBuilder builder =
             DocumentBuilderFactoryUtil.newDocumentBuilder();

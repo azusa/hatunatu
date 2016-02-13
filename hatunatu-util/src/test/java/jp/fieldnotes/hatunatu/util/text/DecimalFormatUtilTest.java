@@ -15,19 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.util.text;
 
+import org.junit.Test;
+
 import java.util.Locale;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author higa
  * 
  */
-public class DecimalFormatUtilTest extends TestCase {
+public class DecimalFormatUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testNormalize() throws Exception {
         assertEquals(
             "1",

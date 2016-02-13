@@ -15,13 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.util.misc;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author higa
  * 
  */
-public class Base64UtilTest extends TestCase {
+public class Base64UtilTest {
 
     private static final String ORIGINAL = "how now brown cow\r\n";
 
@@ -29,17 +31,13 @@ public class Base64UtilTest extends TestCase {
 
     private static final String ENCODED_DATA = "aG93IG5vdyBicm93biBjb3cNCg==";
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testEncode() throws Exception {
         assertEquals("1", ENCODED_DATA, Base64Util.encode(BINARY_DATA));
         System.out.println(Base64Util.encode(new byte[] { 'a', 'b', 'c' }));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testDecode() throws Exception {
         byte[] decodedData = Base64Util.decode(ENCODED_DATA);
         assertEquals("1", BINARY_DATA.length, decodedData.length);

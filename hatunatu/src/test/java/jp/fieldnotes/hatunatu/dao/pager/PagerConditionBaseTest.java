@@ -15,41 +15,51 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
-public class PagerConditionBaseTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class PagerConditionBaseTest {
 
     DefaultPagerCondition condition;
 
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         condition = new DefaultPagerCondition();
     }
 
+    @Test
     public void testFirstPage() {
         setCondtion(0, 10, 95);
         assertCondtion(false, true, 0, 1, 0, 10, 9, 9);
     }
 
+    @Test
     public void testSecondPage() {
         setCondtion(10, 10, 95);
         assertCondtion(true, true, 1, 2, 0, 20, 19, 9);
     }
 
+    @Test
     public void testLastPage() {
         setCondtion(90, 10, 95);
         assertCondtion(true, false, 9, 10, 80, 100, 94, 9);
     }
 
+    @Test
     public void testEmptyResult() {
         setCondtion(0, 10, 0);
         assertCondtion(false, false, 0, 1, 0, 10, 0, 0);
     }
 
+    @Test
     public void test9Result() {
         setCondtion(0, 10, 9);
         assertCondtion(false, false, 0, 1, 0, 10, 8, 0);
     }
 
+    @Test
     public void test10Result() {
         setCondtion(0, 10, 10);
         assertCondtion(false, false, 0, 1, 0, 10, 9, 0);

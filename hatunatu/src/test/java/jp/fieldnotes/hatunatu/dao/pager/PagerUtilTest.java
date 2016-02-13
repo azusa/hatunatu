@@ -16,18 +16,22 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PagerUtilTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class PagerUtilTest {
 
     private List list;
 
     DefaultPagerCondition condition;
 
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         list = new ArrayList();
         for (int i = 0; i < 21; i++) {
             list.add(String.valueOf(i));
@@ -35,6 +39,7 @@ public class PagerUtilTest extends TestCase {
         condition = new DefaultPagerCondition();
     }
 
+    @Test
     public void testFilter1() {
         condition.setLimit(10);
         condition.setOffset(0);
@@ -46,6 +51,7 @@ public class PagerUtilTest extends TestCase {
         }
     }
 
+    @Test
     public void testFilter2() {
         condition.setLimit(10);
         condition.setOffset(10);
@@ -57,6 +63,7 @@ public class PagerUtilTest extends TestCase {
         }
     }
 
+    @Test
     public void testFilter3() {
         condition.setLimit(10);
         condition.setOffset(20);
@@ -68,6 +75,7 @@ public class PagerUtilTest extends TestCase {
         }
     }
 
+    @Test
     public void testFilter4() {
         condition.setLimit(PagerCondition.NONE_LIMIT);
         condition.setOffset(20);
@@ -79,6 +87,7 @@ public class PagerUtilTest extends TestCase {
         }
     }
 
+    @Test
     public void testGetCurrentLastOffset() {
         condition.setLimit(10);
         condition.setOffset(0);

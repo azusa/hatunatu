@@ -15,25 +15,25 @@
  */
 package jp.fieldnotes.hatunatu.util.xml;
 
-import java.io.IOException;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import junit.framework.TestCase;
-
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import org.junit.Test;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * {@link SAXParserFactoryUtil}のテストです。
  * 
  * @author koichik
  */
-public class SAXParserFactoryUtilTest extends TestCase {
+public class SAXParserFactoryUtilTest {
 
     boolean included;
 
@@ -42,6 +42,7 @@ public class SAXParserFactoryUtilTest extends TestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testSetXIncludeAware() throws Exception {
         SAXParserFactory spf = SAXParserFactoryUtil.newInstance();
         SAXParserFactoryUtil.setXIncludeAware(spf, true);

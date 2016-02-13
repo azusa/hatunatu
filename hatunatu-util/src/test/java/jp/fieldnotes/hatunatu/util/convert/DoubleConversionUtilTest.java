@@ -15,26 +15,25 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class DoubleConversionUtilTest extends TestCase {
+public class DoubleConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToDouble() throws Exception {
         assertEquals(
             new Double("1000.5"),
             DoubleConversionUtil.toDouble("1,000.5"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveDouble() throws Exception {
         assertEquals(
             1000.5,
@@ -42,16 +41,12 @@ public class DoubleConversionUtilTest extends TestCase {
             0);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveDoubleForEmptyString() throws Exception {
         assertEquals(0, DoubleConversionUtil.toPrimitiveDouble(""), 0);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToDoubleForEmptyString() throws Exception {
         assertNull(DoubleConversionUtil.toDouble(""));
     }

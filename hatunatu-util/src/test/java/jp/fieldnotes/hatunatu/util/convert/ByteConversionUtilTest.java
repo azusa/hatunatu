@@ -15,38 +15,33 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class ByteConversionUtilTest extends TestCase {
+public class ByteConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToByte() throws Exception {
         assertEquals(new Byte("100"), ByteConversionUtil.toByte("100"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveByte() throws Exception {
         assertEquals(100, ByteConversionUtil.toPrimitiveByte("100"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveByte_emptyString() throws Exception {
         assertEquals(0, ByteConversionUtil.toPrimitiveByte(""));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToByteForEmptyString() throws Exception {
         assertNull(ByteConversionUtil.toByte(""));
     }

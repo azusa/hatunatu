@@ -15,17 +15,17 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class BigIntegerConversionUtilTest extends TestCase {
+public class BigIntegerConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToBigIntegerForEmptyString() throws Exception {
         assertNull(BigIntegerConversionUtil.toBigInteger(""));
     }

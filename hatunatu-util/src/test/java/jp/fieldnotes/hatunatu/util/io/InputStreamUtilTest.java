@@ -15,29 +15,26 @@
  */
 package jp.fieldnotes.hatunatu.util.io;
 
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+import org.junit.Test;
+
 import java.io.InputStream;
 
-import jp.fieldnotes.hatunatu.util.lang.StringUtil;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author higa
  * 
  */
-public class InputStreamUtilTest extends TestCase {
+public class InputStreamUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testGetBytes() throws Exception {
-        InputStream is =
-            ResourceUtil.getResourceAsStream(StringUtil.replace(getClass()
-                .getName(), ".", "/")
-                + ".class");
-        try {
+        try (InputStream is =
+                     ResourceUtil.getResourceAsStream(StringUtil.replace(getClass()
+                             .getName(), ".", "/")
+                             + ".class")) {
             assertNotNull("1", InputStreamUtil.getBytes(is));
-        } finally {
-            is.close();
         }
     }
 }

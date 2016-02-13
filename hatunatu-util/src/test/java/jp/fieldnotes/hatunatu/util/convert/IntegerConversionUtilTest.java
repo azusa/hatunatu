@@ -15,40 +15,35 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class IntegerConversionUtilTest extends TestCase {
+public class IntegerConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToInteger() throws Exception {
         assertEquals(
             new Integer("1000"),
             IntegerConversionUtil.toInteger("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveInt() throws Exception {
         assertEquals(1000, IntegerConversionUtil.toPrimitiveInt("1,000"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveIntForEmptyString() throws Exception {
         assertEquals(0, IntegerConversionUtil.toPrimitiveInt(""));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToIntegerForEmptyString() throws Exception {
         assertNull(IntegerConversionUtil.toInteger(""));
     }

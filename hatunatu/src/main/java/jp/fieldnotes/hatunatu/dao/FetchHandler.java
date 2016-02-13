@@ -15,6 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
+@FunctionalInterface
 public interface FetchHandler<T> {
 
     /**

@@ -15,7 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import junit.framework.TestCase;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
@@ -24,8 +25,11 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 
-public class FunctionTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class FunctionTest {
+
+    @Test
     public void testCallFunctionDirectory() throws Exception {
         final S2Container container = S2ContainerFactory
                 .create("dao-derby.dicon");
@@ -48,6 +52,8 @@ public class FunctionTest extends TestCase {
 
     // Apache Derby does'nt returns FUNCTION from
     // DatabaseMetaData#getProcedures.
+    @Ignore
+    @Test
     public void pending_testCallFunctionViaDao() throws Exception {
         final S2Container container = S2ContainerFactory.create(getClass()
                 .getName().replace('.', '/')

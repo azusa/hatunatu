@@ -15,21 +15,21 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 /**
  * @author koichik
  * 
  */
-public class BigDecimalConversionUtilTest extends TestCase {
+public class BigDecimalConversionUtilTest {
     private static final BigDecimal ZERO = new BigDecimal("0");
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToBigDecimal() throws Exception {
         assertNull(BigDecimalConversionUtil.toBigDecimal(null));
         assertSame(ZERO, BigDecimalConversionUtil.toBigDecimal(ZERO));
@@ -140,25 +140,19 @@ public class BigDecimalConversionUtilTest extends TestCase {
                 .toBigDecimal("0.000000123")));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToBigDecimalForEmptyString() throws Exception {
         assertNull(BigDecimalConversionUtil.toBigDecimal(""));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testBigDouble() throws Exception {
         assertEquals(
             "12500000",
             BigDecimalConversionUtil.toBigDecimal(12500000D).toString());
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToString() throws Exception {
         BigDecimal d = new BigDecimal(new BigInteger("125"), -1);
         assertEquals("1250", BigDecimalConversionUtil.toString(d));

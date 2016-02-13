@@ -17,19 +17,24 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee20;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee22;
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Set;
 
-public class NullBeanEnhancerTest extends TestCase {
+import static org.junit.Assert.*;
+
+public class NullBeanEnhancerTest {
 
     private NullBeanEnhancer enhancer;
 
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         enhancer = new NullBeanEnhancer();
         enhancer.setDaoNamingConvention(new DaoNamingConventionImpl());
     }
 
+    @Test
     public void testGetModifiedPropertyNames() {
         Employee22 emp = new Employee22();
         emp.setEmpno(new Long(1000));
@@ -41,7 +46,8 @@ public class NullBeanEnhancerTest extends TestCase {
         assertTrue("3", names.contains("deptno"));
         assertFalse("4", names.contains("dummy"));
     }
-    
+
+    @Test
     public void testGetModifiedPropertyNamesFromNoPropertyBean() {
         Employee20 emp = new Employee20();
         emp.setEmpno(new Long(1000));

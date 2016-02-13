@@ -15,21 +15,22 @@
  */
 package jp.fieldnotes.hatunatu.util.lang;
 
+import org.junit.Test;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author shot
  */
-public class ModifierUtilTest extends TestCase {
+public class ModifierUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsPublic() throws Exception {
         Field f = Hoge.class.getDeclaredField("s");
         assertTrue(ModifierUtil.isPublicStaticFinalField(f));
@@ -37,9 +38,7 @@ public class ModifierUtilTest extends TestCase {
         assertTrue(ModifierUtil.isPublic(m));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsInstanceField() throws Exception {
         Field f = Hoge.class.getDeclaredField("aaa");
         assertTrue(ModifierUtil.isInstanceField(f));
@@ -47,9 +46,7 @@ public class ModifierUtilTest extends TestCase {
         assertFalse(ModifierUtil.isInstanceField(f));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsTransient() throws Exception {
         Field f = Hoge.class.getDeclaredField("bbb");
         assertTrue(ModifierUtil.isTransient(f));
@@ -57,9 +54,7 @@ public class ModifierUtilTest extends TestCase {
         assertFalse(ModifierUtil.isTransient(f));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testIsAbstract() throws Exception {
         assertTrue(ModifierUtil.isAbstract(Map.class));
         assertFalse(ModifierUtil.isAbstract(HashMap.class));

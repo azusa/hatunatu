@@ -15,40 +15,35 @@
  */
 package jp.fieldnotes.hatunatu.util.convert;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author higa
  * 
  */
-public class FloatConversionUtilTest extends TestCase {
+public class FloatConversionUtilTest {
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToFloat() throws Exception {
         assertEquals(
             new Float("1000.5"),
             FloatConversionUtil.toFloat("1,000.5"));
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveFloat() throws Exception {
         assertEquals(1000.5, FloatConversionUtil.toPrimitiveFloat("1,000.5"), 0);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToPrimitiveFloatForEmptyString() throws Exception {
         assertEquals(0, FloatConversionUtil.toPrimitiveFloat(""), 0);
     }
 
-    /**
-     * @throws Exception
-     */
+    @Test
     public void testToFloatForEmptyString() throws Exception {
         assertNull(FloatConversionUtil.toFloat(""));
     }

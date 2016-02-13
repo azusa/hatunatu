@@ -15,14 +15,18 @@
  */
 package jp.fieldnotes.hatunatu.dao.dbms;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author higa
  * @author manhole
  */
-public class DbmsManagerTest extends TestCase {
+public class DbmsManagerTest {
 
+    @Test
     public void testCreateAutoSelectList() throws Exception {
         assertTrue("1", DbmsManager.getDbms("") instanceof Standard);
         assertTrue("2",
@@ -30,6 +34,7 @@ public class DbmsManagerTest extends TestCase {
         assertTrue("3", DbmsManager.getDbms("AAAAAAAAAAA") instanceof Standard);
     }
 
+    @Test
     public void testGetDbmsByProductName() throws Exception {
         // https://www.seasar.org/issues/browse/DAO-68
         assertEquals(true, DbmsManager.getDbms("DB2/AIX64") instanceof DB2);

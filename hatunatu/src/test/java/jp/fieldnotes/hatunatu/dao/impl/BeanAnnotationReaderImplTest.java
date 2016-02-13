@@ -25,11 +25,13 @@ import jp.fieldnotes.hatunatu.dao.dbms.Oracle;
 import jp.fieldnotes.hatunatu.dao.dbms.PostgreSQL;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.Date;
 
-public class BeanAnnotationReaderImplTest extends TestCase {
+import static org.junit.Assert.*;
+
+public class BeanAnnotationReaderImplTest {
 
     protected BeanAnnotationReader createBeanAnnotationReader(Class clazz) {
         return new BeanAnnotationReaderImpl(clazz);
@@ -209,6 +211,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
                 .getPropertyDesc("prop2")));
     }
 
+    @Test
     public void testGetTableAnnotation() {
         Class clazz1 = AnnotationTestBean1.class;
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
@@ -218,6 +221,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("2", reader2.getTableAnnotation());
     }
 
+    @Test
     public void testGetVersionNoProteryNameAnnotation() {
         Class clazz1 = AnnotationTestBean1.class;
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
@@ -229,6 +233,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("1", str2);
     }
 
+    @Test
     public void testGetTimestampPropertyName() {
         Class clazz1 = AnnotationTestBean1.class;
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
@@ -240,6 +245,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("1", str2);
     }
 
+    @Test
     public void testGetIds() {
         Class clazz1 = AnnotationTestBean4.class;
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
@@ -260,6 +266,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("4", str4);
     }
 
+    @Test
     public void testGetId1() {
         Class clazz1 = AnnotationTestBean5.class;
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
@@ -275,6 +282,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("3", str3);
     }
 
+    @Test
     public void testGetId2() {
         Class clazz1 = AnnotationTestBean6.class;
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
@@ -287,6 +295,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("2", str3);
     }
 
+    @Test
     public void testGetNoPersisteneProps() {
         Class clazz1 = AnnotationTestBean1.class;
         BeanAnnotationReader reader1 = createBeanAnnotationReader(clazz1);
@@ -298,6 +307,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertNull("1", strings2);
     }
 
+    @Test
     public void testGetRelationKey() {
         Class clazz1 = AnnotationTestBean1.class;
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz1);
@@ -310,6 +320,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
                 .getPropertyDesc("prop2")));
     }
 
+    @Test
     public void testGetValueType() throws Exception {
         Class clazz = AnnotationTestBean3.class;
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
