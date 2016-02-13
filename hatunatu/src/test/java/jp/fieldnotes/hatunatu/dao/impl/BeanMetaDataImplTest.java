@@ -18,26 +18,28 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Employee4;
+import jp.fieldnotes.hatunatu.dao.impl.bean.IdentityTable;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.sql.Timestamp;
+
 import static org.junit.Assert.*;
 
-public abstract class BeanMetaDataImplTest  {
+public class BeanMetaDataImplTest {
     
     @Rule
     public HatunatuTest test = new HatunatuTest(this);
 
 
-    protected abstract Class getBeanClass(String className);
-
     @Test
     public void testSetup() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("MyBean"));
+        BeanMetaData bmd = test.createBeanMetaData(MyBean.class);
         assertEquals("1", "MyBean", bmd.getTableName());
         assertEquals("2", 3, bmd.getPropertyTypeSize());
         PropertyType aaa = bmd.getPropertyType("aaa");
@@ -56,7 +58,7 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testSetupDatabaseMetaData() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         PropertyType empno = bmd.getPropertyType("empno");
         assertEquals("1", true, empno.isPrimaryKey());
         assertEquals("2", true, empno.isPersistent());
@@ -68,8 +70,8 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testSetupAutoSelectList() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Department"));
-        BeanMetaData bmd2 = test.createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(Department.class);
+        BeanMetaData bmd2 = test.createBeanMetaData(Employee.class);
         String sql = bmd.getAutoSelectList();
         String sql2 = bmd2.getAutoSelectList();
         System.out.println(sql);
@@ -82,7 +84,7 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testConvertFullColumnName() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         assertEquals("1", "EMP.empno", bmd.convertFullColumnName("empno"));
         assertEquals("2", "department.dname", bmd
                 .convertFullColumnName("dname_0"));
@@ -90,7 +92,7 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testHasPropertyTypeByAliasName() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         assertEquals("1", true, bmd.hasPropertyTypeByAliasName("empno"));
         assertEquals("2", true, bmd.hasPropertyTypeByAliasName("dname_0"));
         assertEquals("3", false, bmd.hasPropertyTypeByAliasName("xxx"));
@@ -100,48 +102,48 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testGetPropertyTypeByAliasName() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee"));
+        BeanMetaData bmd = test.createBeanMetaData(Employee.class);
         assertNotNull("1", bmd.getPropertyTypeByAliasName("empno"));
         assertNotNull("2", bmd.getPropertyTypeByAliasName("dname_0"));
     }
 
     @Test
     public void testSelfReference() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Employee4"));
+        BeanMetaData bmd = test.createBeanMetaData(Employee4.class);
         RelationPropertyType rpt = bmd.getRelationPropertyType("parent");
-        assertEquals("1", true, getBeanClass("Employee4").isAssignableFrom(
+        assertEquals("1", true, Employee4.class.isAssignableFrom(
                 rpt.getBeanMetaData().getBeanClass()));
     }
 
     @Test
     public void testNoPersistentPropsEmpty() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Ddd"));
+        BeanMetaData bmd = test.createBeanMetaData(Ddd.class);
         PropertyType pt = bmd.getPropertyType("name");
         assertEquals("1", false, pt.isPersistent());
     }
 
     @Test
     public void testNoPersistentPropsDefined() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Eee"));
+        BeanMetaData bmd = test.createBeanMetaData(Eee.class);
         PropertyType pt = bmd.getPropertyType("name");
         assertEquals("1", false, pt.isPersistent());
     }
 
     @Test
     public void testPrimaryKeyForIdentifier() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("IdentityTable"));
+        BeanMetaData bmd = test.createBeanMetaData(IdentityTable.class);
         assertEquals("1", "id", bmd.getPrimaryKey(0));
     }
 
     @Test
     public void testGetVersionNoPropertyName() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Fff"));
+        BeanMetaData bmd = test.createBeanMetaData(Fff.class);
         assertEquals("1", "version", bmd.getVersionNoPropertyName());
     }
 
     @Test
     public void testGetTimestampPropertyName() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Fff"));
+        BeanMetaData bmd = test.createBeanMetaData(Fff.class);
         assertEquals("1", "updated", bmd.getTimestampPropertyName());
     }
 
@@ -165,7 +167,7 @@ public abstract class BeanMetaDataImplTest  {
 
     @Test
     public void testMultiIdentities() throws Exception {
-        BeanMetaData bmd = test.createBeanMetaData(getBeanClass("Ggg"));
+        BeanMetaData bmd = test.createBeanMetaData(Ggg.class);
         assertEquals(2, bmd.getIdentifierGeneratorSize());
         assertNotNull(bmd.getIdentifierGenerator("id"));
         assertNotNull(bmd.getIdentifierGenerator("id2"));
@@ -236,6 +238,152 @@ public abstract class BeanMetaDataImplTest  {
             return super.getEmployeeId();
         }
 
+
+    }
+
+    @Bean(table = "MyBean")
+    public static class MyBean {
+        private Integer aaa;
+
+        private String bbb;
+
+        private Ccc ccc;
+
+        private Integer ddd;
+
+        @Id(IdType.ASSIGNED)
+        public Integer getAaa() {
+            return aaa;
+        }
+
+        public void setAaa(Integer aaa) {
+            this.aaa = aaa;
+        }
+
+        @Column(value = "myBbb")
+        public String getBbb() {
+            return bbb;
+        }
+
+        public void setBbb(String bbb) {
+            this.bbb = bbb;
+        }
+
+        @Relation(relationNo = 0, relationKey = "ddd:id")
+        public Ccc getCcc() {
+            return ccc;
+        }
+
+        public void setCcc(Ccc ccc) {
+            this.ccc = ccc;
+        }
+
+        public Integer getDdd() {
+            return ddd;
+        }
+
+        public void setDdd(Integer ddd) {
+            this.ddd = ddd;
+        }
+    }
+
+    public static class Ccc {
+        private Integer id;
+
+        @Id(value = IdType.ASSIGNED)
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+    }
+
+    @Bean(noPersistentProperty = {""})
+    public static class Ddd extends Ccc {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    @Bean(noPersistentProperty = {"name"})
+    public static class Eee extends Ccc {
+
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    @Bean(versionNoProperty = "version", timeStampProperty = "updated")
+    public static class Fff {
+
+        private int version;
+
+        private Integer id;
+
+        private Timestamp updated;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public int getVersion() {
+            return version;
+        }
+
+        public void setVersion(int version) {
+            this.version = version;
+        }
+
+        public Timestamp getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(Timestamp updated) {
+            this.updated = updated;
+        }
+    }
+
+    public static class Ggg {
+
+        private Integer id;
+
+        private Integer id2;
+
+        @Id(value = IdType.ASSIGNED)
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        @Id(value = IdType.SEQUENCE, sequenceName = "id2")
+        public Integer getId2() {
+            return id2;
+        }
+
+        public void setId2(Integer id2) {
+            this.id2 = id2;
+        }
 
     }
 
