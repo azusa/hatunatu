@@ -15,7 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BooleanToIntPreparedStatement;

@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

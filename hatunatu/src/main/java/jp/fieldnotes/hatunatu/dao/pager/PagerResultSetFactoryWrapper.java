@@ -16,7 +16,6 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import jp.fieldnotes.hatunatu.api.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 
 import java.sql.PreparedStatement;

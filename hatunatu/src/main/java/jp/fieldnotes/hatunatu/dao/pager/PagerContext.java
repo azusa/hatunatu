@@ -13,7 +13,9 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package jp.fieldnotes.hatunatu.api.pager;
+package jp.fieldnotes.hatunatu.dao.pager;
+
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 
 /**
  * ページャの情報をスレッドローカルに保持します。
