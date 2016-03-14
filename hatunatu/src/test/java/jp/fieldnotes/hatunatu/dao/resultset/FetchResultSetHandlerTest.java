@@ -52,30 +52,24 @@ public class FetchResultSetHandlerTest  {
             assertTrue(handler instanceof FetchBeanMetaDataResultSetHandler);
         }
         {
-            FetchHandler fetchHandler = new FetchHandler<EmployeeDto>() {
-                public boolean execute(EmployeeDto bean) {
-                    return false;
-                }
+            FetchHandler<EmployeeDto> fetchHandler = (EmployeeDto bean) -> {
+                return false;
             };
             ResultSetHandler handler = resultSetHandler
                     .createResultSetHandler(fetchHandler);
             assertTrue(handler instanceof FetchDtoMetaDataResultSetHandler);
         }
         {
-            FetchHandler fetchHandler = new FetchHandler<Map>() {
-                public boolean execute(Map bean) {
-                    return false;
-                }
+            FetchHandler<Map> fetchHandler = (Map bean) -> {
+                return false;
             };
             ResultSetHandler handler = resultSetHandler
                     .createResultSetHandler(fetchHandler);
             assertTrue(handler instanceof FetchMapResultSetHandler);
         }
         {
-            FetchHandler fetchHandler = new FetchHandler<String>() {
-                public boolean execute(String ename) {
-                    return false;
-                }
+            FetchHandler<String> fetchHandler = (String ename) -> {
+                return false;
             };
             ResultSetHandler handler = resultSetHandler
                     .createResultSetHandler(fetchHandler);
@@ -88,10 +82,8 @@ public class FetchResultSetHandlerTest  {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
-        FetchHandler fetchHandler = new FetchHandler<Employee>() {
-            public boolean execute(Employee bean) {
-                return false;
-            }
+        FetchHandler<Employee> fetchHandler = (Employee bean) -> {
+            return false;
         };
         Class clazz = resultSetHandler.getParameterClass(fetchHandler);
         assertEquals(Employee.class, clazz);
@@ -102,10 +94,8 @@ public class FetchResultSetHandlerTest  {
         FetchResultSetHandler resultSetHandler = new FetchResultSetHandler(
                 Employee.class, test.createBeanMetaData(Employee.class),
                 dtoMetaDataFactory);
-        FetchHandler fetchHandler = new FetchHandler<Employee>() {
-            public boolean execute(Employee bean) {
-                return false;
-            }
+        FetchHandler<Employee> fetchHandler = (Employee bean) -> {
+            return false;
         };
         {
             Object[] args = new Object[] { "aaa", fetchHandler };

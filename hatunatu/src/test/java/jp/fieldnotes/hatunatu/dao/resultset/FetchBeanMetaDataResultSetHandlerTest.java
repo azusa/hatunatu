@@ -55,12 +55,11 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
         final List<Employee> ret = new ArrayList<Employee>();
         ResultSetHandler handler = new FetchBeanMetaDataResultSetHandler(
                 beanMetaData, createRowCreator(), createRelationRowCreator(),
-                new FetchHandler<Employee>() {
-                    public boolean execute(Employee bean) {
-                        ret.add(bean);
-                        return true;
-                    }
-                });
+                (Employee bean) ->  {
+                    ret.add(bean);
+                    return true;
+                }
+        );
         try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
 
             handler.handle(rs, test.getQueryObject());
@@ -81,14 +80,12 @@ public class FetchBeanMetaDataResultSetHandlerTest  {
             assertNotNull("2", cmd);
             System.out.println(cmd.toString());
             final List<Employee> ret = new ArrayList<Employee>();
-            FetchHandler<Employee> handler = new FetchHandler<Employee>() {
-                public boolean execute(Employee emp) {
+            FetchHandler<Employee> handler = (Employee emp) -> {
                     if (!emp.getDepartment().getDname().equals("RESEARCH")) {
                         fail();
                     }
                     ret.add(emp);
                     return true;
-                }
             };
             EmployeeSearchCondition dto = new EmployeeSearchCondition();
             dto.setDname("RESEARCH");
