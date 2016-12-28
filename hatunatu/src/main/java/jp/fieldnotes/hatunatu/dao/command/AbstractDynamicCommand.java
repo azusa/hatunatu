@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.dao.Node;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlParserImpl;
-import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 
 import javax.sql.DataSource;
 
@@ -68,10 +67,6 @@ public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
         CommandContext ctx = new CommandContextImpl();
         if (args != null) {
             for (int i = 0; i < args.length; ++i) {
-                if (i == (args.length - 1) && args[i] != null
-                        && FetchHandlerUtil.isFetchHandler(args[i].getClass())) {
-                    break;
-                }
                 Class argType = null;
                 if (i < argTypes.length) {
                     argType = argTypes[i];

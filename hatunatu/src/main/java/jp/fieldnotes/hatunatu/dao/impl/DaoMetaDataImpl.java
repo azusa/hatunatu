@@ -27,7 +27,6 @@ import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
-import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.exception.MethodNotFoundRuntimeException;
@@ -687,11 +686,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         if (argNames.length == 0) {
             if (method.getParameterTypes().length == 1) {
                 return true;
-            } else if (method.getParameterTypes().length == 2) {
-                Class clazz = method.getParameterTypes()[1];
-                if (FetchHandlerUtil.isFetchHandler(clazz)) {
-                    return true;
-                }
             }
         }
         return false;
