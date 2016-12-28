@@ -15,7 +15,6 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.FetchHandler;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.SqlFile;
@@ -55,16 +54,8 @@ public interface EmployeeDao {
 
     public Employee[] getEmployeesByDeptno(int deptno);
 
-    public int fetchAll(FetchHandler<Employee> handler);
-
     @Arguments("deptno")
     public int fetchByDeptno(int deptno);
 
-    public int fetchEmployeesBySearchCondition(EmployeeSearchCondition dto,
-                                               FetchHandler<Employee> handler);
-
-    public int fetchAllToMap(FetchHandler<Map> handler);
-
-    public int fetchAllEmpno(FetchHandler<Integer> handler);
 
 }

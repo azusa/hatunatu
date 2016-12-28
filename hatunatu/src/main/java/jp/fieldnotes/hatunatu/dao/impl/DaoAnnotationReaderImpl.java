@@ -19,7 +19,6 @@ import jp.fieldnotes.hatunatu.api.DaoAnnotationReader;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
 import jp.fieldnotes.hatunatu.dao.util.AnnotationUtil;
-import jp.fieldnotes.hatunatu.dao.util.FetchHandlerUtil;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 
 import java.lang.reflect.Method;
@@ -68,14 +67,6 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
             return null;
         }
         if (TypeUtil.isSimpleType(method.getReturnType())) {
-            if (method.getParameterTypes().length >= 2){
-                if (FetchHandlerUtil.isFetchHandler(method.getParameterTypes()[1])){
-                    Type parameterType = method.getGenericParameterTypes()[1];
-                    if (parameterType != null){
-                        return getRawClass(getGenericParameter(parameterType, 0));
-                    }
-                }
-            }
             return method.getReturnType();
         }
         if (method.getReturnType().isArray()) {

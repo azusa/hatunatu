@@ -44,7 +44,7 @@ public class ResultSetHandlerFactorySelector implements ResultSetHandlerFactory 
     protected boolean restrictNotSingleResult = false;
 
     public void init() {
-        ResultSetHandlerFactoryImpl factory = new TigerResultSetHandlerFactoryImpl();
+        ResultSetHandlerFactoryImpl factory = new ResultSetHandlerFactoryImpl();
         factory.setDtoMetaDataFactory(dtoMetaDataFactory);
         factory.setRestrictNotSingleResult(restrictNotSingleResult);
         resultSetHandlerFactory = factory;
