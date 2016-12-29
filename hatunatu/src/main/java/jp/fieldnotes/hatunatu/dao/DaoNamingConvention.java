@@ -27,8 +27,6 @@ public interface DaoNamingConvention {
 
     String[] getInsertPrefixes();
 
-    String[] getUnlessNullSuffixes();
-
     String[] getUpdatePrefixes();
 
     String[] getModifiedOnlySuffixes();
