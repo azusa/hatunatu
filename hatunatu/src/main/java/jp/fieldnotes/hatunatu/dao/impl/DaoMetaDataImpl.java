@@ -502,9 +502,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         final String[] propertyNames = getPersistentPropertyNames(method, beanMetaData);
         AbstractSqlCommand cmd;
         if (isUpdateSignatureForBean(method)) {
-            if (isUnlessNull(method.getName())) {
-                cmd = createUpdateAutoDynamicCommand(method, propertyNames, beanMetaData);
-            } else if (isModifiedOnly(method.getName())) {
+            if (isModifiedOnly(method.getName())) {
                 cmd = createUpdateModifiedOnlyCommand(method, propertyNames, beanMetaData);
             } else {
                 cmd = createUpdateAutoStaticCommand(method, propertyNames, beanMetaData);
@@ -867,17 +865,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
                 .getDeletePrefixes();
         for (String deletePrefix : deletePrefixes) {
             if (methodName.startsWith(deletePrefix)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected boolean isUnlessNull(final String methodName) {
-        final String[] unlessNullSuffixes = getDaoNamingConvention()
-                .getUnlessNullSuffixes();
-        for (String unlessNullSuffix : unlessNullSuffixes) {
-            if (methodName.endsWith(unlessNullSuffix)) {
                 return true;
             }
         }
