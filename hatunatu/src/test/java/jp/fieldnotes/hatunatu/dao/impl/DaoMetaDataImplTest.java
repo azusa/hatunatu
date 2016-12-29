@@ -124,7 +124,7 @@ public class DaoMetaDataImplTest  {
         assertNotNull("1", cmd);
         assertEquals("2", BeanMetaDataResultSetHandler.class, cmd
                 .getResultSetHandler().getClass());
-        assertEquals("3", "empno", cmd.getArgNames()[0]);
+        assertEquals("3", "empno", cmd.getArgNames().get(0));
     }
 
     @Test
@@ -144,7 +144,7 @@ public class DaoMetaDataImplTest  {
         UpdateDynamicCommand cmd = (UpdateDynamicCommand) dmd
                 .getSqlCommand(test.getSingleDaoMethod(EmployeeDao.class,"update"));
         assertNotNull("1", cmd);
-        assertEquals("2", "employee", cmd.getArgNames()[0]);
+        assertEquals("2", "employee", cmd.getArgNames().get(0));
     }
 
     @Test

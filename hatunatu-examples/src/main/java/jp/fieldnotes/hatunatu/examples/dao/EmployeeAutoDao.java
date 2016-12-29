@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 
 import java.util.List;
@@ -24,17 +24,17 @@ public interface EmployeeAutoDao {
 
     public List<Employee> getAllEmployees();
 
-    @Arguments({"job", "deptno"})
-    public List<Employee> getEmployeeByJobDeptno(String job, Integer deptno);
 
-    @Arguments("empno")
-    public Employee getEmployeeByEmpno(int empno);
+    public List<Employee> getEmployeeByJobDeptno(@Argument("job")String job, @Argument("deptno")Integer deptno);
+
+
+    public Employee getEmployeeByEmpno(@Argument("empno")int empno);
 
     @Query("sal BETWEEN ? AND ? ORDER BY empno")
     public List<Employee> getEmployeesBySal(float minSal, float maxSal);
 
-    @Arguments("dname_0")
-    public List<Employee> getEmployeeByDname(String dname);
+
+    public List<Employee> getEmployeeByDname(@Argument("dname_0")String dname);
 
     public List<Employee> getEmployeesBySearchCondition(EmployeeSearchCondition dto);
 

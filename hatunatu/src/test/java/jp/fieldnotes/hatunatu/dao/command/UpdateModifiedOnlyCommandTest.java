@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -75,8 +75,8 @@ public class UpdateModifiedOnlyCommandTest  {
 
     public static interface EmpByReflectionDao {
 
-        @Arguments({"empno"})
-        EmpByReflection findById(long empno);
+
+        EmpByReflection findById(@Argument("empno")long empno);
 
         int updateModifiedOnly(EmpByReflection emp);
 

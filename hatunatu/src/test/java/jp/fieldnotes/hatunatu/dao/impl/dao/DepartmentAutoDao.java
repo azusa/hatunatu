@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Department;
 
 public interface DepartmentAutoDao {
@@ -32,8 +32,8 @@ public interface DepartmentAutoDao {
 
     public void deleteBatch(Department[] departents);
 
-    @Arguments({"deptno"})
-    public Department getDepartment(int deptno);
+
+    public Department getDepartment(@Argument("deptno")int deptno);
 
     public void updateUnlessNull(Department department);
 }

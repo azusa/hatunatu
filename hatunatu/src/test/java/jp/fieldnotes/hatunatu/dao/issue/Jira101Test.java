@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.issue;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -46,8 +46,8 @@ public class Jira101Test {
     }
 
     public static interface Jira101Dao {
-        @Arguments("FOO_ID")
-        Jira101Entity findById(int id);
+
+        Jira101Entity findById(@Argument("FOO_ID")int id);
 
         int insert(Jira101Entity entity);
 

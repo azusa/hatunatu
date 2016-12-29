@@ -22,12 +22,14 @@ import jp.fieldnotes.hatunatu.dao.context.CommandContextImpl;
 import jp.fieldnotes.hatunatu.dao.parser.SqlParserImpl;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
 
     private Node rootNode;
 
-    private String[] argNames = new String[0];
+    private List<String> argNames = new ArrayList<>();
 
     private Class[] argTypes = new Class[0];
 
@@ -41,11 +43,11 @@ public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
         this.rootNode = new SqlParserImpl(sql).parse();
     }
 
-    public String[] getArgNames() {
+    public List<String> getArgNames() {
         return argNames;
     }
 
-    public void setArgNames(String[] argNames) {
+    public void setArgNames(List<String> argNames) {
         this.argNames = argNames;
     }
 
@@ -73,8 +75,8 @@ public abstract class AbstractDynamicCommand extends AbstractSqlCommand {
                 } else if (args[i] != null) {
                     argType = args[i].getClass();
                 }
-                if (i < argNames.length) {
-                    ctx.addArg(argNames[i], args[i], argType);
+                if (i < argNames.size()) {
+                    ctx.addArg(argNames.get(i), args[i], argType);
                 } else {
                     ctx.addArg("$" + (i + 1), args[i], argType);
                 }

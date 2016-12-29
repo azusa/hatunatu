@@ -23,16 +23,16 @@ import java.util.List;
 
 public interface EmployeeAutoDao {
 
-    @Arguments("deptno")
+
     @Query("deptno asc, empno desc")
-    public List<Employee> getEmployeeByDeptno(int deptno);
+    public List<Employee> getEmployeeByDeptno(@Argument("deptno")int deptno);
 
     @Query("sal BETWEEN ? AND ? ORDER BY empno")
     public List<Employee> getEmployeesBySal(Float minSal, Float maxSal);
 
-    @Arguments( { "enames", "jobs" })
+
     @Query("ename IN /*enames*/('SCOTT','MARY') AND job IN /*jobs*/('ANALYST', 'FREE')")
-    public List<Employee> getEmployeesByEnameJob(List enames, List jobs);
+    public List<Employee> getEmployeesByEnameJob(@Argument("enames")List enames, @Argument( "jobs") List jobs);
 
     public List<Employee> getEmployeesBySearchCondition(EmployeeSearchCondition dto);
 
@@ -41,8 +41,8 @@ public interface EmployeeAutoDao {
 
     public List<Employee> getEmployeesByEmployee(Employee dto);
 
-    @Arguments("empno")
-    public Employee getEmployee(int empno);
+
+    public Employee getEmployee(@Argument("empno")int empno);
 
     public void insert(Employee employee);
 

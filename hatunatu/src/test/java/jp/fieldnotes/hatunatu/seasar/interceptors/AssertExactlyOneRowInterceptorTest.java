@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.seasar.exception.NotExactlyOneRowUpdatedRuntimeException;
@@ -62,9 +62,9 @@ public class AssertExactlyOneRowInterceptorTest  {
 
     public static interface EmployeeDao {
 
-        @Arguments({"ename"})
+
         @Sql("update EMP set SAL = SAL * 2 where ENAME LIKE /*ename*/'ABC'")
-        public int updateSal(String name);
+        public int updateSal(@Argument("ename")String name);
 
     }
 

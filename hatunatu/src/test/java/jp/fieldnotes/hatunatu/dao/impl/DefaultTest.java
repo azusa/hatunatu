@@ -284,8 +284,7 @@ public class DefaultTest  {
 
     public static interface DefaultTableDao {
 
-        @Arguments({"id"})
-        public DefaultTable getDefaultTable(Integer id);
+        public DefaultTable getDefaultTable(@Argument("id")Integer id);
 
         @Query(value = "ORDER BY ID")
         public List<DefaultTable> getDefaultTables();

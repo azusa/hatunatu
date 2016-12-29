@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
 import java.util.List;
@@ -25,18 +25,16 @@ public interface EmployeeDao {
     public List<Employee> getAllEmployees();
 
     @Sql("select empno, ename, dname from emp, dept where empno = ? and emp.deptno = dept.deptno")
-    @Arguments("empno")
-    public EmployeeDto findEmployeeDto(int empno);
+    public EmployeeDto findEmployeeDto(@Argument("empno")int empno);
 
-    @Arguments("empno")
-    public Employee getEmployee(int empno);
+    public Employee getEmployee(@Argument("empno")int empno);
 
     public Employee[] getEmployeesByDeptno(int deptno);
 
     public int getCount();
 
-    @Arguments({"empno","ename"})
-    public int insert(int empno, String ename);
+
+    public int insert(@Argument("empno")int empno, @Argument("ename")String ename);
 
     public int update(Employee employee);
 }

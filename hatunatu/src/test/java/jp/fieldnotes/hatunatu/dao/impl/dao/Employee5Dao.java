@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee5;
 
 public interface Employee5Dao {
 
-    @Arguments("empno")
-    public Employee5 getEmployee(int empno);
+
+    public Employee5 getEmployee(@Argument("empno")int empno);
 }

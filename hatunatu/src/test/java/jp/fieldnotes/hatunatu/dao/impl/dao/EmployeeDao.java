@@ -15,15 +15,13 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.SqlFile;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
-import jp.fieldnotes.hatunatu.dao.impl.condition.EmployeeSearchCondition;
 import jp.fieldnotes.hatunatu.dao.impl.dto.EmployeeDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface EmployeeDao {
 
@@ -31,8 +29,8 @@ public interface EmployeeDao {
 
     public Employee[] getAllEmployeeArray();
 
-    @Arguments("empno")
-    public Employee selectByEmpno(long empno);
+
+    public Employee selectByEmpno( @Argument("empno")long empno);
 
     @Sql(value = "SELECT empno, ename, dname FROM emp, dept where emp.deptno = dept.deptno")
     public EmployeeDto[] findAll();
@@ -41,8 +39,8 @@ public interface EmployeeDao {
      * @param empno
      * @return
      */
-    @Arguments("empno")
-    public Employee getEmployee(int empno);
+
+    public Employee getEmployee(@Argument("empno")int empno);
 
     @SqlFile
     public int getCount();
@@ -54,8 +52,8 @@ public interface EmployeeDao {
 
     public Employee[] getEmployeesByDeptno(int deptno);
 
-    @Arguments("deptno")
-    public int fetchByDeptno(int deptno);
+
+    public int fetchByDeptno(@Argument("deptno")int deptno);
 
 
 }
