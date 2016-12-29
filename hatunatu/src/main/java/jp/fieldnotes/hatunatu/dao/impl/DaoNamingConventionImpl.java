@@ -32,8 +32,6 @@ public class DaoNamingConventionImpl implements DaoNamingConvention {
 
     private String[] deletePrefixes = new String[] { "delete", "remove" };
 
-    private String[] unlessNullSuffixes = new String[] { "UnlessNull" };
-
     private String[] modifiedOnlySuffixes = new String[] { "ModifiedOnly" };
 
     private String modifiedPropertyNamesPropertyName = "modifiedPropertyNames";
@@ -85,14 +83,6 @@ public class DaoNamingConventionImpl implements DaoNamingConvention {
 
     public void setInsertPrefixes(final String[] insertPrefixes) {
         this.insertPrefixes = insertPrefixes;
-    }
-
-    public String[] getUnlessNullSuffixes() {
-        return unlessNullSuffixes;
-    }
-
-    public void setUnlessNullSuffixes(final String[] unlessNullSuffixes) {
-        this.unlessNullSuffixes = unlessNullSuffixes;
     }
 
     public String[] getUpdatePrefixes() {
