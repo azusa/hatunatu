@@ -37,7 +37,6 @@ import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
-import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.env.Env;
 import org.seasar.framework.unit.UnitClassLoader;
 import org.seasar.framework.util.FieldUtil;
@@ -496,7 +495,6 @@ public class HatunatuTest extends ExternalResource {
         unitClassLoader = new UnitClassLoader(originalClassLoader);
         Thread.currentThread().setContextClassLoader(unitClassLoader);
         container = S2ContainerFactory.create();
-        SingletonS2ContainerFactory.setContainer(container);
     }
 
     private ClassLoader getOriginalClassLoader() {
