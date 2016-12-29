@@ -21,9 +21,11 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
 import jp.fieldnotes.hatunatu.dao.util.AnnotationUtil;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
@@ -48,9 +50,19 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
     }
 
     @Override
-    public String[] getArgNames(Method method) {
-        Arguments arg = method.getAnnotation(Arguments.class);
-        return (arg != null) ? arg.value() : new String[0];
+    public List<String> getArgNames(Method method) {
+        Annotation[][] arg = method.getParameterAnnotations();
+        List<String> arguments = new ArrayList<>();
+        for (Annotation[] a1 : arg){
+            for (Annotation a2 : a1){
+                if (a2 instanceof Argument){
+                    arguments.add(((Argument) a2).value());
+                } else {
+                    arguments.add("");
+                }
+            }
+        }
+        return arguments;
     }
 
 

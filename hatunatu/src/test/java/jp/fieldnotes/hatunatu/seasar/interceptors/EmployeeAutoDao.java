@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.seasar.interceptors;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 
 import java.util.List;
 
 public interface EmployeeAutoDao {
 
-    @Arguments("empno")
-    public Employee getEmployee(int empno);
+
+    public Employee getEmployee(@Argument("empno")int empno);
 
     @Query("sal BETWEEN ? AND ?")
     public List<Employee> getEmployeesBySal(float minSal, float maxSal);

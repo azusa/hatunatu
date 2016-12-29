@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Arguments {
-    String[] value() default {};
+@Target(ElementType.PARAMETER)
+public @interface Argument {
+    String value() default "";
 }

@@ -16,6 +16,7 @@
 package jp.fieldnotes.hatunatu.api;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * @author uehara keizou
@@ -41,7 +42,7 @@ public interface DaoAnnotationReader {
      * @param method
      * @return
      */
-    String[] getArgNames(Method method);
+    List<String> getArgNames(Method method);
 
     /**
      * @return

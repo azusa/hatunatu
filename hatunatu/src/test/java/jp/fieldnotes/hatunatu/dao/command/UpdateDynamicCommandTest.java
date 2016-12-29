@@ -21,6 +21,8 @@ import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class UpdateDynamicCommandTest  {
@@ -34,7 +36,7 @@ public class UpdateDynamicCommandTest  {
                 BasicStatementFactory.INSTANCE);
         cmd
                 .setSql("UPDATE emp SET ename = /*employee.ename*/'HOGE' WHERE empno = /*employee.empno*/1234");
-        cmd.setArgNames(new String[] { "employee" });
+        cmd.setArgNames(Arrays.asList("employee" ));
 
         Employee emp = new Employee();
         emp.setEmpno(7788);

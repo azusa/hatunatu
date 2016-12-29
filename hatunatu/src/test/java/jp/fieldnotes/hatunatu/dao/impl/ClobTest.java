@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ValueType;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
@@ -66,8 +66,8 @@ public class ClobTest {
 
     public static interface LargeTextDao {
 
-        @Arguments({"id"})
-        public LargeText getLargeText(int id);
+
+        public LargeText getLargeText(@Argument("id")int id);
 
         public void insert(LargeText largeText);
 

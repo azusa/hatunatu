@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Sql;
 
@@ -27,19 +27,17 @@ public interface EmployeeDao {
 
     public List<Employee> getEmps(EmployeeSearchCondition dto);
 
-    @Arguments("empno")
-    public Employee getEmployee(int empno);
+
+    public Employee getEmployee(@Argument("empno")int empno);
 
     @Sql("SELECT COUNT(*) FROM EMP")
     public int getCount();
 
-    @Arguments({"job", "deptno"})
-    public List<Employee> getEmployeeByJobDeptno(String job, Integer deptno);
+    public List<Employee> getEmployeeByJobDeptno(@Argument("job")String job, @Argument("deptno")Integer deptno);
 
-    @Arguments("deptno")
     @Query("/*IF deptno != null*/deptno = /*deptno*/123\n"
             + "-- ELSE 1=1\n" + "/*END*/")
-    public List<Employee> getEmployeeByDeptno(Integer deptno);
+    public List<Employee> getEmployeeByDeptno(@Argument("deptno")Integer deptno);
 
     public int update(Employee employee);
 

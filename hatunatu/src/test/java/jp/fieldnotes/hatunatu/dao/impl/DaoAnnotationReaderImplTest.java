@@ -121,19 +121,20 @@ public class DaoAnnotationReaderImplTest {
                 .createDaoAnnotationReader(beanDesc);
         assertEquals("1", Employee.class, reader.getBeanClass(beanDesc.getMethodDescs("subclassMethod")[0].getMethod()));
         Method method = beanDesc.getMethodDesc("withArgumentAnnotaion",Integer.TYPE, String.class).getMethod();
-        String[] names = reader.getArgNames(method);
-        assertEquals("2", 2, names.length);
-        assertEquals("2", "arg1", names[0]);
-        assertEquals("2", "arg2", names[1]);
+        List<String> names = reader.getArgNames(method);
+        assertEquals("2", 2, names.size());
+        assertEquals("2", "arg1", names.get(0));
+        assertEquals("2", "arg2", names.get(1));
+
         // getArgNames return 0 length array if args annotation is not
         // specified.
         Method method2 = beanDesc.getMethodDesc("withNoAnnotaion", Integer.TYPE).getMethod();
-        String[] names2 = reader.getArgNames(method2);
-        assertEquals("3", 0, names2.length);
+        List<String> names2 = reader.getArgNames(method2);
+        assertEquals("3", 0, names2.size());
         // annotationReader must read subclass annotation
         Method method3 = beanDesc.getMethodDesc("subclassMethod", String.class).getMethod();
-        String[] names3 = reader.getArgNames(method3);
-        assertEquals("3", 1, names3.length);
+        List<String> names3 = reader.getArgNames(method3);
+        assertEquals("3", 1, names3.size());
     }
 
     @Test
@@ -151,8 +152,8 @@ public class DaoAnnotationReaderImplTest {
         assertNull("1", query2);
         // annotationReader must read subclass annotation
         Method method3 = beanDesc.getMethodDesc("subclassMethod", String.class).getMethod();
-        String[] names3 = reader.getArgNames(method3);
-        assertEquals("3", 1, names3.length);
+        List<String> names3 = reader.getArgNames(method3);
+        assertEquals("3", 1, names3.size());
 
     }
 
@@ -216,8 +217,7 @@ public class DaoAnnotationReaderImplTest {
 
     public static interface AnnotationTestDao {
 
-        @Arguments({"arg1", "arg2"})
-        public Employee withArgumentAnnotaion(int arg1, String arg2);
+        public Employee withArgumentAnnotaion(@Argument("arg1")int arg1, @Argument("arg2")String arg2);
 
         @Query("arg1 = /*arg1*/'dummy'")
         public Employee withQueryAnnotaion(int arg1);
@@ -241,10 +241,10 @@ public class DaoAnnotationReaderImplTest {
 
     public static interface AnnotationTestDaoImpl extends AnnotationTestDao {
 
-        @Arguments({"arg1"})
+
         @Query( "arg1 = /*arg1*/'dummy'")
         @PersistentProperty({"prop1", "prop2"})
-        public abstract Employee subclassMethod(String arg1);
+        public abstract Employee subclassMethod(@Argument("arg1")String arg1);
 
 
         @NoPersistentProperty({"prop1", "prop2"})
@@ -256,7 +256,7 @@ public class DaoAnnotationReaderImplTest {
     @CheckSingleRowUpdate(false)
     public static interface AaaDao {
 
-        @Arguments( { "aaa1", "aaa2" })
+
         public Aaa getAaaById1(int id);
 
         @Query("A > B")

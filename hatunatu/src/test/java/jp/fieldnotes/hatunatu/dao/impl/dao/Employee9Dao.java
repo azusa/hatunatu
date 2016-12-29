@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl.dao;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee9;
 
 public interface Employee9Dao {
@@ -26,7 +26,7 @@ public interface Employee9Dao {
 
     public Employee9 findBy(Employee9 employee);
 
-    @Arguments("eName")
-    public Employee9 findByEname(String ename);
+
+    public Employee9 findByEname(@Argument("eName")String ename);
 
 }

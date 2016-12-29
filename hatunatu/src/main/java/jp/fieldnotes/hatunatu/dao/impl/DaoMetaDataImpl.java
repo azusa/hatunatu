@@ -437,9 +437,9 @@ public class DaoMetaDataImpl implements DaoMetaData {
         final UpdateDynamicCommand cmd = new UpdateDynamicCommand(dataSource,
                 statementFactory);
         cmd.setSql(sql);
-        String[] argNames = daoAnnotationReader.getArgNames(method);
-        if (argNames.length == 0 && isUpdateSignatureForBean(method)) {
-            argNames = new String[]{StringUtil.decapitalize(ClassUtil.getShortClassName(beanMetaData.getBeanClass().getName()))};
+        List<String> argNames = daoAnnotationReader.getArgNames(method);
+        if (argNames.isEmpty() && isUpdateSignatureForBean(method)) {
+            argNames = Arrays.asList(StringUtil.decapitalize(ClassUtil.getShortClassName(beanMetaData.getBeanClass().getName())));
         }
         cmd.setArgNames(argNames);
         cmd.setArgTypes(method.getParameterTypes());
@@ -645,7 +645,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected void setupSelectMethodByAuto(final Method method, final BeanMetaData beanMetaData) {
         final ResultSetHandler handler = createResultSetHandler(method, beanMetaData);
-        final String[] argNames = daoAnnotationReader.getArgNames(method);
+        final List<String> argNames = daoAnnotationReader.getArgNames(method);
         final String query = daoAnnotationReader.getQuery(method);
         SelectDynamicCommand cmd;
         if (query != null && !startsWithOrderBy(query)) {
@@ -660,7 +660,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected SelectDynamicCommand setupQuerySelectMethodByAuto(
             final Method method, final ResultSetHandler handler,
-            final String[] argNames, final String query, final BeanMetaData beanMetaData) {
+            final List<String> argNames, final String query, final BeanMetaData beanMetaData) {
         final Class[] types = method.getParameterTypes();
         final SelectDynamicCommand cmd = createSelectDynamicCommand(handler,
                 query, beanMetaData);
@@ -671,7 +671,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected SelectDynamicCommand setupNonQuerySelectMethodByAuto(
             final Method method, final ResultSetHandler handler,
-            final String[] argNames, final String query, final BeanMetaData beanMetaData) {
+            final List<String> argNames, final String query, final BeanMetaData beanMetaData) {
         if (isAutoSelectSqlByDto(method, argNames)) {
             return setupNonQuerySelectMethodByDto(method, handler, argNames,
                     query, beanMetaData);
@@ -682,8 +682,8 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isAutoSelectSqlByDto(final Method method,
-                                           final String[] argNames) {
-        if (argNames.length == 0) {
+                                           final List<String> argNames) {
+        if (argNames.isEmpty()) {
             if (method.getParameterTypes().length == 1) {
                 return true;
             }
@@ -693,7 +693,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected SelectDynamicCommand setupNonQuerySelectMethodByDto(
             final Method method, final ResultSetHandler handler,
-            final String[] argNames, final String query, final BeanMetaData beanMetaData) {
+            final List<String> argNames, final String query, final BeanMetaData beanMetaData) {
         final SelectDynamicCommand cmd = createSelectDynamicCommand(handler);
         Class clazz = method.getParameterTypes()[0];
         if (isUpdateSignatureForBean(method)) {
@@ -712,7 +712,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected SelectDynamicCommand setupNonQuerySelectMethodByArgs(
             final Method method, final ResultSetHandler handler,
-            final String[] argNames, final String query, final BeanMetaData beanMetaData) {
+            final List<String> argNames, final String query, final BeanMetaData beanMetaData) {
         final SelectDynamicCommand cmd = createSelectDynamicCommand(handler);
         final Class[] types = method.getParameterTypes();
         String sql = createAutoSelectSql(argNames, beanMetaData);
@@ -784,20 +784,20 @@ public class DaoMetaDataImpl implements DaoMetaData {
         return dtoMetaData;
     }
 
-    protected String createAutoSelectSql(final String[] argNames, BeanMetaData beanMetaData) {
+    protected String createAutoSelectSql(final List<String> argNames, BeanMetaData beanMetaData) {
         final String sql = dbms.getAutoSelectSql(beanMetaData);
         final StringBuilder buf = new StringBuilder(sql);
-        if (argNames.length != 0) {
+        if (!argNames.isEmpty()) {
             boolean began = false;
             if (!(sql.lastIndexOf("WHERE") > 0)) {
                 buf.append("/*BEGIN*/ WHERE ");
                 began = true;
             }
-            for (int i = 0; i < argNames.length; ++i) {
+            for (int i = 0; i < argNames.size(); ++i) {
                 final String columnName = beanMetaData
-                        .convertFullColumnName(argNames[i]);
+                        .convertFullColumnName(argNames.get(i));
                 buf.append("/*IF ");
-                buf.append(argNames[i]);
+                buf.append(argNames.get(i));
                 buf.append(" != null*/");
                 buf.append(" ");
                 if (!began || i != 0) {
@@ -805,7 +805,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
                 }
                 buf.append(columnName);
                 buf.append(" = /*");
-                buf.append(argNames[i]);
+                buf.append(argNames.get(i));
                 buf.append("*/null");
                 buf.append("/*END*/");
             }

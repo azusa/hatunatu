@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Arguments;
+import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -174,8 +174,8 @@ public class BlobTest  {
 
     public static interface LargeBinaryDao {
 
-        @Arguments({"id"})
-        public LargeBinary getLargeBinary(int id);
+
+        public LargeBinary getLargeBinary(@Argument("id")int id);
 
         public void insert(LargeBinary largeBinary);
 
@@ -187,8 +187,8 @@ public class BlobTest  {
 
     public static interface LargeBinaryStreamDao {
 
-        @Arguments({"id"})
-        public LargeBinaryStream getLargeBinary(int id);
+
+        public LargeBinaryStream getLargeBinary(@Argument("id")int id);
 
         public void insert(LargeBinaryStream largeBinary);
 
