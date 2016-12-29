@@ -21,7 +21,8 @@ import org.seasar.framework.util.ClassUtil;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class MethodUtilTest  {
 
@@ -71,22 +72,6 @@ public class MethodUtilTest  {
     public void testIsDefaultMethod() throws Exception {
         Method method = Foo.class.getMethod("foo", null);
         assertFalse(MethodUtil.isDefaultMethod(method));
-    }
-
-    @Test
-    public void testGetElementTypeOfListFromParameterType() throws Exception {
-        assertNull(MethodUtil.getElementTypeOfListFromParameterType(Baz.class
-                .getMethod("hoge", new Class[] { List.class }), 0));
-        assertNull(MethodUtil.getElementTypeOfListFromParameterType(Baz.class
-                .getMethod("hoge", new Class[] { List.class, List.class }), 0));
-        assertNull(MethodUtil.getElementTypeOfListFromParameterType(Baz.class
-                .getMethod("hoge", new Class[] { List.class, List.class }), 1));
-    }
-
-    @Test
-    public void testGetElementTypeOfListFromReturnType() throws Exception {
-        assertNull(MethodUtil.getElementTypeOfListFromReturnType(Baz.class
-                .getMethod("hoge", new Class[] { List.class })));
     }
 
     public static class Foo {
