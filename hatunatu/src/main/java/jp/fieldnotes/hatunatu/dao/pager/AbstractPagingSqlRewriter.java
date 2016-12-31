@@ -53,11 +53,6 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
 
     private ResultSetFactory resultsetFactory;
 
-    /**
-     * カウントを取るタイミングについての互換性設定です。(デフォルト<code>true</code>>)
-     */
-    protected boolean countSqlCompatibility = false;
-
     @Override
     public void rewrite(QueryObject queryObject) {
         final Object[] pagingArgs = queryObject.getMethodArguments();
@@ -134,14 +129,7 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
                 resultsetFactory);
         // [DAO-139]
         handler.setFetchSize(-1);
-        Object ret = null;
-        if (isOriginalArgsRequiredForCounting()) {
-            ret = handler.execute(queryObject);
-        } else {
-//            ret = handler.execute(new Object[] {}, new Class[] {});
-            ret = handler.execute(queryObject);
-
-        }
+        Object ret = handler.execute(queryObject);
         if (ret != null) {
             return IntegerConversionUtil.toPrimitiveInt(ret);
         }
@@ -186,21 +174,5 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
      * @return count(*)が付加されたSQL
      */
     protected abstract String makeCountSql(String baseSQL);
-
-    protected abstract boolean isOriginalArgsRequiredForCounting();
-
-    public boolean isCountSqlCompatibility() {
-        return countSqlCompatibility;
-    }
-
-    /**
-     * カウントを取るSQLの実行タイミングの互換性設定を設定します。
-     * 
-     * @param countSqlCompatibility
-     *            S2Dao1.0.49以前と同様のタイミングの場合<code>true</code>
-     */
-    public void setCountSqlCompatibility(boolean countSqlCompatibility) {
-        this.countSqlCompatibility = countSqlCompatibility;
-    }
 
 }

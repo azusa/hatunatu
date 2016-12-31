@@ -30,9 +30,6 @@ public class MySQLLimitOffsetPagingSqlRewriter extends
                 offset);
     }
 
-    public MySQLLimitOffsetPagingSqlRewriter() {
-        this.countSqlCompatibility = false;
-    }
 
     @Override
     public String makeCountSql(String baseSQL) {
@@ -46,11 +43,6 @@ public class MySQLLimitOffsetPagingSqlRewriter extends
                     + " SQL_CALC_FOUND_ROWS");
         }
         return baseSQL;
-    }
-
-    @Override
-    protected boolean isOriginalArgsRequiredForCounting() {
-        return false;
     }
 
 }

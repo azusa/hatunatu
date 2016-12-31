@@ -39,9 +39,4 @@ public class LimitOffsetPagingSqlRewriter extends AbstractPagingSqlRewriter {
         return sqlBuf.toString();
     }
 
-    @Override
-    protected boolean isOriginalArgsRequiredForCounting() {
-        return true;
-    }
-
 }

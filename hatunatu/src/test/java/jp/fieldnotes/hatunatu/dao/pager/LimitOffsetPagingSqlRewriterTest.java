@@ -152,25 +152,7 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
     }
 
     @Test
-    public void testPagingCompatibityFalseTx() throws Exception {
-        rewriter.setCountSqlCompatibility(false);
-        readXlsAllReplaceDb("PagerTestData.xls");
-        DataSet expected = readXls("PagingData01.xls");
-        PagerTestCondition condition = new PagerTestCondition();
-        condition.setStartDate((new SimpleDateFormat("yyyy/MM/dd"))
-                .parse("2006/01/01"));
-        condition.setSortKey("PRIORITY");
-        condition.setLimit(TEST_LIMIT);
-        condition.setOffset(TEST_OFFSET);
-        Customer[] actual = dao.getPagedRow2(condition);
-        assertNotNull(actual);
-        assertDataSetEquals("PagerTestData.xls",expected, actual);
-        assertEquals(81, condition.getCount());
-    }
-
-    @Test
     public void testNonPagingCompatibityFalseTx() throws Exception {
-        rewriter.setCountSqlCompatibility(false);
         readXlsAllReplaceDb("PagerTestData.xls");
         DataSet expected = readXls("PagerTestData.xls");
         Customer[] actual = dao.getAll();
