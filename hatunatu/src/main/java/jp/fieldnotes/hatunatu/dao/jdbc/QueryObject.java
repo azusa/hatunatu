@@ -105,9 +105,12 @@ public class QueryObject implements Serializable {
     /**
      * Returns arguments of DAO method.
      *
-     * @return arguments of DAO method
+     * @return arguments of DAO method. if arguments is empty, returns an empty array.
      */
     public Object[] getMethodArguments() {
+        if (methodArguments == null) {
+            return EMPTY_ARGS;
+        }
         return methodArguments;
     }
 

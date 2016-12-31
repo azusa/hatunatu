@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.handler;
 
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -32,7 +32,7 @@ public class BasicUpdateHandlerTest  {
     public void testExecuteTx() throws Exception {
         String sql = "update emp set ename = ?, comm = ? where empno = ?";
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                BasicStatementFactory.INSTANCE);
+                StatementFactory.INSTANCE);
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setBindArguments(new Object[]{"SCOTT", null,
@@ -46,7 +46,7 @@ public class BasicUpdateHandlerTest  {
     public void testExecuteWithQuestionTx() throws Exception {
         String sql = "update emp set job = 'AA?A' where empno = ?";
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                BasicStatementFactory.INSTANCE);
+                StatementFactory.INSTANCE);
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setBindArguments(new Object[]{new Integer(7788)});
@@ -67,7 +67,7 @@ public class BasicUpdateHandlerTest  {
 
 
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                BasicStatementFactory.INSTANCE);
+                StatementFactory.INSTANCE);
         int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }
@@ -82,7 +82,7 @@ public class BasicUpdateHandlerTest  {
 
 
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                BasicStatementFactory.INSTANCE);
+                StatementFactory.INSTANCE);
         int ret = handler.execute(queryObject);
         assertEquals(1, ret);
     }

@@ -18,7 +18,6 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.SqlLogImpl;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
@@ -45,7 +44,7 @@ public abstract class BasicHandler {
 
     private DataSource dataSource;
 
-    private StatementFactory statementFactory = BasicStatementFactory.INSTANCE;
+    private StatementFactory statementFactory = StatementFactory.INSTANCE;
 
     /**
      * ログで使われるクラスです。

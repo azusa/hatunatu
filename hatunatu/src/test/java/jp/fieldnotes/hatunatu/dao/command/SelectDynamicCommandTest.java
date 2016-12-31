@@ -19,9 +19,9 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
 import jp.fieldnotes.hatunatu.dao.RelationRowCreator;
 import jp.fieldnotes.hatunatu.dao.RowCreator;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
@@ -43,7 +43,7 @@ public class SelectDynamicCommandTest  {
     @Test
     public void testExecute() throws Exception {
         SelectDynamicCommand cmd = new SelectDynamicCommand(test.getDataSource(),
-                BasicStatementFactory.INSTANCE,
+                StatementFactory.INSTANCE,
                 new BeanMetaDataResultSetHandler(
                         test.createBeanMetaData(Employee.class), createRowCreator(),
                         createRelationRowCreator()),

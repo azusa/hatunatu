@@ -17,7 +17,6 @@ package jp.fieldnotes.hatunatu.dao.handler;
 
 import jp.fieldnotes.hatunatu.dao.ReturningRowsBatchHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 
@@ -61,7 +60,7 @@ public class BasicReturningRowsBatchHandler extends BasicHandler implements
      */
     public BasicReturningRowsBatchHandler(final DataSource dataSource,
                                           final int batchSize) {
-        this(dataSource, batchSize, BasicStatementFactory.INSTANCE);
+        this(dataSource, batchSize, StatementFactory.INSTANCE);
     }
 
     /**

@@ -16,66 +16,77 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.pager.PagerContext;
+import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
-public class ConfigurableStatementFactory implements StatementFactory {
-
-    /**
-     * {@link StatementFactory}です。
-     */
-    protected StatementFactory statementFactory;
+public class StatementFactoryImpl implements StatementFactory {
 
     /**
      * フェッチサイズです。
      */
-    protected Integer fetchSize;
+    private Integer fetchSize;
 
     /**
      * 最大行数です。
      */
-    protected Integer maxRows;
+    private Integer maxRows;
 
     /**
      * クエリのタイムアウトです。
      */
-    protected Integer queryTimeout;
+    private Integer queryTimeout;
+
+    private boolean booleanToInt = false;
 
     /**
-     * {@link ConfigurableStatementFactory}を作成します。
-     * 
-     * @param statementFactory
+     * Constructor.
      */
-    public ConfigurableStatementFactory(StatementFactory statementFactory) {
-        if (statementFactory == null) {
-            throw new NullPointerException("statementFactory");
-        }
-        this.statementFactory = statementFactory;
+    public StatementFactoryImpl() {
     }
 
     @Override
     public PreparedStatement createPreparedStatement(Connection con, QueryObject queryObject) {
-        PreparedStatement ps = statementFactory.createPreparedStatement(con,
-                queryObject);
-        configurePreparedStatement(ps);
-        return ps;
+        PreparedStatement pstmt = null;
+        if (PagerContext.isPagerCondition(queryObject.getMethodArguments())) {
+            try {
+                pstmt = con.prepareStatement(queryObject.getSql(),
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);
+            } catch (SQLException e) {
+                throw new SQLRuntimeException(e);
+            }
+            return createPreparedStatement(pstmt, queryObject.getSql());
+        }
+        pstmt = ConnectionUtil.prepareStatement(con, queryObject.getSql());
+        return createPreparedStatement(pstmt, queryObject.getSql());
     }
 
+    @Override
     public CallableStatement createCallableStatement(Connection con, String sql) {
-        CallableStatement cs = statementFactory.createCallableStatement(con,
-                sql);
-        configurePreparedStatement(cs);
-        return cs;
+        CallableStatement pstmt = ConnectionUtil.prepareCall(con, sql);
+        configurePreparedStatement(pstmt);
+        return pstmt;
+    }
+
+    private PreparedStatement createPreparedStatement(PreparedStatement pstmt,
+                                                      String sql) {
+        configurePreparedStatement(pstmt);
+        if (booleanToInt) {
+            return new BooleanToIntPreparedStatement(pstmt, sql);
+        } else {
+            return pstmt;
+        }
     }
 
     /**
-     * {@link PreparedStatement}をカスタマイズします。
-     * 
-     * @param ps
+     * Customize {@link PreparedStatement}.
+     *
+     * @param ps {@link PreparedStatement}
      */
     protected void configurePreparedStatement(PreparedStatement ps) {
         if (fetchSize != null) {
@@ -109,11 +120,16 @@ public class ConfigurableStatementFactory implements StatementFactory {
 
     /**
      * クエリタイムアウトを設定します。
-     * 
-     * @param queryTimeout
+     *
+     * @param queryTimeout Timeout for query(seconds).
      */
     public void setQueryTimeout(Integer queryTimeout) {
         this.queryTimeout = queryTimeout;
     }
+
+    public void setBooleanToInt(boolean b) {
+        booleanToInt = b;
+    }
+
 
 }

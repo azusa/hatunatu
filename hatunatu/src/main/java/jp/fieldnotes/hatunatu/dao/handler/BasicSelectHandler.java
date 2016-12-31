@@ -21,7 +21,6 @@ import jp.fieldnotes.hatunatu.dao.SelectHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.sql.StatementUtil;
 
@@ -55,7 +54,7 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
     public BasicSelectHandler(DataSource dataSource,
                               ResultSetHandler resultSetHandler) {
 
-        this(dataSource, resultSetHandler, BasicStatementFactory.INSTANCE,
+        this(dataSource, resultSetHandler, StatementFactory.INSTANCE,
                 BasicResultSetFactory.INSTANCE);
     }
 

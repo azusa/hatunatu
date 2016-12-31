@@ -23,10 +23,7 @@
 	</component>
 	-->
 
-	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
-		<arg>
-			<component class="jp.fieldnotes.hatunatu.dao.pager.PagerStatementFactory"/>
-		</arg>
+	<component class="jp.fieldnotes.hatunatu.dao.impl.StatementFactoryImpl">
 		<property name="fetchSize">100</property>
 		<!--
 		<property name="maxRows">100</property>
@@ -35,7 +32,7 @@
 
 	<!--
 	<component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
-	<component class="jp.fieldnotes.hatunatu.dao.impl.ConfigurableStatementFactory">
+	<component class="jp.fieldnotes.hatunatu.dao.impl.StatementFactoryImpl">
 		<arg>
 			<component class="jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory"/>
 		</arg>

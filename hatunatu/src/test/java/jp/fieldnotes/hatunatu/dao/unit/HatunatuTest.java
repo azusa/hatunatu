@@ -226,7 +226,7 @@ public class HatunatuTest extends ExternalResource {
 
         dmd.setDaoClass(daoClass);
         dmd.setDataSource(this.dataSource);
-        dmd.setStatementFactory(BasicStatementFactory.INSTANCE);
+        dmd.setStatementFactory(StatementFactory.INSTANCE);
         dmd.setResultSetFactory(BasicResultSetFactory.INSTANCE);
         dmd.setValueTypeFactory(getValueTypeFactory());
         dmd.setBeanMetaDataFactory(bmdf);

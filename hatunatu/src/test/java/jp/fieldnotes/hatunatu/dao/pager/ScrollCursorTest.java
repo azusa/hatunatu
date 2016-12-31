@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.impl.StatementFactoryImpl;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class ScrollCursorTest  {
 
     private PagerResultSetFactoryWrapper pagerResultSetFactoryWrapper;
 
-    private PagerStatementFactory pagerStatementFactory = new PagerStatementFactory();
+    private StatementFactoryImpl pagerStatementFactory = new StatementFactoryImpl();
 
     @Before
     public void setUp() throws Exception {

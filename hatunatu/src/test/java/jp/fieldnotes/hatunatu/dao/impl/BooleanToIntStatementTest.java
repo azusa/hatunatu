@@ -33,8 +33,10 @@ public class BooleanToIntStatementTest  {
     @Test
     public void testBooleanToIntTx() throws Exception {
         String sql = "update dept set active = ? where deptno = 10";
+        StatementFactoryImpl statementFactory = new StatementFactoryImpl();
+        statementFactory.setBooleanToInt(true);
         BasicUpdateHandler handler = new BasicUpdateHandler(test.getDataSource(),
-                BooleanToIntStatementFactory.INSTANCE);
+                statementFactory);
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setBindArguments(new Object[]{Boolean.FALSE});

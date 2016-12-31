@@ -15,7 +15,7 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
-import jp.fieldnotes.hatunatu.dao.impl.BasicStatementFactory;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -33,7 +33,7 @@ public class UpdateDynamicCommandTest  {
     @Test
     public void testExecuteTx() throws Exception {
         UpdateDynamicCommand cmd = new UpdateDynamicCommand(test.getDataSource(),
-                BasicStatementFactory.INSTANCE);
+                StatementFactory.INSTANCE);
         cmd
                 .setSql("UPDATE emp SET ename = /*employee.ename*/'HOGE' WHERE empno = /*employee.empno*/1234");
         cmd.setArgNames(Arrays.asList("employee" ));
