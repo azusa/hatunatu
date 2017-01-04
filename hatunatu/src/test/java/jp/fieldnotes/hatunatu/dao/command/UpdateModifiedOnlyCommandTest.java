@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.framework.util.ClassUtil;
@@ -49,6 +50,7 @@ public class UpdateModifiedOnlyCommandTest  {
      * また、既にModifiedPropertiesプロパティを持つEntityはエンハンスされないこと。
      */
     @Test
+    @Ignore
     public void testModifiedPropertiesByReflectionTx() throws Exception {
         // ## Arrange ##
         final int targetEmpno = 7499;

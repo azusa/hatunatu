@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+http://www.springframework.org/schema/beans">
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dsAdapter" class="org.apache.commons.dbcp.cpdsadapter.DriverAdapterCPDS">
+        <property name="driver" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:file:${hatunatu.hsqldbPath}/data-hsqldb/demo"/>
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource">
+        <property name="connectionPoolDataSource">
+            <ref bean="dsAdapter"></ref>
+        </property>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="maxActive" value="2"/>
+        <property name="maxIdle" value="2"/>
+        <property name="maxWait" value="100"/>
+    </bean>
+
+    <bean id="annotationReaderFactory" class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
+    <bean id="daoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl">
+        <constructor-arg>
+            <ref bean="dataSource"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="statementFactory"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="resultSetFactory"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="annotationReaderFactory"/>
+        </constructor-arg>
+        <property name="valueTypeFactory">
+            <ref bean="valueTypeFactory"/>
+        </property>
+    </bean>
+    <bean id="statementFactory" class="jp.fieldnotes.hatunatu.dao.impl.StatementFactoryImpl">
+
+    </bean>
+    <bean id="resultSetFactory" class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper"/>
+
+
+    <bean id="valueTypeFactory" class="jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl"/>
+    <bean id="s2DaoInterceptor" class="jp.fieldnotes.hatunatu.spring.interceptors.S2DaoInterceptor">
+        <constructor-arg>
+            <ref bean="daoMetaDataFactory"/>
+        </constructor-arg>
+    </bean>
+    <bean id="beanMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl"/>
+    <bean id="daoNamingConvention" class="jp.fieldnotes.hatunatu.dao.impl.DaoNamingConventionImpl"/>
+    <bean id="beanEnhancer" class="jp.fieldnotes.hatunatu.dao.impl.NullBeanEnhancer"/>
+    <bean id="resultSetHandlerFactory" class="jp.fieldnotes.hatunatu.dao.impl.ResultSetHandlerFactorySelector"/>
+    <bean id="dtoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DtoMetaDataFactoryImpl"/>
+    <bean id="propertyTypeFactoryBuilder" class="jp.fieldnotes.hatunatu.dao.impl.PropertyTypeFactoryBuilderImpl"/>
+    <bean id="relationPropertyTypeFactoryBuilder"
+          class="jp.fieldnotes.hatunatu.dao.impl.RelationPropertyTypeFactoryBuilderImpl"/>
+    <bean id="tableNaming" class="jp.fieldnotes.hatunatu.dao.impl.DefaultTableNaming"/>
+    <bean id="columnNaming" class="jp.fieldnotes.hatunatu.dao.impl.DefaultColumnNaming"/>
+    <bean id="procedureMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl"/>
+</beans>

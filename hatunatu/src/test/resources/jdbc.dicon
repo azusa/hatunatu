@@ -49,23 +49,6 @@
 	<component class="jp.fieldnotes.hatunatu.dao.impl.BooleanToIntStatementFactory"/>
 	-->
 
-	<component name="xaDataSource"
-		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
-		<property name="driverClassName">
-			"org.hsqldb.jdbcDriver"
-		</property>
-		<property name="URL">
-			<!--
-			"jdbc:hsqldb:hsql://localhost:9001"
-			-->
-			"jdbc:hsqldb:file:"
-				+ @org.seasar.framework.util.ResourceUtil@getBuildDir(@jp.fieldnotes.hatunatu.dao.impl.ClobTest@class).getCanonicalPath()
-				+ "/data-hsqldb/demo"
-		</property>
-		<property name="user">"sa"</property>
-		<property name="password">""</property>
-		<!--<initMethod>#out.println(@org.seasar.framework.util.EclipseUtil@getProjectRoot("s2dao").getAbsolutePath())</initMethod>-->
-	</component>
 
 	<!-- for H2 -->
 	<!--

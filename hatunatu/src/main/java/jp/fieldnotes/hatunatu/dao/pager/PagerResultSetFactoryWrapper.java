@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,6 +39,10 @@ public class PagerResultSetFactoryWrapper implements ResultSetFactory {
      */
     public PagerResultSetFactoryWrapper(ResultSetFactory resultSetFactory) {
         this.resultSetFactory = resultSetFactory;
+    }
+
+    public PagerResultSetFactoryWrapper() {
+        this.resultSetFactory = BasicResultSetFactory.INSTANCE;
     }
 
     public boolean isUseScrollCursor() {

@@ -61,7 +61,14 @@
       <artifactId>hatunatu-util</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
+      <dependency>
+          <groupId>jp.fieldnotes.hatunatu</groupId>
+          <artifactId>hatunatu-spring</artifactId>
+          <version>${project.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
       <groupId>jp.fieldnotes.hatunatu</groupId>
       <artifactId>hatunatu-seasar</artifactId>
       <version>${project.version}</version>
@@ -118,6 +125,13 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
       <version>1.10.19</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
     </dependency>
 
 

@@ -24,6 +24,7 @@ import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import org.apache.commons.dbcp.datasources.SharedPoolDataSource;
 import org.junit.rules.ExternalResource;
 import org.seasar.extension.dataset.DataReader;
 import org.seasar.extension.dataset.DataSet;
@@ -37,15 +38,18 @@ import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
-import org.seasar.framework.env.Env;
 import org.seasar.framework.unit.UnitClassLoader;
 import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
-import javax.transaction.SystemException;
-import javax.transaction.TransactionManager;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -101,7 +105,9 @@ public class HatunatuTest extends ExternalResource {
 
     private DatabaseMetaData dbMetaData;
 
-    private TransactionManager tm;
+    private PlatformTransactionManager transactionManager;
+
+    private TransactionStatus tm;
 
     private List<Field> boundFields = new ArrayList<>();
 
@@ -110,6 +116,10 @@ public class HatunatuTest extends ExternalResource {
     private String dataSourceDiconName;
 
     private QueryObject queryObject = new QueryObject();
+
+    private ApplicationContext applicationContext;
+
+    private Object savePoint;
 
     public HatunatuTest(Object instance){
         this(instance, "j2ee.dicon");
@@ -124,20 +134,36 @@ public class HatunatuTest extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         setUpContainer();
-        include(dataSourceDiconName);
-        bindFields();
         setupDataSource();
-        tm = (TransactionManager) getComponent(TransactionManager.class);
-        tm.begin();
+
+        bindFields();
+
+        transactionManager = applicationContext.getBean(PlatformTransactionManager.class);
+
+        tm = transactionManager.getTransaction(new DefaultTransactionDefinition());
+
+        savePoint = tm.createSavepoint();
+
+
+
     }
 
     @Override
     protected void after() {
 
-        if (tm != null) {
+        tm.rollbackToSavepoint(savePoint);
+        if (transactionManager != null) {
             try {
-                tm.rollback();
-            } catch (SystemException e) {
+                transactionManager.getTransaction(new DefaultTransactionDefinition()).flush();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (dataSource != null) {
+            try {
+                ((SharedPoolDataSource) dataSource).close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -399,15 +425,8 @@ public class HatunatuTest extends ExternalResource {
         return container.getComponent(componentClass);
     }
 
-    private void setupDataSource() {
-        S2Container container = getContainer();
-            if (container.hasComponentDef(DATASOURCE_NAME)) {
-                dataSource = (DataSource) container
-                        .getComponent(DATASOURCE_NAME);
-            } else if (container.hasComponentDef(DataSource.class)) {
-                dataSource = (DataSource) container
-                        .getComponent(DataSource.class);
-            }
+    private void setupDataSource() throws IOException {
+        this.dataSource = applicationContext.getBean(DataSource.class);
     }
 
     private void bindFields() throws Throwable {
@@ -489,12 +508,9 @@ public class HatunatuTest extends ExternalResource {
     }
 
     private void setUpContainer() throws Throwable {
-        Env.setFilePath(ENV_PATH);
-        Env.setValueIfAbsent(ENV_VALUE);
-        originalClassLoader = getOriginalClassLoader();
-        unitClassLoader = new UnitClassLoader(originalClassLoader);
-        Thread.currentThread().setContextClassLoader(unitClassLoader);
         container = S2ContainerFactory.create();
+        System.setProperty("hatunatu.hsqldbPath", ResourceUtil.getBuildDir(HatunatuTest.class).getCanonicalPath());
+        applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
     private ClassLoader getOriginalClassLoader() {
