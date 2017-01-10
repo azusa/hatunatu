@@ -36,13 +36,11 @@ import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.framework.container.ContainerConstants;
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
 import org.seasar.framework.unit.UnitClassLoader;
-import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -90,8 +88,6 @@ public class HatunatuTest extends ExternalResource {
 
     private static final String ENV_VALUE = "ut";
 
-    private S2Container container;
-
     private ClassLoader originalClassLoader;
 
     private UnitClassLoader unitClassLoader;
@@ -122,7 +118,7 @@ public class HatunatuTest extends ExternalResource {
     private Object savePoint;
 
     public HatunatuTest(Object instance){
-        this(instance, "j2ee.dicon");
+        this(instance, "applicationContext.xml");
     }
 
     public HatunatuTest(Object instance, String dataSourceDiconName){
@@ -151,22 +147,6 @@ public class HatunatuTest extends ExternalResource {
     @Override
     protected void after() {
 
-        tm.rollbackToSavepoint(savePoint);
-        if (transactionManager != null) {
-            try {
-                transactionManager.getTransaction(new DefaultTransactionDefinition()).flush();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (dataSource != null) {
-            try {
-                ((SharedPoolDataSource) dataSource).close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         unbindFields();
         tearDownDataSource();
         valueTypeFactory = null;
@@ -180,6 +160,8 @@ public class HatunatuTest extends ExternalResource {
         tableNaming = null;
         columnNaming = null;
         procedureMetaDataFactory = null;
+        ((ConfigurableApplicationContext) applicationContext).close();
+        applicationContext = null;
 
     }
 
@@ -413,18 +395,6 @@ public class HatunatuTest extends ExternalResource {
     }
 
 
-    private S2Container getContainer() {
-        return container;
-    }
-
-    private void include(String path) {
-        S2ContainerFactory.include(container, ResourceUtil.convertPath(path, instance.getClass()));
-    }
-
-    private Object getComponent(Class componentClass) {
-        return container.getComponent(componentClass);
-    }
-
     private void setupDataSource() throws IOException {
         this.dataSource = applicationContext.getBean(DataSource.class);
     }
@@ -438,41 +408,42 @@ public class HatunatuTest extends ExternalResource {
     }
 
     private void bindField(Field field) {
-        if (isAutoBindable(field)) {
-            field.setAccessible(true);
-            if (FieldUtil.get(field, instance) != null) {
-                return;
-            }
-            String name = normalizeName(field.getName());
-            Object component = null;
-            if (getContainer().hasComponentDef(name)) {
-                Class componentClass = container.getComponentDef(name)
-                        .getComponentClass();
-                if (componentClass == null) {
-                    component = container.getComponent(name);
-                    if (component != null) {
-                        componentClass = component.getClass();
-                    }
-                }
-                if (componentClass != null
-                        && field.getType().isAssignableFrom(componentClass)) {
-                    if (component == null) {
-                        component = container.getComponent(name);
-                    }
-                } else {
-                    component = null;
-                }
-            }
-            if (component == null
-                    && getContainer().hasComponentDef(field.getType())) {
-                component = getComponent(field.getType());
-            }
-            if (component != null) {
-                FieldUtil.set(field, instance, component);
-                boundFields.add(field);
-            }
-        }
+//        if (isAutoBindable(field)) {
+//            field.setAccessible(true);
+//            if (FieldUtil.get(field, instance) != null) {
+//                return;
+//            }
+//            String name = normalizeName(field.getName());
+//            Object component = null;
+//            if (getContainer().hasComponentDef(name)) {
+//                Class componentClass = container.getComponentDef(name)
+//                        .getComponentClass();
+//                if (componentClass == null) {
+//                    component = container.getComponent(name);
+//                    if (component != null) {
+//                        componentClass = component.getClass();
+//                    }
+//                }
+//                if (componentClass != null
+//                        && field.getType().isAssignableFrom(componentClass)) {
+//                    if (component == null) {
+//                        component = container.getComponent(name);
+//                    }
+//                } else {
+//                    component = null;
+//                }
+//            }
+//            if (component == null
+//                    && getContainer().hasComponentDef(field.getType())) {
+//                component = getComponent(field.getType());
+//            }
+//            if (component != null) {
+//                FieldUtil.set(field, instance, component);
+//                boundFields.add(field);
+//            }
+//        }
     }
+
 
     private boolean isAutoBindable(Field field) {
         int modifiers = field.getModifiers();
@@ -500,6 +471,23 @@ public class HatunatuTest extends ExternalResource {
 
     private void tearDownDataSource() {
         dbMetaData = null;
+        tm.rollbackToSavepoint(savePoint);
+        if (transactionManager != null) {
+            try {
+                transactionManager.getTransaction(new DefaultTransactionDefinition()).flush();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (dataSource != null) {
+            try {
+                ((SharedPoolDataSource) dataSource).close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         if (connection != null) {
             ConnectionUtil.close(connection);
             connection = null;
@@ -507,21 +495,13 @@ public class HatunatuTest extends ExternalResource {
         dataSource = null;
     }
 
-    private void setUpContainer() throws Throwable {
-        container = S2ContainerFactory.create();
-        System.setProperty("hatunatu.hsqldbPath", ResourceUtil.getBuildDir(HatunatuTest.class).getCanonicalPath());
-        applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
     }
 
-    private ClassLoader getOriginalClassLoader() {
-        S2Container configurationContainer = S2ContainerFactory
-                .getConfigurationContainer();
-        if (configurationContainer != null
-                && configurationContainer.hasComponentDef(ClassLoader.class)) {
-            return (ClassLoader) configurationContainer
-                    .getComponent(ClassLoader.class);
-        }
-        return Thread.currentThread().getContextClassLoader();
+    private void setUpContainer() throws Throwable {
+        System.setProperty("hatunatu.hsqldbPath", ResourceUtil.getBuildDir(HatunatuTest.class).getCanonicalPath());
+        applicationContext = new ClassPathXmlApplicationContext(dataSourceDiconName);
     }
 
 

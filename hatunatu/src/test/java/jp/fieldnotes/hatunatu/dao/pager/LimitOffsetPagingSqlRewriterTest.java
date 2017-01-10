@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.pager;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.seasar.extension.dataset.DataSet;
@@ -35,12 +36,16 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
     private static final int TEST_LIMIT = 12;
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "LimitOffsetTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "jp/fieldnotes/hatunatu/dao/pager/LimitOffsetTest.xml");
 
     CustomerDao dao;
 
     LimitOffsetPagingSqlRewriter rewriter =  new LimitOffsetPagingSqlRewriter();
 
+    @Before
+    public void before() {
+        this.dao = (CustomerDao) test.getApplicationContext().getBean("customerDao");
+    }
 
     @Test
     public void testMakeCountSql() {
