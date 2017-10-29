@@ -35,7 +35,7 @@ public class LimitOffsetPagingSqlRewriterTest extends S2DaoTestCase {
     private static final int TEST_LIMIT = 12;
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "LimitOffsetTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "LimitOffsetTest.xml");
 
     CustomerDao dao;
 

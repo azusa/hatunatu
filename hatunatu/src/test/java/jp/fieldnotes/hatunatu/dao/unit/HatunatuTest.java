@@ -29,11 +29,12 @@ import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
 import org.apache.ibatis.migration.DataSourceConnectionProvider;
 import org.apache.ibatis.migration.FileMigrationLoader;
+import org.apache.ibatis.migration.operations.DatabaseOperation;
 import org.apache.ibatis.migration.operations.UpOperation;
+import org.apache.ibatis.migration.options.DatabaseOperationOption;
 import org.junit.rules.ExternalResource;
 import org.lastaflute.di.core.ContainerConstants;
 import org.lastaflute.di.core.LaContainer;
-import org.lastaflute.di.core.SingletonLaContainer;
 import org.lastaflute.di.core.factory.LaContainerFactory;
 import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
 import org.seasar.extension.dataset.DataReader;
@@ -136,10 +137,13 @@ public class HatunatuTest extends ExternalResource {
         Properties prop = new Properties();
         prop.load(HatunatuTest.class.getResourceAsStream("/development.properties"));
         FileMigrationLoader loader = new FileMigrationLoader(new File("src/test/resources/migration"), "UTF-8", prop);
-        new UpOperation().operate(new DataSourceConnectionProvider(this.dataSource),loader, null, System.out);
+        DatabaseOperationOption option = new DatabaseOperationOption();
+        option.setAutoCommit(true);
+        new UpOperation().operate(new DataSourceConnectionProvider(this.dataSource),loader, option, System.err);
 
         tm = (TransactionManager) getComponent(TransactionManager.class);
         tm.begin();
+
     }
 
     @Override

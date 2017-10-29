@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
 public class DaoMetaDataFactoryImplTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "dao.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "dao.xml");
 
     private DaoMetaDataFactoryImpl daoMetaDataFactory;
 

@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 public class DeleteWithAnnotationTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "DeleteWithAnnotationTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "DeleteWithAnnotationTest.xml");
 
     private Employee12Dao dao;
 

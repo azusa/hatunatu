@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 public class NoPkTableTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"NoPkTableTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this,"NoPkTableTest.xml");
 
     private NoPkTableDao noPkTableDao;
 

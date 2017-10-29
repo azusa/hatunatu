@@ -22,13 +22,7 @@ import java.sql.DatabaseMetaData;
 public class FastPropertyTypeFactoryBuilder implements
         PropertyTypeFactoryBuilder {
 
-    public static final String valueTypeFactory_BINDING = "bindingType=must";
-
-    public static final String columnNaming_BINDING = "bindingType=must";
-
-    public static final String daoNamingConvention_BINDING = "bindingType=must";
-
-    protected ValueTypeFactory valueTypeFactory;
+    protected ValueTypeFactory valueTypeFactory = new ValueTypeFactoryImpl();
 
     protected ColumnNaming columnNaming;
 

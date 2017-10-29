@@ -5,7 +5,7 @@
     <include path="jta.xml"/> <!-- for e.g. transaction manager -->
     <component name="connectionPool" class="org.lastaflute.db.dbcp.HookedConnectionPool">
         <!-- main option, required -->
-        <property name="maxPoolSize">3</property>
+        <property name="maxPoolSize">2</property>
     </component>
 
     <component name="dataSource" class="org.lastaflute.jta.dbcp.PooledDataSource" />
@@ -16,4 +16,6 @@
         <property name="user">"sa"</property>
         <property name="password"></property>
     </component>
+
+    <component name="databaseName" class="jp.fieldnotes.hatunatu.dao.unit.TestName" />
 </components>

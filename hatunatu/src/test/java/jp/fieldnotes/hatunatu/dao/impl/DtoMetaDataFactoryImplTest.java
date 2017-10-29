@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 public class DtoMetaDataFactoryImplTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"dao.dicon");
+    public HatunatuTest test = new HatunatuTest(this,"dao.xml");
 
     private DtoMetaDataFactory factory;
 

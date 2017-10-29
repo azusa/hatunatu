@@ -30,6 +30,7 @@ import static org.junit.Assert.assertEquals;
 public class FunctionTest {
 
     @Test
+    @Ignore
     public void testCallFunctionDirectory() throws Exception {
         final S2Container container = S2ContainerFactory
                 .create("dao-derby.dicon");

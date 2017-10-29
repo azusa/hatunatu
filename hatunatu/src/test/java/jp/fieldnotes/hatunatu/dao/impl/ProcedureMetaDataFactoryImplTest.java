@@ -22,6 +22,7 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -34,6 +35,7 @@ public class ProcedureMetaDataFactoryImplTest  {
 
 
     @Test
+    @Ignore
     public void testCreateProcedureMetaData() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -60,6 +62,7 @@ public class ProcedureMetaDataFactoryImplTest  {
     }
 
     @Test
+    @Ignore
     public void testCreateProcedureMetaData_noParameter() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -73,6 +76,7 @@ public class ProcedureMetaDataFactoryImplTest  {
     }
 
     @Test
+    @Ignore
     public void testCreateProcedureMetaData_simpleParameter() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();
@@ -89,6 +93,7 @@ public class ProcedureMetaDataFactoryImplTest  {
     }
 
     @Test
+    @Ignore
     public void testCreateProcedureMetaData_multiParameters() throws Exception {
         String name = "PROCEDURE_TEST_CCC2";
         ProcedureMetaDataFactoryImpl factory = new ProcedureMetaDataFactoryImpl();

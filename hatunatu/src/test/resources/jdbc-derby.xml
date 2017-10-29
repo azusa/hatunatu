@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//DBFLUTE//DTD LastaDi 1.0//EN"
+        "http://dbflute.org/meta/lastadi10.dtd">
+<components namespace="jdbc"> <!-- included by rdb.xml of Lasta Di for main schema -->
+    <include path="jta.xml"/> <!-- for e.g. transaction manager -->
+    <component name="connectionPool" class="org.lastaflute.db.dbcp.HookedConnectionPool">
+        <!-- main option, required -->
+        <property name="maxPoolSize">3</property>
+    </component>
+
+    <component name="dataSource" class="org.lastaflute.jta.dbcp.PooledDataSource" />
+
+    <component name="xaDataSource"
+               class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+        <property name="driverClassName">
+            "org.apache.derby.jdbc.EmbeddedDriver"
+        </property>
+        <property name="URL">
+            "jdbc:derby:"
+            + @org.seasar.framework.util.ResourceUtil@getBuildDir(@jp.fieldnotes.hatunatu.dao.impl.ClobTest@class).getCanonicalPath()
+            + "/data-derby"
+        </property>
+        <property name="user">"seasar"</property>
+        <property name="password">"seasarpwd"</property>
+    </component>
+
+</components>

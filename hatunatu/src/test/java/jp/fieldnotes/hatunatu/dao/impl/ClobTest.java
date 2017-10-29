@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
 public class ClobTest {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "ClobTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "ClobTest.xml");
 
     private LargeTextDao largeTextDao;
 

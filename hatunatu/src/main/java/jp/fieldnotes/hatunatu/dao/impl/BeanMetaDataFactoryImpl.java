@@ -32,9 +32,9 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected DataSource dataSource;
 
-    protected DaoNamingConvention daoNamingConvention;
+    protected DaoNamingConvention daoNamingConvention = new DaoNamingConventionImpl();
 
-    protected BeanEnhancer beanEnhancer;
+    protected BeanEnhancer beanEnhancer = new NullBeanEnhancer();
 
     protected TableNaming tableNaming;
 

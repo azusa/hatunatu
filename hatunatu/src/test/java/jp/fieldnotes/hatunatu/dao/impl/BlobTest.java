@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
 public class BlobTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "BlobTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "BlobTest.xml");
 
     private LargeBinaryDao largeBinaryByteArrayDao;
 

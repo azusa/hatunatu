@@ -415,7 +415,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
             }
         }
         if (first) {
-            throw new NoPersistentPropertyTypeRuntimeException();
+            throw new NoPersistentPropertyTypeRuntimeException(tableName);
         }
         autoSelectList = buf.toString();
     }

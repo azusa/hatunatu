@@ -23,10 +23,7 @@ import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureCall;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.ProcedureParameter;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.util.exception.SIllegalArgumentException;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.seasar.dao.impl.Procedures;
 
 import java.math.BigDecimal;
@@ -51,6 +48,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testOutParameterTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeAaa1"));
@@ -60,6 +58,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testMultiOutParametersTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeAaa2"));
@@ -70,6 +69,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testEmptyArgumentTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeAaa3"));
@@ -78,6 +78,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testInParameterTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeBbb1"));
@@ -88,6 +89,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testMultiInParametersTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeBbb2"));
@@ -104,6 +106,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testInOutMixedParametersTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class,"executeCcc1"));
@@ -118,6 +121,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testNullArgumentTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeCcc1"));
@@ -132,6 +136,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testInOutMixedParameters2Tx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeCcc2"));
@@ -145,6 +150,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testInOutParameterTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "executeDdd1"));
@@ -155,6 +161,7 @@ public class ArgumentDtoProcedureCommandTest {
     }
 
     @Test
+    @Ignore
     public void testReturnParameterTx() throws Exception {
         DaoMetaData dmd = test.createDaoMetaData(Dao.class);
         SqlCommand command = dmd.getSqlCommand(test.getSingleDaoMethod(Dao.class, "max"));

@@ -11,7 +11,7 @@
 	</component>
 	<component
 		name="interceptor"
-		class="jp.fieldnotes.hatunatu.seasar.interceptors.S2DaoInterceptor">
+		class="S2DaoInterceptor">
 	</component>
 	<component
 		class="jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl"/>

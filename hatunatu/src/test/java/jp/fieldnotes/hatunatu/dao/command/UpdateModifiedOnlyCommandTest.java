@@ -29,7 +29,7 @@ public class UpdateModifiedOnlyCommandTest  {
     @Rule
     public HatunatuTest test = new HatunatuTest(this, ClassUtil.getSimpleClassName(
             UpdateModifiedOnlyCommandTest.class).replace('.', '/')
-            + ".dicon");
+            + ".xml");
 
     /*
      * TODO testing...
