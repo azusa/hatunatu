@@ -19,9 +19,6 @@ import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.jdbc.SqlLog;
-import org.seasar.extension.jdbc.SqlLogRegistry;
-import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 
 import java.math.BigDecimal;
 
@@ -50,22 +47,9 @@ public class BasicHandlerTest  {
 
         handler.logSql(queryObject);
 
-        assertSqlLog(sql, args, argTypes);
         handler.setLoggerClass(BasicHandlerTest.class);
         handler.logSql(queryObject);
-        assertSqlLog(sql, args, argTypes);
         assertTrue(handler.getLoggerClass() == BasicHandlerTest.class);
-    }
-
-    private void assertSqlLog(final String sql, Object[] args, Class[] argTypes) {
-        SqlLogRegistry registry = SqlLogRegistryLocator.getInstance();
-        SqlLog sqlLog = registry.getLast();
-        assertEquals(sql, sqlLog.getRawSql());
-        assertEquals(
-                "update emp set ename = 'hoge', comm = 100.5 where empno = 7788",
-                sqlLog.getCompleteSql());
-        assertSame(args, sqlLog.getBindArgs());
-        assertSame(argTypes, sqlLog.getBindArgTypes());
     }
 
 }
