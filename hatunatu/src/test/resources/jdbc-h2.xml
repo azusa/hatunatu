@@ -16,6 +16,4 @@
         <property name="user">"sa"</property>
         <property name="password"></property>
     </component>
-
-    <component name="databaseName" class="jp.fieldnotes.hatunatu.dao.unit.TestName" />
 </components>

@@ -49,7 +49,7 @@
     </dependency>
     <dependency>
       <groupId>jp.fieldnotes.hatunatu</groupId>
-      <artifactId>hatunatu-seasar</artifactId>
+      <artifactId>hatunatu-lastadi</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
