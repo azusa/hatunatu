@@ -266,9 +266,6 @@ public class HatunatuTest extends ExternalResource {
             impl
                     .setRelationPropertyTypeFactoryBuilder(getRelationPropertyTypeFactoryBuilder(impl));
             impl.setTableNaming(new DefaultTableNaming());
-            NullBeanEnhancer enhancer = new NullBeanEnhancer();
-            enhancer.setDaoNamingConvention(getDaoNamingConvention());
-            impl.setBeanEnhancer(enhancer);
             beanMetaDataFactory = impl;
         }
         return beanMetaDataFactory;

@@ -24,14 +24,13 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class NullBeanEnhancerTest {
+public class ModifiedPropertySupportTest {
 
-    private NullBeanEnhancer enhancer;
+    private ModifiedPropertySupport target;
 
     @Before
     public void setUp() throws Exception {
-        enhancer = new NullBeanEnhancer();
-        enhancer.setDaoNamingConvention(new DaoNamingConventionImpl());
+        target = new ModifiedPropertySupport();
     }
 
     @Test
@@ -39,7 +38,7 @@ public class NullBeanEnhancerTest {
         Employee22 emp = new Employee22();
         emp.setEmpno(new Long(1000));
         emp.setDeptno(new Integer(1));
-        Set names = enhancer.getModifiedPropertyNames(emp);
+        Set names = target.getModifiedPropertyNames(emp);
         assertNotNull(names);
         assertEquals("1", 2, names.size());
         assertTrue("2", names.contains("empno"));
@@ -52,7 +51,7 @@ public class NullBeanEnhancerTest {
         Employee20 emp = new Employee20();
         emp.setEmpno(new Long(1000));
         emp.setDeptno(new Integer(1));
-        Set names = enhancer.getModifiedPropertyNames(emp);
+        Set names = target.getModifiedPropertyNames(emp);
         assertNotNull(names);
         assertEquals("1", 0, names.size());
     }
