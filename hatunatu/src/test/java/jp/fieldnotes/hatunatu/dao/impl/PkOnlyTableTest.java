@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 public class PkOnlyTableTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "PkOnlyTableTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "PkOnlyTableTest.xml");
 
     /*
      * https://www.seasar.org/issues/browse/DAO-16

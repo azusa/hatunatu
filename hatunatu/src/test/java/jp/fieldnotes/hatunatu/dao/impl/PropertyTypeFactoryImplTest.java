@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
 public class PropertyTypeFactoryImplTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, getClass().getName().replace('.', '/') + ".dicon");
+    public HatunatuTest test = new HatunatuTest(this, "dao.xml");
 
     private Class beanClass = Employee20.class;
 

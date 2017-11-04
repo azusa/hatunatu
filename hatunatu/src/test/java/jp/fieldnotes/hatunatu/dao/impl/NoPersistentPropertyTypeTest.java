@@ -46,8 +46,6 @@ public class NoPersistentPropertyTypeTest {
         } catch (MethodSetupFailureRuntimeException e) {
             e.printStackTrace();
             assertEquals(true, -1 < e.getMessage().indexOf("EDAO0019"));
-            final String message = e.getCause().getMessage();
-            assertEquals(true, -1 < message.indexOf("EDAO0017"));
         }
     }
 

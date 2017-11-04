@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//DBFLUTE//DTD LastaDi 1.0//EN"
+        "http://dbflute.org/meta/lastadi10.dtd">
+<components namespace="dao">
+    <include path="convention.xml" />
+    <include path="jdbc-derby.xml" />
+    <component name="daoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl">
+            <property name="annotationReaderFactory">annotationReaderFactory</property>
+            <property name="beanMetaDataFactory">beanMetaDataFactory</property>
+            <property name="daoNamingConvention">daoNamingConvention</property>
+            <property name="resultSetHandlerFactory">resultSetHandlerFactorySelector</property>
+            <property name="dtoMetaDataFactory">dtoMetaDataFactory</property>
+            <property name="procedureMetaDataFactory">procedureMetaDataFactory</property>
+            <property name="dataSource">jdbc.dataSource</property>
+            <property name="statementFactory">statementFactory</property>
+            <property name="resultSetFactory">resultSetFactory</property>
+    </component>
+    <component name="beanMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataFactoryImpl">
+            <property name="annotationReaderFactory">annotationReaderFactory</property>
+            <property name="dataSource">jdbc.dataSource</property>
+            <property name="tableNaming">defaultTableNaming</property>
+            <property name="propertyTypeFactoryBuilder">propertyTypeFactoryBuilder</property>
+
+    </component>
+    <component name="statementFactory" class="jp.fieldnotes.hatunatu.dao.impl.StatementFactoryImpl">
+        <property name="fetchSize">100</property>
+    </component>
+    <component
+            name="resultSetFactory"
+            class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper">
+        <arg>
+            <component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
+        </arg>
+        <property name="useScrollCursor">true</property>
+    </component>
+
+    <component name="annotationReaderFactory" class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
+    <component name="interceptor" class="jp.fieldnotes.hatunatu.lastadi.LastaDiInterceptor" />
+    <component name="daoNamingConvention" class="jp.fieldnotes.hatunatu.dao.impl.DaoNamingConventionImpl"/>
+    <component name="resultSetHandlerFactorySelector" class="jp.fieldnotes.hatunatu.dao.impl.ResultSetHandlerFactorySelector"/>
+    <component name="dtoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DtoMetaDataFactoryImpl">
+    </component>
+    <component name="propertyTypeFactoryBuilder" class="jp.fieldnotes.hatunatu.dao.impl.PropertyTypeFactoryBuilderImpl">
+            <property name="columnNaming">defaultColumnNaming</property>
+            <property name="daoNamingConvention">daoNamingConvention</property>
+            <property name="columnNaming">defaultColumnNaming</property>
+    </component>
+    <component name="relationPropertyTypeFactoryBuilder" class="jp.fieldnotes.hatunatu.dao.impl.RelationPropertyTypeFactoryBuilderImpl"/>
+    <component name="defaultTableNaming" class="jp.fieldnotes.hatunatu.dao.impl.DefaultTableNaming"/>
+    <component name="defaultColumnNaming" class="jp.fieldnotes.hatunatu.dao.impl.DefaultColumnNaming"/>
+    <component name="procedureMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.ProcedureMetaDataFactoryImpl">
+            <property name="annotationReaderFactory">annotationReaderFactory</property>
+    </component>
+</components>
+

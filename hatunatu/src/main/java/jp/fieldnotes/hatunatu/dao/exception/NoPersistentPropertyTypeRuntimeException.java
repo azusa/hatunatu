@@ -20,8 +20,7 @@ import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 
 public class NoPersistentPropertyTypeRuntimeException extends SRuntimeException {
 
-    public NoPersistentPropertyTypeRuntimeException() {
-        super("EDAO0017");
+    public NoPersistentPropertyTypeRuntimeException(String messageCode, Object ... args) {
+        super(messageCode, args);
     }
-
 }

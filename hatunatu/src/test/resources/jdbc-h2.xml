@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//DBFLUTE//DTD LastaDi 1.0//EN"
+        "http://dbflute.org/meta/lastadi10.dtd">
+<components namespace="jdbc"> <!-- included by rdb.xml of Lasta Di for main schema -->
+    <include path="jta.xml"/> <!-- for e.g. transaction manager -->
+    <component name="connectionPool" class="org.lastaflute.db.dbcp.HookedConnectionPool">
+        <!-- main option, required -->
+        <property name="maxPoolSize">2</property>
+    </component>
+
+    <component name="dataSource" class="org.lastaflute.jta.dbcp.PooledDataSource" />
+
+    <component name="xaDataSource" class="org.lastaflute.jta.dbcp.SimpleXADataSource">
+        <property name="driverClassName">"org.h2.Driver"</property>
+        <property name="URL">"jdbc:h2:mem:hatunatu"</property>
+        <property name="user">"sa"</property>
+        <property name="password"></property>
+    </component>
+</components>

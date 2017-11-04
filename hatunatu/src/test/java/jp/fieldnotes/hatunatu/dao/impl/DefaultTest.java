@@ -35,7 +35,7 @@ import static org.junit.Assert.*;
 public class DefaultTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, "DefaultTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this, "DefaultTest.xml");
 
     private DefaultTableDao defaultTableDao;
 
@@ -60,42 +60,6 @@ public class DefaultTest  {
             Map m = (Map) it.next();
             System.out.println(m);
         }
-    }
-
-    @Test
-    public void testLearningGetDefaultValueTx() throws Exception {
-        final DatabaseMetaData metaData = test.getConnection().getMetaData();
-        String userName = DatabaseMetaDataUtil.convertIdentifier(metaData,
-                metaData.getUserName());
-        final ResultSet rset = metaData.getColumns(null, userName,
-                "DEFAULT_TABLE", null);
-
-        final int[] columns = { 0, 0, 0, 0 };
-        while (rset.next()) {
-            final String columnName = rset.getString("COLUMN_NAME");
-            final String columnDef = rset.getString("COLUMN_DEF");
-            System.out.println(columnName + "[" + columnDef + "]");
-            if ("ID".equals(columnName)) {
-                columns[0]++;
-                // assertEquals((String) null, columnDef);
-            } else if ("AAA".equals(columnName)) {
-                columns[1]++;
-                // assertEquals("'ABC'", columnDef);
-                assertEquals(columnDef, true, columnDef.indexOf("ABC") > -1);
-            } else if ("BBB".equals(columnName)) {
-                columns[2]++;
-                assertEquals(columnDef, (String) null, columnDef);
-            } else if ("VERSION_NO".equals(columnName)) {
-                columns[3]++;
-                assertEquals(columnDef, (String) null, columnDef);
-            } else {
-                fail(columnName);
-            }
-        }
-        assertEquals(1, columns[0]);
-        assertEquals(1, columns[1]);
-        assertEquals(1, columns[2]);
-        assertEquals(1, columns[3]);
     }
 
     @Test

@@ -5,7 +5,7 @@
 	<include path="j2ee.dicon"/>
 	<component class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
 	<component class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl"/>
-	<component name="interceptor" class="jp.fieldnotes.hatunatu.seasar.interceptors.S2DaoInterceptor"/>
+	<component name="interceptor" class="S2DaoInterceptor"/>
 	<component class="jp.fieldnotes.hatunatu.dao.impl.ValueTypeFactoryImpl"/>
 	<component name="stringClobType"> 
 		@jp.fieldnotes.hatunatu.dao.types.bytes.ValueTypes@CLOB

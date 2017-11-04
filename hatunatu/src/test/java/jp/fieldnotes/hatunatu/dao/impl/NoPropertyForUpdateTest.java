@@ -34,7 +34,7 @@ import static org.junit.Assert.fail;
 public class NoPropertyForUpdateTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"NoPropertyForUpdate.dicon");
+    public HatunatuTest test = new HatunatuTest(this,"NoPropertyForUpdate.xml");
 
 
     private NoPropertyForUpdateDao noPropertyForUpdateDao;

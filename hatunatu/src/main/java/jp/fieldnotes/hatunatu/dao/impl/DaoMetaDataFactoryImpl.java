@@ -39,7 +39,7 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
 
     protected AnnotationReaderFactory annotationReaderFactory;
 
-    protected ValueTypeFactory valueTypeFactory;
+    protected ValueTypeFactory valueTypeFactory = new ValueTypeFactoryImpl();
 
     protected BeanMetaDataFactory beanMetaDataFactory;
 
@@ -62,17 +62,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
     protected String sqlFileEncoding;
 
     public DaoMetaDataFactoryImpl() {
-    }
-
-    public DaoMetaDataFactoryImpl(final DataSource dataSource,
-            final StatementFactory statementFactory,
-            final ResultSetFactory resultSetFactory,
-            final AnnotationReaderFactory annotationReaderFactory) {
-
-        this.dataSource = dataSource;
-        this.statementFactory = statementFactory;
-        this.resultSetFactory = resultSetFactory;
-        this.annotationReaderFactory = annotationReaderFactory;
     }
 
     public void setSqlFileEncoding(final String encoding) {

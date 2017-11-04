@@ -15,15 +15,15 @@
  */
 package jp.fieldnotes.hatunatu.examples.dao;
 
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
+import org.lastaflute.di.core.LaContainer;
+import org.lastaflute.di.core.factory.LaContainerFactory;
 
 public class DepartmentDaoClient {
 
-    private static final String PATH = "jp/fieldnotes/hatunatu/examples/dao/DepartmentDao.dicon";
+    private static final String PATH = "jp/fieldnotes/hatunatu/examples/dao/Examples.xml";
 
     public static void main(String[] args) {
-        S2Container container = S2ContainerFactory.create(PATH);
+        LaContainer container = LaContainerFactory.create(PATH);
         container.init();
         try {
             DepartmentDao dao = (DepartmentDao) container

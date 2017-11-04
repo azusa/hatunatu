@@ -86,6 +86,7 @@
     <module>hatunatu-examples</module>
     <module>hatunatu-seasar</module>
     <module>hatunatu-api</module>
+    <module>hatunatu-lastadi</module>
   </modules>
   <repositories>
     <repository>

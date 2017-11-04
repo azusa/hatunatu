@@ -27,9 +27,7 @@ import java.util.Set;
 
 public class NullBeanEnhancer implements BeanEnhancer, ModifiedPropertySupport {
 
-    public static final String daoNamingConvention_BINDING = "bindingType=must";
-
-    private DaoNamingConvention daoNamingConvention;
+    private DaoNamingConvention daoNamingConvention = new DaoNamingConventionImpl();
 
     private static final Set EMPTY_SET = Collections.EMPTY_SET;
 

@@ -16,13 +16,12 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
-import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Query;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 public class ListBindTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"ListBindTest.dicon" );
+    public HatunatuTest test = new HatunatuTest(this,"ListBindTest.xml" );
 
     private EmployeeDao employeeDao;
 
@@ -102,123 +101,4 @@ public class ListBindTest  {
 
     }
 
-    @Bean(table = "EMP")
-    public static class Employee {
-
-        private Integer empno;
-
-        private String ename;
-
-        private String job;
-
-        private Integer mgr;
-
-        private java.util.Date hiredate;
-
-        private Float sal;
-
-        private Float comm;
-
-        private int deptno;
-
-        private Timestamp tstamp;
-
-        public Integer getEmpno() {
-            return this.empno;
-        }
-
-        public void setEmpno(Integer empno) {
-            this.empno = empno;
-        }
-
-        public java.lang.String getEname() {
-            return this.ename;
-        }
-
-        public void setEname(java.lang.String ename) {
-            this.ename = ename;
-        }
-
-        public java.lang.String getJob() {
-            return this.job;
-        }
-
-        public void setJob(java.lang.String job) {
-            this.job = job;
-        }
-
-        public Integer getMgr() {
-            return this.mgr;
-        }
-
-        public void setMgr(Integer mgr) {
-            this.mgr = mgr;
-        }
-
-        public java.util.Date getHiredate() {
-            return this.hiredate;
-        }
-
-        public void setHiredate(java.util.Date hiredate) {
-            this.hiredate = hiredate;
-        }
-
-        public Float getSal() {
-            return this.sal;
-        }
-
-        public void setSal(Float sal) {
-            this.sal = sal;
-        }
-
-        public Float getComm() {
-            return this.comm;
-        }
-
-        public void setComm(Float comm) {
-            this.comm = comm;
-        }
-
-        public int getDeptno() {
-            return this.deptno;
-        }
-
-        public void setDeptno(int deptno) {
-            this.deptno = deptno;
-        }
-
-        public Timestamp getTstamp() {
-            return tstamp;
-        }
-
-        public void setTstamp(Timestamp timestamp) {
-            this.tstamp = timestamp;
-        }
-
-        public boolean equals(Object other) {
-            if (!(other instanceof Employee)) {
-                return false;
-            }
-            Employee castOther = (Employee) other;
-            return getEmpno() == castOther.getEmpno();
-        }
-
-        public int hashCode() {
-            return getEmpno().intValue();
-        }
-
-        public String toString() {
-            StringBuilder buf = new StringBuilder();
-            buf.append(empno).append(", ");
-            buf.append(ename).append(", ");
-            buf.append(job).append(", ");
-            buf.append(mgr).append(", ");
-            buf.append(hiredate).append(", ");
-            buf.append(sal).append(", ");
-            buf.append(comm).append(", ");
-            buf.append(deptno).append(", ");
-            buf.append(tstamp);
-            return buf.toString();
-        }
-    }
 }

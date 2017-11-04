@@ -24,7 +24,19 @@ import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
+import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+import org.apache.ibatis.migration.DataSourceConnectionProvider;
+import org.apache.ibatis.migration.FileMigrationLoader;
+import org.apache.ibatis.migration.operations.DatabaseOperation;
+import org.apache.ibatis.migration.operations.UpOperation;
+import org.apache.ibatis.migration.options.DatabaseOperationOption;
 import org.junit.rules.ExternalResource;
+import org.lastaflute.di.core.ContainerConstants;
+import org.lastaflute.di.core.LaContainer;
+import org.lastaflute.di.core.factory.LaContainerFactory;
+import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
 import org.seasar.extension.dataset.DataReader;
 import org.seasar.extension.dataset.DataSet;
 import org.seasar.extension.dataset.DataTable;
@@ -34,19 +46,12 @@ import org.seasar.extension.dataset.impl.XlsReader;
 import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
-import org.seasar.framework.container.ContainerConstants;
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
-import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
-import org.seasar.framework.env.Env;
 import org.seasar.framework.unit.UnitClassLoader;
-import org.seasar.framework.util.FieldUtil;
-import org.seasar.framework.util.ResourceUtil;
-import org.seasar.framework.util.StringUtil;
 
 import javax.sql.DataSource;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -55,6 +60,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class HatunatuTest extends ExternalResource {
 
@@ -87,7 +93,7 @@ public class HatunatuTest extends ExternalResource {
 
     private static final String ENV_VALUE = "ut";
 
-    private S2Container container;
+    private LaContainer container;
 
     private ClassLoader originalClassLoader;
 
@@ -113,7 +119,7 @@ public class HatunatuTest extends ExternalResource {
     private QueryObject queryObject = new QueryObject();
 
     public HatunatuTest(Object instance){
-        this(instance, "j2ee.dicon");
+        this(instance, "jdbc.xml");
     }
 
     public HatunatuTest(Object instance, String dataSourceDiconName){
@@ -128,8 +134,16 @@ public class HatunatuTest extends ExternalResource {
         include(dataSourceDiconName);
         bindFields();
         setupDataSource();
+        Properties prop = new Properties();
+        prop.load(HatunatuTest.class.getResourceAsStream("/development.properties"));
+        FileMigrationLoader loader = new FileMigrationLoader(new File("src/test/resources/migration"), "UTF-8", prop);
+        DatabaseOperationOption option = new DatabaseOperationOption();
+        option.setAutoCommit(true);
+        new UpOperation().operate(new DataSourceConnectionProvider(this.dataSource),loader, option, System.err);
+
         tm = (TransactionManager) getComponent(TransactionManager.class);
         tm.begin();
+
     }
 
     @Override
@@ -388,12 +402,12 @@ public class HatunatuTest extends ExternalResource {
     }
 
 
-    private S2Container getContainer() {
+    private LaContainer getContainer() {
         return container;
     }
 
     private void include(String path) {
-        S2ContainerFactory.include(container, ResourceUtil.convertPath(path, instance.getClass()));
+        LaContainerFactory.include(container, ResourceUtil.convertPath(path, instance.getClass()));
     }
 
     private Object getComponent(Class componentClass) {
@@ -401,7 +415,7 @@ public class HatunatuTest extends ExternalResource {
     }
 
     private void setupDataSource() {
-        S2Container container = getContainer();
+        LaContainer container = getContainer();
             if (container.hasComponentDef(DATASOURCE_NAME)) {
                 dataSource = (DataSource) container
                         .getComponent(DATASOURCE_NAME);
@@ -490,17 +504,15 @@ public class HatunatuTest extends ExternalResource {
     }
 
     private void setUpContainer() throws Throwable {
-        Env.setFilePath(ENV_PATH);
-        Env.setValueIfAbsent(ENV_VALUE);
         originalClassLoader = getOriginalClassLoader();
         unitClassLoader = new UnitClassLoader(originalClassLoader);
         Thread.currentThread().setContextClassLoader(unitClassLoader);
-        container = S2ContainerFactory.create();
-        SingletonS2ContainerFactory.setContainer(container);
+        container = LaContainerFactory.create("app.xml");
+        SingletonLaContainerFactory.setContainer(container);
     }
 
     private ClassLoader getOriginalClassLoader() {
-        S2Container configurationContainer = S2ContainerFactory
+        LaContainer configurationContainer = LaContainerFactory
                 .getConfigurationContainer();
         if (configurationContainer != null
                 && configurationContainer.hasComponentDef(ClassLoader.class)) {

@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 public class ReturnsArrayDaoTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"ReturnsArrayDaoTest.dicon");
+    public HatunatuTest test = new HatunatuTest(this,"ReturnsArrayDaoTest.xml");
 
     private EmployeeDao employeeDao;
 

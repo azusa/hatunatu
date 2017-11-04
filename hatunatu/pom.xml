@@ -63,15 +63,9 @@
     </dependency>
     <dependency>
       <groupId>jp.fieldnotes.hatunatu</groupId>
-      <artifactId>hatunatu-seasar</artifactId>
+      <artifactId>hatunatu-lastadi</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seasar.container</groupId>
-          <artifactId>s2-extension</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>jp.fieldnotes.hatunatu</groupId>
@@ -118,6 +112,22 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
       <version>1.10.19</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-migrations</artifactId>
+      <version>3.3.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.lastaflute</groupId>
+      <artifactId>lastaflute</artifactId>
+      <version>0.9.9</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+      <version>1.2</version>
     </dependency>
 
 

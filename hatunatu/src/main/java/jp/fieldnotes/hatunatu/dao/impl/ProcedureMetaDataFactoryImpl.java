@@ -33,10 +33,6 @@ public class ProcedureMetaDataFactoryImpl implements ProcedureMetaDataFactory {
 
     public static final String INIT_METHOD = "initialize";
 
-    public static final String valueTypeFactory_BINDING = "bindingType=must";
-
-    public static final String annotationReaderFactory_BINDING = "bindingType=must";
-
     protected static String procedureParameterInType = "in";
 
     protected static String procedureParameterOutType = "out";
@@ -46,7 +42,7 @@ public class ProcedureMetaDataFactoryImpl implements ProcedureMetaDataFactory {
     protected static String procedureParameterReturnType = "return";
 
     /** {@link ValueType}のファクトリ */
-    protected ValueTypeFactory valueTypeFactory;
+    protected ValueTypeFactory valueTypeFactory = new ValueTypeFactoryImpl();
 
     /** アノテーションリーダのファクトリ */
     protected AnnotationReaderFactory annotationReaderFactory;

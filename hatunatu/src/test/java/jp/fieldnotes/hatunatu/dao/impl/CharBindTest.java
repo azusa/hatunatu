@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 public class CharBindTest {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this,"CharBindTest.dicon" );
+    public HatunatuTest test = new HatunatuTest(this,"CharBindTest.xml" );
 
     private CharTableDao charTableDao;
 

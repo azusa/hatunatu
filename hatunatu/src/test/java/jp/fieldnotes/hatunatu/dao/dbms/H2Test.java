@@ -19,10 +19,18 @@ import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.lastaflute.di.core.LaContainer;
+import org.lastaflute.di.core.SingletonLaContainer;
+import org.lastaflute.di.core.factory.LaContainerFactory;
+import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
 import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -31,64 +39,25 @@ import static org.junit.Assert.assertEquals;
 
 public class H2Test  {
 
-    @Rule
-    public HatunatuTest test = new HatunatuTest(this, "jdbc-h2.dicon");
-
-    @Test
-    public void test1() throws Exception {
-        final Connection con = test.getConnection();
-
-        final Statement stmt = con.createStatement();
-        stmt.executeUpdate("DROP TABLE IF EXISTS H2TEST");
-        stmt
-                .executeUpdate("CREATE TABLE H2TEST (ID INT PRIMARY KEY, AAA VARCHAR(255))");
-        stmt.executeUpdate("INSERT INTO H2TEST VALUES (1, 'z')");
-        stmt.executeUpdate("INSERT INTO H2TEST VALUES (2, 'y')");
-        stmt.executeUpdate("INSERT INTO H2TEST VALUES (3, 'x')");
-
-        {
-            final ResultSet rset = stmt
-                    .executeQuery("SELECT COUNT(*) FROM H2TEST");
-            assertEquals(true, rset.next());
-            assertEquals(1, rset.getMetaData().getColumnCount());
-            assertEquals(3L, rset.getLong(1));
-            assertEquals(false, rset.next());
-            rset.close();
-        }
-        {
-            final ResultSet rset = stmt
-                    .executeQuery("SELECT ID, AAA FROM H2TEST ORDER BY 2 ASC");
-            assertEquals(2, rset.getMetaData().getColumnCount());
-
-            assertEquals(true, rset.next());
-            assertEquals("3", rset.getString(1));
-            assertEquals("x", rset.getString(2));
-
-            assertEquals(true, rset.next());
-            assertEquals("2", rset.getString(1));
-            assertEquals("y", rset.getString(2));
-
-            assertEquals(true, rset.next());
-            assertEquals("1", rset.getString(1));
-            assertEquals("z", rset.getString(2));
-
-            assertEquals(false, rset.next());
-        }
-
-        stmt.close();
-        con.close();
+    @Before
+    public void before(){
+        LaContainer container = LaContainerFactory.create("app-h2.xml");
+        SingletonLaContainerFactory.setContainer(container);
     }
+
 
     @Test
     public void testSequence() throws Exception {
         // ## Arrange ##
-        final Connection con = test.getConnection();
+        final DataSource ds = SingletonLaContainer.getComponent(DataSource.class);
+        final Connection con = ds.getConnection();
         final Statement stmt = con.createStatement();
         stmt.executeUpdate("DROP SEQUENCE IF EXISTS H2TEST_SEQ");
         stmt
                 .executeUpdate("CREATE SEQUENCE H2TEST_SEQ START WITH 7650 INCREMENT BY 1");
         stmt.close();
-        final Dbms dbms = DbmsManager.getDbms(test.getDataSource());
+        final Dbms dbms = DbmsManager.getDbms(ds);
+        System.err.println(dbms.getClass());
         assertEquals(true, dbms instanceof H2);
 
         // ## Act ##
@@ -99,7 +68,7 @@ public class H2Test  {
         queryObject.setSql(sequenceNextValString);
 
         final BasicSelectHandler nextvalHandler = new BasicSelectHandler(
-                test.getDataSource(),
+                ds,
                 new ObjectResultSetHandler());
         {
             final Number nextval = (Number) nextvalHandler.execute(queryObject);
@@ -116,7 +85,7 @@ public class H2Test  {
 
         final String identitySelectString = dbms.getIdentitySelectString();
         final BasicSelectHandler identityHandler = new BasicSelectHandler(
-                test.getDataSource(),
+                ds,
                 new ObjectResultSetHandler());
         QueryObject queryObject2 = new QueryObject();
         queryObject2.setSql(identitySelectString);
@@ -134,6 +103,11 @@ public class H2Test  {
             assertEquals(7653, currval.intValue());
         }
 
+    }
+
+    @After
+    public void after(){
+        SingletonLaContainerFactory.destroy();
     }
 
 }

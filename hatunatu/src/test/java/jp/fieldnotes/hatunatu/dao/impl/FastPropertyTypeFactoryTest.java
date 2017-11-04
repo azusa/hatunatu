@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
 public class FastPropertyTypeFactoryTest  {
 
     @Rule
-    public HatunatuTest test = new HatunatuTest(this, getClass().getName().replace('.', '/') + ".dicon");
+    public HatunatuTest test = new HatunatuTest(this, getClass().getName().replace('.', '/') + ".xml");
 
     private PropertyTypeFactoryBuilder builder;
 
