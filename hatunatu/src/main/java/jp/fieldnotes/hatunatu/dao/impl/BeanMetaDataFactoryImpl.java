@@ -34,7 +34,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected DaoNamingConvention daoNamingConvention = new DaoNamingConventionImpl();
 
-    protected BeanEnhancer beanEnhancer = new NullBeanEnhancer();
+    protected ModifiedPropertySupport beanEnhancer = new ModifiedPropertySupport();
 
     protected TableNaming tableNaming;
 
@@ -73,17 +73,16 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         if (beanClass == null) {
             throw new NullPointerException("beanClass");
         }
-        final Class originalBeanClass = this.beanEnhancer.getOriginalClass(beanClass);
         final Dbms dbms = getDbms(dbMetaData);
         final boolean stopRelationCreation = isLimitRelationNestLevel(relationNestLevel);
         final BeanAnnotationReader bar = annotationReaderFactory
-                .createBeanAnnotationReader(originalBeanClass);
+                .createBeanAnnotationReader(beanClass);
         final String versionNoPropertyName = getVersionNoPropertyName(bar);
         final String timestampPropertyName = getTimestampPropertyName(bar);
         final PropertyTypeFactory ptf = createPropertyTypeFactory(
-                originalBeanClass, bar, dbMetaData, dbms);
+                beanClass, bar, dbMetaData, dbms);
         final RelationPropertyTypeFactory rptf = createRelationPropertyTypeFactory(
-                originalBeanClass, bar, dbMetaData, relationNestLevel,
+                beanClass, bar, dbMetaData, relationNestLevel,
                 stopRelationCreation);
         final BeanMetaDataImpl bmd = createBeanMetaDataImpl();
 
@@ -91,17 +90,15 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         bmd.setBeanAnnotationReader(bar);
         bmd.setVersionNoPropertyName(versionNoPropertyName);
         bmd.setTimestampPropertyName(timestampPropertyName);
-        bmd.setBeanClass(originalBeanClass);
+        bmd.setBeanClass(beanClass);
         bmd.setTableNaming(tableNaming);
         bmd.setPropertyTypeFactory(ptf);
         bmd.setRelationPropertyTypeFactory(rptf);
         bmd.setRelationToTable(bar.getTableAnnotation() != null);
         bmd.initialize();
 
-        final Class enhancedBeanClass = this.beanEnhancer.enhanceBeanClass(beanClass,
-                versionNoPropertyName, timestampPropertyName);
-        bmd.setModifiedPropertySupport(this.beanEnhancer.getSupporter());
-        bmd.setBeanClass(enhancedBeanClass);
+        bmd.setModifiedPropertySupport(this.beanEnhancer);
+        bmd.setBeanClass(beanClass);
 
         return bmd;
     }
@@ -191,7 +188,4 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
         this.relationPropertyTypeFactoryBuilder = relationPropertyTypeFactoryBuilder;
     }
 
-    public void setBeanEnhancer(BeanEnhancer enhancer){
-        this.beanEnhancer = enhancer;
-    }
 }

@@ -461,10 +461,5 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         this.relationPropertyTypeFactory = relationPropertyTypeFactory;
     }
 
-    public static interface ModifiedPropertySupport {
-
-        Set getModifiedPropertyNames(Object bean);
-
-    }
 
 }
