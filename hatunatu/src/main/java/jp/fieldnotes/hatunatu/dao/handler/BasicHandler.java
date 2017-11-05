@@ -18,16 +18,12 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
-import jp.fieldnotes.hatunatu.dao.impl.SqlLogImpl;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.dao.util.BindVariableUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.log.Logger;
-import org.seasar.extension.jdbc.SqlLog;
-import org.seasar.extension.jdbc.SqlLogRegistry;
-import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -223,16 +219,10 @@ public abstract class BasicHandler {
      */
     protected void logSql(QueryObject queryObject) {
         Logger logger = Logger.getLogger(loggerClass);
-        SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator.getInstance();
-        if (logger.isDebugEnabled() || sqlLogRegistry != null) {
+        if (logger.isDebugEnabled()) {
             String completeSql = getCompleteSql(queryObject);
             if (logger.isDebugEnabled()) {
                 logger.debug(completeSql);
-            }
-            if (sqlLogRegistry != null) {
-                SqlLog sqlLog = new SqlLogImpl(queryObject.getSql(), completeSql, queryObject.getBindArguments(),
-                        queryObject.getBindTypes());
-                sqlLogRegistry.add(sqlLog);
             }
         }
     }
