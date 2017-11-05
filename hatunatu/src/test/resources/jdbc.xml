@@ -12,8 +12,10 @@
 
     <component name="xaDataSource" class="org.lastaflute.jta.dbcp.SimpleXADataSource">
         <property name="driverClassName">"org.hsqldb.jdbcDriver"</property>
-        <property name="URL">"jdbc:hsqldb:mem:hatunatu"</property>
+        <property name="URL">databaseName.getDatabaseName()</property>
         <property name="user">"sa"</property>
         <property name="password"></property>
     </component>
+
+    <component name="databaseName" class="jp.fieldnotes.hatunatu.dao.unit.DatabaseName"/>
 </components>
