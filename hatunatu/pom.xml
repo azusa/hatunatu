@@ -114,12 +114,6 @@
       <version>1.10.19</version>
     </dependency>
     <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-migrations</artifactId>
-      <version>3.3.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.lastaflute</groupId>
       <artifactId>lastaflute</artifactId>
       <version>0.9.9</version>

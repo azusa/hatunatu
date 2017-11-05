@@ -27,11 +27,6 @@ import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
-import org.apache.ibatis.migration.DataSourceConnectionProvider;
-import org.apache.ibatis.migration.FileMigrationLoader;
-import org.apache.ibatis.migration.operations.DatabaseOperation;
-import org.apache.ibatis.migration.operations.UpOperation;
-import org.apache.ibatis.migration.options.DatabaseOperationOption;
 import org.junit.rules.ExternalResource;
 import org.lastaflute.di.core.ContainerConstants;
 import org.lastaflute.di.core.LaContainer;
@@ -51,16 +46,18 @@ import org.seasar.framework.unit.UnitClassLoader;
 import javax.sql.DataSource;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class HatunatuTest extends ExternalResource {
 
@@ -134,16 +131,19 @@ public class HatunatuTest extends ExternalResource {
         include(dataSourceDiconName);
         bindFields();
         setupDataSource();
-        Properties prop = new Properties();
-        prop.load(HatunatuTest.class.getResourceAsStream("/development.properties"));
-        FileMigrationLoader loader = new FileMigrationLoader(new File("src/test/resources/migration"), "UTF-8", prop);
-        DatabaseOperationOption option = new DatabaseOperationOption();
-        option.setAutoCommit(true);
-        new UpOperation().operate(new DataSourceConnectionProvider(this.dataSource),loader, option, System.err);
-
         tm = (TransactionManager) getComponent(TransactionManager.class);
         tm.begin();
 
+        List<String> migrationScript = Files.readAllLines(Paths.get(ResourceUtil.getResource("migration/script.sql").toURI()), Charset.forName("UTF-8"));
+        for (String script : migrationScript){
+            if (script.isEmpty()){
+                continue;
+            }
+
+            try (Statement stmt = this.dataSource.getConnection().createStatement()){
+                stmt.executeUpdate(script);
+            }
+        }
     }
 
     @Override
