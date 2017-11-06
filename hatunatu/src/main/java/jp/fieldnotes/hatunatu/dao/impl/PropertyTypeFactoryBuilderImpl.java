@@ -26,14 +26,10 @@ public class PropertyTypeFactoryBuilderImpl implements
 
     protected ColumnNaming columnNaming;
 
-    protected DaoNamingConvention daoNamingConvention;
+    protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     public void setColumnNaming(ColumnNaming columnNaming) {
         this.columnNaming = columnNaming;
-    }
-
-    public void setDaoNamingConvention(DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public void setValueTypeFactory(ValueTypeFactory valueTypeFactory) {

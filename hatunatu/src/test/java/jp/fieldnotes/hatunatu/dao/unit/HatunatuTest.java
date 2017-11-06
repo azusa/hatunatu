@@ -68,8 +68,6 @@ public class HatunatuTest extends ExternalResource {
 
     public BeanMetaDataFactory beanMetaDataFactory;
 
-    public DaoNamingConvention daoNamingConvention;
-
     public Dbms dbms;
 
     public ResultSetHandlerFactory resultSetHandlerFactory;
@@ -244,7 +242,6 @@ public class HatunatuTest extends ExternalResource {
         dmd.setResultSetFactory(BasicResultSetFactory.INSTANCE);
         dmd.setValueTypeFactory(getValueTypeFactory());
         dmd.setBeanMetaDataFactory(bmdf);
-        dmd.setDaoNamingConvention(getDaoNamingConvention());
         dmd.setDaoAnnotationReader(daoAnnotationReader);
         dmd.setProcedureMetaDataFactory(getProcedureMetaDataFactory());
         dmd.setDtoMetaDataFactory(dmdf);
@@ -261,7 +258,6 @@ public class HatunatuTest extends ExternalResource {
             };
             impl.setAnnotationReaderFactory(getAnnotationReaderFactory());
             impl.setDataSource(this.dataSource);
-            impl.setDaoNamingConvention(getDaoNamingConvention());
             impl.setPropertyTypeFactoryBuilder(getPropertyTypeFactoryBuilder());
             impl
                     .setRelationPropertyTypeFactoryBuilder(getRelationPropertyTypeFactoryBuilder(impl));
@@ -305,18 +301,6 @@ public class HatunatuTest extends ExternalResource {
             valueTypeFactory = impl;
         }
         return valueTypeFactory;
-    }
-
-    public DaoNamingConvention getDaoNamingConvention() {
-        if (daoNamingConvention == null) {
-            daoNamingConvention = new DaoNamingConventionImpl();
-        }
-        return daoNamingConvention;
-    }
-
-    public void setDaoNamingConvention(
-            final DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public DatabaseMetaData getDatabaseMetaData() {
@@ -369,7 +353,6 @@ public class HatunatuTest extends ExternalResource {
         if (propertyTypeFactoryBuilder == null) {
             final PropertyTypeFactoryBuilderImpl builder = new PropertyTypeFactoryBuilderImpl();
             builder.setColumnNaming(new DefaultColumnNaming());
-            builder.setDaoNamingConvention(getDaoNamingConvention());
             builder.setValueTypeFactory(getValueTypeFactory());
             propertyTypeFactoryBuilder = builder;
         }

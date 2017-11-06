@@ -43,7 +43,7 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
 
     protected BeanMetaDataFactory beanMetaDataFactory;
 
-    protected DaoNamingConvention daoNamingConvention;
+    protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     protected ResultSetHandlerFactory resultSetHandlerFactory;
 
@@ -105,7 +105,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
         daoMetaData.setResultSetFactory(resultSetFactory);
         daoMetaData.setValueTypeFactory(valueTypeFactory);
         daoMetaData.setBeanMetaDataFactory(getBeanMetaDataFactory());
-        daoMetaData.setDaoNamingConvention(getDaoNamingConvention());
         daoMetaData.setUseDaoClassForLog(useDaoClassForLog);
         daoMetaData.setDaoAnnotationReader(daoAnnotationReader);
         daoMetaData.setProcedureMetaDataFactory(procedureMetaDataFactory);
@@ -140,15 +139,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
     public synchronized void dispose() {
         daoMetaDataCache.clear();
         initialized = false;
-    }
-
-    public DaoNamingConvention getDaoNamingConvention() {
-        return daoNamingConvention;
-    }
-
-    public void setDaoNamingConvention(
-            final DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public void setAnnotationReaderFactory(

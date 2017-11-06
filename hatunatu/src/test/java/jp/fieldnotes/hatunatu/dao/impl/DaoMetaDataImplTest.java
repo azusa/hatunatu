@@ -17,6 +17,7 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
+import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
 import jp.fieldnotes.hatunatu.dao.command.*;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalAnnotationRuntimeException;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
@@ -89,31 +90,6 @@ public class DaoMetaDataImplTest  {
         BeanArrayMetaDataResultSetHandler rsh = (BeanArrayMetaDataResultSetHandler) cmd
                 .getResultSetHandler();
         assertEquals(EmployeeDto.class, rsh.getBeanMetaData().getBeanClass());
-    }
-
-    @Test
-    public void testPrefixTest() {
-        final DaoNamingConventionImpl daoNamingConvention = new DaoNamingConventionImpl();
-        daoNamingConvention.setDaoSuffixes(new String[] { "Manager" });
-        daoNamingConvention.setInsertPrefixes(new String[] { "generate" });
-        daoNamingConvention.setUpdatePrefixes(new String[] { "change" });
-        daoNamingConvention.setDeletePrefixes(new String[] { "terminate" });
-        test.setDaoNamingConvention(daoNamingConvention);
-
-        final Class daoClass = Employee8Manager.class;
-        final DaoMetaDataImpl dmd = test.createDaoMetaData(daoClass);
-
-        InsertAutoDynamicCommand cmd1 = (InsertAutoDynamicCommand) dmd
-                .getSqlCommand(test.getSingleDaoMethod(Employee8Manager.class,"generate"));
-        assertNotNull(cmd1);
-        // System.out.println(cmd.getSql());
-        UpdateAutoStaticCommand cmd2 = (UpdateAutoStaticCommand) dmd
-                .getSqlCommand(test.getSingleDaoMethod(Employee8Manager.class,"change"));
-        assertNotNull(cmd2);
-        DeleteAutoStaticCommand cmd3 = (DeleteAutoStaticCommand) dmd
-                .getSqlCommand(test.getSingleDaoMethod(Employee8Manager.class,"terminate"));
-        assertNotNull(cmd3);
-        System.out.println(cmd3.getSql());
     }
 
     @Test

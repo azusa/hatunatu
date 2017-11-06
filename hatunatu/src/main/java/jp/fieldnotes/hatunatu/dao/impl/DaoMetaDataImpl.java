@@ -103,7 +103,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected ResultSetHandlerFactory resultSetHandlerFactory;
 
-    protected DaoNamingConvention daoNamingConvention;
+    protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     protected boolean useDaoClassForLog = false;
 
@@ -839,7 +839,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isInsert(final String methodName) {
-        final String[] insertPrefixes = getDaoNamingConvention()
+        final String[] insertPrefixes = this.daoNamingConvention
                 .getInsertPrefixes();
         for (String insertPrefix : insertPrefixes) {
             if (methodName.startsWith(insertPrefix)) {
@@ -850,7 +850,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isUpdate(final String methodName) {
-        final String[] updatePrefixes = getDaoNamingConvention()
+        final String[] updatePrefixes = this.daoNamingConvention
                 .getUpdatePrefixes();
         for (String updatePrefixe : updatePrefixes) {
             if (methodName.startsWith(updatePrefixe)) {
@@ -861,7 +861,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isDelete(final String methodName) {
-        final String[] deletePrefixes = getDaoNamingConvention()
+        final String[] deletePrefixes = this.daoNamingConvention
                 .getDeletePrefixes();
         for (String deletePrefix : deletePrefixes) {
             if (methodName.startsWith(deletePrefix)) {
@@ -872,7 +872,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected boolean isModifiedOnly(final String methodName) {
-        final String[] modifiedOnlySuffixes = getDaoNamingConvention()
+        final String[] modifiedOnlySuffixes = this.daoNamingConvention
                 .getModifiedOnlySuffixes();
         for (String modifiedOnlySuffix : modifiedOnlySuffixes) {
             if (methodName.endsWith(modifiedOnlySuffix)) {
@@ -958,15 +958,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
     public void setDtoMetaDataFactory(
             final DtoMetaDataFactory dtoMetaDataFactory) {
         this.dtoMetaDataFactory = dtoMetaDataFactory;
-    }
-
-    public DaoNamingConvention getDaoNamingConvention() {
-        return daoNamingConvention;
-    }
-
-    public void setDaoNamingConvention(
-            final DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public void setUseDaoClassForLog(final boolean setUserDaoClassForLog) {

@@ -52,7 +52,7 @@ public class FastPropertyTypeFactoryBuilder implements
             DatabaseMetaData databaseMetaData) {
 
         return new FastPropertyTypeFactory(beanClass, beanAnnotationReader,
-                valueTypeFactory, columnNaming, daoNamingConvention, dbms);
+                valueTypeFactory, columnNaming, dbms);
     }
 
 }

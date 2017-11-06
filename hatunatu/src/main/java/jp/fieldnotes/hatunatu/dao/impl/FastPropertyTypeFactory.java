@@ -20,14 +20,13 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.*;
-import jp.fieldnotes.hatunatu.dao.exception.EmptyRuntimeException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
 
-    private DaoNamingConvention daoNamingConvention;
+    private DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     /**
      * インスタンスを構築します。
@@ -45,21 +44,18 @@ public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
 
     /**
      * インスタンスを構築します。
-     * 
-     * @param beanClass Beanのクラス
+     *  @param beanClass Beanのクラス
      * @param beanAnnotationReader Beanのアノテーションリーダ
      * @param valueTypeFactory {@link ValueType}のファクトリ
      * @param columnNaming カラムのネーミング
-     * @param daoNamingConvention Daoのネーミング規約
      * @param dbms DBMS
      */
     public FastPropertyTypeFactory(Class beanClass,
-            BeanAnnotationReader beanAnnotationReader,
-            ValueTypeFactory valueTypeFactory, ColumnNaming columnNaming,
-            DaoNamingConvention daoNamingConvention, Dbms dbms) {
+                                   BeanAnnotationReader beanAnnotationReader,
+                                   ValueTypeFactory valueTypeFactory, ColumnNaming columnNaming,
+                                   Dbms dbms) {
         super(beanClass, beanAnnotationReader, valueTypeFactory, columnNaming,
                 dbms);
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public PropertyType[] createBeanPropertyTypes(String tableName) {
@@ -79,7 +75,7 @@ public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
     }
 
     protected boolean isPersistent(PropertyType propertyType) {
-        DaoNamingConvention convention = getDaoNamingConvention();
+        DaoNamingConvention convention = this.daoNamingConvention;
         String propertyName = propertyType.getPropertyName();
         if (propertyName.equals(convention
                 .getModifiedPropertyNamesPropertyName())) {
@@ -88,16 +84,5 @@ public class FastPropertyTypeFactory extends AbstractPropertyTypeFactory {
         return super.isPersistent(propertyType);
     }
 
-    /**
-     * Daoのネーミング規約を返します。
-     * 
-     * @return Daoのネーミング規約
-     */
-    public DaoNamingConvention getDaoNamingConvention() {
-        if (daoNamingConvention == null) {
-            throw new EmptyRuntimeException("daoNamingConvention");
-        }
-        return daoNamingConvention;
-    }
 
 }

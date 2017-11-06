@@ -7,7 +7,6 @@
     <component name="daoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DaoMetaDataFactoryImpl">
             <property name="annotationReaderFactory">annotationReaderFactory</property>
             <property name="beanMetaDataFactory">beanMetaDataFactory</property>
-            <property name="daoNamingConvention">daoNamingConvention</property>
             <property name="resultSetHandlerFactory">resultSetHandlerFactorySelector</property>
             <property name="dtoMetaDataFactory">dtoMetaDataFactory</property>
             <property name="procedureMetaDataFactory">procedureMetaDataFactory</property>
@@ -36,13 +35,10 @@
 
     <component name="annotationReaderFactory" class="jp.fieldnotes.hatunatu.dao.impl.AnnotationReaderFactoryImpl"/>
     <component name="interceptor" class="jp.fieldnotes.hatunatu.lastadi.LastaDiInterceptor" />
-    <component name="daoNamingConvention" class="jp.fieldnotes.hatunatu.dao.impl.DaoNamingConventionImpl"/>
     <component name="resultSetHandlerFactorySelector" class="jp.fieldnotes.hatunatu.dao.impl.ResultSetHandlerFactorySelector"/>
     <component name="dtoMetaDataFactory" class="jp.fieldnotes.hatunatu.dao.impl.DtoMetaDataFactoryImpl">
     </component>
     <component name="propertyTypeFactoryBuilder" class="jp.fieldnotes.hatunatu.dao.impl.PropertyTypeFactoryBuilderImpl">
-            <property name="columnNaming">defaultColumnNaming</property>
-            <property name="daoNamingConvention">daoNamingConvention</property>
             <property name="columnNaming">defaultColumnNaming</property>
     </component>
     <component name="relationPropertyTypeFactoryBuilder" class="jp.fieldnotes.hatunatu.dao.impl.RelationPropertyTypeFactoryBuilderImpl">

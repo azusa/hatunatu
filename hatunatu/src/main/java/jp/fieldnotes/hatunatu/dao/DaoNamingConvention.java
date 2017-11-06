@@ -15,22 +15,53 @@
  */
 package jp.fieldnotes.hatunatu.dao;
 
-public interface DaoNamingConvention {
+public class DaoNamingConvention {
 
-    String getTimestampPropertyName();
+    public static final DaoNamingConvention INSTASNCE = new DaoNamingConvention();
 
-    String getVersionNoPropertyName();
+    private String versionNoPropertyName = "versionNo";
 
-    String[] getDaoSuffixes();
+    private String timestampPropertyName = "timestamp";
 
-    String[] getDeletePrefixes();
+    private String[] insertPrefixes = new String[] { "insert", "create", "add" };
 
-    String[] getInsertPrefixes();
+    private String[] updatePrefixes = new String[] { "update", "modify",
+            "store" };
 
-    String[] getUpdatePrefixes();
+    private String[] deletePrefixes = new String[] { "delete", "remove" };
 
-    String[] getModifiedOnlySuffixes();
+    private String[] modifiedOnlySuffixes = new String[] { "ModifiedOnly" };
 
-    String getModifiedPropertyNamesPropertyName();
+    private String modifiedPropertyNamesPropertyName = "modifiedPropertyNames";
 
+    private DaoNamingConvention(){}
+
+
+    public String getModifiedPropertyNamesPropertyName() {
+        return modifiedPropertyNamesPropertyName;
+    }
+
+    public String getTimestampPropertyName() {
+        return timestampPropertyName;
+    }
+
+    public String getVersionNoPropertyName() {
+        return versionNoPropertyName;
+    }
+
+    public String[] getDeletePrefixes() {
+        return deletePrefixes;
+    }
+
+    public String[] getInsertPrefixes() {
+        return insertPrefixes;
+    }
+
+    public String[] getUpdatePrefixes() {
+        return updatePrefixes;
+    }
+
+    public String[] getModifiedOnlySuffixes() {
+        return modifiedOnlySuffixes;
+    }
 }

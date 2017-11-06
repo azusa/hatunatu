@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class ModifiedPropertySupport {
 
-    private DaoNamingConvention daoNamingConvention = new DaoNamingConventionImpl();
+    private DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     /* (non-Javadoc)
      * @see jp.fieldnotes.hatunatu.dao.impl.BeanMetaDataImpl.ModifiedPropertySupport#getModifiedPropertyNames(java.lang.Object)

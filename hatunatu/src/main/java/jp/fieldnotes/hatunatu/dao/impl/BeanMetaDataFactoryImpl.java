@@ -32,7 +32,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected DataSource dataSource;
 
-    protected DaoNamingConvention daoNamingConvention = new DaoNamingConventionImpl();
+    protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
     protected ModifiedPropertySupport beanEnhancer = new ModifiedPropertySupport();
 
@@ -105,7 +105,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected String getVersionNoPropertyName(
             BeanAnnotationReader beanAnnotationReader) {
-        final String defaultName = getDaoNamingConvention()
+        final String defaultName = this.daoNamingConvention
                 .getVersionNoPropertyName();
         final String name = beanAnnotationReader.getVersionNoPropertyName();
         return name != null ? name : defaultName;
@@ -113,7 +113,7 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
 
     protected String getTimestampPropertyName(
             BeanAnnotationReader beanAnnotationReader) {
-        final String defaultName = getDaoNamingConvention()
+        final String defaultName = this.daoNamingConvention
                 .getTimestampPropertyName();
         final String name = beanAnnotationReader.getTimestampPropertyName();
         return name != null ? name : defaultName;
@@ -163,15 +163,6 @@ public class BeanMetaDataFactoryImpl implements BeanMetaDataFactory {
     public void setAnnotationReaderFactory(
             final AnnotationReaderFactory annotationReaderFactory) {
         this.annotationReaderFactory = annotationReaderFactory;
-    }
-
-    public DaoNamingConvention getDaoNamingConvention() {
-        return daoNamingConvention;
-    }
-
-    public void setDaoNamingConvention(
-            final DaoNamingConvention daoNamingConvention) {
-        this.daoNamingConvention = daoNamingConvention;
     }
 
     public void setTableNaming(TableNaming tableNameConverter) {
