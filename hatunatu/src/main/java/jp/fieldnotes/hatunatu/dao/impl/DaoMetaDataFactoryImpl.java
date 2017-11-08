@@ -43,8 +43,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
 
     protected BeanMetaDataFactory beanMetaDataFactory;
 
-    protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
-
     protected ResultSetHandlerFactory resultSetHandlerFactory;
 
     protected DtoMetaDataFactory dtoMetaDataFactory;
