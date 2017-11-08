@@ -19,5 +19,4 @@ public interface SqlCommand {
 
     public Object execute(Object[] args);
 
-    void setDaoClass(Class daoClass);
 }

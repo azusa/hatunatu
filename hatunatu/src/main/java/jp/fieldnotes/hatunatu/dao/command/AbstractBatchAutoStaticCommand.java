@@ -42,7 +42,6 @@ public abstract class AbstractBatchAutoStaticCommand extends
         AbstractBatchAutoHandler handler = createBatchAutoHandler();
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(getSql());
-        queryObject.setDaoClass(daoClass);
         queryObject.setMethodArguments(args);
         return handler.executeBatch(queryObject, args);
     }

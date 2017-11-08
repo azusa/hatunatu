@@ -34,8 +34,6 @@ public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements S
 
     protected ProcedureMetaData procedureMetaData;
 
-    protected Class daoClass;
-
     /**
      * インスタンスを構築します。
      * 
@@ -59,19 +57,11 @@ public class ArgumentDtoProcedureCommand extends AbstractSqlCommand implements S
         final ArgumentDtoProcedureHandler handler = new ArgumentDtoProcedureHandler(
                 dataSource, resultSetHandler,
                 statementFactory, resultSetFactory, procedureMetaData);
-        if (daoClass != null) {
-            handler.setLoggerClass(daoClass);
-        }
         handler.setFetchSize(-1);
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(createSql(procedureMetaData));
         queryObject.setMethodArguments(args);
-        queryObject.setDaoClass(daoClass);
         return handler.execute(queryObject);
-    }
-
-    public void setDaoClass(Class clazz) {
-        daoClass = clazz;
     }
 
     /**

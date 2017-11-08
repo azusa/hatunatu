@@ -57,15 +57,9 @@ public class InsertAutoDynamicCommand extends AbstractSqlCommand implements SqlC
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setMethodArguments(args);
-        queryObject.setDaoClass(daoClass);
 
         int rows = handler.execute(queryObject);
         return new Integer(rows);
-    }
-
-    @Override
-    public void setDaoClass(Class clazz) {
-        daoClass = clazz;
     }
 
 

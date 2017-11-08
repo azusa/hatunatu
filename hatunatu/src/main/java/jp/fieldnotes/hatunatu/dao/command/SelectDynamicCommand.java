@@ -61,7 +61,6 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
         queryObject.setBindArguments(bindVariables);
         queryObject.setBindTypes(bindVariableTypes);
         queryObject.setMethodArguments(args);
-        queryObject.setDaoClass(daoClass);
 
         pagingSqlRewriter.rewrite(queryObject);
         BasicSelectHandler selectHandler = new BasicSelectHandler(

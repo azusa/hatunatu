@@ -54,7 +54,6 @@ public class InsertBatchAutoDynamicCommand extends InsertAutoDynamicCommand {
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(sql);
         queryObject.setMethodArguments(args);
-        queryObject.setDaoClass(daoClass);
         int rows = handler.execute(queryObject);
 
         return new Integer(rows);

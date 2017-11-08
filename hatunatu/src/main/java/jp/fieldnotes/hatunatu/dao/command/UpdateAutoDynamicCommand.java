@@ -52,7 +52,6 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(createUpdateSql(bmd, propertyTypes));
         queryObject.setMethodArguments(args);
-        queryObject.setDaoClass(daoClass);
 
         int i = handler.execute(queryObject);
         return new Integer(i);

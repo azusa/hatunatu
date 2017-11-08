@@ -37,8 +37,6 @@ public class QueryObject implements Serializable {
 
     private Object[] methodArguments = EMPTY_ARGS;
 
-    private Class<?> daoClass;
-
     private ValueType[] bindVariableValueTypes;
 
     public ValueType[] getBindVariableValueTypes() {
@@ -121,24 +119,6 @@ public class QueryObject implements Serializable {
      */
     public void setMethodArguments(Object[] methodArguments) {
         this.methodArguments = methodArguments;
-    }
-
-    /**
-     * Returns a class of DAO.
-     *
-     * @return class of DAO
-     */
-    public Class<?> getDaoClass() {
-        return daoClass;
-    }
-
-    /**
-     * Set a class of DAO.
-     *
-     * @param daoClass class of DAO
-     */
-    public void setDaoClass(Class<?> daoClass) {
-        this.daoClass = daoClass;
     }
 
     public String getOriginalSql() {

@@ -31,8 +31,6 @@ public abstract class AbstractSqlCommand implements SqlCommand {
 
     protected Class notSingleRowUpdatedExceptionClass;
 
-    protected Class daoClass;
-
 
     public AbstractSqlCommand(DataSource dataSource,
             StatementFactory statementFactory) {
@@ -76,9 +74,5 @@ public abstract class AbstractSqlCommand implements SqlCommand {
         this.notSingleRowUpdatedExceptionClass = notSingleRowUpdatedExceptionClass;
     }
 
-    @Override
-    public void setDaoClass(Class daoClass) {
-        this.daoClass = daoClass;
-    }
 
 }

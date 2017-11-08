@@ -105,8 +105,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
 
     protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
 
-    protected boolean useDaoClassForLog = false;
-
     protected PagingSqlRewriter pagingSqlRewriter = new NullPagingSqlRewriter();
 
     protected ProcedureMetaDataFactory procedureMetaDataFactory;
@@ -883,9 +881,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
     }
 
     protected void putSqlCommand(Method method, SqlCommand cmd) {
-        if (useDaoClassForLog) {
-            cmd.setDaoClass(daoClass);
-        }
         sqlCommands.put(method, cmd);
     }
 
@@ -960,9 +955,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         this.dtoMetaDataFactory = dtoMetaDataFactory;
     }
 
-    public void setUseDaoClassForLog(final boolean setUserDaoClassForLog) {
-        this.useDaoClassForLog = setUserDaoClassForLog;
-    }
 
     public void setResultSetHandlerFactory(
             final ResultSetHandlerFactory resultSetHandlerFactory) {

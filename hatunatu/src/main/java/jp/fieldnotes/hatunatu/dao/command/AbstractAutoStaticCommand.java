@@ -48,7 +48,6 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
         AbstractAutoHandler handler = createAutoHandler();
         QueryObject queryObject = new QueryObject();
         queryObject.setSql(getSql());
-        queryObject.setDaoClass(daoClass);
         queryObject.setMethodArguments(args);
         int rows = handler.execute(queryObject);
         return new Integer(rows);
