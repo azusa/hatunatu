@@ -26,10 +26,7 @@
     </component>
     <component
             name="resultSetFactory"
-            class="jp.fieldnotes.hatunatu.dao.pager.PagerResultSetFactoryWrapper">
-        <arg>
-            <component class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory"/>
-        </arg>
+            class="jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory">
         <property name="useScrollCursor">true</property>
     </component>
 
