@@ -18,10 +18,10 @@ package jp.fieldnotes.hatunatu.dao.handler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.impl.OracleResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,7 +51,7 @@ public class BasicSelectHandlerForOracleTest  {
 
         String sql2 = "select ename from emp where empno = 99";
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                new ObjectResultSetHandler(),
+                new ObjectResultSetHandler(String.class),
                 StatementFactory.INSTANCE, new OracleResultSetFactory());
         queryObject = new QueryObject();
         queryObject.setSql(sql2);

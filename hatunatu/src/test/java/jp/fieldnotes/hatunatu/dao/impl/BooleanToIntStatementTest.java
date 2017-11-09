@@ -18,10 +18,10 @@ package jp.fieldnotes.hatunatu.dao.impl;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
 import static org.junit.Assert.assertEquals;
 
@@ -49,7 +49,7 @@ public class BooleanToIntStatementTest  {
         queryObject.setSql(sql2);
 
         BasicSelectHandler handler2 = new BasicSelectHandler(test.getDataSource(),
-                new ObjectResultSetHandler());
+                new ObjectResultSetHandler(Number.class));
         Number active = (Number) handler2.execute(queryObject);
         assertEquals("1", 0, active.intValue());
     }

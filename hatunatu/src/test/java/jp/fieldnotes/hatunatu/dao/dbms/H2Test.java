@@ -18,21 +18,17 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 import jp.fieldnotes.hatunatu.dao.Dbms;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
-import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
+import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.lastaflute.di.core.LaContainer;
 import org.lastaflute.di.core.SingletonLaContainer;
 import org.lastaflute.di.core.factory.LaContainerFactory;
 import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
@@ -69,7 +65,7 @@ public class H2Test  {
 
         final BasicSelectHandler nextvalHandler = new BasicSelectHandler(
                 ds,
-                new ObjectResultSetHandler());
+                new ObjectResultSetHandler(Number.class));
         {
             final Number nextval = (Number) nextvalHandler.execute(queryObject);
             assertEquals(7650, nextval.intValue());
@@ -86,7 +82,7 @@ public class H2Test  {
         final String identitySelectString = dbms.getIdentitySelectString();
         final BasicSelectHandler identityHandler = new BasicSelectHandler(
                 ds,
-                new ObjectResultSetHandler());
+                new ObjectResultSetHandler(Number.class));
         QueryObject queryObject2 = new QueryObject();
         queryObject2.setSql(identitySelectString);
         {

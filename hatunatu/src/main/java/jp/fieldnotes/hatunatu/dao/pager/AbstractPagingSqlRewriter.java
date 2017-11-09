@@ -15,15 +15,19 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
+import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
 import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
-import org.seasar.extension.jdbc.impl.ObjectResultSetHandler;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -174,5 +178,26 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
      * @return count(*)が付加されたSQL
      */
     protected abstract String makeCountSql(String baseSQL);
+
+    private static class ObjectResultSetHandler implements ResultSetHandler {
+
+        /**
+         * {@link org.seasar.extension.jdbc.impl.ObjectResultSetHandler}を作成します。
+         */
+        public ObjectResultSetHandler() {
+        }
+
+        @Override
+        public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
+            if (rs.next()) {
+                ResultSetMetaData rsmd = rs.getMetaData();
+                ValueType valueType = ValueTypes
+                        .getValueType(rsmd.getColumnType(1));
+                return valueType.getValue(rs, 1);
+            }
+            return null;
+        }
+    }
+
 
 }
