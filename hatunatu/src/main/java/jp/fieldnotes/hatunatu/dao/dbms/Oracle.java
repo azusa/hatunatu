@@ -18,6 +18,7 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
+import jp.fieldnotes.hatunatu.dao.pager.OracleRownumPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 
 import java.sql.DatabaseMetaData;
@@ -25,6 +26,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Oracle extends Standard {
+
+    public Oracle() {
+        this.rewriter = new OracleRownumPagingSqlRewriter();
+    }
 
     @Override
     public String getSuffix() {

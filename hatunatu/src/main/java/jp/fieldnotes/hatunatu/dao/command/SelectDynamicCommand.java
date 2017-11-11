@@ -21,6 +21,8 @@ import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
+import jp.fieldnotes.hatunatu.dao.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.pager.PagerContext;
@@ -42,15 +44,19 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
     private PagingSqlRewriter pagingSqlRewriter;
 
     public SelectDynamicCommand(DataSource dataSource,
-            StatementFactory statementFactory,
-            ResultSetHandler resultSetHandler,
-            ResultSetFactory resultSetFactory,
-            PagingSqlRewriter pagingSqlRewriter) {
+                                StatementFactory statementFactory,
+                                ResultSetHandler resultSetHandler,
+                                ResultSetFactory resultSetFactory) {
 
         super(dataSource, statementFactory);
         this.resultSetHandler = resultSetHandler;
         this.resultSetFactory = resultSetFactory;
         this.pagingSqlRewriter = pagingSqlRewriter;
+        try {
+            this.pagingSqlRewriter = DbmsManager.getDbms(this.dataSource);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
     }
 
 

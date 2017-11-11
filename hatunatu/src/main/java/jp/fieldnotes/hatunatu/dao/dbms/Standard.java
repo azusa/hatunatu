@@ -18,6 +18,9 @@ package jp.fieldnotes.hatunatu.dao.dbms;
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.dao.Dbms;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.pager.LimitOffsetPagingSqlRewriter;
+import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.SRuntimeException;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
@@ -41,6 +44,8 @@ public class Standard implements Dbms, Disposable {
     final Map<String, String> autoSelectFromClauseCache = new HashMap<>();
 
     boolean initialized;
+
+    protected PagingSqlRewriter rewriter = new LimitOffsetPagingSqlRewriter();
 
     @Override
     public String getSuffix() {
@@ -152,4 +157,13 @@ public class Standard implements Dbms, Disposable {
         }
     }
 
+    @Override
+    public void rewrite(QueryObject queryObject) throws Exception {
+        rewriter.rewrite(queryObject);
+    }
+
+    @Override
+    public QueryObject getCountSql(QueryObject queryObject) throws Exception {
+        return rewriter.getCountSql(queryObject);
+    }
 }

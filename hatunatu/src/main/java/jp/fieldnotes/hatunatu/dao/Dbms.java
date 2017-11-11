@@ -16,12 +16,13 @@
 package jp.fieldnotes.hatunatu.dao;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public interface Dbms {
+public interface Dbms extends PagingSqlRewriter {
 
     String getAutoSelectSql(BeanMetaData beanMetaData);
 
