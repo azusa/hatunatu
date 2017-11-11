@@ -17,29 +17,21 @@ package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 
-import java.sql.SQLException;
-
 public interface PagingSqlRewriter {
 
     /**
-     * 指定されたSQL文を書き換え、 ページング処理が含まれたSQLを返します。
-     * 
+     * Rewrites a SQL statement and returns SQL containing paging processing.
+     *
+     * @param queryObject a Query Object
+     * @throws Exception If Exception has thrown
      */
     void rewrite(QueryObject queryObject) throws Exception;
 
     /**
-     * 元のSQLによる結果総件数を設定します
-     * 
-     * @param baseSQL
-     *            元のSQL
-     * @param args
-     *            メソッド引数
-     * @param bindVariables
-     *            対象のSQLにバインドされる予定の値
-     * @param bindVariableTypes
-     *            対象のSQLにバインドされる予定の値の型
-     * @throws SQLException
-     *             SQLExceptionが発生した場合
+     * Set the total number of result by original SQL.
+     *
+     * @param queryObject a Query Object
+     * @throws Exception If Exception has thrown
      */
     void setCount(QueryObject queryObject) throws Exception;
 
