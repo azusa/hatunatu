@@ -20,7 +20,6 @@ import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.DaoMetaDataFactory;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.dao.*;
-import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
 import jp.fieldnotes.hatunatu.util.misc.Disposable;
 import jp.fieldnotes.hatunatu.util.misc.DisposableUtil;
@@ -48,8 +47,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
     protected DtoMetaDataFactory dtoMetaDataFactory;
 
     protected ProcedureMetaDataFactory procedureMetaDataFactory;
-
-    protected PagingSqlRewriter pagingSqlRewriter;
 
     protected final Map<String,DaoMetaData> daoMetaDataCache = new HashMap<>();
 
@@ -108,9 +105,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
         if (sqlFileEncoding != null) {
             daoMetaData.setSqlFileEncoding(sqlFileEncoding);
         }
-        if (pagingSqlRewriter != null) {
-            daoMetaData.setPagingSQLRewriter(pagingSqlRewriter);
-        }
         return daoMetaData;
     }
 
@@ -166,10 +160,6 @@ public class DaoMetaDataFactoryImpl implements DaoMetaDataFactory, Disposable {
     public void setProcedureMetaDataFactory(
             ProcedureMetaDataFactory procedureMetaDataFactory) {
         this.procedureMetaDataFactory = procedureMetaDataFactory;
-    }
-
-    public void setPagingSQLRewriter(final PagingSqlRewriter pagingSqlRewriter) {
-        this.pagingSqlRewriter = pagingSqlRewriter;
     }
 
 }

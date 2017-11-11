@@ -23,8 +23,6 @@ import jp.fieldnotes.hatunatu.dao.*;
 import jp.fieldnotes.hatunatu.dao.command.*;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.exception.*;
-import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
-import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 import jp.fieldnotes.hatunatu.dao.util.TypeUtil;
@@ -104,8 +102,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
     protected ResultSetHandlerFactory resultSetHandlerFactory;
 
     protected DaoNamingConvention daoNamingConvention = DaoNamingConvention.INSTASNCE;
-
-    protected PagingSqlRewriter pagingSqlRewriter = new NullPagingSqlRewriter();
 
     protected ProcedureMetaDataFactory procedureMetaDataFactory;
 
@@ -345,7 +341,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     protected SelectDynamicCommand createSelectDynamicCommand(
             final ResultSetHandler rsh) {
         return new SelectDynamicCommand(dataSource, statementFactory, rsh,
-                resultSetFactory, pagingSqlRewriter);
+                resultSetFactory);
     }
 
     protected SelectDynamicCommand createSelectDynamicCommand(
@@ -971,9 +967,6 @@ public class DaoMetaDataImpl implements DaoMetaData {
         this.daoAnnotationReader = daoAnnotationReader;
     }
 
-    public void setPagingSQLRewriter(final PagingSqlRewriter pagingSqlRewriter) {
-        this.pagingSqlRewriter = pagingSqlRewriter;
-    }
 
     public void setProcedureMetaDataFactory(
             ProcedureMetaDataFactory procedureMetaDataFactory) {

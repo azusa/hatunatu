@@ -25,7 +25,6 @@ import jp.fieldnotes.hatunatu.dao.impl.BasicResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.impl.RelationRowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.RowCreatorImpl;
 import jp.fieldnotes.hatunatu.dao.impl.bean.Employee;
-import jp.fieldnotes.hatunatu.dao.pager.NullPagingSqlRewriter;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
@@ -47,7 +46,7 @@ public class SelectDynamicCommandTest  {
                 new BeanMetaDataResultSetHandler(
                         test.createBeanMetaData(Employee.class), createRowCreator(),
                         createRelationRowCreator()),
-                BasicResultSetFactory.INSTANCE, new NullPagingSqlRewriter());
+                BasicResultSetFactory.INSTANCE);
         cmd.setSql("SELECT * FROM emp WHERE empno = /*empno*/1234");
         Employee emp = (Employee) cmd
                 .execute(new Object[] { new Integer(7788) });
