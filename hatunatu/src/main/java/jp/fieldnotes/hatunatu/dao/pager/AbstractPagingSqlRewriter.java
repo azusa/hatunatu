@@ -15,20 +15,9 @@
  */
 package jp.fieldnotes.hatunatu.dao.pager;
 
-import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
-import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
-import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
-import jp.fieldnotes.hatunatu.dao.StatementFactory;
-import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
-import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
-import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,30 +34,18 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
      */
     private boolean chopOrderBy = true;
 
-    public static final String dataSource_BINDING = "bindingType=must";
-
-    private DataSource dataSource;
-
-    public static final String statementFactory_BINDING = "bindingType=must";
-
-    private StatementFactory statementFactory;
-
-    public static final String resultsetFactory_BINDING = "bindingType=must";
-
-    private ResultSetFactory resultsetFactory;
-
     @Override
     public void rewrite(QueryObject queryObject) {
         final Object[] pagingArgs = queryObject.getMethodArguments();
         if (PagerContext.isPagerCondition(pagingArgs)) {
-                PagerCondition dto = PagerContext.getPagerCondition(pagingArgs);
-                if (dto.getLimit() > 0 && dto.getOffset() > -1) {
-                    String limitOffsetSql = makeLimitOffsetSql(queryObject.getSql(), dto
-                            .getLimit(), dto.getOffset());
-                    queryObject.setOriginalSql(queryObject.getSql());
-                    queryObject.setSql(limitOffsetSql);
-                    return;
-                }
+            PagerCondition dto = PagerContext.getPagerCondition(pagingArgs);
+            if (dto.getLimit() > 0 && dto.getOffset() > -1) {
+                String limitOffsetSql = makeLimitOffsetSql(queryObject.getSql(), dto
+                        .getLimit(), dto.getOffset());
+                queryObject.setOriginalSql(queryObject.getSql());
+                queryObject.setSql(limitOffsetSql);
+                return;
+            }
         }
     }
 
@@ -91,54 +68,17 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
         return this.chopOrderBy;
     }
 
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public StatementFactory getStatementFactory() {
-        return statementFactory;
-    }
-
-    public void setStatementFactory(StatementFactory statementFactory) {
-        this.statementFactory = statementFactory;
-    }
-
-    public ResultSetFactory getResultsetFactory() {
-        return resultsetFactory;
-    }
-
-    public void setResultsetFactory(ResultSetFactory resultsetFactory) {
-        this.resultsetFactory = resultsetFactory;
-    }
-
     @Override
-    public void setCount(QueryObject queryObject) throws Exception {
-        if (PagerContext.isPagerCondition(queryObject.getMethodArguments())) {
-            PagerCondition condition = PagerContext.getPagerCondition(queryObject.getMethodArguments());
-            condition.setCount(getCountLogic(queryObject));
-            }
-    }
-
-    protected int getCountLogic(QueryObject queryObject)
-            throws Exception {
+    public QueryObject getCountSql(QueryObject queryObject) throws Exception {
         String countSQL = makeCountSql(queryObject.getOriginalSql());
-        queryObject.setSql(countSQL);
-
-        BasicSelectHandler handler = new BasicSelectHandler(dataSource,
-                new ObjectResultSetHandler(), statementFactory,
-                resultsetFactory);
-        // [DAO-139]
-        handler.setFetchSize(-1);
-        Object ret = handler.execute(queryObject);
-        if (ret != null) {
-            return IntegerConversionUtil.toPrimitiveInt(ret);
-        }
-        throw new SQLException("[S2Pager]Result not found.");
+        QueryObject countQuery = new QueryObject();
+        countQuery.setBindArguments(queryObject.getBindArguments());
+        countQuery.setBindTypes(queryObject.getBindTypes());
+        countQuery.setMethodArguments(queryObject.getMethodArguments());
+        countQuery.setSql(countSQL);
+        return countQuery;
     }
+
 
     /**
      * order by句を除去したSQLを作成します。
@@ -179,25 +119,7 @@ public abstract class AbstractPagingSqlRewriter implements PagingSqlRewriter {
      */
     protected abstract String makeCountSql(String baseSQL);
 
-    private static class ObjectResultSetHandler implements ResultSetHandler {
 
-        /**
-         * {@link org.seasar.extension.jdbc.impl.ObjectResultSetHandler}を作成します。
-         */
-        public ObjectResultSetHandler() {
-        }
-
-        @Override
-        public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
-            if (rs.next()) {
-                ResultSetMetaData rsmd = rs.getMetaData();
-                ValueType valueType = ValueTypes
-                        .getValueType(rsmd.getColumnType(1));
-                return valueType.getValue(rs, 1);
-            }
-            return null;
-        }
-    }
 
 
 }

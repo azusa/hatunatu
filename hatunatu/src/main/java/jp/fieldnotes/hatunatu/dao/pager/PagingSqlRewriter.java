@@ -33,7 +33,7 @@ public interface PagingSqlRewriter {
      * @param queryObject a Query Object
      * @throws Exception If Exception has thrown
      */
-    void setCount(QueryObject queryObject) throws Exception;
+    QueryObject getCountSql(QueryObject queryObject) throws Exception;
 
 
 }

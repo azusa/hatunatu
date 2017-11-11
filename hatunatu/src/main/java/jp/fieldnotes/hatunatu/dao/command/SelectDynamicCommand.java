@@ -15,15 +15,23 @@
  */
 package jp.fieldnotes.hatunatu.dao.command;
 
+import jp.fieldnotes.hatunatu.api.ValueType;
+import jp.fieldnotes.hatunatu.api.pager.PagerCondition;
 import jp.fieldnotes.hatunatu.dao.CommandContext;
 import jp.fieldnotes.hatunatu.dao.ResultSetFactory;
 import jp.fieldnotes.hatunatu.dao.ResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.StatementFactory;
 import jp.fieldnotes.hatunatu.dao.handler.BasicSelectHandler;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.pager.PagerContext;
 import jp.fieldnotes.hatunatu.dao.pager.PagingSqlRewriter;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.util.convert.IntegerConversionUtil;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class SelectDynamicCommand extends AbstractDynamicCommand {
 
@@ -74,8 +82,42 @@ public class SelectDynamicCommand extends AbstractDynamicCommand {
         selectHandler.setFetchSize(-1);
 
         Object ret = selectHandler.execute(queryObject);
-        pagingSqlRewriter.setCount(queryObject);
+        if (PagerContext.isPagerCondition(queryObject.getMethodArguments())) {
+            PagerCondition condition = PagerContext.getPagerCondition(queryObject.getMethodArguments());
+            QueryObject pagingQuery = pagingSqlRewriter.getCountSql(queryObject);
 
+            BasicSelectHandler handler = new BasicSelectHandler(dataSource,
+                    new ObjectResultSetHandler(), statementFactory,
+                    this.resultSetFactory);
+            // [DAO-139]
+            handler.setFetchSize(-1);
+            Object count = handler.execute(pagingQuery);
+            if (ret != null) {
+                condition.setCount(IntegerConversionUtil.toPrimitiveInt(count));
+            } else {
+                throw new SQLException("[S2Pager]Result not found.");
+            }
+        }
         return ret;
+    }
+
+    private static class ObjectResultSetHandler implements ResultSetHandler {
+
+        /**
+         * Construcor.
+         */
+        public ObjectResultSetHandler() {
+        }
+
+        @Override
+        public Object handle(ResultSet rs, QueryObject queryObject) throws SQLException {
+            if (rs.next()) {
+                ResultSetMetaData rsmd = rs.getMetaData();
+                ValueType valueType = ValueTypes
+                        .getValueType(rsmd.getColumnType(1));
+                return valueType.getValue(rs, 1);
+            }
+            return null;
+        }
     }
 }
