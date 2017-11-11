@@ -25,8 +25,10 @@ public class NullPagingSqlRewriter implements PagingSqlRewriter {
     }
 
     @Override
-    public void setCount(QueryObject queryObject) {
+    public QueryObject getCountSql(QueryObject queryObject) {
         // 何もしない
+        return queryObject;
     }
+
 
 }
