@@ -38,7 +38,7 @@ public class Standard implements Dbms, Disposable {
     private static final Pattern baseSqlPattern = Pattern.compile(
             "^.*?(select)", Pattern.CASE_INSENSITIVE);
 
-    final Map autoSelectFromClauseCache = new HashMap();
+    final Map<String, String> autoSelectFromClauseCache = new HashMap<>();
 
     boolean initialized;
 
@@ -58,7 +58,7 @@ public class Standard implements Dbms, Disposable {
         buf.append(" ");
         String beanName = beanMetaData.getBeanClass().getName();
         synchronized (autoSelectFromClauseCache) {
-            String fromClause = (String) autoSelectFromClauseCache
+            String fromClause = autoSelectFromClauseCache
                     .get(beanName);
             if (fromClause == null) {
                 fromClause = createAutoSelectFromClause(beanMetaData);
