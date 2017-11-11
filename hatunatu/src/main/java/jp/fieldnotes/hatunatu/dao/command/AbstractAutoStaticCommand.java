@@ -174,7 +174,7 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
 
     protected void checkPrimaryKey() {
         BeanMetaData bmd = getBeanMetaData();
-        if (bmd.getPrimaryKeySize() == 0) {
+        if (bmd.getPrimaryKeys().isEmpty()) {
             throw new PrimaryKeyNotFoundRuntimeException(bmd.getBeanClass());
         }
     }
@@ -182,8 +182,8 @@ public abstract class AbstractAutoStaticCommand extends AbstractStaticCommand {
     protected void setupUpdateWhere(StringBuilder buf) {
         BeanMetaData bmd = getBeanMetaData();
         buf.append(" WHERE ");
-        for (int i = 0; i < bmd.getPrimaryKeySize(); ++i) {
-            buf.append(bmd.getPrimaryKey(i));
+        for (String key : bmd.getPrimaryKeys()) {
+            buf.append(key);
             buf.append(" = ? AND ");
         }
         buf.setLength(buf.length() - 5);

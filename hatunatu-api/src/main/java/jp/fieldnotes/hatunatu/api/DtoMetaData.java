@@ -15,6 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.api;
 
+import java.util.Collection;
+
 /**
  * @author higa
  * @author manhole
@@ -25,7 +27,7 @@ public interface DtoMetaData {
 
     public Class getBeanClass();
 
-    public int getPropertyTypeSize();
+    Collection<PropertyType> getPropertyTypes();
 
     public PropertyType getPropertyType(int index);
 

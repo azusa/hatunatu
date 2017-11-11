@@ -43,16 +43,14 @@ public class S2DaoBeanReader implements DataReader {
     }
 
     protected void setupColumns(BeanMetaData beanMetaData) {
-        for (int i = 0; i < beanMetaData.getPropertyTypeSize(); ++i) {
-            PropertyType pt = beanMetaData.getPropertyType(i);
+        for (PropertyType pt : beanMetaData.getPropertyTypes()) {
             Class propertyType = pt.getPropertyDesc().getPropertyType();
             table.addColumn(pt.getColumnName(), ColumnTypes
                     .getColumnType(propertyType));
         }
         for (int i = 0; i < beanMetaData.getRelationPropertyTypeSize(); ++i) {
             RelationPropertyType rpt = beanMetaData.getRelationPropertyType(i);
-            for (int j = 0; j < rpt.getBeanMetaData().getPropertyTypeSize(); j++) {
-                PropertyType pt = rpt.getBeanMetaData().getPropertyType(j);
+            for (PropertyType pt : rpt.getBeanMetaData().getPropertyTypes()) {
                 String columnName = pt.getColumnName() + "_"
                         + rpt.getRelationNo();
                 Class propertyType = pt.getPropertyDesc().getPropertyType();
@@ -64,8 +62,7 @@ public class S2DaoBeanReader implements DataReader {
 
     protected void setupRow(BeanMetaData beanMetaData, Object bean) {
         DataRow row = table.addRow();
-        for (int i = 0; i < beanMetaData.getPropertyTypeSize(); ++i) {
-            PropertyType pt = beanMetaData.getPropertyType(i);
+        for (PropertyType pt : beanMetaData.getPropertyTypes()) {
             PropertyDesc pd = pt.getPropertyDesc();
             Object value = pd.getValue(bean);
             ColumnType ct = ColumnTypes.getColumnType(pd.getPropertyType());
@@ -77,8 +74,7 @@ public class S2DaoBeanReader implements DataReader {
             if (relationBean == null) {
                 continue;
             }
-            for (int j = 0; j < rpt.getBeanMetaData().getPropertyTypeSize(); j++) {
-                PropertyType pt = rpt.getBeanMetaData().getPropertyType(j);
+            for (PropertyType pt : rpt.getBeanMetaData().getPropertyTypes()) {
                 String columnName = pt.getColumnName() + "_"
                         + rpt.getRelationNo();
                 PropertyDesc pd = pt.getPropertyDesc();

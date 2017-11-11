@@ -33,6 +33,7 @@ import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
 
@@ -78,17 +79,11 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         this.dbms = dbms;
     }
 
-    /**
-     * @see BeanMetaData#getTableName()
-     */
     @Override
     public String getTableName() {
         return tableName;
     }
 
-    /**
-     * @see BeanMetaData#getVersionNoPropertyType()
-     */
     @Override
     public PropertyType getVersionNoPropertyType()
             throws PropertyNotFoundRuntimeException {
@@ -96,9 +91,6 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         return getPropertyType(getVersionNoPropertyName());
     }
 
-    /**
-     * @see BeanMetaData#getTimestampPropertyType()
-     */
     @Override
     public PropertyType getTimestampPropertyType()
             throws PropertyNotFoundRuntimeException {
@@ -124,9 +116,6 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         this.timestampPropertyName = timestampPropertyName;
     }
 
-    /**
-     * @see BeanMetaData#getPropertyTypeByColumnName(java.lang.String)
-     */
     @Override
     public PropertyType getPropertyTypeByColumnName(String columnName)
             throws ColumnNotFoundRuntimeException {
@@ -163,17 +152,11 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         return rpt.getBeanMetaData().getPropertyTypeByColumnName(columnName);
     }
 
-    /**
-     * @see BeanMetaData#hasPropertyTypeByColumnName(java.lang.String)
-     */
     @Override
     public boolean hasPropertyTypeByColumnName(String columnName) {
         return propertyTypesByColumnName.get(columnName) != null;
     }
 
-    /**
-     * @see BeanMetaData#hasPropertyTypeByAliasName(java.lang.String)
-     */
     @Override
     public boolean hasPropertyTypeByAliasName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
@@ -198,25 +181,16 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         return rpt.getBeanMetaData().hasPropertyTypeByColumnName(columnName);
     }
 
-    /**
-     * @see BeanMetaData#hasVersionNoPropertyType()
-     */
     @Override
     public boolean hasVersionNoPropertyType() {
         return hasPropertyType(getVersionNoPropertyName());
     }
 
-    /**
-     * @see BeanMetaData#hasTimestampPropertyType()
-     */
     @Override
     public boolean hasTimestampPropertyType() {
         return hasPropertyType(getTimestampPropertyName());
     }
 
-    /**
-     * @see BeanMetaData#convertFullColumnName(java.lang.String)
-     */
     @Override
     public String convertFullColumnName(String alias) {
         if (hasPropertyTypeByColumnName(alias)) {
@@ -241,25 +215,16 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         return rpt.getPropertyName() + "." + columnName;
     }
 
-    /**
-     * @see BeanMetaData#getRelationPropertyTypeSize()
-     */
     @Override
     public int getRelationPropertyTypeSize() {
         return relationPropertyTypes.size();
     }
 
-    /**
-     * @see BeanMetaData#getRelationPropertyType(int)
-     */
     @Override
     public RelationPropertyType getRelationPropertyType(int index) {
         return (RelationPropertyType) relationPropertyTypes.get(index);
     }
 
-    /**
-     * @see BeanMetaData#getRelationPropertyType(java.lang.String)
-     */
     @Override
     public RelationPropertyType getRelationPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
@@ -273,6 +238,11 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
             }
         }
         throw new PropertyNotFoundRuntimeException(getBeanClass(), propertyName);
+    }
+
+    @Override
+    public List<String> getPrimaryKeys() {
+        return Arrays.stream(primaryKeys).map(propertyType -> propertyType.getColumnName()).collect(Collectors.toList());
     }
 
     protected void setupTableName(BeanDesc beanDesc) {
@@ -304,8 +274,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
 
     protected void setupPrimaryKey() {
         List keys = new ArrayList();
-        for (int i = 0; i < getPropertyTypeSize(); ++i) {
-            PropertyType pt = getPropertyType(i);
+        for (PropertyType pt : this.getPropertyTypes()) {
             if (pt.isPrimaryKey()) {
                 keys.add(pt);
                 setupIdentifierGenerator(pt);
@@ -332,17 +301,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         relationPropertyTypes.set(rpt.getRelationNo(), rpt);
     }
 
-    /**
-     * @see BeanMetaData#getPrimaryKeySize()
-     */
-    @Override
-    public int getPrimaryKeySize() {
-        return primaryKeys.length;
-    }
 
-    /**
-     * @see BeanMetaData#getPrimaryKey(int)
-     */
     @Override
     public String getPrimaryKey(int index) {
         return primaryKeys[index].getColumnName();
@@ -380,8 +339,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         StringBuilder buf = new StringBuilder(100);
         buf.append("SELECT ");
         boolean first = true;
-        for (int i = 0; i < getPropertyTypeSize(); ++i) {
-            PropertyType pt = getPropertyType(i);
+        for (PropertyType pt : getPropertyTypes()) {
             if (pt.isPersistent()) {
                 if (first) {
                     first = false;
@@ -396,8 +354,7 @@ public class BeanMetaDataImpl extends DtoMetaDataImpl implements BeanMetaData {
         for (int i = 0; i < getRelationPropertyTypeSize(); ++i) {
             RelationPropertyType rpt = getRelationPropertyType(i);
             BeanMetaData bmd = rpt.getBeanMetaData();
-            for (int j = 0; j < bmd.getPropertyTypeSize(); ++j) {
-                PropertyType pt = bmd.getPropertyType(j);
+            for (PropertyType pt : bmd.getPropertyTypes()) {
                 if (pt.isPersistent()) {
                     if (first) {
                         first = false;

@@ -41,7 +41,7 @@ public class BeanMetaDataImplTest {
     public void testSetup() throws Exception {
         BeanMetaData bmd = test.createBeanMetaData(MyBean.class);
         assertEquals("1", "MyBean", bmd.getTableName());
-        assertEquals("2", 3, bmd.getPropertyTypeSize());
+        assertEquals("2", 3, bmd.getPropertyTypes().size());
         PropertyType aaa = bmd.getPropertyType("aaa");
         assertEquals("3", "aaa", aaa.getColumnName());
         PropertyType bbb = bmd.getPropertyType("bbb");
@@ -52,7 +52,7 @@ public class BeanMetaDataImplTest {
         assertEquals("7", "ddd", rpt.getMyKey(0));
         assertEquals("8", "id", rpt.getYourKey(0));
         assertNotNull("9", bmd.getIdentifierGenerator(0));
-        assertEquals("10", 1, bmd.getPrimaryKeySize());
+        assertEquals("10", 1, bmd.getPrimaryKeys().size());
         assertEquals("11", "aaa", bmd.getPrimaryKey(0));
     }
 
@@ -174,7 +174,7 @@ public class BeanMetaDataImplTest {
     }
 
     private void runTestEmployee(BeanMetaData bmd) {
-        assertEquals(3, bmd.getPropertyTypeSize());
+        assertEquals(3, bmd.getPropertyTypes().size());
         {
             PropertyType pt = bmd.getPropertyType("employeeId");
             assertEquals("employeeId", pt.getPropertyName());
@@ -190,7 +190,7 @@ public class BeanMetaDataImplTest {
             assertEquals("departmentId", pt.getPropertyName());
             assertEquals("department_id", pt.getColumnName());
         }
-        assertEquals(1, bmd.getPrimaryKeySize());
+        assertEquals(1, bmd.getPrimaryKeys().size());
         assertEquals("employee_id", bmd.getPrimaryKey(0));
     }
 

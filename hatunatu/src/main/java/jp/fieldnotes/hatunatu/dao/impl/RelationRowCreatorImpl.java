@@ -302,8 +302,7 @@ public class RelationRowCreatorImpl implements RelationRowCreator {
         
         // Set up property cache about current beanMetaData.
         final BeanMetaData nextBmd = res.getRelationBeanMetaData();
-        for (int i = 0; i < nextBmd.getPropertyTypeSize(); ++i) {
-            final PropertyType pt = nextBmd.getPropertyType(i);
+        for (PropertyType pt : nextBmd.getPropertyTypes()) {
             res.setCurrentPropertyType(pt);
             if (!isTargetProperty(res)) {
                 continue;

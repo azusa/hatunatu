@@ -589,8 +589,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
         final List<String> names = new ArrayList<>();
         String[] props = daoAnnotationReader.getNoPersistentProps(method);
         if (props != null) {
-            for (int i = 0; i < beanMetaData.getPropertyTypeSize(); ++i) {
-                final PropertyType pt = beanMetaData.getPropertyType(i);
+            for (PropertyType pt : beanMetaData.getPropertyTypes()) {
                 if (pt.isPersistent()
                         && !isPropertyExist(props, pt.getPropertyName())) {
                     names.add(pt.getPropertyName());
@@ -600,8 +599,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
             props = daoAnnotationReader.getPersistentProps(method);
             if (props != null) {
                 names.addAll(Arrays.asList(props));
-                for (int i = 0; i < beanMetaData.getPrimaryKeySize(); ++i) {
-                    final String pk = beanMetaData.getPrimaryKey(i);
+                for (String pk : beanMetaData.getPrimaryKeys()) {
                     final PropertyType pt = beanMetaData
                             .getPropertyTypeByColumnName(pk);
                     names.add(pt.getPropertyName());
@@ -614,9 +612,8 @@ public class DaoMetaDataImpl implements DaoMetaData {
                 }
             }
         }
-        if (names.size() == 0) {
-            for (int i = 0; i < beanMetaData.getPropertyTypeSize(); ++i) {
-                final PropertyType pt = beanMetaData.getPropertyType(i);
+        if (names.isEmpty()) {
+            for (PropertyType pt : beanMetaData.getPropertyTypes()) {
                 if (pt.isPersistent()) {
                     names.add(pt.getPropertyName());
                 }
@@ -730,8 +727,8 @@ public class DaoMetaDataImpl implements DaoMetaData {
             buf.append("/*BEGIN*/ WHERE ");
             began = true;
         }
-        for (int i = 0; i < dmd.getPropertyTypeSize(); ++i) {
-            final PropertyType pt = dmd.getPropertyType(i);
+        boolean started = false;
+        for (PropertyType pt : dmd.getPropertyTypes()) {
             final String aliasName = pt.getColumnName();
             if (!beanMetaData.hasPropertyTypeByAliasName(aliasName)) {
                 continue;
@@ -747,7 +744,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
             buf.append(propertyName);
             buf.append(" != null*/");
             buf.append(" ");
-            if (!began || i != 0) {
+            if (!began || started) {
                 buf.append("AND ");
             }
             buf.append(columnName);
@@ -755,6 +752,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
             buf.append(propertyName);
             buf.append("*/null");
             buf.append("/*END*/");
+            started = true;
         }
         if (began) {
             buf.append("/*END*/");
@@ -765,8 +763,7 @@ public class DaoMetaDataImpl implements DaoMetaData {
     private DtoMetaData createDtoMetaData(final Class dtoClass, BeanMetaData beanMetaData) {
         final DtoMetaData dtoMetaData = dtoMetaDataFactory
                 .getDtoMetaData(dtoClass);
-        for (int i = 0; i < beanMetaData.getPropertyTypeSize(); i++) {
-            final PropertyType master = beanMetaData.getPropertyType(i);
+        for (PropertyType master : beanMetaData.getPropertyTypes()) {
             final String name = master.getPropertyName();
             if (dtoMetaData.hasPropertyType(name)) {
                 final PropertyType slave = dtoMetaData.getPropertyType(name);

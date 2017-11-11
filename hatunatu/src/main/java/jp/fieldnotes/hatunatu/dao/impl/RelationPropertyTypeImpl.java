@@ -54,7 +54,7 @@ public class RelationPropertyTypeImpl extends PropertyTypeImpl implements
         if (myKeys.length > 0) {
             return myKeys.length;
         } else {
-            return beanMetaData.getPrimaryKeySize();
+            return beanMetaData.getPrimaryKeys().size();
         }
 
     }

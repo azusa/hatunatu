@@ -98,8 +98,8 @@ public class UpdateAutoDynamicCommand extends AbstractSqlCommand {
         }
 
         buf.append(" WHERE ");
-        for (int i = 0; i < bmd.getPrimaryKeySize(); ++i) {
-            buf.append(bmd.getPrimaryKey(i));
+        for (String key : bmd.getPrimaryKeys()) {
+            buf.append(key);
             buf.append(" = ? AND ");
         }
         buf.setLength(buf.length() - 5);

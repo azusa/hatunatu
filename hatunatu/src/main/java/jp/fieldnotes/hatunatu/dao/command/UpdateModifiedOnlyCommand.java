@@ -68,22 +68,20 @@ public class UpdateModifiedOnlyCommand extends UpdateAutoDynamicCommand {
         final StringBuilder sb = new StringBuilder();
         sb.append("skip UPDATE: table=");
         sb.append(bmd.getTableName());
-        final int size = bmd.getPrimaryKeySize();
-        for (int i = 0; i < size; i++) {
-            if (i == 0) {
-                sb.append(", key{");
-            } else {
-                sb.append(", ");
-            }
-            final String keyName = bmd.getPrimaryKey(i);
+        if (!bmd.getPrimaryKeys().isEmpty()) {
+            sb.append(", key{");
+        }
+        for (String keyName : bmd.getPrimaryKeys()) {
             sb.append(keyName);
             sb.append("=");
             sb.append(bmd.getPropertyTypeByColumnName(keyName)
                     .getPropertyDesc().getValue(bean).toString());
-            if (i == size - 1) {
-                sb.append("}");
-            }
+            sb.append(", ");
         }
+        if (!bmd.getPrimaryKeys().isEmpty()) {
+            sb.append("}");
+        }
+
         final String s = new String(sb);
         return s;
     }

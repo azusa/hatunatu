@@ -24,6 +24,8 @@ import jp.fieldnotes.hatunatu.dao.exception.BeanNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.dao.exception.ColumnNotFoundRuntimeException;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public class NullBeanMetaData implements BeanMetaData {
@@ -63,11 +65,6 @@ public class NullBeanMetaData implements BeanMetaData {
         return null;
     }
 
-    @Override
-    public int getPrimaryKeySize() {
-        throwException();
-        return 0;
-    }
 
     @Override
     public PropertyType getPropertyTypeByAliasName(String aliasName)
@@ -92,6 +89,12 @@ public class NullBeanMetaData implements BeanMetaData {
     @Override
     public RelationPropertyType getRelationPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
+        throwException();
+        return null;
+    }
+
+    @Override
+    public List<String> getPrimaryKeys() {
         throwException();
         return null;
     }
@@ -176,10 +179,11 @@ public class NullBeanMetaData implements BeanMetaData {
         return null;
     }
 
+
     @Override
-    public int getPropertyTypeSize() {
+    public Collection<PropertyType> getPropertyTypes() {
         throwException();
-        return 0;
+        return null;
     }
 
     @Override

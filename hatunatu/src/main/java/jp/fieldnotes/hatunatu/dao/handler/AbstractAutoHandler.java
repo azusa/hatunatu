@@ -203,9 +203,8 @@ public abstract class AbstractAutoHandler extends BasicHandler implements
     protected void addAutoUpdateWhereBindVariables(List varList,
                                                    List<ValueType> varValueTypeList, Object bean) {
         BeanMetaData bmd = getBeanMetaData();
-        for (int i = 0; i < bmd.getPrimaryKeySize(); ++i) {
-            PropertyType pt = bmd.getPropertyTypeByColumnName(bmd
-                    .getPrimaryKey(i));
+        for (String key : bmd.getPrimaryKeys()) {
+            PropertyType pt = bmd.getPropertyTypeByColumnName(key);
             PropertyDesc pd = pt.getPropertyDesc();
             varList.add(pd.getValue(bean));
             varValueTypeList.add(pt.getValueType());

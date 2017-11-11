@@ -100,8 +100,7 @@ public class RowCreatorImpl implements RowCreator {
 
     protected void setupPropertyCache(Map proprertyCache, Set columnNames,
             BeanMetaData beanMetaData) throws SQLException {
-        for (int i = 0; i < beanMetaData.getPropertyTypeSize(); ++i) {
-            PropertyType pt = beanMetaData.getPropertyType(i);
+        for (PropertyType pt : beanMetaData.getPropertyTypes()) {
             if (!isTargetProperty(pt)) {
                 continue;
             }
@@ -155,8 +154,8 @@ public class RowCreatorImpl implements RowCreator {
     protected void setupPropertyCache(Map proprertyCache, Set columnNames,
             DtoMetaData dtoMetaData) throws SQLException {
 
-        for (int i = 0; i < dtoMetaData.getPropertyTypeSize(); ++i) {
-            PropertyType pt = dtoMetaData.getPropertyType(i);
+        for (PropertyType pt : dtoMetaData.getPropertyTypes()) {
+
             if (!isTargetProperty(pt)) {
                 continue;
             }

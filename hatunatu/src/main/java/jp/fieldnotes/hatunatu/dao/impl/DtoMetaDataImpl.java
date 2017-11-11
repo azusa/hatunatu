@@ -22,6 +22,8 @@ import jp.fieldnotes.hatunatu.dao.PropertyTypeFactory;
 import jp.fieldnotes.hatunatu.util.collection.CaseInsensitiveMap;
 import jp.fieldnotes.hatunatu.util.exception.PropertyNotFoundRuntimeException;
 
+import java.util.Collection;
+
 public class DtoMetaDataImpl implements DtoMetaData {
 
     private Class beanClass;
@@ -39,9 +41,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
         setupPropertyType();
     }
 
-    /**
-     * @see DtoMetaData#getBeanClass()
-     */
+    @Override
     public Class getBeanClass() {
         return beanClass;
     }
@@ -50,23 +50,13 @@ public class DtoMetaDataImpl implements DtoMetaData {
         this.beanClass = beanClass;
     }
 
-    /**
-     * @see DtoMetaData#getPropertyTypeSize()
-     */
-    public int getPropertyTypeSize() {
-        return propertyTypes.size();
-    }
 
-    /**
-     * @see DtoMetaData#getPropertyType(int)
-     */
+    @Override
     public PropertyType getPropertyType(int index) {
         return (PropertyType) propertyTypes.getAt(index);
     }
 
-    /**
-     * @see DtoMetaData#getPropertyType(java.lang.String)
-     */
+    @Override
     public PropertyType getPropertyType(String propertyName)
             throws PropertyNotFoundRuntimeException {
 
@@ -78,9 +68,7 @@ public class DtoMetaDataImpl implements DtoMetaData {
         return propertyType;
     }
 
-    /**
-     * @see DtoMetaData#hasPropertyType(java.lang.String)
-     */
+    @Override
     public boolean hasPropertyType(String propertyName) {
         return propertyTypes.get(propertyName) != null;
     }
@@ -105,6 +93,11 @@ public class DtoMetaDataImpl implements DtoMetaData {
 
     public void setPropertyTypeFactory(PropertyTypeFactory propertyTypeFactory) {
         this.propertyTypeFactory = propertyTypeFactory;
+    }
+
+    @Override
+    public Collection<PropertyType> getPropertyTypes() {
+        return this.propertyTypes.values();
     }
 
 }

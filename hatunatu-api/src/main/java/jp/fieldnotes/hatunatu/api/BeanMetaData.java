@@ -16,7 +16,7 @@
 package jp.fieldnotes.hatunatu.api;
 
 
-
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -54,7 +54,7 @@ public interface BeanMetaData extends DtoMetaData {
 
     public RelationPropertyType getRelationPropertyType(String propertyName);
 
-    public int getPrimaryKeySize();
+    public List<String> getPrimaryKeys();
 
     public String getPrimaryKey(int index);
 
