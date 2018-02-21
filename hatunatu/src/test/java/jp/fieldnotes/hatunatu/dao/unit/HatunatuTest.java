@@ -17,31 +17,33 @@
 package jp.fieldnotes.hatunatu.dao.unit;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.dataset.DataReader;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
+import jp.fieldnotes.hatunatu.dao.dataset.DataTable;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.SqlTableReader;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.SqlWriter;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.XlsReader;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.dao.types.ValueTypes;
+import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
+import jp.fieldnotes.hatunatu.dao.util.DataSourceUtil;
 import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.exception.SQLRuntimeException;
 import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import jp.fieldnotes.hatunatu.util.lang.FieldUtil;
 import jp.fieldnotes.hatunatu.util.lang.StringUtil;
+import jp.fieldnotes.hatunatu.util.sql.PreparedStatementUtil;
 import org.junit.rules.ExternalResource;
 import org.lastaflute.di.core.ContainerConstants;
 import org.lastaflute.di.core.LaContainer;
 import org.lastaflute.di.core.factory.LaContainerFactory;
 import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
-import org.seasar.extension.dataset.DataReader;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.dataset.DataTable;
-import org.seasar.extension.dataset.impl.SqlTableReader;
-import org.seasar.extension.dataset.impl.SqlWriter;
-import org.seasar.extension.dataset.impl.XlsReader;
-import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
-import org.seasar.extension.jdbc.util.ConnectionUtil;
-import org.seasar.extension.jdbc.util.DataSourceUtil;
-import org.seasar.framework.unit.UnitClassLoader;
 
 import javax.sql.DataSource;
 import javax.transaction.SystemException;
@@ -52,10 +54,7 @@ import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,17 +173,17 @@ public class HatunatuTest extends ExternalResource {
         return dataSource;
     }
 
-    public DataTable readDbByTable(String table) {
+    public DataTable readDbByTable(String table) throws Exception {
         return readDbByTable(table, null);
     }
 
-    public DataTable readDbByTable(String table, String condition) {
+    public DataTable readDbByTable(String table, String condition) throws Exception {
         SqlTableReader reader = new SqlTableReader(getDataSource());
         reader.setTable(table, condition);
         return reader.read();
     }
 
-    public void readXlsAllReplaceDb(String path) {
+    public void readXlsAllReplaceDb(String path) throws Exception {
         DataSet dataSet = readXls(path);
         for (int i = dataSet.getTableSize() - 1; i >= 0; --i) {
             deleteTable(dataSet.getTable(i).getTableName());
@@ -193,7 +192,7 @@ public class HatunatuTest extends ExternalResource {
     }
 
     private void deleteTable(String tableName) {
-        org.seasar.extension.jdbc.UpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+        BasicUpdateHandler handler = new BasicUpdateHandler(getDataSource(),
                 "DELETE FROM " + tableName);
         handler.execute(null);
     }
@@ -203,7 +202,7 @@ public class HatunatuTest extends ExternalResource {
         return reader.read();
     }
 
-    private void writeDb(DataSet dataSet) {
+    private void writeDb(DataSet dataSet) throws Exception {
         SqlWriter writer = new SqlWriter(this.getDataSource());
         writer.write(dataSet);
     }
@@ -502,6 +501,96 @@ public class HatunatuTest extends ExternalResource {
         return Thread.currentThread().getContextClassLoader();
     }
 
+    private static class BasicUpdateHandler {
+
+        private DataSource ds;
+
+        private String sql;
+
+        /**
+         * {@link org.seasar.extension.jdbc.impl.BasicUpdateHandler}を作成します。
+         */
+        public BasicUpdateHandler() {
+        }
+
+        /**
+         * {@link org.seasar.extension.jdbc.impl.BasicUpdateHandler}を作成します。
+         *
+         * @param dataSource データソース
+         * @param sql        SQL
+         */
+        public BasicUpdateHandler(DataSource dataSource, String sql) {
+            this.ds = dataSource;
+            this.sql = sql;
+        }
+
+        public int execute(Object[] args) throws SQLRuntimeException {
+            return execute(args, getArgTypes(args));
+        }
+
+        public int execute(Object[] args, Class[] argTypes)
+                throws SQLRuntimeException {
+
+            try (Connection connection = ds.getConnection()) {
+                return execute(connection, args, argTypes);
+            } catch (SQLException e) {
+                throw new SQLRuntimeException(e);
+            }
+        }
+
+        /**
+         * SQL文を実行します。
+         *
+         * @param connection コネクション
+         * @param args       引数
+         * @param argTypes   引数の型
+         * @return 更新した行数
+         */
+        public int execute(Connection connection, Object[] args, Class[] argTypes) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                bindArgs(ps, args, argTypes);
+                return PreparedStatementUtil.executeUpdate(ps);
+            } catch (SQLException e) {
+                throw new SQLRuntimeException(e);
+            }
+        }
+
+        private void bindArgs(PreparedStatement ps, Object[] args,
+                              Class[] argTypes) {
+
+            if (args == null) {
+                return;
+            }
+            for (int i = 0; i < args.length; ++i) {
+                ValueType valueType = getValueType(argTypes[i]);
+                try {
+                    valueType.bindValue(ps, i + 1, args[i]);
+                } catch (SQLException ex) {
+                    throw new SQLRuntimeException(ex);
+                }
+            }
+        }
+
+        private ValueType getValueType(Class clazz) {
+            return ValueTypes.getValueType(clazz);
+        }
+
+        private Class[] getArgTypes(Object[] args) {
+            if (args == null) {
+                return null;
+            }
+            Class[] argTypes = new Class[args.length];
+            for (int i = 0; i < args.length; ++i) {
+                Object arg = args[i];
+                if (arg != null) {
+                    argTypes[i] = arg.getClass();
+                }
+            }
+            return argTypes;
+        }
+
+    }
 
 
 }

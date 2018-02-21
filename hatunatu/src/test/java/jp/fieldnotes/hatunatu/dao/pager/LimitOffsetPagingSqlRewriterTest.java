@@ -16,11 +16,11 @@
 package jp.fieldnotes.hatunatu.dao.pager;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.unit.S2DaoTestCase;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.dataset.DataSet;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;

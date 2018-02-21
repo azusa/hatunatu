@@ -15,8 +15,8 @@
  */
 package jp.fieldnotes.hatunatu.dao.util;
 
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import org.junit.Test;
-import org.seasar.framework.util.ClassUtil;
 
 import java.lang.reflect.Method;
 import java.util.List;

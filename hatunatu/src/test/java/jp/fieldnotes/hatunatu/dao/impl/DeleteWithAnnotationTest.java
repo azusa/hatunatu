@@ -15,11 +15,11 @@
  */
 package jp.fieldnotes.hatunatu.dao.impl;
 
+import jp.fieldnotes.hatunatu.dao.dataset.DataTable;
 import jp.fieldnotes.hatunatu.dao.impl.dao.Employee12Dao;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.dataset.DataTable;
 
 import static org.junit.Assert.assertEquals;
 

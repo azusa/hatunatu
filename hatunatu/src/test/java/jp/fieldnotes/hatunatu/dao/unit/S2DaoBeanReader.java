@@ -19,10 +19,10 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.api.RelationPropertyType;
 import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
-import org.seasar.extension.dataset.*;
-import org.seasar.extension.dataset.impl.DataSetImpl;
-import org.seasar.extension.dataset.states.RowStates;
-import org.seasar.extension.dataset.types.ColumnTypes;
+import jp.fieldnotes.hatunatu.dao.dataset.*;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.DataSetImpl;
+import jp.fieldnotes.hatunatu.dao.dataset.states.RowStates;
+import jp.fieldnotes.hatunatu.dao.dataset.types.ColumnTypes;
 
 public class S2DaoBeanReader implements DataReader {
 

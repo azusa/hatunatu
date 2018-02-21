@@ -16,11 +16,11 @@
 package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.*;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
 import jp.fieldnotes.hatunatu.dao.util.DatabaseMetaDataUtil;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.jdbc.impl.MapListResultSetHandler;
 
 import java.io.Serializable;
 import java.sql.DatabaseMetaData;
@@ -30,7 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class DefaultTest  {
 
@@ -55,7 +56,7 @@ public class DefaultTest  {
             System.out.println("[" + i + "] " + columnName);
         }
         MapListResultSetHandler handler = new MapListResultSetHandler();
-        List l = (List) handler.handle(rset);
+        List l = (List) handler.handle(rset, new QueryObject());
         for (Iterator it = l.iterator(); it.hasNext();) {
             Map m = (Map) it.next();
             System.out.println(m);

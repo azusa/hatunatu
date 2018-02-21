@@ -19,12 +19,12 @@ import jp.fieldnotes.hatunatu.api.BeanMetaData;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Id;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.IdType;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Relation;
+import jp.fieldnotes.hatunatu.dao.dataset.DataRow;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
+import jp.fieldnotes.hatunatu.dao.dataset.DataTable;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.DataSetImpl;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.dataset.DataRow;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.dataset.DataTable;
-import org.seasar.extension.dataset.impl.DataSetImpl;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
