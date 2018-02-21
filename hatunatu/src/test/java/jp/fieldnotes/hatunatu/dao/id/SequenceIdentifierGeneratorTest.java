@@ -49,27 +49,5 @@ public class SequenceIdentifierGeneratorTest {
         assertTrue("1", hoge.getId() > 0);
     }
 
-    @Test
-    public void testGenerate_allocationSizeTx() throws Exception {
-        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
-        PropertyDesc propertyDesc = beanDesc.getPropertyDesc("id");
-        PropertyType propertyType = new PropertyTypeImpl(propertyDesc,
-                ValueTypes.getValueType(int.class));
-        SequenceIdentifierGenerator generator = new SequenceIdentifierGenerator(
-                propertyType, new HSQL());
-        generator.setSequenceName("myseq2");
-        generator.setAllocationSize(10L);
-        Hoge hoge = new Hoge();
-        generator.setIdentifier(hoge, test.getDataSource());
-        System.out.println(hoge.getId());
-        assertTrue(hoge.getId() > 0);
-        int prev = hoge.getId();
-        for (int i = 0; i < 31; i++) {
-            generator.setIdentifier(hoge, test.getDataSource());
-            System.out.println(hoge.getId());
-            assertTrue(hoge.getId() > prev);
-            prev = hoge.getId();
-        }
-    }
 
 }

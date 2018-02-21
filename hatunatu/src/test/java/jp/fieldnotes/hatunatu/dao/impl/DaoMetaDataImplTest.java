@@ -17,7 +17,8 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.DaoMetaData;
 import jp.fieldnotes.hatunatu.api.SqlCommand;
-import jp.fieldnotes.hatunatu.dao.DaoNamingConvention;
+import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
+import jp.fieldnotes.hatunatu.api.beans.PropertyDesc;
 import jp.fieldnotes.hatunatu.dao.command.*;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalAnnotationRuntimeException;
 import jp.fieldnotes.hatunatu.dao.exception.IllegalSignatureRuntimeException;
@@ -35,13 +36,14 @@ import jp.fieldnotes.hatunatu.dao.resultset.BeanListMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.BeanMetaDataResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.resultset.ObjectResultSetHandler;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.beans.factory.BeanDescFactory;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
-import org.seasar.framework.util.TextUtil;
 
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -527,9 +529,10 @@ public class DaoMetaDataImplTest  {
         DaoMetaDataImpl dmd = test.createDaoMetaData(EmployeeExDao.class);
         SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
                 .getSqlCommand(test.getSingleDaoMethod(EmployeeExDao.class,"getEmployee"));
-        final String expected = TextUtil.readText(EmployeeDao.class
+        URL url = ResourceUtil.getResource(EmployeeDao.class
                 .getPackage().getName().replace('.', '/')
-                + "/" + "EmployeeDao_getEmployee.sql");
+                + "/" + "EmployeeDao_getEmployee.sql", null);
+        final String expected = new String(Files.readAllBytes(Paths.get(url.toURI())), "UTF-8");
         assertEquals(expected, cmd.getSql());
     }
 

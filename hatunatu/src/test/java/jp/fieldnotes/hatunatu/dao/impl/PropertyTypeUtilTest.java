@@ -17,11 +17,9 @@ package jp.fieldnotes.hatunatu.dao.impl;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
-import jp.fieldnotes.hatunatu.dao.util.ConnectionUtil;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.util.ResultSetUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,37 +39,26 @@ public class PropertyTypeUtilTest {
 
     @Test
     public void testCreatePropertyTypes() throws Exception {
-        PreparedStatement ps = ConnectionUtil.prepareStatement(test.getConnection(),
-                "select d_name, active from dept3");
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
-                PropertyType[] propertyTypes = PropertyTypeUtil
-                        .createPropertyTypes(rs.getMetaData());
-                assertEquals(2, propertyTypes.length);
-                PropertyType p = propertyTypes[0];
-                assertEquals("dname", p.getPropertyName().toLowerCase());
-                assertEquals("d_name", p.getColumnName().toLowerCase());
-                p = propertyTypes[1];
-                assertEquals("active", p.getPropertyName().toLowerCase());
-                assertEquals("active", p.getColumnName().toLowerCase());
-            } finally {
-                ResultSetUtil.close(rs);
-            }
-        } finally {
-            ps.close();
+
+        try (PreparedStatement ps = test.getConnection().prepareStatement("select d_name, active from dept3"); ResultSet rs = ps.executeQuery()) {
+            PropertyType[] propertyTypes = PropertyTypeUtil
+                    .createPropertyTypes(rs.getMetaData());
+            assertEquals(2, propertyTypes.length);
+            PropertyType p = propertyTypes[0];
+            assertEquals("dname", p.getPropertyName().toLowerCase());
+            assertEquals("d_name", p.getColumnName().toLowerCase());
+            p = propertyTypes[1];
+            assertEquals("active", p.getPropertyName().toLowerCase());
+            assertEquals("active", p.getColumnName().toLowerCase());
         }
+
     }
 
     @Test
     public void testCreatePropertyTypes_preserveUnderscore() throws Exception {
         PropertyTypeUtil.setPreserveUnderscore(true);
 
-        PreparedStatement ps = ConnectionUtil.prepareStatement(test.getConnection(),
-                "select d_name, active from dept3");
-        try {
-            ResultSet rs = ps.executeQuery();
-            try {
+        try (PreparedStatement ps = test.getConnection().prepareStatement("select d_name, active from dept3"); ResultSet rs = ps.executeQuery()) {
                 PropertyType[] propertyTypes = PropertyTypeUtil
                         .createPropertyTypes(rs.getMetaData());
                 assertEquals(2, propertyTypes.length);
@@ -81,11 +68,6 @@ public class PropertyTypeUtilTest {
                 p = propertyTypes[1];
                 assertEquals("active", p.getPropertyName().toLowerCase());
                 assertEquals("active", p.getColumnName().toLowerCase());
-            } finally {
-                ResultSetUtil.close(rs);
-            }
-        } finally {
-            ps.close();
         }
     }
 

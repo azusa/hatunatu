@@ -15,12 +15,12 @@
  */
 package jp.fieldnotes.hatunatu.dao.unit;
 
+import jp.fieldnotes.hatunatu.dao.dataset.DataRow;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
+import jp.fieldnotes.hatunatu.dao.dataset.DataTable;
+import jp.fieldnotes.hatunatu.dao.dataset.states.RowStates;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.extension.dataset.DataRow;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.dataset.DataTable;
-import org.seasar.extension.dataset.states.RowStates;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

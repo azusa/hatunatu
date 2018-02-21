@@ -17,19 +17,13 @@ package jp.fieldnotes.hatunatu.dao.id;
 
 import jp.fieldnotes.hatunatu.api.PropertyType;
 import jp.fieldnotes.hatunatu.dao.Dbms;
-import jp.fieldnotes.hatunatu.dao.util.SelectableDataSourceProxyUtil;
 import jp.fieldnotes.hatunatu.util.convert.LongConversionUtil;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
 
 public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
 
     private String sequenceName;
-
-    private long allocationSize = 0;
-
-    private HashMap idContextMap = new HashMap();
 
     /**
      * {@inheritDoc}
@@ -52,25 +46,6 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
         this.sequenceName = sequenceName;
     }
 
-    /**
-     * 割り当てサイズを返します。
-     * 
-     * @return 割り当てサイズ
-     */
-    public long getAllocationSize() {
-        return allocationSize;
-    }
-
-    /**
-     * 割り当てサイズを設定します。
-     * 
-     * @param allocationSize
-     *            割り当てサイズ
-     */
-    public void setAllocationSize(long allocationSize) {
-        this.allocationSize = allocationSize;
-    }
-
     @Override
     public void setIdentifier(Object bean, DataSource ds) throws Exception {
         setIdentifier(bean, getNextValue(ds));
@@ -89,11 +64,8 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
      * @return 識別子の値
      */
     protected Object getNextValue(DataSource ds) throws Exception {
-        if (allocationSize > 0) {
-            long value = getIdContext(ds).getNextValue(ds);
-            return new Long(value);
-        }
-        return getNewInitialValue(ds);
+        return LongConversionUtil
+                .toPrimitiveLong(getNewInitialValue(ds));
     }
 
     /**
@@ -108,54 +80,5 @@ public class SequenceIdentifierGenerator extends AbstractIdentifierGenerator {
                 null);
     }
 
-    /**
-     * IDコンテキストを返します。
-     * 
-     * @param ds
-     *            データソース
-     * @return IDコンテキスト
-     */
-    protected IdContext getIdContext(DataSource ds) {
-        synchronized (idContextMap) {
-            String dsName = SelectableDataSourceProxyUtil
-                    .getSelectableDataSourceName(ds);
-            IdContext context = (IdContext) idContextMap.get(dsName);
-            if (context == null) {
-                context = new IdContext();
-                idContextMap.put(dsName, context);
-            }
-            return context;
-        }
-    }
 
-    /**
-     * 自動生成される識別子のコンテキスト情報を保持するクラスです。
-     * 
-     */
-    public class IdContext {
-
-        /** 初期値 */
-        protected long initialValue;
-
-        /** 割り当て済みの値 */
-        protected long allocated = Long.MAX_VALUE;
-
-        /**
-         * 自動生成された識別子の値を返します。
-         * 
-         * @param ds
-         *            データソース
-         * @return 自動生成された識別子の値
-         */
-        public synchronized long getNextValue(DataSource ds) throws Exception {
-            if (allocated < allocationSize) {
-                return initialValue + allocated++;
-            }
-            initialValue = LongConversionUtil
-                    .toPrimitiveLong(getNewInitialValue(ds));
-            allocated = 1;
-            return initialValue;
-        }
-
-    }
 }

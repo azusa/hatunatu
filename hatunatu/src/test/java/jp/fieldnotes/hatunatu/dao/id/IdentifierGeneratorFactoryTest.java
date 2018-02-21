@@ -91,8 +91,6 @@ public class IdentifierGeneratorFactoryTest {
         IdentifierGenerator generator = IdentifierGeneratorFactory.createIdentifierGenerator(
                 propertyType, dbms,
                 identifier);
-        assertEquals("4", 10, ((SequenceIdentifierGenerator) generator)
-                .getAllocationSize());
     }
 
 }

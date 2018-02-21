@@ -18,9 +18,9 @@ package jp.fieldnotes.hatunatu.dao.command;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Argument;
 import jp.fieldnotes.hatunatu.dao.annotation.tiger.Bean;
 import jp.fieldnotes.hatunatu.dao.unit.HatunatuTest;
+import jp.fieldnotes.hatunatu.util.lang.ClassUtil;
 import org.junit.Rule;
 import org.junit.Test;
-import org.seasar.framework.util.ClassUtil;
 
 import static org.junit.Assert.assertEquals;
 

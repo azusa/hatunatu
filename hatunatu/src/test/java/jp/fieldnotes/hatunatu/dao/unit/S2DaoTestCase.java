@@ -16,15 +16,16 @@
 package jp.fieldnotes.hatunatu.dao.unit;
 
 import jp.fieldnotes.hatunatu.api.BeanMetaData;
+import jp.fieldnotes.hatunatu.dao.StatementFactory;
+import jp.fieldnotes.hatunatu.dao.UpdateHandler;
+import jp.fieldnotes.hatunatu.dao.dataset.DataReader;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.SqlWriter;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.XlsReader;
+import jp.fieldnotes.hatunatu.dao.handler.BasicUpdateHandler;
+import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
+import jp.fieldnotes.hatunatu.util.io.ResourceUtil;
 import junit.framework.Assert;
-import org.seasar.extension.dataset.DataReader;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.dataset.impl.SqlWriter;
-import org.seasar.extension.dataset.impl.XlsReader;
-import org.seasar.extension.jdbc.impl.BasicUpdateHandler;
-import org.seasar.extension.unit.MapListReader;
-import org.seasar.extension.unit.MapReader;
-import org.seasar.framework.util.ResourceUtil;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ import static org.junit.Assert.assertThat;
 
 public abstract class S2DaoTestCase  {
 
-    public void readXlsAllReplaceDb(String path) {
+    public void readXlsAllReplaceDb(String path) throws Exception {
         DataSet dataSet = readXls(path);
         for (int i = dataSet.getTableSize() - 1; i >= 0; --i) {
             deleteTable(dataSet.getTable(i).getTableName());
@@ -50,17 +51,18 @@ public abstract class S2DaoTestCase  {
         return reader.read();
     }
 
-    public void writeDb(DataSet dataSet) {
+    public void writeDb(DataSet dataSet) throws Exception {
         SqlWriter writer = new SqlWriter(getDataSource());
         writer.write(dataSet);
     }
 
 
-
-    public void deleteTable(String tableName) {
-        org.seasar.extension.jdbc.UpdateHandler handler = new BasicUpdateHandler(getDataSource(),
-                "DELETE FROM " + tableName);
-        handler.execute(null);
+    public void deleteTable(String tableName) throws Exception {
+        UpdateHandler handler = new BasicUpdateHandler(getDataSource(),
+                StatementFactory.INSTANCE);
+        QueryObject query = new QueryObject();
+        query.setSql("DELETE FROM " + tableName);
+        handler.execute(query);
     }
 
     public void assertDataSetEquals(String message, DataSet expected, Object actual) throws Exception {
@@ -89,7 +91,6 @@ public abstract class S2DaoTestCase  {
     }
     public void assertDataSetEquals(String message, DataSet expected, DataSet actual) {
         message = message == null ? "" : message;
-        junit.framework.TestCase.assertEquals(message, expected.getTableSize(), actual.getTableSize());
         assertThat(message, actual.getTableSize(), is(expected.getTableSize()));
         for (int i = 0; i < expected.getTableSize(); ++i) {
             junit.framework.TestCase.assertEquals(message, expected.getTable(i), actual.getTable(i));
@@ -115,13 +116,13 @@ public abstract class S2DaoTestCase  {
     }
 
     protected void assertMapListEquals(String message, DataSet expected,
-                                       List list) {
+                                       List list) throws Exception {
 
         MapListReader reader = new MapListReader(list);
         assertDataSetEquals(message, expected, reader.read());
     }
 
-    protected void assertMapEquals(String message, DataSet expected, Map map) {
+    protected void assertMapEquals(String message, DataSet expected, Map map) throws Exception {
 
         MapReader reader = new MapReader(map);
         assertDataSetEquals(message, expected, reader.read());

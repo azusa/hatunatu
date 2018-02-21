@@ -21,6 +21,12 @@ import jp.fieldnotes.hatunatu.api.ValueType;
 import jp.fieldnotes.hatunatu.api.beans.BeanDesc;
 import jp.fieldnotes.hatunatu.api.beans.MethodDesc;
 import jp.fieldnotes.hatunatu.dao.*;
+import jp.fieldnotes.hatunatu.dao.dataset.DataReader;
+import jp.fieldnotes.hatunatu.dao.dataset.DataSet;
+import jp.fieldnotes.hatunatu.dao.dataset.DataTable;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.SqlTableReader;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.SqlWriter;
+import jp.fieldnotes.hatunatu.dao.dataset.impl.XlsReader;
 import jp.fieldnotes.hatunatu.dao.dbms.DbmsManager;
 import jp.fieldnotes.hatunatu.dao.impl.*;
 import jp.fieldnotes.hatunatu.dao.jdbc.QueryObject;
@@ -38,12 +44,6 @@ import org.lastaflute.di.core.ContainerConstants;
 import org.lastaflute.di.core.LaContainer;
 import org.lastaflute.di.core.factory.LaContainerFactory;
 import org.lastaflute.di.core.factory.SingletonLaContainerFactory;
-import org.seasar.extension.dataset.DataReader;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.extension.dataset.DataTable;
-import org.seasar.extension.dataset.impl.SqlTableReader;
-import org.seasar.extension.dataset.impl.SqlWriter;
-import org.seasar.extension.dataset.impl.XlsReader;
 
 import javax.sql.DataSource;
 import javax.transaction.SystemException;
@@ -173,17 +173,17 @@ public class HatunatuTest extends ExternalResource {
         return dataSource;
     }
 
-    public DataTable readDbByTable(String table) {
+    public DataTable readDbByTable(String table) throws Exception {
         return readDbByTable(table, null);
     }
 
-    public DataTable readDbByTable(String table, String condition) {
+    public DataTable readDbByTable(String table, String condition) throws Exception {
         SqlTableReader reader = new SqlTableReader(getDataSource());
         reader.setTable(table, condition);
         return reader.read();
     }
 
-    public void readXlsAllReplaceDb(String path) {
+    public void readXlsAllReplaceDb(String path) throws Exception {
         DataSet dataSet = readXls(path);
         for (int i = dataSet.getTableSize() - 1; i >= 0; --i) {
             deleteTable(dataSet.getTable(i).getTableName());
@@ -202,7 +202,7 @@ public class HatunatuTest extends ExternalResource {
         return reader.read();
     }
 
-    private void writeDb(DataSet dataSet) {
+    private void writeDb(DataSet dataSet) throws Exception {
         SqlWriter writer = new SqlWriter(this.getDataSource());
         writer.write(dataSet);
     }
